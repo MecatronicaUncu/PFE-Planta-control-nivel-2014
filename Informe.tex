@@ -1,0 +1,73 @@
+\documentclass[twoside,openright,% regular options
+               DIV10,BCOR7mm,% page size options
+               parskip=half,
+               headings=small
+               %,draft
+               ]% KOMA options
+               {scrbook} % Class: KOMA-script version of 'report'
+    
+\usepackage{Informe}
+
+%%------------%%
+%%            %%
+%%    META    %%
+%%            %%
+%%------------%%
+\author{Alvaro Alonso - Maximiliano Badaloni - Fernando Cladera}
+\title{Proyecto Final de Estudios}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%----------------------%%
+%%            		%%
+%%    INICIO DOCUMENTO  %%
+%%            		%%
+%%----------------------%%
+\begin{document}
+
+\input{Caratula/caratula.tex}
+
+\input{./Glosario/glosario.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%----------------------%%
+%%            		%%
+%%   	 INDICES	%%
+%%            		%%
+%%----------------------%%
+\frontmatter
+
+\tableofcontents
+\listoffigures
+%\listoftables
+\input{./Abstract/abstract.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%-----------------------------%%
+%%                             %%
+%%  CAPÍTULOS PRINCIPALES      %%
+%%                             %%
+%%-----------------------------%%
+\pagestyle{plain}
+\mainmatter
+\input{./Cap1-Introduccion/Cap1-Introduccion.tex}
+\input{./Cap5-Conclusion/Cap5-Conclusion.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%------------------------------%%
+%%            		  	%%
+%%   GLOSARIO Y BIBLIOGRAFIA	%%
+%%            			%%
+%%------------------------------%%
+\backmatter
+
+
+\setlength{\glslistdottedwidth}{0.4\textwidth}
+\setglossarystyle{listdotted} % mirror.ox.ac.uk/sites/ctan.org/macros/latex/contrib/glossaries/glossaries-user.html#dx1-35001
+\printglossaries
+\bibliographystyle{ieeetr}
+\bibliography{Bibliografia/bibliografia}
+\addcontentsline{toc}{chapter}{Bibliografía}
+
+%\appendix
+%\input{./Anexos/Anexos.tex}
+
+\end{document}

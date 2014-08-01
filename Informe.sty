@@ -1,0 +1,142 @@
+%%%%%%%%%%%%%%%%%	
+%%  PACKAGES	%
+%%%%%%%%%%%%%%%%%
+\usepackage{dirtree}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+
+%font type
+% Palatino font
+\usepackage[osf,sc]{mathpazo}
+\linespread{1.05} % Palatino requires slightly more line spacing
+% Bitstream Vera Sans font
+\usepackage[scaled]{berasans}
+% Now recalculate type area based on these new fonts
+\typearea[current]{last}
+
+
+\usepackage[dvipsnames,usenames]{xcolor}
+\usepackage{quotchap}
+
+% Fancy chapter name
+% 
+\renewcommand*{\chapnumfont}{% 
+	\usefont{T1}{fvs}{b}{n}\fontsize{100}{130}\selectfont% 
+	\color{chaptergrey}}
+
+% Setting figure captions off from the rest of the text somewhat
+\addtokomafont{caption}{\itshape\small}
+\addtokomafont{captionlabel}{\itshape\bfseries\small}
+\renewcommand*{\captionformat}{.\ }
+
+\usepackage[intlimits]{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{verbatim}
+\usepackage{tabularx}
+\usepackage{floatflt}
+\usepackage{graphicx}
+\usepackage{caption}
+\captionsetup{%
+  figurename=Fig.,
+  tablename=Tab.
+}
+\usepackage{subcaption}
+
+\usepackage{moreverb} %% pour le verbatim en boite
+
+%\usepackage{showkeys} %% pour voir les labels
+\usepackage{multirow} %% tablas guays 
+\usepackage{url} %% pour citer les url par \url
+\usepackage[all]{xy} %% pour la barre au dessus des symboles
+\usepackage{shorttoc} %% pour plusieurs tables des matières par la commande \shorttableofcontents{Titre}{profondeur}.
+\usepackage{textcomp} %% pour le symbol pour mille par \textperthousand.
+
+
+\usepackage{algpseudocode}
+
+
+\usepackage[right]{eurosym}
+
+%indent first paragraph after a title
+%\usepackage{indentfirst}
+
+%Wrap figures
+\usepackage{wrapfig}
+
+%matrices mas bellas
+\renewcommand*{\arraystretch}{2}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+%%%%%%%%%Symbolos utiles
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%front page
+
+%todo notes
+\usepackage{todonotes}
+
+% Para hacer un glosario bello
+\usepackage[xindy={language=spanish-traditional},translate=babel,acronym,nomain,toc]{glossaries}
+\usepackage[xindy]{imakeidx}
+\makeglossaries
+\usepackage{scrhack} %hack to avoid warnings
+
+%
+% Packages Nécéssaires
+%
+\RequirePackage{latexsym} % anciens symboles latex
+\RequirePackage{calc}
+\RequirePackage{ifthen}
+\RequirePackage{float}
+
+\RequirePackage{epsfig}
+
+%Permite incluir páginas de pdfs, usados en el anexo
+\usepackage{pdfpages}
+
+\usepackage{etex}
+%\usepackage{vmargin} % permite modificar margenes
+%\usepackage{textpos} % colocar boxes en posicion arbitraria
+
+\usepackage{letterspace}
+
+\usepackage{setspace}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\renewcommand{\acronymname}{Lista de Acrónimos}
+\addto\captionsspanish{%
+\renewcommand
+*
+{\glossaryname}{Lista de Acrónimos}%
+\renewcommand
+*
+{\acronymname}{Lista de Acrónimos}%
+}
+
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata,shapes}
+ % Define block styles
+  \tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+      text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+  \tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+      text width=8em, text centered, rounded corners, minimum height=4em]
+  \tikzstyle{line} = [draw, -latex']
+  \tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+      minimum height=2em]
+      
+\usepackage[]{hyperref}
+\hypersetup{
+    pdftitle={Control de Posición del Sistema de Riego Doméstico Robotizado},
+    pdfauthor={Alonso - Badaloni - Cladera},
+    pdfsubject={Robótica II},
+    bookmarksnumbered=true,     
+    bookmarksopen=true,         
+    bookmarksopenlevel=1,       
+    colorlinks=true,            
+    pdfstartview=Fit,           
+    pdfpagemode=UseOutlines,    % this is the option you were lookin for
+    pdfpagelayout=TwoPageRight
+}
