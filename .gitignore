@@ -1,0 +1,23 @@
+=== Latex ===
+*.aux
+Informe.pdf
+*.backup
+*~
+*.log
+*.lot
+*.gz
+*.toc
+*.blg
+*.bbl
+*.xdy
+*.lof
+*.acn
+*.TMP
+*.acr
+*.alg
+*.ist
+*.out
+
+=== Temps de Kile ===
+Informe.glsdefs
+*.kilepr
