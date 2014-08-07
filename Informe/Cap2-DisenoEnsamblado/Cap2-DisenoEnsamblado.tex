@@ -1,5 +1,9 @@
 \chapter{Diseño y Ensamblado}
 \label{ch:DisenoEnsamblado}
+En esta sección intentaremos describir el camino realizado para la concreción del proyecto, desde 
+las primeras instancias con la confección e interpretación del diagrama de cañerías e instrumentación, 
+luego con la construcción de la planta a partir de los elementos disponibles, haciendo mención de 
+las decisiones trascendentes para el trabajo.
 
 \section{P \& I D}
 \label{sec:p&id}
@@ -7,7 +11,7 @@
 \subsection{Diagrama de cañerías e instrumentación}
 Un diagrama de cañerías e instrumentación es un esquema de la planta que nos brinda una idea 
 general del problema que debemos abordar. En él se encuentra los elementos que componen el proceso. 
-Estos diagramas emplean círculos y símbolos para representar cada elemento y como estan interconectados, 
+Estos diagramas emplean círculos y símbolos para representar cada elemento y como están interconectados, 
 los elementos presentes en este esquema están normalizados por la \emph{Standard S5.1
 Instrumentation Symbol Specification}.
 
@@ -36,17 +40,50 @@ Cada elemento debe ir acompañado de una denominación la que presenta la siguie
 \end{itemize}
 
 \subsection{P \& I D de nuestra planta}
-De acuerdo a los componentes detallados en el capitulo 1 de este informe se realizó el esquema P&ID
-
+De acuerdo a los componentes detallados en el capitulo 1 de este informe se realizó el esquema P\&ID
+de la planta de control de nivel. Para la confección de la misma se utilizó una plantilla disponible
+en Google Docs, la decisión sobre la misma se hizo dado que era suficiente para la complejidad de
+nuestro proyecto.
+\todo{Colocamos la imagen acá o hacemos una referencia al anexo?}
 
 \section{Estructura de Soporte}
 \label{sec:EstructuraSoporte}
-Descripción mecánica
 
+Dado que el objetivo principal del proyecto es hacer un elemento para fines educativos, la estructura
+debía ser móvil, dotada de cuatro ruedas con frenos de seguridad que permitan mantener fija la estructura
+al momento de la demostración de la planta.
+
+La estructura es de caño estructural \todo{imagen de la estructura} se puede apreciar en figura(tanto).
+Sus dimensiones son las siguientes:
+
+ \begin{itemize}
+  \item Alto:
+  \item Ancho:
+  \item Profundidad:
+ \end{itemize}
+ \todo{Faltan las medidas}
+ Sobre la estructura de la planta, van montado los diferentes elementos, en su sección 
+ media presenta unos refuerzos, los cuales son necesarios dada la altura y peso de la misma, en 
+ los cuales se fijo una base de madera donde se apoyan la válvula, las celdas de presión diferencial
+ y las bombas. La manguera que corresponde al tiempo muerto se colocaron debajo de la base de madera.
+ 
 \section{Cañerías}
 \label{sec:Canerias}
+
 \subsection{Mangueras y Caños}
+
 \subsection{Válvulas manuales}
+valvula que limita la entrada al reservorio
+\subsection{Tiempo Muerto}
+Una mención especial vamos a dar al denominado tiempo muerto, que consta de \todo{Cuantos metros de
+manguera?} manguera negra de 1/2 pulgada, colocados en serie en el sistema, con una válvula que lo
+habilita, cuya función es la de alejar la acción de control del tanque  controlado, esto introduce 
+perturbaciones al sistema aumentando la complejidad del sistema de control. En esta situación el agua
+debe recorrer más metros evidentemente, se agregan pérdidas por rozamiento del fluido y las bombas 
+son forzadas a trabajar más.
+
+Esto fue previsto para ofrecer a las diferentes cátedras que van a trabajar con la planta muchos 
+escenarios que se presentan en la industria.
 
 \section{Bombas}
 \label{sec:Bombas}
