@@ -16,7 +16,7 @@ se encuentran en la industria, tales como sensores diferenciales de presión
 El proyecto está destinado a ser utilizado por las cátedras de
 Automatismos Industriales, Autómatas y Control Discreto 
 (Ingeniería en Mecatrónica)
-como así también Instrumentación y Control Automático )Ingeniería Industrial
+como así también Instrumentación y Control Automático (Ingeniería Industrial
 y de Petróleos)\todo{verificar}.
 
 En la actualidad, en el Laboratorio de Control Automático de la Facultad, 
@@ -39,11 +39,9 @@ el precio en el mercado de un desarrollo similar:
 \end{itemize}
 
 Se observa que, debido al elevado costo del producto en el mercado,
-se justifica su desarrollo  y construcción
-en la facultad.
+se justifica su desarrollo  y construcción en la facultad.
 Se plantea entonces el desafío de diseñar, ensamblar y programar una planta
-móvil de control de nivel en 
-el Laboratorio de Control Automático de la Facultad.
+móvil de control de nivel en el Laboratorio de Control Automático de la Facultad.
 
 %Por qué se hizo el trabajo? Comparación con otras plantas
 %(plantas para comprar Y plantas que puglesi ya tiene)
@@ -59,8 +57,12 @@ planta:
  \item Su costo debe ser inferior a una solución llave en mano.
  \item Deberán utilizarse actuadores, elementos de adquisición
  y controladores que se encuentren en plantas industriales.
+ \item Representación de fenomenos que afectan los procesos 
+ industriales, tales como perturbaciones en bombas y tiempo 
+ muerto en los procesos. 
  \item Se confeccionará un manual de uso sencillo, para 
  fácil comprensión por parte de los alumnos.
+
 \end{itemize}
 \todo{Mejorar}
 
@@ -114,6 +116,25 @@ y un planning de trabajo.
 
 \section{Solución propuesta}
 \label{sec:SolucionPropuesta}
+
+Mediante los materiales disponibles se dispone a la construcción de 
+una planta de control de nivel. En esta, dos tanques son alimentados por 
+dos bombas de acción reciproca y mediante una válvula neumática se actuá
+sobre el sistema para su control. El nivel del tanque controlado es medido 
+mediante celdas de presión diferencial.
+
+Para poder recrear fenómenos que afectan los procesos industriales se agregan
+a la planta:
+\begin{itemize}
+\item X\todo{Cuantos metros} metros de cañería que sirven como tiempo muerto
+de la planta.
+\item La conexión, mediante una válvula manual, de la salida con la entrada
+ de la bomba de manera de simular las perturbaciones del circuito hidráulico.
+\end{itemize}
+
+Resulta de interés la implementación de Teoría de Cascadas y para ello se pone
+a disposición en la planta la medición del caudal circulante mediante un elemento
+depresor\todo{Placa Orificio} y una celda de presión diferencial.
 
 \section{Organización}
 \label{sec:Organizacion}
