@@ -67,10 +67,75 @@ planta:
 \section{Materiales disponibles}
 \label{sec:MaterialesDisponibles}
 
+A la hora de comenzar con el proyecto, varios elementos habían
+sido adquiridos por el director de proyecto y se encontraban
+disponibles en el Laboratorio de Control Automático:
+\begin{itemize}
+ \item \textbf{Válvula neumática:} marca Foxboro, modelo Stabilflo (serie V1), para controlar el 
+ caudal. Se trata de una válvula isoporcentual, con un electroposicionador Power Genex.
+ La apertura de la válvula será nuestra variable de control en el sistema. 
+ Ver sección \ref{sec:ValvulaNeumatica}.
+  \item \textbf{Electrobombas monofásicas (2):} impulsarán el fluido
+  en la planta de control de nivel.
+  La velocidad de las bombas (frecuencia) no será controlada.
+  Ver sección \ref{sec:Bombas}.
+  \item \textbf{Placa Orificio:} Permite estimar el 
+  caudal en un tubo midiendo la presión.
+  Se tratará en la sección \ref{subsec:PlacaOrificio}.
+  \item \textbf{DP cells (2):} Sensores de presión 
+  diferencial marca Yokogawa. 
+  Uno de los sensores será utilizado para medir el nivel del tanque controlado,
+  en tanto que el segundo medirá caudal con la ayuda de la placa orificio.
+  Ver sección \ref{subsec:DPCell}.
+  \item \textbf{Instrumentos de protección y comando:}
+  Para las bombas, podemos citar: Contactores, relés, 
+  Llaves termomagnéticas\todo{verificar}.
+  Ver sección \ref{sec:Potencia}.
+  \item{\textbf{\gls{plc}}}: Twido 40 DTK (Siemens) con un módulo
+  analógico TWDAMM6HT y su correspondiente fuente de alimentación.
+  Permitirá controlar las bombas (encendido/apagado), 
+  leer valores de presión de las DP Cell y modificar la apertura de la 
+  válvula. Ver sección \ref{subsec:plc}.
+  \item \textbf{Estructura:} un marco móvil, montado sobre ruedas,
+  se encuentra disponible. Ver Sección \ref{sec:EstructuraSoporte}.
+  \item \textbf{Cañerías y accesorios}: Serán utilizados para 
+  conectar los elementos de la planta. Ver sección \ref{sec:Canerias}.
+  \item \textbf{Manómetros (2):} A colocar en 
+  puntos específicos de la planta.
+  \item \textbf{Módulos inalámbricos:} Marca CTM Electrónica,
+  modelo AD-xxx\todo{Verificar modelo}, permite enlazar la 
+  interfaz RS485 a la computadora de control
+  de manera inalámbrica. Ver sección \ref{subsec:inalambrico}.
+\end{itemize}
+
+A partir de los materias disponibles, se confeccionó 
+un proyecto de planta, estableciendo las tareas a realizar, el orden
+y un planning de trabajo.
+
 \section{Solución propuesta}
 \label{sec:SolucionPropuesta}
 
 \section{Organización}
 \label{sec:Organizacion}
 \subsection{División del trabajo}
+Dado que la construcción de la planta implica una serie de etapas que
+deben realizarse de manera seriada, se dividió el trabajo en los siguientes puntos:
+\begin{enumerate}
+ \item \textbf{Planificación y diseño preliminar}:
+  \item \textbf{Construcción de la planta}
+  \begin{enumerate}
+   \item Preparación de la estructura
+   \item Montaje de los elementos de la planta
+   \item Cañerías
+   \item Cableado eléctrico de potencia
+   \item Cableado de señal: PLC, válvula, DP cells, módulo inalámbrico.
+   \item Pruebas de funcionamiento sencillo
+   \item Pintura y acabados
+  \end{enumerate}
+  \item \textbf{Programación del \gls{plc}}
+  \item \textbf{Programación del software SCADA}
+  \item \textbf{Pruebas de funcionamiento}
+  \item \textbf{Documentación}
+\end{enumerate}
+
 \subsection{Planning}
