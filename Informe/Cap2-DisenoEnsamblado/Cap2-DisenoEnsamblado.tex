@@ -279,7 +279,7 @@ Podemos diferenciar en la válvula dos sistemas fácilmente:
 
    \begin{itemize}
       \item Actuador:Señal de entrada al actuador, 4 a 20 mA provenientes del 
-      PLC.
+      \gls{plc}.
       La salida de este sistema se traduce en un desplazamiento lineal del 
       vástago.
       \item Cuerpo: la salida de este sistema es el caudal a través del cuerpo
@@ -291,15 +291,112 @@ Vamos a describir las diferentes partes de las válvulas neumáticas y comentar
 algunos aspectos que se destacan en ellas.
 
 \begin{itemize}
-  \item Actuador a diafragma y resorte.
+  \item Actuador a diafragma y resorte:
+  
+  La señal neumática desarrolla una fuerza sobre la superficie del diafragma, a 
+  dicha fuerza se le opone otra proveniente del resorte.
+  
   \item Cuerpo de las válvulas
+  El cuerpo de la válvula debe resistir la temperatura y la presión del fluido
+  sin pérdidas, tener un tamaño adecuado para el caudal que debe controlar y ser
+  resistente a la erosión o a la corrosión producida por el fluido.
+  El cuerpo es el encargado de regular el pasaje del fluido, transformando los
+  desplazamientos del vástago (lineal en nuestro caso) en una variación del 
+  del caudal.
+  Existen varios tipos de cuerpo:
+  \begin{itemize}
+      \item Globo:
+      En el interior de su cuerpo existe un conjunto asiento-obsturador, 
+      éste ultimo unido al vástago.
+      \item Globo de doble asiento:
+      Asegura mejor balance dinámico pero con mayores pérdidas al cierre.
+      \item Jaula:
+      Estas válvulas, dependiendo de las formas de las aberturas de las aberturas
+      realizadas en la misma se obtienen tales características.
+      \item Saunders:
+      Orientada al trabajo con fluidos agresivos.
+      \item De obturador rotativo:
+      Consiste en un obsturador de superficie esférica que tiene un movimiento
+      rotativo y que está unido al eje de giro por uno o dos brazos flexibles.
+      \item Mariposa:
+      El cuerpo esta formado por una anillo cilíndrico dentro del cual gira
+      transversalmente un disco círcular. 
+    \end{itemize}
+  En nuestro caso trabajamos con una válvula globo que son de uso muy frecuente 
+  en los sistemas de control.
   \item Tapa de la válvula
-  \item Conjunto Asiento - Obsturador
+  Tiene por objeto unir el cuerpo al accionador neumático. A través de ella de ella
+  se desliza el vástago del obturador.
+  Para que el fluido no se escape a través de la tapa y el contorno del vástago, 
+  se dispone de una caja empaquetadora. La empaquetadura son aros de teflón en 
+  forma de V.
+  \item Conjunto Asiento - Obturador
+  Son el corazón de la válvula al controlar el caudal, gracias al orificio de paso
+  variable que forman al variar su posición relativa.
   \item Obsturador Isoporcentual
-  \item Características de caudal
+  La válvula utilizada para este trabajo presenta una curva de caudal inheente 
+  isoporcentual, el caudal inherente es la característica de un fluido incompresible
+  fluyendo en condiciones de presión diferencial constante a tráves de la válvula. 
+  Se representa usualmente considerando como abscisas la carrera del obturador de la
+  válvula y como ordenadas el porcentaje de caudal máximo a una presión diferencial 
+  constante.
+  \todo{Gráfico de la curva característica de caudal inherente}
+  \todo{imagen del obsturador isoporcentual}
+  En el obturador isoporcentual, cada incremento de carrera del obturador produce
+  un cambio en el caudal que es proporcional al caudal que fluía antes de la 
+  variación. 
+  El término de isoporcentual deriva del hecho que, por cada
+  incremento porcentual de la carrera de la válvula, se produce el mismo
+  incremento porcentual del caudal. 
+  La expresion se deduce a partir de la siguiente eciación:
+  
+  \begin{align}
+    \dfrac{dq}{dl} = a . q
+  \end{align}
+  donde:
+  \begin{itemize}
+      \item q: Cáudal a pérdida de carga constante
+      \item l: Carrera
+      \item a: Constante
+    \end{itemize}
+    Que trabajando matemáticamente en la expresión anterior se obtiene:
+    \begin{align}
+       q = b . e^{a\,l}
+    \end{align}
+    De donde puede verse que para:
+    \begin{align}
+        l &= 0 \Rightarrow q = q_{min} = b\\
+        l &= 1 \Rightarrow q = q_{max} = q_{min} \:e^a
+        \Rightarrow \frac{q_{max}}{q_{min}} = e^a
+    \end{align}
+    Basándonos en la definición de rangeabilidad, la expresión anterior
+    queda (entendiendo que ${q}$ es el caudal inherente, esto es ${q_i}$)
+    \begin{align}
+        \frac{q_i}{q_{max}} = \frac{1}{R} \,R^l
+        \Rightarrow  q_i = \frac{1}{R} \, R^l \, q_{max}
+    \end{align}
+    Está ultima expresión nos da el porcentaje de caudal en función del
+    campo de control o rangeabilidad de la válvula.
+    La representación gráfica de la curva de una válvula isoporcentual, se
+    caracteriza porque al principio de la carrera, la variación de caudal es
+    pequeña, y al final, pequeños incrementos en la carrera se traducen en
+    grandes variaciones de caudal.
+    
+  \item Características de caudal efectivas
+  
+  Al analizar el caso de una válvula trabajando en condiciones reales la 
+  presión diferencial ${(\Delta_v)}$ a través de ellas cambia cuando varía su
+  apertura, por lo que la curva real que relaciona la carrera con el caudal
+  se aparta de las características de caudal inherente, generando una nueva 
+  curva que recibe el nombre de característica de caudal efectiva.
+  
+  
 \end{itemize}
 
 \subsection{Válvula utilizada en el proyecto}
+
+A continuación vamos a describir las características de la válvula utilizada 
+en el proyeto.
 
 
 \section{Instrumentos de Medición}
