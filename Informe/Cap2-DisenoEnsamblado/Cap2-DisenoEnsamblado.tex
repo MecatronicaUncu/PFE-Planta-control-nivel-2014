@@ -76,19 +76,50 @@ En las próximas secciones de este informe se explicara en detalle la solución 
 partes de la planta. En esta sección vamos a comentar el montaje de los diferentes elementos, las 
 opciones con las que se contaba y decisiones que se tomaron al respecto. 
 
+ \begin{itemize}
+  \item Tanques:
+  Para ser capaces de mostrar el camino del agua en el proceso de manera clara se optó por colocar los
+  tanques de agua a los costados de la estructura sobre la base de madera, de esta manera somos capaces
+  de confeccionar la planta como un loop o ciclo con un claro camino de ida y uno de retorno.
+  Se fijo a los refuerzos laterales de la estructura mediante abrazaderas.
+  \item Bombas:
+  Se colocaron las bombas lo más cerca posible de los respectivos tanques. Se fijaron mediante tornillos
+  a la base de madera.
+  \item Válvula neumática:
+  Es el corazón del sistema, dada su importancia y sus dimensiones se colocó en el centro de la planta.
+  Al momento del montaje se tuvo especial atención en que se pudiera apreciar con claridad las diferentes
+  partes que componen la misma y poder brindar un campo visual de su funcionamiento lo más amplio posible.
+  Se tuvo especial atención en no tapar la válvula con otros elementos de la planta.
+  Se fijo mediante ménsulas a la base de madera y a la estructura de caño estructural, fue importante
+  prestar atención a mantener un nivel adecuado.
+  \item Celdas de presión diferencial:
+  Para la celda de presión diferencial que nos sirve para conocer el nivel de agua se debía colocar
+  cerca del tanque controlado, dado que se necesitaba conectar una de sus entradas al nivel más bajo del
+  tanque y la otra a presión atmosférica. Se fijo a la base de madera mediante tornillos.
+  Para la celda de presión diferencial que nos sirve para inferir el caudal se colocó sobre la base de
+  madera mediante tornillos.
+  \item Placa orificio:
+  Se colocó la placa orificio en serie con la cañería que va hacia el tanque controlado. Junto con esta 
+  se colocaron las mangueras correspondientes para la entrada a la celda de presión diferencial.
+  \item Tablero electrónico:
+  Estaba montado sobre la estructura una caja estanca donde se montaron todos los componentes eléctricos
+  y electrónicos.
+ \end{itemize}
+
 \section{Cañerías}
 \label{sec:Canerias}
 
 \subsection{Mangueras y Caños}
-Las conexiones fueron echas en caño de polipropileno de 3/4 pulgadas y manguera de alta presión telada
-de 3/4 pulgada, suficiente para las presiones con las que vamos a trabajar del orden de \todo{Con que
-presión trabaja la planta?}. 
 
 Luego de analizar el esquema P \& I D y  la estructura, se realizó la distribución de los elementos.
 Para este fin se tuvo en cuenta la necesidad de mostrar claramente la función y posición de cada uno,
 y ello requiere que todos los elementos y las cañerías se coloquen de manera que el alumno entienda
 el proceso y sus componentes. El camino del  agua debe ser desde el tanque reservorio hacia el tanque
 controlado y el regreso desde este hacia el tanque reservorio.
+
+Las conexiones fueron echas en caño de polipropileno de 3/4 pulgadas y manguera de alta presión telada
+de 3/4 pulgada, suficiente para las presiones con las que vamos a trabajar del orden de \todo{Con que
+presión trabaja la planta?}. 
 
 En este punto del proyecto tuvimos que tomar la decisión de como realizar el conexionado, ya teníamos 
 montados los elementos, bombas y válvula neumática y decidido el espacio para las celdas de presión
@@ -124,7 +155,7 @@ A continuación vamos a describir las diferentes partes de la planta y la soluci
   \item Conexión de perturbación de la bomba de retorno:
   Se utilizo manguera para evitar usar una unión doble en un trayecto que era muy pequeño.
   
-  \item Salida de la bomba, entrada al tanque reservorio
+  \item Salida de la bomba, entrada al tanque reservorio:
   Esta conexión es la más larga y sobre la misma van montados manómetros y válvulas manuales. Por ello
   se eligió una cañería rígida de caño de polipropileno.
   
@@ -140,7 +171,25 @@ camino del agua que llena el tanque controlado con el de regreso.
 \todo{bella imagen de los colores de la cañería, fer agradece que no puse q vos sos el q las pinto}
 
 \subsection{Válvulas manuales}
-válvula que limita la entrada al reservorio
+
+Nuestro sistema cuenta con diferentes válvulas manuales que tienen diferentes funciones en la planta.
+A continuación vamos a destacar las más importantes y su trabajo.
+
+\begin{itemize}
+  \item Desagote de los tanques:
+  Para poder vaciar los tanques se colocaron dos válvulas esférica plásticas debajo de cada tanque.
+  \item Control de entrada al tanque reservorio:
+  Para poder estabilizar el sistema se colocó en serie con la cañería de retorno.
+  \todo{Que otra función tiene?}
+  Es importante notar que de acuerdo a la situación de esta válvula las bombas comienzan a cavitar 
+  por ello para asegurar un correcto funcionamiento del sistema, para poder estabilizarlo se necesita
+  prestar especial atención a esta válvula.
+  \item Tiempo muerto: 
+  Como la planta se va a usar en diferentes cátedras y como se debe asegurar poder presentar diferentes
+  escenarios es que coloco esta válvula para poder elegir realizar controladores con tiempo muerto
+  y sin tiempo muerto.
+ \end{itemize}
+
 \subsection{Tiempo Muerto}
 Una mención especial vamos a dar al denominado tiempo muerto, que consta de \todo{Cuantos metros de
 manguera?} manguera negra de 1/2 pulgada, colocados en serie en el sistema, con una válvula que lo
@@ -152,12 +201,25 @@ son forzadas a trabajar más.
 Esto fue previsto para ofrecer a las diferentes cátedras que van a trabajar con la planta muchos 
 escenarios que se presentan en la industria.
 
+\section{Tanques}
+\label{sec:Tanques}
+
+Cada parte de nuestro sistema tiene una función importante y por ello se colocaron, sin embargo sin los
+tanque no tendríamos nada sobre lo que poder trabajar. Ellos almacenan el agua que presenta el sistema,
+y las acciones de control están dirigidas al nivel del agua presente en los mismo.
+
+Son dos caños de 160 mm de diámetro de un metro de altura, que fueron sellados en un extremo asegurando
+que no existirá perdida de agua.
+La salida de agua se realiza mediante una conexión de tanque de 3/4 pulgada colocada en la base del 
+tanque.
+Dada la existencia de la conexión de tanque y los efectos diversos de rotacionalidad del fluido afectan
+la medición de la presión dada por la celda de presión diferencial. Estos efectos nos limitan en el 
+área operativa de la planta, pudiendo asegurar un buen funcionamiento a partir de un 15\% del nivel 
+total. 
+\todo{Revisar bien ese porcentaje y preguntarle a puglesi si es correcto}
 \section{Bombas}
 \label{sec:Bombas}
 Descripción, imagen
-
-\section{Tanques}
-\label{sec:Tanques}
 
 \section{Válvula Neumática}
 \label{sec:ValvulaNeumatica}
