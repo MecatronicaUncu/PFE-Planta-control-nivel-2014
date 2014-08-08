@@ -8,6 +8,8 @@ las decisiones trascendentes para el trabajo.
 \section{P \& I D}
 \label{sec:p&id}
 
+\gls{pyid}
+
 \subsection{Diagrama de cañerías e instrumentación}
 Un diagrama de cañerías e instrumentación es un esquema de la planta que nos brinda una idea 
 general del problema que debemos abordar. En él se encuentra los elementos que componen el proceso. 
@@ -40,7 +42,7 @@ Cada elemento debe ir acompañado de una denominación la que presenta la siguie
 \end{itemize}
 
 \subsection{P \& I D de nuestra planta}
-De acuerdo a los componentes detallados en el capitulo 1 de este informe se realizó el esquema P \& I D
+De acuerdo a los componentes detallados en el capitulo 1 de este informe se realizó el esquema \gls{pyid}
 de la planta de control de nivel. Para la confección de la misma se utilizó una plantilla disponible
 en Google Docs, la decisión sobre la misma se hizo dado que era suficiente para la complejidad de
 nuestro proyecto.
@@ -263,7 +265,42 @@ Las bombas que se utilizaron en el proyecto presentan las siguientes caracterís
 
 \section{Válvula Neumática}
 \label{sec:ValvulaNeumatica}
-Foto, ubicación, datasheet , descripción
+En esta sección nos ocuparemos de la válvula neumática, siendo ella un elemento 
+importantísimo de nuestra planta es la encargada de efectuar las acciones de
+control.
+
+\subsection{Trabajo de la válvula}
+La válvula es un elemento final de control, en nuestro caso su acción es
+automática, cuya función es la de variar el caudal de agua que circula por el
+sistema, modificando de esta manera las variables controladas, el nivel en el
+tanque controlado. Podemos considerar a la válvula como un orificio de área 
+continuamente variable.
+Podemos diferenciar en la válvula dos sistemas fácilmente:
+
+   \begin{itemize}
+      \item Actuador:Señal de entrada al actuador, 4 a 20 mA provenientes del 
+      PLC.
+      La salida de este sistema se traduce en un desplazamiento lineal del 
+      vástago.
+      \item Cuerpo: la salida de este sistema es el caudal a través del cuerpo
+      de la válvula.
+    \end{itemize}
+    
+\subsection{Generalidades de las válvulas neumáticas}
+Vamos a describir las diferentes partes de las válvulas neumáticas y comentar 
+algunos aspectos que se destacan en ellas.
+
+\begin{itemize}
+  \item Actuador a diafragma y resorte.
+  \item Cuerpo de las válvulas
+  \item Tapa de la válvula
+  \item Conjunto Asiento - Obsturador
+  \item Obsturador Isoporcentual
+  \item Características de caudal
+\end{itemize}
+
+\subsection{Válvula utilizada en el proyecto}
+
 
 \section{Instrumentos de Medición}
 \label{sec:InstrumentosMedicion}
