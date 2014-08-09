@@ -8,8 +8,6 @@ las decisiones trascendentes para el trabajo.
 \section{P \& I D}
 \label{sec:p&id}
 
-\gls{pyid}
-
 \subsection{Diagrama de cañerías e instrumentación}
 Un diagrama de cañerías e instrumentación es un esquema de la planta que nos brinda una idea 
 general del problema que debemos abordar. En él se encuentra los elementos que componen el proceso. 
@@ -42,7 +40,7 @@ Cada elemento debe ir acompañado de una denominación la que presenta la siguie
 \end{itemize}
 
 \subsection{P \& I D de nuestra planta}
-De acuerdo a los componentes detallados en el capitulo 1 de este informe se realizó el esquema \gls{pyid}
+De acuerdo a los componentes detallados en el capitulo 1 de este informe se realizó el esquema P \& I D
 de la planta de control de nivel. Para la confección de la misma se utilizó una plantilla disponible
 en Google Docs, la decisión sobre la misma se hizo dado que era suficiente para la complejidad de
 nuestro proyecto.
@@ -465,7 +463,6 @@ algunos aspectos que se destacan en ellas.
 A continuación vamos a describir las características de la válvula utilizada 
 en el proyeto.
 
-
 \section{Instrumentos de Medición}
 \label{sec:InstrumentosMedicion}
 Para conocer el estado de la planta, es necesario tener conocimiento del
@@ -518,9 +515,83 @@ La celda deberá entonces medir la diferencia de presión antes y después
 de la placa orificio.
 \end{itemize}
 
-
 \subsection{Placa Orificio}
 \label{subsec:PlacaOrificio}
+Para medir el caudal en la tubería de ida, se decide
+utilizar una placa orificio\todo{placa orif? u otra cosa?}.
+En la Fig. \ref{fig:placaOrificio} se muestra un corte longitudinal de una placa
+orificio.
+Se observa que la placa orificio provoca una disminución del diámetro
+de la cañería, con la consiguiente aceleración del fluido.
+Escribiendo la ecuación de Bernoulli en 1 y 2\todo{verif. puntos}.
+
+\begin{figure}
+ \centering
+ \missingfigure[figwidth=6cm]{Placa orificio}
+ \caption{Corte longitudinal de una placa orificio montado en una tubería.}
+ \label{fig:placaOrificio}
+\end{figure}
+
+\begin{align}
+ z_1 \, \gamma + \dfrac{\rho \,v_1^2}{2} + P_1 &= z_2 \, \gamma + \dfrac{\rho \,v_2^2}{2} + P_2
+\label{eq:Bernoulli}
+\end{align}
+donde $z_i$ y $P_i$ es la altura y presión en el punto $i$ y $\rho$ es 
+la densidad del fluido. 
+Considerando que la altura en ambos puntos es la misma, la ecuación
+\eqref{eq:Bernoulli} puede reescribirse como
+\begin{align}
+ v_2^2 - v_1^2 &= 2\,g\,h_p
+ \label{eq:Bernoulli2}
+\end{align}
+donde $h_p$ es la diferencia de presión entre 1 y 2, expresada como 
+altura de la columna fluida
+\begin{align}
+ h_p &= \dfrac{P_1}{\gamma}-\dfrac{P_2}{\gamma}
+\end{align}
+La ecuación de continuidad, para fluidos incompresibles se escribe
+\begin{align}
+ A_1\,v_1 &= A_2\,v_2 \\
+ v_2 &= \dfrac{A_1}{A_2} v_1 \\
+ v_2 &= \dfrac{D_1^2}{D_2^2} v_1
+ \label{eq:velRef}
+\end{align}
+y reemplazando \eqref{eq:velRef} en \eqref{eq:Bernoulli2} obtenemos
+\begin{align}
+ 2 \, g \, h_p &= v_2^2 \left( 1 - \dfrac{D_1^4}{D_2^4} \right)\\
+ \beta &= \dfrac{D_1}{D_2}\\
+ v_2 &= \sqrt{\dfrac{2 \, g \, h_f}{1-\beta^4}} 
+\end{align}
+finalmente, el caudal se obtiene multiplicando la velocidad $v_2$ por el
+área $A_2$.
+Además, se agrega un coeficiente $C_v$ debido al fenómeno de vena contracta:
+\begin{align}
+ Q &= \dfrac{C_v \, A_2}{\sqrt{1-\beta^4}}\, \sqrt{2 \, g \, h_f}
+ \label{eq:placaOrif1}
+\end{align}
+El coeficiente $C_v$ depende del número de Reynolds $Re$ \cite{bib:Mataix, bib:ApuntesPuglesiPlacaOrif}
+\begin{align}
+Re &= \dfrac{D\,v}{\nu}
+\end{align}
+donde $v$ es la velocidad en la placa orificio, $D$ es el diámetro y ${\nu}$
+es la viscosidad cinemática del fluido\footnote{Para el agua, nuestro fluido de trabajo
+$\nu = 1,003\,10^{-6} \frac{m^2}{s}$.}
+
+La ecuación \eqref{eq:placaOrif1} puede ser reescrita de una forma más sencilla
+mediante una nueva variable adimensional $C_q$
+\begin{align}
+ C_q &= \dfrac{C_v}{\sqrt{1-\beta^4}}
+\end{align}
+$C_q$ depende tanto del número de Reynolds como de la razón de los diámetros $\beta$, 
+y su valor numérico puede ser encontrado en tablas y ábacos en la bibliografía \cite{bib:Mataix},
+\todo{Lo encontramos así, o de otra manera experimental al cq?}
+
+Finalmente, la ecuación a aplicar en el autómata para medir el caudal es
+\begin{align}
+ Q &= C_q\,A_2\, \sqrt{2\,g\,h_f}
+\end{align}
+donde se observa que el caudal $Q$ es proporcional a $\sqrt{h_f}$, que puede
+ser encontrada utilizando un DP cell (ver sección \ref{subsec:DPCell}).
 
 \subsection{Manómetros}
 \label{subsec:Manometros}
