@@ -10,7 +10,9 @@ las decisiones trascendentes para el trabajo.
 
 \subsection{Diagrama de cañerías e instrumentación}
 Un diagrama de cañerías e instrumentación es un esquema de la planta que nos brinda una idea 
-general del problema que debemos abordar. En él se encuentra los elementos que componen el proceso. 
+general del problema que debemos abordar. 
+En él se encuentra los elementos que componen el proceso. 
+Se denomina corrientemente \gls{pyid}.
 Estos diagramas emplean círculos y símbolos para representar cada elemento y como están interconectados, 
 los elementos presentes en este esquema están normalizados por la \emph{Standard S5.1
 Instrumentation Symbol Specification}.
@@ -40,7 +42,7 @@ Cada elemento debe ir acompañado de una denominación la que presenta la siguie
 \end{itemize}
 
 \subsection{P \& I D de nuestra planta}
-De acuerdo a los componentes detallados en el capitulo 1 de este informe se realizó el esquema P \& I D
+De acuerdo a los componentes detallados en el capitulo 1 de este informe se realizó el esquema \gls{pyid}
 de la planta de control de nivel. Para la confección de la misma se utilizó una plantilla disponible
 en Google Docs, la decisión sobre la misma se hizo dado que era suficiente para la complejidad de
 nuestro proyecto.
@@ -111,7 +113,7 @@ opciones con las que se contaba y decisiones que se tomaron al respecto.
 
 \subsection{Mangueras y Caños}
 
-Luego de analizar el esquema P \& I D y  la estructura, se realizó la distribución de los elementos.
+Luego de analizar el esquema \gls{pyid} y  la estructura, se realizó la distribución de los elementos.
 Para este fin se tuvo en cuenta la necesidad de mostrar claramente la función y posición de cada uno,
 y ello requiere que todos los elementos y las cañerías se coloquen de manera que el alumno entienda
 el proceso y sus componentes. El camino del  agua debe ser desde el tanque reservorio hacia el tanque
@@ -595,4 +597,27 @@ ser encontrada utilizando un DP cell (ver sección \ref{subsec:DPCell}).
 
 \subsection{Manómetros}
 \label{subsec:Manometros}
-Uno de los dos es viscoso, por qué? 
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=.7\textwidth]{Cap2-DisenoEnsamblado/images/manomBourdon.png}
+ \caption{Manómetro de Bourdon, extraído de \cite{bib:ApuntesPuglesiPlacaOrif}}
+ \label{fig:manometroBourdon}
+\end{figure}
+
+Para conocer los valores de presión en ambas cañerías
+(referirse al \gls{pyid}, sección \ref{sec:p&id}),
+se instalaron manómetros comunes, de tipo Bourdon\todo{Escala de los manoms?}. 
+Un ejemplo de estos manómetros se muestra en la Fig. \ref{fig:manometroBourdon},
+donde se observa que un incremento de la presión produce una deformación 
+del \emph{tubo de Bourdon}, reflejado en la aguja indicadora.
+El manómetro de Bourdon permite obtener una medición visual de la
+presión relativa, del punto donde se encuentra instalado.
+
+Durante el montaje, se presentó el problema que uno de los manómetros
+no entregaba una medición definida, sino que oscilaba alrededor de un
+valor medio (imposibilitando la lectura directa)\todo{por qué pasa esto?}.
+Este problema fue solucionado instalando un \textbf{manómetro con glicerina},
+donde el mecanismo del manómetro se encuentra sumergido en un baño de glicerina.
+Debido a la viscosidad del fluido, las vibraciones quedan amortiguadas
+y el manómetro refleja el valor medio de la presión.
