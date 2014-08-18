@@ -1,17 +1,163 @@
 \chapter{Tablero Eléctrico}
 \label{ch:tablero}
 
+Luego del diseño y ensamblado, se procedió a la instalación
+y cableado de los elementos eléctricos y electrónicos de la planta. 
+Por simplicidad, se dividirá este capítulo en 
+dos secciones\todo{Foto o diagrama del tablero}:
+\begin{itemize}
+ \item \textbf{Potencia:} Corresponde a la instalación y el cableado
+ de los elementos eléctricos de la planta, destinados a alimentar los motores de 
+ las bombas y los circuitos lógicos.
+ \item \textbf{Señal:} Corresponde a la instalación y el cableado
+ de los elementos electrónicos (\gls{plc}, módulos inalámbricos
+ sensores de presión, caudal y actuadores), 
+ cuyo objetivo es controlar la planta.
+\end{itemize}
+
 \section{Potencia}
 \label{sec:Potencia}
-\subsection{Cableado}
+Tal como se describió previamente, los elementos de potencia deben 
+\textbf{alimentar} los motores y elementos lógicos de la planta.
+Se optó por trabajar con corriente alterna monofásica ($220\,V\,-\,50\,Hz$), 
+debido a que es la alimentación de las bombas\todo[color=blue!40]{Ref Schema!}.
+
 \subsection{Descripción de los elementos}
+\subsubsection{Corte General}
+El primer elemento que encontramos en el tablero es el interruptor 
+termomagnético de corte general\todo[color=blue!40]{Ref Schema!}
+con número de modelo $C60 N$.
+La función del termomagnético es proteger la instalación frente a posibles
+cortocircuitos, y ser utilizado para encender o apagar la planta.
+\subsection{Alimentación de los Motores de las Bombas}
+Para cada una de las bombas, se utilizarán los siguientes elementos de 
+protección y comando:
+\begin{itemize}
+ \item \textbf{Relés:} Reciben una  señal de $24\,V$ de parte del PLC que activa
+ su bobina. En salida, tenemos una señal de $220\,V$ que se conecta con los 
+ contactores previo paso por el relevo térmico\todo{figuraLaddder?}.
+ \item \textbf{Relevo Térmico:} Tiene como objetivo evitar la sobrecorriente en
+ los motores. Para el proyecto, se configuró el relevo térmico con una corriente
+ de $1.6\,A$. En caso de superar esta corriente, interrumpe la línea de señal
+ del contactor y detiene los motores.
+ \item \textbf{Contactores:} Enciende los motores, a partir de la señal de 
+ $220\,V$ del Relé, que pasa por el relevo térmico. Se utilizaron 
+contactores \verb|LC1-D09| de Schneider Electic, cuya hoja de datos 
+puede encontrarse en el anexo \todo{anexo contactor}.Debido a que los 
+contactores
+ son trifásicos, debió realizarse un bucle con dos de las fases (ver diagrama
+ \todo[color=blue!40]{Ref Schema!}).
+\end{itemize}
+
+En la figura \ref{fig:diagramaLadderContactor} se muestra el diagrama
+simplificado de conexión. Se observa que  el motor funcionará mientras la bobina
+del relé esta activada y mientras el relevo térmico no acuse sobrecorriente.
+
+\begin{figure}
+ \centering
+ \missingfigure[figwidth=6cm]{Ladder motores}
+ \caption{Esquema Ladder del conexionado de los motores}
+ \label{fig:diagramaLadderContactor}
+\end{figure}
+
+\subsection{Fuente de alimentación}
+Los circuitos lógicos de la planta funcionan con una tensión de $24\,V$, de
+corriente continua. Dado que en la planta sólo contamos con tensión alterna de
+la red, necesitamos una fuente de alimentación para entregar la tensión
+requerida en el \gls{plc}. Se optó por utilizar una fuente de alimentación
+industrial, montada sobre un riel DIN. Las características técnicas son las
+siguientes:
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Marca & ReignPower\\
+Tensión Entrada& $100-120$ / $200-240\,V$\\
+Tensión Salida& $24\,V$\\
+Corriente Salida Maxima& $4.2\,A$\\
+Potencia & $100\,W$\\
+\hline
+\end{tabular}
+\end{center}
 
 \section{Señal}
 \label{sec:Senal}
 
-\subsection{Cablado, niveles lógicos}
+El circuito de señal tiene como objetivo relevar variables de la planta (caudal,
+presión), procesarlas (\gls{plc}) y entregar señales de control a la válvula
+neumática. Además, debe conectarse el \gls{plc} a la computadora de control
+mediante el \gls{scada}\todo{Esta bien? Scada debería aparecer antes}.
+Se tratará en primer medida el \gls{plc}, encargado de la adquisición (a 
+la través de las DP cell), procesamiento, actuación (mediante la válvula 
+electroneumática) y control de los motores de las bombas. Luego, se detallarán 
+los módulos inalámbricos utilizados para comunicar el \gls{plc} con la 
+computadora de control.
+
 \subsection{PLC}
 \label{subsec:plc}
-\subsection{Fuente de alimentación}
+
+Para automatizar la planta, se optó por utilizar un \gls{plc}, que es 
+un sistema electrónico digital de automatización y control, pensado para 
+aplicaciones industriales (seguro frente a condiciones adversas, vibraciones, 
+ruido electromagnético) \cite{bib:ApuntesJGabriel}\todo{poner Libro Control}.
+
+Un \gls{plc} está conformado por los siguientes elementos:
+\begin{itemize}
+ \item \textbf{Procesador:} En función de las señales de los sensores y de la 
+información almacenada, genera señales hacia los actuadores. El procesador 
+sigue un algoritmo, denominado programa de aplicación, que debe ser programado 
+previamente. Entre los lenguajes de programación definidos en la norma 
+\verb|IEC 61131| podemos citar: Ladder, Texto Estructurado, Lista de 
+Instrucciones y GRAFCET (SFC).
+ \item \textbf{I/O discretas:} las entradas y salidas discretas pueden ser 
+utilizadas para acciones de contol discretas, tal como encender motores o leer 
+sensores discretos (fin de carrera, por ejemplo). En nuestro proyecto, se 
+utilizan las salidas discretas \verb|Q0.0| y \verb|Q0.1| para activar los relés 
+de los motores. Además \verb|I0.0| e \verb|I0.1| se utilizan como 
+enclavamiento: conectadas a los contactores, verifican que el motor se 
+encuentre encendido.
+\item \textbf{I/O analógicas:} Mediante una entrada analógica, se pueden leer 
+señales de corriente ($4-20\,mA$) o tensión ($0-10\,V$) provenientes de los 
+sensores. De la misma manera, las salidas analógicas permiten enviar señales de 
+tensión o corriente. En nuestro proyecto, las entradas analógicas\todo{por qué 
+es IW0.1.0?} \verb|IW0.1.0| e \verb|IW0.1.1| permiten leer los valores de los 
+DP cell de caudal y nivel, respectivamente\todo{verificar orden, también en 
+gráfico}. Se emplea la salida analógica \verb|IW1.0| para controlar la válvula 
+neumática\todo{Verificad iw1.0}. Cabe destacar que nuestro \gls{plc} 
+no posee I/O analógicas, y se obtuvieron anexando un módulo \verb|TWD AMM 6HT|.
+\item \textbf{Comunicación:} El puerto de comunicaciones permite programar el 
+controlador, como así también enviar y recibir comandos durante la ejecución 
+mediante el \gls{scada}. En el \gls{plc} utilizado contamos con un puerto de 
+comunicaciones 
+\verb|RS 485|.
+\end{itemize}
+
 \subsection{Módulos inalámbricos}
 \label{subsec:inalambrico}
+
+Para comunicar la planta con la computadora de control, sin necesidad de 
+utilizar un cable de par trenzado, se decidió utilizar un módulo inalámbrico
+\verb|ADC-200| de CTM Electrónica. Se trata de un equipo de comunicación para 
+realizar enlaces inalámbricos que utilicen la interfaz \verb|RS 232| o 
+\verb|RS 485|. Podemos citar, entre las características técnicas relevantes:
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Alimentación & $5\,VCC$\\
+Consumo& $60\,mA$\\
+Alcance& $1000\,m$\\
+Baud Rate &2400 a 19200 bps \\
+Frecuencia& 431 a 470 Mhz mas de 100 canales\\
+\hline
+\end{tabular}
+\end{center}
+
+Para el proyecto, se configuró el módulo tal como lo indica el 
+anexo\todo{anexo}, estipulando una velocidad de transferencia de 
+\todo{velocidad}\verb|xxxx bps|, sin pariedad\todo{verificar}. Además, se 
+cableó el módulo al \gls{plc} tal como lo explicita el anexo\todo{anexo}.
+
+Cabe destacar que el módulo inalámbrico \textbf{no puede utilizarse} para 
+la programación del \gls{plc}, debido a que el software (Twido) acusa un error 
+de timeout. No obstante, el funcionamiento es correcto para recibir informacion 
+y enviar consignas mediante el \gls{scada}.
