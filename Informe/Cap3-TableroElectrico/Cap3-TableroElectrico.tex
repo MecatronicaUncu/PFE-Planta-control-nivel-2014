@@ -2,7 +2,9 @@
 \label{ch:tablero}
 
 Luego del diseño y ensamblado, se procedió a la instalación
-y cableado de los elementos eléctricos y electrónicos de la planta. 
+y cableado de los elementos eléctricos y electrónicos de la planta, dentro del 
+tablero de control. Para este capítulo es imprescindible utilizar los diagramas 
+del tablero, en el anexo \ref{anexo:diag}.
 Por simplicidad, se dividirá este capítulo en 
 dos secciones\todo{Foto o diagrama del tablero}:
 \begin{itemize}
@@ -11,7 +13,7 @@ dos secciones\todo{Foto o diagrama del tablero}:
  las bombas y los circuitos lógicos.
  \item \textbf{Señal:} Corresponde a la instalación y el cableado
  de los elementos electrónicos (\gls{plc}, módulos inalámbricos
- sensores de presión, caudal y actuadores), 
+ sensores de presión, caudal y actuadores), q
  cuyo objetivo es controlar la planta.
 \end{itemize}
 
@@ -20,52 +22,65 @@ dos secciones\todo{Foto o diagrama del tablero}:
 Tal como se describió previamente, los elementos de potencia deben 
 \textbf{alimentar} los motores y elementos lógicos de la planta.
 Se optó por trabajar con corriente alterna monofásica ($220\,V\,-\,50\,Hz$), 
-debido a que es la alimentación de las bombas\todo[color=blue!40]{Ref Schema!}.
+debido a que es la alimentación de las bombas. En el \ref{anexo:diag}, se 
+muestran los conductores de fase y neutro en colores marron y azul 
+respectivamente.
 
-\subsection{Descripción de los elementos}
-\subsubsection{Corte General}
+\subsection{Corte General}
 El primer elemento que encontramos en el tablero es el interruptor 
-termomagnético de corte general\todo[color=blue!40]{Ref Schema!}
-con número de modelo $C60 N$.
-La función del termomagnético es proteger la instalación frente a posibles
-cortocircuitos, y ser utilizado para encender o apagar la planta.
+termomagnético de corte general (ver folio 1 del diagrama de tablero). El 
+interruptor es bipolar (neutro y fase), con número de referencia $C60 N$ y de 
+marca Merlin Gerin (Schneider).
+La función del termomagnético es proteger la instalación frente a posibles 
+sobrecargas y cortocircuitos. Además, es utilizado como llave de corte general 
+para encender o apagar la planta.
+
 \subsection{Alimentación de los Motores de las Bombas}
-Para cada una de las bombas, se utilizarán los siguientes elementos de 
-protección y comando:
+\label{subsec:alimentacionMotores}
+Puede verse el esquema de alimentación de los motores en los folios 1 y 2 del 
+anexo \ref{anexo:diag}. Para cada una de las bombas, se utilizarán los 
+siguientes elementos de 
+protección y comando\todo{agregar hojas de datos para todos}:
 \begin{itemize}
- \item \textbf{Relés:} Reciben una  señal de $24\,V$ de parte del PLC que activa
- su bobina. En salida, tenemos una señal de $220\,V$ que se conecta con los 
- contactores previo paso por el relevo térmico\todo{figuraLaddder?}.
+ \item \textbf{Relés:} 
+ Se utilizaron relés \verb|LZX:PT 370| de Siemens. Los relés reciben una señal 
+de activación de $24\,V$, de parte del PLC. Al activarse, se tiene en el borne 
+\verb|11 (7)| una señal de $220\,V$ que activará los
+ contactores, previo paso por el relevo térmico. 
  \item \textbf{Relevo Térmico:} Tiene como objetivo evitar la sobrecorriente en
  los motores. Para el proyecto, se configuró el relevo térmico con una corriente
  de $1.6\,A$. En caso de superar esta corriente, interrumpe la línea de señal
- del contactor y detiene los motores.
- \item \textbf{Contactores:} Enciende los motores, a partir de la señal de 
- $220\,V$ del Relé, que pasa por el relevo térmico. Se utilizaron 
+ del contactor y se detienen los motores. Se utilizaron relevos térmicos 
+ \verb|LRD 06| de Telemecanique, conectados inmediatamente después del 
+contactor.
+ \item \textbf{Contactores:} Enciende los motores, a partir de una señal de 
+activación de  
+ $220\,V$. Se utilizaron 
 contactores \verb|LC1-D09| de Schneider Electic, cuya hoja de datos 
-puede encontrarse en el anexo \todo{anexo contactor}.Debido a que los 
+puede encontrarse en el anexo \todo{anexo contactor}. Debido a que los 
 contactores
- son trifásicos, debió realizarse un bucle con dos de las fases (ver diagrama
- \todo[color=blue!40]{Ref Schema!}).
+ son trifásicos, debió realizarse un bucle con dos de las fases (ver diagrama 
+del tablero).
 \end{itemize}
 
-En la figura \ref{fig:diagramaLadderContactor} se muestra el diagrama
-simplificado de conexión. Se observa que  el motor funcionará mientras la bobina
+En la figura \ref{fig:diagramaLadderContactor} se muestra el diagrama ladder de 
+conexión de los motores. Se observa que  el motor funcionará mientras la bobina
 del relé esta activada y mientras el relevo térmico no acuse sobrecorriente.
 
 \begin{figure}
  \centering
- \missingfigure[figwidth=6cm]{Ladder motores}
+ \includegraphics[scale=1.1]{Cap3-TableroElectrico/Images/ladderConexion.pdf}
  \caption{Esquema Ladder del conexionado de los motores}
  \label{fig:diagramaLadderContactor}
 \end{figure}
 
 \subsection{Fuente de alimentación}
-Los circuitos lógicos de la planta funcionan con una tensión de $24\,V$, de
-corriente continua. Dado que en la planta sólo contamos con tensión alterna de
-la red, necesitamos una fuente de alimentación para entregar la tensión
-requerida en el \gls{plc}. Se optó por utilizar una fuente de alimentación
-industrial, montada sobre un riel DIN. Las características técnicas son las
+Los circuitos lógicos de la planta (\gls{plc}, sensores) funcionan con una 
+tensión de $24\,V$ de
+corriente continua. Se optó por utilizar una 
+fuente de alimentación
+industrial para alimentar los circuitos lógicos. Las 
+características técnicas son las
 siguientes:
 \begin{center}
 \begin{tabular}{|l|l|}
@@ -79,26 +94,43 @@ Potencia & $100\,W$\\
 \end{tabular}
 \end{center}
 
+En el anexo \ref{anexo:diag}, se 
+muestran los conductores de $+24\,V$ y $0\,V$ en rojo y negro 
+respectivamente\todo{mantiene color?}. La fuente de alimentación se muestra en 
+el folio 1.
+
 \section{Señal}
 \label{sec:Senal}
 
 El circuito de señal tiene como objetivo relevar variables de la planta (caudal,
-presión), procesarlas (\gls{plc}) y entregar señales de control a la válvula
-neumática. Además, debe conectarse el \gls{plc} a la computadora de control
+presión), procesarlas  en el \gls{plc} y entregar señales de control a la 
+válvula electroneumática. 
+Por otro lado, el circuito de señal debe activar los relés 
+descriptos en la sección \ref{subsec:alimentacionMotores}. 
+Finalmente, el \gls{plc} debe conectarse a la computadora de control para poder 
+monitorear el estado de la planta, como así también recibir señales de control.
 mediante el \gls{scada}\todo{Esta bien? Scada debería aparecer antes}.
-Se tratará en primer medida el \gls{plc}, encargado de la adquisición (a 
-la través de las DP cell), procesamiento, actuación (mediante la válvula 
-electroneumática) y control de los motores de las bombas. Luego, se detallarán 
-los módulos inalámbricos utilizados para comunicar el \gls{plc} con la 
-computadora de control.
+En nuestro proyecto, debido a que la planta puede ser controlada de manera 
+remota, el \gls{plc} se conecta a un módulo inalámbrico. Del lado de la 
+computadora de control, otro módulo inalámbrico realizará el enlace con la 
+planta.
 
 \subsection{PLC}
 \label{subsec:plc}
 
-Para automatizar la planta, se optó por utilizar un \gls{plc}, que es 
-un sistema electrónico digital de automatización y control, pensado para 
-aplicaciones industriales (seguro frente a condiciones adversas, vibraciones, 
-ruido electromagnético) \cite{bib:ApuntesJGabriel}\todo{poner Libro Control}.
+\glsreset{plc}
+Para automatizar nuestra planta se optó por utilizar un \gls{plc}.
+Se trata de un sistema electrónico digital de automatización y control, pensado 
+para aplicaciones industriales, seguro frente a condiciones adversas, 
+vibraciones\todo{buscar autómatas programables y sistemas de automatización
+Mandado}, 
+ruido electromagnético, etc \cite{bib:ApuntesJGabriel}. El autómata programable 
+se adapta al proceso a controlar, mediante un \textit{software} o 
+programa de aplicación específico, que contiene la secuencia de operaciones a 
+realizar. 
+El  \gls{plc} puede utilizar las entradas, los valores en memoria y valores 
+recibidos mediante un bus de comunicaciones para modificar el estado de las 
+salidas y de su propia memoria \cite{bib:libroAutomat1}.
 
 Un \gls{plc} está conformado por los siguientes elementos:
 \begin{itemize}
@@ -109,26 +141,46 @@ previamente. Entre los lenguajes de programación definidos en la norma
 \verb|IEC 61131| podemos citar: Ladder, Texto Estructurado, Lista de 
 Instrucciones y GRAFCET (SFC).
  \item \textbf{I/O discretas:} las entradas y salidas discretas pueden ser 
-utilizadas para acciones de contol discretas, tal como encender motores o leer 
+utilizadas para acciones de control discretas, tal como encender motores o leer 
 sensores discretos (fin de carrera, por ejemplo). En nuestro proyecto, se 
 utilizan las salidas discretas \verb|Q0.0| y \verb|Q0.1| para activar los relés 
 de los motores. Además \verb|I0.0| e \verb|I0.1| se utilizan como 
 enclavamiento: conectadas a los contactores, verifican que el motor se 
-encuentre encendido.
-\item \textbf{I/O analógicas:} Mediante una entrada analógica, se pueden leer 
+encuentre encendido. Se pueden ver estas señales de control en los folios 1 y 2 
+del anexo \ref{anexo:diag}. Además, se muestra el esquema de conexionado del 
+\gls{plc} en el folio 3 del anexo \ref{anexo:diag}.
+\item \textbf{I/O analógicas:} \todo{por qué es IW0.1.0?} Mediante una entrada 
+analógica, se pueden leer 
 señales de corriente ($4-20\,mA$) o tensión ($0-10\,V$) provenientes de los 
 sensores. De la misma manera, las salidas analógicas permiten enviar señales de 
-tensión o corriente. En nuestro proyecto, las entradas analógicas\todo{por qué 
-es IW0.1.0?} \verb|IW0.1.0| e \verb|IW0.1.1| permiten leer los valores de los 
-DP cell de caudal y nivel, respectivamente\todo{verificar orden, también en 
-gráfico}. Se emplea la salida analógica \verb|IW1.0| para controlar la válvula 
-neumática\todo{Verificad iw1.0}. Cabe destacar que nuestro \gls{plc} 
+tensión o corriente. En nuestro proyecto, las entradas 
+analógicas \verb|IW0.1.0| e \verb|IW0.1.1| permiten leer los valores de los 
+DP cell de caudal y nivel, respectivamente. Se emplea la salida analógica 
+\verb|IW1.0| para controlar la válvula 
+neumática\todo[noprepend]{Verificad iw1.0}. Cabe destacar que nuestro \gls{plc} 
 no posee I/O analógicas, y se obtuvieron anexando un módulo \verb|TWD AMM 6HT|.
+Se pueden ver estas señales de control en el folio 4 del anexo \ref{anexo:diag}.
+\todo[noline]{verificar orden, también en gráfico}
+
 \item \textbf{Comunicación:} El puerto de comunicaciones permite programar el 
 controlador, como así también enviar y recibir comandos durante la ejecución 
 mediante el \gls{scada}. En el \gls{plc} utilizado contamos con un puerto de 
-comunicaciones 
-\verb|RS 485|.
+comunicaciones \verb|RS 485|. Tenemos dos opciones para conectar el puerto de 
+comunicaciones con la pc de control:
+\begin{itemize}
+ \item Mediante una conexión cableada: Conectamos el puerto \verb|RS 485| a un 
+puerto \verb|RS 232| de la computadora\footnote{En nuestro caso, dado que la 
+computadora no contaba con un puerto serie, se utilizó un adaptador 
+\texttt{USB} a \texttt{RS 232}.} mediante un adaptador. Durante el desarrollo 
+del proyecto, se construyeron dichos adaptadores. 
+Se muestra en el anexo \ref{anexo:diag}, folio 6, el circuito esquemático 
+utilizado. Además, en el anexo \todo{anexo}, se incluyen los diseños de PCB 
+para replicar el circuito. No obstante, el cable impone una conexión entre el 
+\gls{plc} y la computadora de control que impide que la planta sea móvil.
+\item Mediante un módulo de comunicación inalámbrica:
+descripto en la sección \ref{subsec:inalambrico}.
+\end{itemize}
+
 \end{itemize}
 
 \subsection{Módulos inalámbricos}
@@ -152,12 +204,40 @@ Frecuencia& 431 a 470 Mhz mas de 100 canales\\
 \end{tabular}
 \end{center}
 
-Para el proyecto, se configuró el módulo tal como lo indica el 
-anexo\todo{anexo}, estipulando una velocidad de transferencia de 
-\todo{velocidad}\verb|xxxx bps|, sin pariedad\todo{verificar}. Además, se 
-cableó el módulo al \gls{plc} tal como lo explicita el anexo\todo{anexo}.
+Para el proyecto, se conectó el módulo tal como lo indica el 
+anexo \ref{anexo:diag}, estipulando una velocidad de transferencia de 
+\verb|xxxx bps|, sin pariedad\todo{verificar velocidad y paridad}.
+
+Además, dado que el módulo inalámbrico debe alimentarse con una tensión de 
+$5\,V$ de corriente continua, se desarrolló una fuente conversora de $24\,V$ a 
+$5\,V$ basada en el integrado \verb|LM7805|. El circuito esquemático de la 
+fuente puede encontrarse en el folio 7 del anexo \ref{anexo:diag}. Además, se 
+incluye el diseño del PCB en el anexo \todo{anexo} para poder replicar el 
+circuito.
 
 Cabe destacar que el módulo inalámbrico \textbf{no puede utilizarse} para 
 la programación del \gls{plc}, debido a que el software (Twido) acusa un error 
-de timeout. No obstante, el funcionamiento es correcto para recibir informacion 
+de timeout. No obstante, el funcionamiento es correcto para recibir información 
 y enviar consignas mediante el \gls{scada}.
+
+\section{Imagen del tablero}
+En la imagen \ref{fig:fotoTablero} \todo{incluir una foto del tablero}se muestra 
+una fotografía del tablero finalizado. Los elementos fueron montados sobre 
+rieles DIN. Pueden observarse tres niveles diferenciados:
+\begin{itemize}
+ \item En el nivel superior se encuentra el interruptor termomagnético de corte 
+general. Este interruptor debe ser accionado para encender la planta.
+\item En el nivel medio se encuentran los relés, contactores y relevos térmicos 
+para accionar los motores de las bombas.
+\item En el nivel inferior está la fuente de alimentación de $24\,V$ y el 
+\gls{plc}, con su módulo de E/S analógicas.
+\end{itemize}
+Los elementos del tablero (a excepción del interruptor termomagnético) se 
+encuentran protegidos por un acrílico para evitar accidentes.
+
+\begin{figure}[ht]
+ \centering
+ \missingfigure{foto tablero}
+ \caption{Fotografía del tablero finalizado}
+ \label{fig:fotoTablero}
+\end{figure}

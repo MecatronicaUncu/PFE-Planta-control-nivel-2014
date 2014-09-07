@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="345.95789"
+   height="95.508911"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="ladderConexion.pdf">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="174.61178"
+     inkscape:cy="95.395272"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1025"
+     inkscape:window-x="-2"
+     inkscape:window-y="-3"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <sodipodi:guide
+       orientation="0,1"
+       position="-37.751656,33.587585"
+       id="guide2987" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="-37.751656,53.587585"
+       id="guide2989" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="-37.751656,43.587585"
+       id="guide2995" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="92.248344,43.587585"
+       id="guide3001" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="82.248344,43.587585"
+       id="guide3003" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="172.24834,53.587585"
+       id="guide3005" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="267.24834,-6.4124146"
+       id="guide3009" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="342.24834,-6.4124146"
+       id="guide3011" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="182.24834,-6.4124146"
+       id="guide3013" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="2.248344,-6.4124146"
+       id="guide3015" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="258.49834,68.051871"
+       id="guide3219" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="267.24834,53.587585"
+       id="guide4021" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="282.71924,22.882009"
+       id="guide4025" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="-37.751656,58.587585"
+       id="guide4039" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="173.24834,-6.4124146"
+       id="guide4070" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="181.24834,-6.4124146"
+       id="guide4072" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="-37.751656,18.587585"
+       id="guide4076" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="24.748344,5.3732994"
+       id="guide4133" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-37.751656,-950.44086)">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 40,992.36218 0,20.00002"
+       id="path2993"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 40,1002.3622 80,0"
+       id="path3017"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 120,992.36218 0,20.00002"
+       id="path3019"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 130,992.36218 0,20.00002"
+       id="path3021"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 130,1002.3622 80,0"
+       id="path3023"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 210,992.36218 0,20.00002"
+       id="path3025"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 220,992.36218 0,20.00002"
+       id="path3027"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800" />
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3221"
+       sodipodi:cx="305"
+       sodipodi:cy="1002.3622"
+       sodipodi:rx="10"
+       sodipodi:ry="10"
+       d="m 305,1012.3622 c -5.52285,0 -10,-4.4772 -10,-10 0,-5.52286 4.47715,-10.00002 10,-10.00002 0,0 0,0 0,0"
+       sodipodi:start="1.5707963"
+       sodipodi:end="4.712389"
+       sodipodi:open="true"
+       transform="translate(2,0)"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800" />
+    <path
+       transform="matrix(-1,0,0,1,615.1879,0)"
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3221-1"
+       sodipodi:cx="305"
+       sodipodi:cy="1002.3622"
+       sodipodi:rx="10"
+       sodipodi:ry="10"
+       d="m 305,1012.3622 c -5.52285,0 -10,-4.4772 -10,-10 0,-5.52286 4.47715,-10.00002 10,-10.00002 0,0 0,0 0,0"
+       sodipodi:start="1.5707963"
+       sodipodi:end="4.712389"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect3241"
+       width="9.3067398"
+       height="95.508911"
+       x="303.94702"
+       y="950.44086"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 220,1002.3622 76.25,0"
+       id="path4023"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 320.4709,1002.3622 c 59.5291,0 59.5291,0 59.5291,0"
+       id="path4027"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 380,992.36218 0,20.00002"
+       id="path4029"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4031"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(5.1364216,4.4636927)"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800"><flowRegion
+         id="flowRegion4033"><rect
+           id="rect4035"
+           width="15.357142"
+           height="13.928572"
+           x="31.428572"
+           y="970.93359" /></flowRegion><flowPara
+         id="flowPara4037">F</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4031-6"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(344.47321,4.4636927)"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800"><flowRegion
+         id="flowRegion4033-4"><rect
+           id="rect4035-4"
+           width="15.357142"
+           height="13.928572"
+           x="31.428572"
+           y="970.93359" /></flowRegion><flowPara
+         id="flowPara4037-1">N</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 211,1012.3622 8,-20.00002"
+       id="path4074"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4078"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(-33.328125,-0.11181067)"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800"><flowRegion
+         id="flowRegion4080"><rect
+           id="rect4082"
+           width="76.785706"
+           height="36.428555"
+           x="118.92857"
+           y="1019.5051" /></flowRegion><flowPara
+         id="flowPara4090"
+         style="font-size:8px;text-align:center;text-anchor:middle">Relé</flowPara><flowPara
+         id="flowPara4101"
+         style="font-size:8px;text-align:center;text-anchor:middle">LZX:PT 370</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4078-5"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(41.421875,-0.11181067)"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800"><flowRegion
+         id="flowRegion4080-5"><rect
+           id="rect4082-5"
+           width="109.28571"
+           height="36.071445"
+           x="118.92857"
+           y="1019.5051" /></flowRegion><flowPara
+         id="flowPara4090-6"
+         style="font-size:8px;text-align:center;text-anchor:middle">Relevo Térmico</flowPara><flowPara
+         id="flowPara4101-4"
+         style="font-size:8px;text-align:center;text-anchor:middle">LDR 06</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4078-5-3"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(133.42187,-0.11181067)"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800"><flowRegion
+         id="flowRegion4080-5-7"><rect
+           id="rect4082-5-9"
+           width="109.28571"
+           height="36.071445"
+           x="118.92857"
+           y="1019.5051" /></flowRegion><flowPara
+         id="flowPara4090-6-5"
+         style="font-size:8px;text-align:center;text-anchor:middle">Contactor</flowPara><flowPara
+         id="flowPara4101-4-9"
+         style="font-size:8px;text-align:center;text-anchor:middle">LC1D 09</flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="303.7373"
+       y="1006.6147"
+       id="text4165"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/fclad/tempFolder/PFE/Esquemas/ladder.png"
+       inkscape:export-xdpi="800"
+       inkscape:export-ydpi="800"><tspan
+         sodipodi:role="line"
+         id="tspan4167"
+         x="303.7373"
+         y="1006.6147">C</tspan></text>
+  </g>
+</svg>
