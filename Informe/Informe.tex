@@ -16,6 +16,8 @@
 \author{Alvaro Alonso - Maximiliano Badaloni - Fernando Cladera}
 \title{Proyecto Final de Estudios}
 
+%\includeonly{./Cap3-TableroElectrico/Cap3-TableroElectrico}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%----------------------%%
 %%            		%%
@@ -34,10 +36,11 @@
 %%            		%%
 %%----------------------%%
 \frontmatter
-\tableofcontents
-\listoffigures
+% Descomentar en la versión definitiva!
+%\tableofcontents
+%\listoffigures
 %\listoftables
-\input{./Abstract/abstract.tex}
+\include{./Abstract/abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%-----------------------------%%
 %%                             %%
@@ -46,12 +49,12 @@
 %%-----------------------------%%
 \pagestyle{plain}
 \mainmatter
-\input{./Cap1-Introduccion/Cap1-Introduccion.tex}
-\input{./Cap2-DisenoEnsamblado/Cap2-DisenoEnsamblado.tex}
-\input{./Cap3-TableroElectrico/Cap3-TableroElectrico.tex}
-\input{./Cap4-ProgramacionPLC/Cap4-ProgramacionPLC.tex}
-\input{./Cap5-SCADA/Cap5-SCADA.tex}
-\input{./Cap6-Conclusiones/Cap6-Conclusiones.tex}
+\include{./Cap1-Introduccion/Cap1-Introduccion}
+\include{./Cap2-DisenoEnsamblado/Cap2-DisenoEnsamblado}
+\include{./Cap3-TableroElectrico/Cap3-TableroElectrico}
+\include{./Cap4-ProgramacionPLC/Cap4-ProgramacionPLC}
+\include{./Cap5-SCADA/Cap5-SCADA}
+\include{./Cap6-Conclusiones/Cap6-Conclusiones}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%------------------------------%%
@@ -69,6 +72,6 @@
 \addcontentsline{toc}{chapter}{Bibliografía}
 
 \appendix
-\input{./Anexos/Anexos.tex}
+\include{./Anexos/Anexos}
 
 \end{document}
