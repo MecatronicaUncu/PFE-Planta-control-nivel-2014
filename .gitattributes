@@ -1,2 +1,5 @@
 ## Archivos svg deben ser vistos como binarios
 *.svg binary
+
+## Archivos de QET binarios
+*.qet binary
