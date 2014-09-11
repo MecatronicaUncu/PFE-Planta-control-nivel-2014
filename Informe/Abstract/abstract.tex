@@ -5,4 +5,39 @@
 
 \chapter*{Abstract}
 
-Acá va el abstract
+En gran número de procesos industriales, se requiere controlar el caudal o el
+nivel de un determinado fluido en un tanque o una cañería.
+Para ello, se utilizan sensores capaces de medir la variable a
+controlar, se ejecutan algoritmos de control en autómatas digitales y se
+modifica el estado del proceso mediante actuadores (válvulas, variadores de
+velocidad).
+Conocer como realizar el control de caudal y nivel de una planta, en todas sus
+partes (sensores, actuadores y programación del autómata) es un requisito
+indispensable para los futuros ingenieros Mecatrónicos, de Petróleos e
+Industriales.
+
+En este \gls{pfe}, se diseñará y construirá una planta piloto de control de
+nivel.
+Se utilizarán como elementos de adquisición sensores de caudal (DP cell y placa
+orificio) y de nivel de tanque (DP cell).
+El actuador será una válvula electroneumática.
+Todo el proceso será controlado por un \gls{plc}, que ejecutará las acciones de
+corrección necesarias para una consigna de caudal o nivel dado\todo{caudal
+también?}.
+Además, el \gls{plc} se comunicará con una computadora de control que ejecuta
+un programa de tipo \gls{scada} con el propósito de observar el estado de la
+planta, como así también enviar nuevas consignas de nivel o
+caudal\todo{caudal?}.
+
+Una característica distintiva de este trabajo es que la planta será móvil.
+Es decir, se encuentra montada sobre una estructura con ruedas para permitir su
+libre desplazamiento.
+Además, la conexión con la computadora de control se realizará de manera
+inalámbrica.
+
+En este informe de proyecto se describen el proceso de construcción,
+ensamblado y conexionado de la planta.
+Además se realizará la programación del \gls{plc} y del \gls{scada}, con el
+propósito de verificar el correcto funcionamiento de la planta.
+Se entregarán junto con este informe el software, circuitos y diagramas para
+ser utilizado durante los trabajos prácticos o en futuros proyectos.
