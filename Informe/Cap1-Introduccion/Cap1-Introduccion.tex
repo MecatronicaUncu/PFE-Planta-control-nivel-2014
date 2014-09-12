@@ -7,12 +7,12 @@ El objetivo de este trabajo es el desarrollo de una planta
 educativa de control de nivel
 (\textit{Level control trainer}).
 La planta será utilizada para realizar prácticas con los
-alumnos, perimitiendo aplicar los conceptos de 
-control de procesos, programación de \gls{plc}, SCADA,
-Ajuste de lazos PID, Teoría de Cascadas. 
-Además, el alumno tendrá la aproximación a elementos de adquisición que 
+alumnos, permitiendo aplicar los conceptos de
+control de procesos, programación de \gls{plc}, \gls{scada},
+ajuste de lazos PID, teoría de cascadas, etc.
+Además, el alumno tendrá la aproximación a elementos de control que
 se encuentran en la industria, tales como sensores diferenciales de presión
-(\textit{DP cell}) y placas orificio.
+(\textit{DP cell}), placas orificio y válvulas electroneumáticas.
 El proyecto está destinado a ser utilizado por las cátedras de
 Automatismos Industriales, Autómatas y Control Discreto 
 (Ingeniería en Mecatrónica)
@@ -23,7 +23,7 @@ En la actualidad, en el Laboratorio de Control Automático de la Facultad,
 se disponen con equipos similares al descripto\todo{citar equipos?}.
 No obstante, el proyecto planteado tiene la característica de ser 
 \textbf{móvil}: se encuentra montado en una estructura que 
-permite su desplazamiento, y el enlace a la 
+permite su libre desplazamiento, y el enlace a la
 computadora de control se realizará de manera inalámbrica.
 % Además, se utilizará una válvula neumática...
 
@@ -32,117 +32,185 @@ Dos firmas del medio fueron consultadas, para conocer
 el precio en el mercado de un desarrollo similar:
 \begin{itemize}
  \item \textbf{Reino Unido}: Una planta con características similares
- a la descripta tiene un precio de $16225\,USD$ en puerto de Buenos Aires
+ a la descripta tiene un precio de $16225\,USD$ en puerto de Buenos Aires.
  \item \textbf{Italia}: Con un precio de $28403\,EUR$ en puerto. 
  El modelo propuesto por la firma italiana
- posee un precio superior debido a que está construído en acero inoxidable.
+ posee un precio superior debido a que está construido en acero inoxidable.
 \end{itemize}
 
-Se observa que, debido al elevado costo del producto en el mercado,
-se justifica su desarrollo  y construcción en la facultad.
-Se plantea entonces el desafío de diseñar, ensamblar y programar una planta
-móvil de control de nivel en el Laboratorio de Control Automático de la Facultad.
+Se observa que el costo de un producto de estas características en el mercado
+es muy elevado.
+Además, se advierte que muchos de los elementos constitutivos de estas plantas
+(sensores, actuadores y autómatas) pueden adquirirse en el mercado, con fines
+industriales.
+Se plantea entonces el objetivo del proyecto:
+
+\textbf{``Diseñar, ensamblar y programar una planta móvil de control de nivel,
+utilizando sensores, controladores y actuadores industriales disponibles en el
+mercado''.}
 
 %Por qué se hizo el trabajo? Comparación con otras plantas
 %(plantas para comprar Y plantas que puglesi ya tiene)
 
 \subsection{Especificaciones}
 
-Las siguientes especificaciones deben cumplirse para la nueva
-planta:
+Las siguientes especificaciones deben respetarse para la nueva planta:
 
 \begin{itemize}
-\item Debe cumplir su objetivo pedagógico, permitiendo 
+\item Debe cumplir su objetivo pedagógico, permitiendo
  a los alumnos comprender los principios del control automático.
+ Por ende, la planta no debe ser excesivamente compleja.
  \item Su costo debe ser inferior a una solución llave en mano.
  \item Deberán utilizarse actuadores, elementos de adquisición
  y controladores que se encuentren en plantas industriales.
- \item Representación de fenomenos que afectan los procesos 
- industriales, tales como perturbaciones en bombas y tiempo 
- muerto en los procesos. 
- \item Se confeccionará un manual de uso sencillo, para 
+ \item Tendrá que estar montada sobre una estructura que facilite su
+movilidad. Además, deberán evitarse conexiones cableadas, siendo reemplazadas
+por enlaces inalámbricos de ser posible.
+ \item En ella deberán poder representarse fenómenos que
+afectan los procesos industriales, tales como perturbaciones en bombas y
+tiempos muertos en los procesos.
+ \item Deberá verificarse su correcto funcionamiento escribiendo un programa de
+ejemplo en el \gls{plc}, con su \gls{scada} correspondiente.
+El programa deberá estar correctamente documentado, para que pueda ser
+utilizado como ejemplo durante las prácticas.
+ \item Un manual de uso sencillo tendrá que ser confeccionado, para
  fácil comprensión por parte de los alumnos.
-
 \end{itemize}
-\todo{Mejorar}
 
 \section{Materiales disponibles}
 \label{sec:MaterialesDisponibles}
 
 A la hora de comenzar con el proyecto, varios elementos habían
 sido adquiridos por el director de proyecto y se encontraban
-disponibles en el Laboratorio de Control Automático:
+disponibles en el Laboratorio de Control Automático\todo{ver precios de todos
+los elementos}:
 \begin{itemize}
- \item \textbf{Válvula neumática:} marca Foxboro, modelo Stabilflo (serie V1), para controlar el 
- caudal. Se trata de una válvula isoporcentual, con un electroposicionador Power Genex.
- La apertura de la válvula será nuestra variable de control en el sistema. 
- Ver sección \ref{sec:ValvulaNeumatica}.
+  \item \textbf{Estructura:} un marco de caño estructural montado sobre
+  ruedas. En él se colocarán todos los elementos de la planta.
+  Ver sección \ref{sec:EstructuraSoporte}.
+
+  \item \textbf{Cañerías y accesorios}: serán utilizados para realizar el
+  circuito hidráulico de la planta. Ver sección \ref{sec:Canerias}.
+
   \item \textbf{Electrobombas monofásicas (2):} impulsarán el fluido
-  en la planta de control de nivel.
+  en el circuito hidráulico.
   La velocidad de las bombas (frecuencia) no será controlada.
   Ver sección \ref{sec:Bombas}.
-  \item \textbf{Placa Orificio:} Permite estimar el 
-  caudal en un tubo midiendo la presión.
-  Se tratará en la sección \ref{subsec:PlacaOrificio}.
-  \item \textbf{DP cells (2):} Sensores de presión 
-  diferencial marca Yokogawa. 
+
+  \item \textbf{Válvula electroneumática:} marca Foxboro, modelo
+  Stabilflo (serie V1), para controlar el caudal.
+  Se trata de una válvula isoporcentual, con un electroposicionador
+  Power Genex.
+  La apertura de la válvula será nuestra variable manipulada en
+  el sistema.
+  Ver sección \ref{sec:ValvulaNeumatica}.
+
+  \item \textbf{Placa orificio:} permite medir el
+  caudal en una tubería midiendo la diferencia de presión.
+  Ver sección \ref{subsec:PlacaOrificio}.
+
+  \item \textbf{DP cells (2):} sensores de presión
+  diferencial, marca Yokogawa.
   Uno de los sensores será utilizado para medir el nivel del tanque controlado,
   en tanto que el segundo medirá caudal con la ayuda de la placa orificio.
   Ver sección \ref{subsec:DPCell}.
+
+  \item \textbf{Manómetros (2):} A colocar en
+  puntos específicos de la planta, para medir los valores instantáneos de
+  presión.
+  Ver Sección \ref{subsec:Manometros}.
+
   \item \textbf{Instrumentos de protección y comando:}
-  Para las bombas, podemos citar: Contactores, relés, 
-  Llaves termomagnéticas\todo{verificar}.
-  Ver sección \ref{sec:Potencia}.
-  \item{\textbf{\gls{plc}}}: Twido 40 DTK (Siemens) con un módulo
-  analógico TWDAMM6HT y su correspondiente fuente de alimentación.
+  en primer lugar, tenemos un interruptor magnetotérmico de corte general.
+  Ver sección \ref{subsec:corteGeneral}.
+  Para las bombas, podemos citar: contactores, relés y los relevos térmicos.
+  Ver sección \ref{subsec:alimentacionMotores}.
+
+  \item \textbf{Fuente de alimentación:}
+  de $220\,V$ en corriente alterna a $24\,V$ en corriente continua.
+  Permite alimentar el \gls{plc} y el módulo inalámbrico (previa conversión a
+  $5\,V$ en corriente continua).
+  Ver sección \ref{subsec:fuenteAlim}.
+
+  \item{\textbf{\gls{plc}}}: Twido \verb|40 DTK| (Schneider) con un módulo
+  analógico \verb|TWD AMM 6HT|.
   Permitirá controlar las bombas (encendido/apagado), 
   leer valores de presión de las DP Cell y modificar la apertura de la 
   válvula. Ver sección \ref{subsec:plc}.
-  \item \textbf{Estructura:} un marco móvil, montado sobre ruedas,
-  se encuentra disponible. Ver Sección \ref{sec:EstructuraSoporte}.
-  \item \textbf{Cañerías y accesorios}: Serán utilizados para 
-  conectar los elementos de la planta. Ver sección \ref{sec:Canerias}.
-  \item \textbf{Manómetros (2):} A colocar en 
-  puntos específicos de la planta.
-  \item \textbf{Módulos inalámbricos:} Marca CTM Electrónica,
-  modelo AD-xxx\todo{Verificar modelo}, permite enlazar la 
-  interfaz RS485 a la computadora de control
+
+  \item \textbf{Módulos inalámbricos:} marca CTM Electrónica,
+  modelo \verb|AD-200|.
+  Permite enlazar la interfaz \verb|RS 485| a la computadora de control
   de manera inalámbrica. Ver sección \ref{subsec:inalambrico}.
 \end{itemize}
 
-A partir de los materias disponibles, se confeccionó 
-un proyecto de planta, estableciendo las tareas a realizar, el orden
-y un planning de trabajo.
+A partir de los materias disponibles, se confeccionó
+un proyecto de trabajo, estableciendo las tareas a realizar, la jerarquía de
+tareas y un planning de trabajo.
 
 \section{Solución propuesta}
 \label{sec:SolucionPropuesta}
 
-Mediante los materiales disponibles se dispone a la construcción de 
-una planta de control de nivel. En esta, dos tanques son alimentados por 
-dos bombas de acción reciproca y mediante una válvula neumática se actuá
-sobre el sistema para su control. El nivel del tanque controlado es medido 
-mediante celdas de presión diferencial.
-
-Para poder recrear fenómenos que afectan los procesos industriales se agregan
-a la planta:
+Habiendo analizado la lista de materiales disponibles, se propone el siguiente
+modelo de planta de control de nivel:
 \begin{itemize}
-\item X\todo{Cuantos metros} metros de cañería que sirven como tiempo muerto
-de la planta.
-\item La conexión, mediante una válvula manual, de la salida con la entrada
- de la bomba de manera de simular las perturbaciones del circuito hidráulico.
+ \item Dos tanques son alimentados por dos bombas centrífugas.
+ Cada bomba extraerá agua de un tanque y lo enviará al otro.
+ \item En uno de ellos, el \textbf{tanque controlado}, se medirá el nivel
+ mediante un DP cell.
+ \item Sobre la \textbf{cañería de llenado} del tanque controlado, se
+ colocará la válvula electroneumática y la placa orificio (junto
+con su correspondiente DP cell)\footnote{Si bien no es  requisito contar con
+una placa orificio para hacer  control de nivel,  poder medir el caudal en la
+cañería de llenado resulta  de  interés para  futuros trabajos  utilizando
+Teoría de Cascadas.}.
+ Por ende, puede controlarse con precisión el caudal de agua de llenado del
+ tanque controlado (de ahí su nombre).
+ \item En el segundo tanque, el \textbf{tanque de reserva} no se medirá
+ directamente el  nivel, sino que será estimado mediante el nivel del tanque
+ controlado.
+ \item En la \textbf{cañería de vaciado} del tanque controlado se colocará una
+válvula manual, que permitirá modificar el caudal de vaciado.
 \end{itemize}
 
-Resulta de interés la implementación de Teoría de Cascadas y para ello se pone
-a disposición en la planta la medición del caudal circulante mediante un elemento
-depresor\todo{Placa Orificio} y una celda de presión diferencial.
+
+Para poder recrear fenómenos que afectan los procesos industriales se agregarán
+los siguientes elementos a la planta:
+\begin{itemize}
+\item 30 \todo{verificar} metros de cañería adicional, que sirven como tiempo
+muerto.
+Se agregarán en paralelo de la cañería de llenado del tanque controlado.
+Se podrá habilitar el tiempo muerto mediante una válvula manual.
+\item Se realizará la conexión, mediante una válvula manual, de la salida de
+cada bomba con su entrada. Se simularán así perturbaciones
+del circuito hidráulico.
+\item En la cañería de llenado y en la cañería de vaciado se colocarán válvulas
+manuales, para poder limitar el caudal.
+\end{itemize}
+
+Una explicación completa del diseño e implementación del circuito hidráulico
+propuesto se realiza en el capítulo \ref{ch:DisenoEnsamblado}.
+
+Luego de la instalación del circuito hidráulico, deben cablearse los elementos
+de protección y comando de los motores.
+Además, se propone controlar la planta utilizando un autómata
+programable (\gls{plc}).
+La válvula electroneumática, el comando de las bombas y los sensores de presión
+deben ser correctamente conectados en el tablero de control.
+El cableado se analiza en el capítulo \ref{ch:tablero}.
+
+En el capítulo \ref{ch:progPLC} se programará el autómata que controlará la
+planta. Finalmente, en el capítulo \ref{ch:scada} se desarrollará el software
+de control \gls{scada}, que se ejecuta en la computadora de control.
 
 \section{Organización}
 \label{sec:Organizacion}
 \subsection{División del trabajo}
 Dado que la construcción de la planta implica una serie de etapas que
-deben realizarse de manera seriada, se dividió el trabajo en los siguientes puntos:
+deben realizarse de manera ordenada, se dividió el trabajo en los siguientes
+puntos:
 \begin{enumerate}
- \item \textbf{Planificación y diseño preliminar}:
+ \item \textbf{Planificación y diseño preliminar}
   \item \textbf{Construcción de la planta}
   \begin{enumerate}
    \item Preparación de la estructura
@@ -150,7 +218,7 @@ deben realizarse de manera seriada, se dividió el trabajo en los siguientes pun
    \item Cañerías
    \item Cableado eléctrico de potencia
    \item Cableado de señal: PLC, válvula, DP cells, módulo inalámbrico.
-   \item Pruebas de funcionamiento sencillo
+   \item Pruebas de funcionamiento sencillas
    \item Pintura y acabados
   \end{enumerate}
   \item \textbf{Programación del \gls{plc}}
@@ -160,9 +228,15 @@ deben realizarse de manera seriada, se dividió el trabajo en los siguientes pun
 \end{enumerate}
 
 \subsection{Planning}
+Se optó por dividir el tiempo disponible en cada una de las tareas, tal como lo
+explicita el planning propuesto en la figura \ref{fig:EDT}.
+Se observa que la mayor parte de las actividades de construcción de la planta
+debieron realizarse de manera seriada, en tanto que la programación del
+\gls{plc} y el \gls{scada} puede realizarse de forma paralela.
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[angle=-90,width=0.44\textwidth]{Cap1-Introduccion/images/EDT.pdf}%width=.9\textwidth
-	\caption{Esquema de la division del tiempo}
+	\includegraphics[angle=-90,
+		width=0.445\textwidth]{Cap1-Introduccion/images/EDT.pdf}
+	\caption{Esquema de la división del tiempo}
 	\label{fig:EDT}
 \end{figure}
