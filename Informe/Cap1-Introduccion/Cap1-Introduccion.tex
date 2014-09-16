@@ -92,6 +92,9 @@ los elementos}:
   \item \textbf{Cañerías y accesorios}: serán utilizados para realizar el
   circuito hidráulico de la planta. Ver sección \ref{sec:Canerias}.
 
+  \item \textbf{Tanques:} se trata de dos caños cloacales sellados en sus
+  extremos, de $160\,mm$ de diámetro. Ver sección \ref{sec:Tanques}.
+
   \item \textbf{Electrobombas monofásicas (2):} impulsarán el fluido
   en el circuito hidráulico.
   La velocidad de las bombas (frecuencia) no será controlada.
@@ -110,7 +113,7 @@ los elementos}:
   Ver sección \ref{subsec:PlacaOrificio}.
 
   \item \textbf{DP cells (2):} sensores de presión
-  diferencial, marca Yokogawa.
+  diferencial Yokogawa, modelo \verb|EJA 110 A|.
   Uno de los sensores será utilizado para medir el nivel del tanque controlado,
   en tanto que el segundo medirá caudal con la ayuda de la placa orificio.
   Ver sección \ref{subsec:DPCell}.
@@ -202,6 +205,97 @@ El cableado se analiza en el capítulo \ref{ch:tablero}.
 En el capítulo \ref{ch:progPLC} se programará el autómata que controlará la
 planta. Finalmente, en el capítulo \ref{ch:scada} se desarrollará el software
 de control \gls{scada}, que se ejecuta en la computadora de control.
+
+\section{Análisis económico}
+\label{sec:AnalisisEconomico}
+Los elementos descriptos en la sección \ref{sec:MaterialesDisponibles} fueron
+obtenidos mediante donaciones para el proyecto.
+Distinguimos tres donantes:
+\begin{itemize}
+ \item \textbf{Techint:} donó el \gls{plc} (con su módulo analógico y fuente),
+las celdas de presión diferencial, las electrobombas y la válvula de control.
+Esta donación está especificada en detalle en la tabla
+\ref{tab:donacionTechint}.
+ \item \textbf{La Facultad de Ingeniería:} donó la estructura, la cañería, los
+accesorios, las válvulas manuales, los manómetros, los elementos de ferretería,
+los elementos de electricidad (contactores, relés) y el módulo inalámbrico.
+El detalle de la donación puede observarse en la tabla \ref{tab:donacionFing}.
+\item \textbf{El director de proyecto, Ing. Puglesi:} donó la placa orificio,
+necesaria para poder medir el caudal en la cañería de llenado.
+El detalle de la donación puede observarse en la tabla
+\ref{tab:donacionPuglesi}.
+\end{itemize}
+
+Aunque los elementos fueron donados, se realizará el análisis de costos de la
+planta para compararlo con las soluciones llave en mano descriptas en
+\ref{sec:DescripcionProblema}.
+El precio de cada uno de los elementos fue calculado en dólares estadounidenses
+(USD) para evitar posibles fluctuaciones de precio en la moneda local (ARS).
+
+El costo total de la planta es de
+\begin{align}
+5050\,USD + 2122\,USD + 50\,USD &= 7222\,USD
+\end{align}
+Se verifica que el precio es inferior a las soluciones llave en mano, para un
+producto con una calidad similar\footnote{En comparación con la firma inglesa.}.
+Cabe destacar que en nuestro análisis no hemos tenido en cuenta el costo (en
+horas de trabajo) para fabricar la planta.
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\centering
+\begin{tabularx}{\textwidth}{l||X||l}
+\hline
+\bfseries Cantidad & \bfseries Descripción &\bfseries Precio\\
+\hline \hline
+2& Electrobombas monofásicas Czerweny 1/4 HP &
+ {\multirow{6}{*}{5050 USD}}\\
+1& \gls{plc} Twido \texttt{40 DTK} &  \\
+1& Módulo 4E-2S analógicas \texttt{TWD AMM 6HT}& \\
+2& Celdas de presión diferencial Yokogawa \texttt{E 110 A}& \\
+1& Válvula electroneumática de control & \\
+1& Fuente de poder $220\,V$ AC a $24\,V$ CC& \\
+\hline
+\end{tabularx}
+\caption{Elementos donados por Techint}
+\label{tab:donacionTechint}
+\end{table}
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\centering
+\begin{tabularx}{\textwidth}{l||X||l}
+\hline
+\bfseries Cantidad & \bfseries Descripción & \bfseries Precio\\
+\hline \hline
+1& Estructura móvil con tablero&
+ {\multirow{9}{*}{2122 USD}}\\
+-& Tuberías y accesorios &  \\
+2& Columnas (tanques) &  \\
+-& Elementos de ferretería (bulones, tuercas, etc.)& \\
+-& Material eléctrico &\\
+2& Manómetros& \\
+3& Válvulas exclusas manuales& \\
+3& Válvulas globo manuales& \\
+1& Módulo inalámbrico \texttt{AD-200}&\\
+\hline
+\end{tabularx}
+\caption{Elementos donados por la Facultad de Ingeniería}
+\label{tab:donacionFing}
+\end{table}
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\centering
+\begin{tabularx}{\textwidth}{l||X||l}
+\hline
+\bfseries Cantidad & \bfseries Descripción & \bfseries Precio\\
+\hline \hline
+1& Placa Orificio& 50 USD\\
+\hline
+\end{tabularx}
+\caption{Elementos donados por el Ing. Puglesi}
+\label{tab:donacionPuglesi}
+\end{table}
 
 \section{Organización}
 \label{sec:Organizacion}
