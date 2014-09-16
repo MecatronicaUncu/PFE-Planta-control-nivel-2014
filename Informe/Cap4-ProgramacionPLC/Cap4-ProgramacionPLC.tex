@@ -2,11 +2,24 @@
 \label{ch:progPLC}
 Como se prensento en el capitulo \ref{ch:intro} de este informe el material a utilizar
 para poder alcanzar los objetivos. En el presente capítulo se describe el algoritmo 
-de programación del programa que se grabo en el \gls{plc}
+de programación del programa que se grabo en el \gls{plc} 
 \section{Algoritmo}
 \label{sec:Algoritmo}
 
 
+
+
+
+\section{Programación}
+\label{sec:Programacion}
+Se utilizó el programa Twido Soft para poder programar el \gls{plc}. Se programó
+en lenguaje Ladder.
+
+El software Twido Soft sirve para enviar el programa al \gls{plc}, así como 
+para descargar el programa que esta en el \gls{plc}. A tal efecto a continuación 
+se explicaran algunas cualidades del programa para que sea simple la comprensión.
+
+Lo primero que se presenta son la acción realizada en cada RUNG (pasos del programa).
 
 \usetikzlibrary{trees}
 \tikzstyle{every node}=[draw=black,thick,anchor=west,inner sep=2pt,minimum size=1pt]
@@ -15,27 +28,40 @@ de programación del programa que se grabo en el \gls{plc}
   grow via three points={one child at (0.5,-0.7) and
   two children at (0.5,-0.7) and (0.5,-1.4)},   
   edge from parent path={(\tikzparentnode.south) |- (\tikzchildnode.west)}]
-  \node {MainFolder-\{version\}}
-    child { node [label={[xshift=6.0cm, yshift=-0.58cm, color=gray] Comentario}] {Inicialización}
-        child [missing] {}
-    }
-    child [missing] {} %estos sirven para alinear.
+  \node (init) {Inicio del programa  }
+    child { node {Inicialización} }
     child { node {Señal PLC run}    }
-    child [missing] {}
     child { node {Adquisición de Nivel y Caudal}    }
-    child [missing] {}
-    child { node {release/}
-        child { node [draw=none] {libAwesome.a} }
-        child { node [draw=none] {libAwesome.dylib} }
-    };
+    child { node {Gestión de alarmas HHL y LLL}    }
+    child { node {Gestión de banderas de alarmas HHL y LLL}    }
+    child { node {Seteo de parámetros del controlador: Kp}    }
+    child { node {Seteo de parámetros del controlador: Ti}    }
+    child { node {Seteo de parámetros del controlador: Td}    }
+    child { node {Seteo de parámetros del controlador: Set Point}    }
+    child { node {Gestión de bandera de encendido y parada del sistema}    }
+    child { node {Gestión de bandera de modo manual y automático}    }
+    child { node {Gestión de motores si el sistema esta en modo automático}    }
+    child { node {Encendido del Motor 1: Control manual y automático}    }
+    child { node {Encendido del Motor 2: Control manual y automático}    }
+    child { node {Controlador: PID}    }
+    child { node {Valor de salida de la válvula}    }
+    child { node {Gestión de señal indicadora del estado del sistema: manual o automático}    }
+    child { node {Indicador del estado del Motor 1}    }
+    child { node {Indicador del estado del Motor 2}    }
+    child { node {Indicador de error en bombas}    }
+    child { node {Gestión de bandera del sistema trabajando en modo normal}    }
+    child { node {Limpieza de alarmas}    };
+  
 \end{tikzpicture}
 \tikzstyle{every node}=[] % resets borders of tables
 \tikzstyle{selected}=[] % resets selected
+\todo{Anexo de lo que imprimimos desde el twido soft}
 
 
-\section{Programación}
-\label{sec:Programacion}
-Grabado y puesta en el plc
+El programa presenta baderas que nos sirven para conocer diferentes estados
+de la planta. En la tabla \ref{table:Banderasinternas} se pueden ver el nombre 
+de las mismas y sus funciones.
+
 
 \begin{table}[!t]
 
@@ -46,14 +72,20 @@ Grabado y puesta en el plc
 \bfseries Memoria & \bfseries Descripción\\
 \hline \hline
 \verb|M0|  & Bandera de inicialización\\
-\verb|M1|  & Lectura DP cell caudal\\
-\verb|M2|  & Valor Kp\\
-\verb|M3|  & Valor Ki\\
-\verb|M4|  & Valor Kd\\
+\verb|M1|  & Sistema Encendido/Apagado\\
+\verb|M2|  & Sistema en modo Manual/Automático\\
+\verb|M3|  & Error de Nivel\\
+\verb|M4|  & Error de Motor\\
 \hline
 \end{tabular}
 \caption{Banderas internas}
+\label{table:Banderasinternas}
 \end{table}
+
+
+\section{Comunicación}
+\label{sec:Comunicacion}
+
 
 \begin{table}[!t]
 
@@ -91,6 +123,7 @@ Esc & & \verb|X8|& Limpiar errores (era \verb|MW8:X0|)\\
 \hline
 \end{tabular}
 \caption{Bits lectura/escritura}
+\label{table:bitlecturasescrituras}
 \end{table}
 
 \begin{table}[!t]
@@ -118,8 +151,10 @@ Esc & \verb|MW13| & Valor de escritura Kd \\
 \hline
 \end{tabular}
 \caption{Palabras lectura/escritura}
+\label{table:palabraslecturasescrituras}
 \end{table}
 
 \section{Depuración (Debug)}
 \label{sec:Debug}
-Forzar entradas
+
+H
