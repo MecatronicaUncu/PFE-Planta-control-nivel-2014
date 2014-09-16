@@ -16,15 +16,13 @@ de programación del programa que se grabo en el \gls{plc}
   two children at (0.5,-0.7) and (0.5,-1.4)},   
   edge from parent path={(\tikzparentnode.south) |- (\tikzchildnode.west)}]
   \node {MainFolder-\{version\}}
-    child { node [label={[xshift=6.0cm, yshift=-0.58cm, color=gray] Documentation for developers}] {References and Documentation/}
-        child { node [draw=none] {main.html} }
-        child { node {reference/}
-            child { node [draw=none] {...}}
-        }
+    child { node [label={[xshift=6.0cm, yshift=-0.58cm, color=gray] Comentario}] {Inicialización}
         child [missing] {}
     }
+    child [missing] {} %estos sirven para alinear.
+    child { node {Señal PLC run}    }
     child [missing] {}
-    child [missing] {}
+    child { node {Adquisición de Nivel y Caudal}    }
     child [missing] {}
     child { node {release/}
         child { node [draw=none] {libAwesome.a} }
@@ -33,10 +31,6 @@ de programación del programa que se grabo en el \gls{plc}
 \end{tikzpicture}
 \tikzstyle{every node}=[] % resets borders of tables
 \tikzstyle{selected}=[] % resets selected
-
-
-
-
 
 
 \section{Programación}
