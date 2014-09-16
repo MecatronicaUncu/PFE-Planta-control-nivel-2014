@@ -1,20 +1,67 @@
 \chapter{SCADA}
 \label{ch:scada}
 
+Como elemento final del \gls{pfe} se diseño y se realizo una \gls{hmi} \gls{scada}
+mediante P-CIM para Windows.
+
 \section{Introducción a SCADA}
 \label{sec:IntroScada}
+Aunque un PLC realiza automáticamente un control pre-programado sobre un proceso, 
+normalmente se distribuyen a lo largo de toda la planta, haciendo difícil recoger 
+los datos de manera manual, los sistemas SCADA lo hacen de manera automática. 
+Históricamente los PLC no tienen una manera estándar de presentar la información 
+al operador. La obtención de los datos por el sistema SCADA parte desde el PLC o 
+desde otros controladores y se realiza por medio de algún tipo de red, 
+posteriormente esta información es combinada y formateada. Un HMI puede tener 
+también vínculos con una base de datos para proporcionar las tendencias, los datos 
+de diagnóstico y manejo de la información así como un cronograma de procedimientos 
+de mantenimiento, información logística, esquemas detallados para un sensor o 
+máquina en particular, incluso sistemas expertos con guía de resolución de 
+problemas.
 
-\section{Capas del programa}
-\label{sec:CapasPrograma}
+ le permite proporcionar alarmas integradas y monitoreo de eventos así como la 
+ adquisición, análisis y presentación de la información de plantas, máquinas y 
+ equipos industriales, ahora también factible de extender a la domótica.
+
+P-CIM funciona en PC y se conecta generalmente a diferentes controladores 
+lógicos Programables (PLCs) y otros dispositivos como controladores analógicos 
+mono o multilazos como así también a otros periféricos inteligentes. 
+
+
+Usando PCIM para Windows los operadores de planta conocen instantáneamente 
+el estado de los procesos de la planta. Los datos en Tiempo Real y las 
+tendencias históricas se pueden presentar en pantalla, permitiendo la 
+determinación del estado del proceso al instante.
+
+P-CIM para Windows le permite pre-configurar acciones a ser ejecutadas 
+automáticamente como resultado de otras acciones o cuando se alcanzan 
+ciertas condiciones específicas.
+
+• Capa de Comunicación – Esta capa se encarga de la comunicación con los PLCs y redes.
+• Capa de Procesamiento de Datos – Esta capa lleva a cabo la mayor parte del procesamiento de datos, registro histórico y manejo de alarmas.
+• Capa de aplicación – Esta capa presenta la información, interactúa con el operador y realiza los controles de alto nivel y de programación.
+\todo {dibujo de capas de abstraccion}
 
 \subsection{Capa de comunicación}
 \label{subsec:CapaComunicacion}
 
+La capa de comunicación recibe información del campo a través del 
+PLC, la transfiere al Servidor de la Base de Datos (Database Server) 
+que analiza la información, la capa de aplicación la procesa y la 
+envía hacia la pantalla (interfase con el Operador)
+
+\section{Capas del programa}
+\label{sec:CapasPrograma}
+
+
+
 \subsection{Capa de procesamiento}
 \label{subsec:CapaProcesamiento}
 
+
 \subsection{Capa de aplicación}
 \label{subsec:CapaAplicacion}
+
 
 \section{Ejecución}
 \label{sec:Ejecucion}
