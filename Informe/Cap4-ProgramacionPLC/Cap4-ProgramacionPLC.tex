@@ -6,6 +6,21 @@ de programación del programa que se grabo en el \gls{plc}
 \section{Algoritmo}
 \label{sec:Algoritmo}
 
+\begin{algorithm}[H]
+ \KwData{this text}
+ \KwResult{how to write algorithm with \LaTeX2e }
+ initialization\;
+ \While{not at end of this document}{
+  read current\;
+  \eIf{understand}{
+   go to next section\;
+   current section becomes this one\;
+   }{
+   go back to the beginning of current section\;
+  }
+ }
+ \caption{How to write algorithms}
+\end{algorithm}
 
 
 
@@ -15,9 +30,9 @@ de programación del programa que se grabo en el \gls{plc}
 Se utilizó el programa Twido Soft para poder programar el \gls{plc}. Se programó
 en lenguaje Ladder.
 
-El software Twido Soft sirve para enviar el programa al \gls{plc}, así como 
+El software Twido Soft sirve tanto como para enviar el programa al \gls{plc}, así como 
 para descargar el programa que esta en el \gls{plc}. A tal efecto a continuación 
-se explicaran algunas cualidades del programa para que sea simple la comprensión.
+se explicaran algunas cualidades del programa para que sea simple su comprensión.
 
 Lo primero que se presenta son la acción realizada en cada RUNG (pasos del programa).
 
@@ -82,11 +97,42 @@ de las mismas y sus funciones.
 \label{table:Banderasinternas}
 \end{table}
 
+Por ultimo se expresan las entradas y salidas al \gls{plc}, tanto analógicas
+como discretas en la tabla \ref{table:entradassalidas}.
+
+\begin{table}[!t]
+
+\renewcommand{\arraystretch}{1.3}
+\centering
+\begin{tabular}{c||c}
+\hline
+\bfseries Memoria & \bfseries Descripción\\
+\hline \hline
+\verb|Q0.0|  & Encender motor 1\\
+\verb|Q0.1|  & Encender motor 2\\
+\verb|Q0.7|  & Señal de encendido de los motores\\
+\verb|I0.0|  & Retroalimentación desde el relevo térmico motor 1\\
+\verb|I0.1|  & Retroalimentación desde el relevo térmico motor 2\\
+\verb|IW0.1.0|  & Señal analógica de nivel\\
+\verb|IW0.1.1|  & Señal analógica de caudal \\
+\verb|QW0.1.0|  & Señal analógica de salida de apertura de la válvula \\
+\hline
+\end{tabular}
+\caption{Entradas y salidas al PLC}
+\label{table:entradassalidas}
+\end{table}
 
 \section{Comunicación}
 \label{sec:Comunicacion}
 
+Para ser capaces de interactuar con la aplicación de \gls{scada} definimos
+ciertas palabras que nos permiten realizar acciones en el sistema y conocer
+el estado del mismo.
 
+La tabla \ref{table:bitlecturasescrituras} presenta dos palabras de dieciséis
+bits, \verb|MW0| y \verb|MW1|, la primera de ella presenta bits de lectura, en donde se
+refleja el estado del la plata, mientras que la segunda palabra sus bits son
+de escritura y nos da la posibilidad de manejar la planta.
 \begin{table}[!t]
 
 \renewcommand{\arraystretch}{1.3}
@@ -126,6 +172,13 @@ Esc & & \verb|X8|& Limpiar errores (era \verb|MW8:X0|)\\
 \label{table:bitlecturasescrituras}
 \end{table}
 
+Por otro lado la tabla \ref{table:palabraslecturasescrituras} nos presenta 
+las palabras de las restantes palabras de memoria que ocupa el programa, en 
+la primer parte de la tabla se encuentran las palabras de solo lectura que 
+presentan los valores que presentan las variables del sistema, mientras que en la 
+segunda parte de la misma se encuentran las memorias reservadas al cambio
+de los parámetros del sistema.
+
 \begin{table}[!t]
 
 \renewcommand{\arraystretch}{1.3}
@@ -134,7 +187,7 @@ Esc & & \verb|X8|& Limpiar errores (era \verb|MW8:X0|)\\
 \hline
 \bfseries Tipo & \bfseries Word  & \bfseries Descripción\\
 \hline \hline
-Lect & \verb|MW2|  & Lectura DP cell nive (era \verb|MW1|)\\
+Lect & \verb|MW2|  & Lectura DP cell nivel (era \verb|MW1|)\\
 Lect & \verb|MW3|  & Lectura DP cell caudal\\
 Lect & \verb|MW4|  & Valor Kp\\
 Lect & \verb|MW5|  & Valor Ki\\
@@ -153,6 +206,11 @@ Esc & \verb|MW13| & Valor de escritura Kd \\
 \caption{Palabras lectura/escritura}
 \label{table:palabraslecturasescrituras}
 \end{table}
+
+\section{Controlador PID}
+\label{sec:controladorpid}
+
+
 
 \section{Depuración (Debug)}
 \label{sec:Debug}
