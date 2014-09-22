@@ -2,19 +2,18 @@
 \label{ch:scada}
 
 Finalmente y para resumir la evolución del proyecto hasta este punto
-Para continuar en el desarrollo es necesario analizar los pasos antes descriptos para la construccion
+Para continuar en el desarrollo es necesario analizar los pasos antes descriptos para la construcción
 de la planta. De esta manera, en el capitulo \ref{ch:DisenoEnsamblado} detallamos el sistema 
-fisico, lo que nos conduce a describir en el capitulo \ref{ch:tablero} el sistema electrico y
-electronico que anima a la planta, continuando en el capitulo \ref{ch:progPLC} con la logica
+físico, lo que nos conduce a describir en el capitulo \ref{ch:tablero} el sistema eléctrico y
+electrónico que anima a la planta, continuando en el capitulo \ref{ch:progPLC} con la lógica
 que regula al sistema completo por medio del \gls{plc}. 
-
 
 Como elemento final del \gls{pfe} se diseño y se realizo una \gls{hmi} \gls{scada}
 mediante P-CIM para Windows con el objetivo de poder manipular la planta/el sistema
-sin tener un acceso fisico a la misma.
+sin tener un acceso físico a la misma.
 
-En el siguiente capitulo se detallan cada uno de los pasos para la realizacion de tal interfase
-asi como tambien la configuracion actual. Mediante esta informacion el lector podra entender
+En el siguiente capitulo se detallan cada uno de los pasos para la realización de tal interfase
+así como también la configuración actual. Mediante esta información el lector podrá entender
 y por lo tanto modificar en caso de ser necesario el entorno. Pero este capitulo no esta 
 orientado a la operacion misma de la planta mediante el \gls{scada} lo cual se detalla en 
 \todo{agregar la seccion donde se describe la operacion mediante el scada}
@@ -22,59 +21,126 @@ orientado a la operacion misma de la planta mediante el \gls{scada} lo cual se d
 \section{Introducción a SCADA}
 \label{sec:IntroScada}
 
-Aunque un PLC realiza automáticamente un control pre-programado sobre un proceso, 
-normalmente se distribuyen a lo largo de toda la planta, haciendo difícil recoger 
-los datos de manera manual, 
+Aunque un \gls{plc} realiza automáticamente un control pre-programado sobre un proceso, 
+no tienen una manera estándar de presentar la información al operador y normalmente se 
+distribuyen a lo largo de toda la planta, haciendo difícil recoger los datos de manera 
+manual.
 
-Históricamente los PLC no tienen una manera estándar de presentar la información 
-al operador. 
+Los sistemas \gls{scada} obtienen los datos desde el \gls{plc} o desde otros controladores 
+por medio de algún tipo de red y de manera automática. Posteriormente esta información 
+es combinada y formateada en una base de datos para proporcionar las tendencias, alarmas 
+integradas y monitoreo de eventos. La presentación de la información de plantas, máquinas y 
+equipos industriales se realiza mediante una \gls{hmi}. Esta información también puede 
+incluir Los datos de diagnóstico y manejo de la información así como un cronograma de 
+procedimientos de mantenimiento, información logística, esquemas detallados para un sensor 
+o máquina en particular, incluso sistemas expertos con guía de resolución de problemas.
 
-La obtención de los datos por el sistema SCADA parte desde el PLC o 
-desde otros controladores y se realiza por medio de algún tipo de red, 
-posteriormente esta información es combinada y formateada. Un HMI puede tener 
-también vínculos con una base de datos para proporcionar las tendencias, los datos 
-de diagnóstico y manejo de la información así como un cronograma de procedimientos 
-de mantenimiento, información logística, esquemas detallados para un sensor o 
-máquina en particular, incluso sistemas expertos con guía de resolución de 
-problemas.
+\section{Scada P-CIM}
+\label{sec:ScadaPCIM} 
+\todo{agregar link para la descarga?}
+El software utilizado para el diseño del sistema \gls{scada} en nuestro proyecto es P-CIM 
+para Windows.El cual permite generar aplicaciones \gls{scada} para ingenieros de planta, 
+operadores, supervisores y gerentes posibilitando la adquisición,análisis y presentación 
+de la información así como proporcionar alarmas integradas y monitoreo de eventos.
 
-los sistemas SCADA lo hacen de manera automática.
+Funciona en computadoras personales, y se conecta generalmente a diferentes \gls{plc} 
+y otros dispositivos periféricos mediante diversos buses de comunicación.
+Una ves conectado recopila constantemente información de la planta en tiempo
+real, la almacena y procesa en la base de datos donde se evalúa y generan alarmas, 
+finalmente mediante la \gls{hmi} se brinda la información y se pueden emitir
+instrucciones a los \gls{plc} en la planta. 
 
- le permite proporcionar alarmas integradas y monitoreo de eventos así como la 
- adquisición, análisis y presentación de la información de plantas, máquinas y 
- equipos industriales, ahora también factible de extender a la domótica.
-
-P-CIM funciona en PC y se conecta generalmente a diferentes controladores 
-lógicos Programables (PLCs) y otros dispositivos como controladores analógicos 
-mono o multilazos como así también a otros periféricos inteligentes. 
+Ademas presenta otras características que lo hacen atractivo como pre-configurar acciones 
+a ser ejecutadas automáticamente como resultado de otras acciones o cuando se alcanzan ciertas 
+condiciones específicas, mantener el seguimiento de los procesos de la planta y las actividades 
+de los operadores, organizar,monitorear, reconocer y analizar alarmas y eventos en toda la extensión 
+de la planta.
 
 
-Usando PCIM para Windows los operadores de planta conocen instantáneamente 
-el estado de los procesos de la planta. Los datos en Tiempo Real y las 
-tendencias históricas se pueden presentar en pantalla, permitiendo la 
-determinación del estado del proceso al instante.
 
-P-CIM para Windows le permite pre-configurar acciones a ser ejecutadas 
-automáticamente como resultado de otras acciones o cuando se alcanzan 
-ciertas condiciones específicas.
-
-\section{Capas del programa}
+\subsection{Estructura de P-CIM}
 \label{sec:CapasPrograma}
-• Capa de Comunicación – Esta capa se encarga de la comunicación con los PLCs y redes.
-• Capa de Procesamiento de Datos – Esta capa lleva a cabo la mayor parte del procesamiento de datos, registro histórico y manejo de alarmas.
-• Capa de aplicación – Esta capa presenta la información, interactúa con el operador y realiza los controles de alto nivel y de programación.
-\todo {dibujo de capas de abstraccion}
+Como se puede observar en la figura\todo{agregar capas de abstraccion} la estructura de P-CIM 
+para Windows se divide en tres capas:
+\begin{itemize}
+ \item Capa de Comunicación: Esta capa se encarga de la comunicación con los PLCs y redes.
+ \item Capa de Procesamiento de Datos: Esta capa lleva a cabo la mayor parte del procesamiento 
+ de datos, registro histórico y manejo de alarmas.
+ \item Capa de aplicación: Esta capa presenta la información, interactúa con el operador y 
+ realiza los controles de alto nivel y de programación.
+\end{itemize}
+
+El trabajo coordinado se resume en que la capa de comunicación recibe información del campo a 
+través del PLC, la transfiere al Servidor de la Base de Datos (Database Server) que analiza la 
+información, la capa de aplicación la procesa y la envía hacia la pantalla (interfase con el Operador).
+De esta manera el funcionamiento conjunto de cada una de estas capas permite al sistema 
+\gls{scada} funcionar de manera correcta y con las prestaciones antes mencionadas.
+
+\section{Desarrollo de la aplicacion SCADA con P-CIM}
+
+A continuación se detalla la aplicación \gls{scada} desarrollada para este \gls{pfe} en el software
+P-CIM para Windows. Se divide la exposición de acuerdo a la estructura en las capas básicas del 
+programa como se describió en la sección \ref{sec:CapasPrograma}.
 
 \subsection{Capa de comunicación}
 \label{subsec:CapaComunicacion}
 
-La capa de comunicación recibe información del campo a través del 
-PLC, la transfiere al Servidor de la Base de Datos (Database Server) 
-que analiza la información, la capa de aplicación la procesa y la 
-envía hacia la pantalla (interfase con el Operador)
+El primer paso para el desarrollo de un sistema \gls{scada} es lograr la comunicación por medio
+de algún bus con el \gls{plc} que controla la planta. En nuestro caso se utilizo el protocolo de
+comunicaciones Modbus.
+
+\subsubsection{Modbus}
+Modbus es un protocolo de comunicaciones situado en el nivel 7 \todo{Describir las capas OSI de comunicacion?}
+del Modelo OSI, basado en la 
+arquitectura maestro/esclavo o cliente/servidor, diseñado en 1979 por Modicon para su gama de 
+controladores lógicos programables (PLCs). Convertido en un protocolo de comunicaciones estándar 
+de facto en la industria, es el que goza de mayor disponibilidad para la conexión de dispositivos 
+electrónicos industriales. Las razones por las cuales el uso de Modbus es superior a otros protocolos 
+de comunicaciones son:
+
+Es público
+Su implementación es fácil y requiere poco desarrollo
+Maneja bloques de datos sin suponer restricciones
+
+Modbus permite el control de una red de dispositivos, por ejemplo un sistema de medida de temperatura y 
+humedad, y comunicar los resultados a un ordenador. Modbus también se usa para la conexión de un ordenador 
+de supervisión con una unidad remota (RTU) en sistemas de supervisión adquisición de datos (SCADA). 
+  Existen versiones del protocolo Modbus para puerto serie y Ethernet (Modbus/TCP).
+
+ Es el nexo entre un computador corriendo un software SCADA y una o varias unidades remotas.
+ 
+% Cada dispositivo de la red Modbus posee una dirección única. Cualquier dispositivo puede enviar órdenes , aunque lo habitual es permitirlo sólo a un dispositivo maestro.
+%  Cada comando Modbus contiene la dirección del dispositivo destinatario de la orden. Todos los dispositivos reciben la trama pero sólo el destinatario la ejecuta (salvo un modo especial denominado "broadcast“, donde el mestro envía un mensaje y los esclavos no responden , esto no hay confirmación de que hayan recibido el mensaje, este modo, por la razón apuntada no se usa en la industria). Cada uno de los mensajes puede incluir información que asegura su integridad en la recepción, por ejemplo el bit de paridad.
+%
+% Los comandos básicos Modbus permiten controlar un dispositivo RTU para modificar el valor de alguno de sus registros o bien solicitar el contenido de dichos registros.
+% 
+% Existe gran cantidad de módems  que aceptan el protocolo Modbus. Algunos están específicamente diseñados para funcionar con este protocolo. Existen implementaciones para conexión por cable o en forma inalábrica.
+% 
+% Por último Modbus Plus (Modbus + o MB +), es una versión extendida del protocolo que permanece propietaria de Modicon. Dada la naturaleza de la red precisa un coprocesador  dedicado para el control de la misma. 
+% 
+% Modbus is a serial communications protocol originally published by Modicon (now Schneider Electric) in 1979 for use with its programmable logic controllers (PLCs). Simple and robust, it has since become a de facto standard communication protocol, and it is now a commonly available means of connecting industrial electronic devices.[1] The main reasons for the use of Modbus in the industrial environment are:
+% 
+% developed with industrial applications in mind
+% openly published and royalty-free
+% easy to deploy and maintain
+% moves raw bits or words without placing many restrictions on vendors
+% Modbus enables communication among many (approximately 240) devices connected to the same network, for example a system that measures temperature and humidity and communicates the results to a computer. Modbus is often used to connect a supervisory computer with a remote terminal unit (RTU) in supervisory control and data acquisition (SCADA) systems. Many of the data types are named from its use in driving relays: a single-bit physical output is called a coil, and a single-bit physical input is called a discrete input or a contact.
+% 
+% The development and update of Modbus protocols has been managed by the Modbus Organization[2] since April 2004, when Schneider Electric transferred rights to that organization, signaling a clear commitment to openness.[3]
+\subsubsection{Instalación Driver Modbus}
+\todo{Agregar link para la descarga?}
+Desde el SETUP instalar el driver de comunicaciones, en nuestro caso MODBUS.
+Configurar adecuadamente el driver MODBUS de forma tal que se compatibilice con igual configuración en el PLC.
+A continuación la filmina siguiente muestra a la izquierda la configuración estándar del PLC y  a la derecha al abrir el SETUP.
+La posteriores hacen referencia a la instalación y configuración del driver MODBUS
+\todo{Agregar capturas de pantalla para la instalacion del software}
+\subsubsection{Configuracion Driver Modbus}
+Una ves que el driver de Modbus para PCIM se ha instalado correctamente procedemos a realizar su 
+configuracion para un correcto funcionamiento.
 
 \subsection{Capa de procesamiento}
 \label{subsec:CapaProcesamiento}
+Establecida la comunicacion entre el \gls{plc}
 
 
 \subsection{Capa de aplicación}
