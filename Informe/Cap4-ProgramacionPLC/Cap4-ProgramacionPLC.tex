@@ -1,34 +1,82 @@
 \chapter{Programación PLC}
 \label{ch:progPLC}
-Como se prensento en el capitulo \ref{ch:intro} de este informe el material a utilizar
-para poder alcanzar los objetivos. En el presente capítulo se describe el algoritmo 
+
+En el presente capítulo se describe el algoritmo 
 de programación del programa que se grabo en el \gls{plc} 
 \section{Algoritmo}
 \label{sec:Algoritmo}
+Para comenzar la programación realizada en el lenguaje ladder,
+se pensó en el algoritmo que nos permitiría realizar las acciones
+necesarias para alcanzar los objetivos propuestos. Comenzamos describiendo
+en el algoritmo \ref{img:algoritmo} como de manera estructurada nuestro
+sistema debe comportarse.
 
 \begin{algorithm}[H]
- \KwData{this text}
- \KwResult{how to write algorithm with \LaTeX2e }
- initialization\;
- \While{not at end of this document}{
-  read current\;
-  \eIf{understand}{
-   go to next section\;
-   current section becomes this one\;
-   }{
-   go back to the beginning of current section\;
+
+ \While{el tablero este energizado}{
+  señal de PLC run\;
+  adquisición de nivel, caudal y Set Point\;
+  
+  \eIf{nivel > HHL}{
+   alerta de HHL y detención del sistema\;
+   }{}
+  \eIf{nivel < LLL}{
+    alerta LLL y detención del sistema\;}{}
+  
+  \eIf{nivel > HL}{
+   alerta de HL\;}{
+   limpieza de alerta\;}
+  
+  \eIf{nivel < LL}{
+    alerta LL\;}{
+    limpieza de alerta\;}
+  
+  \eIf{deseo setear parámetros del controlador}{
+    adquisición Kp, Ki y Kd\;}{}
+    
+  \eIf{deseo controlar el sistema manualmente}{
+    
+    \eIf{motor 1}{activo motor 1\;}{}
+    \eIf{motor 2}{activo motor 2\;}{}
+    \eIf{válvula}{activo bandera para el bloque del controlador PID}{}
+    }{
+    el sistema continúa trabajando en modo automático\;
+    }
+  bloque del controlador PID\;
+  constatar que el sistema funciona segun lo esperado\;
   }
- }
- \caption{How to write algorithms}
+  
+ \caption{Algoritmo de programación}
+ \label{img:algoritmo}
 \end{algorithm}
-
-
-
 
 \section{Programación}
 \label{sec:Programacion}
 Se utilizó el programa Twido Soft para poder programar el \gls{plc}. Se programó
 en lenguaje Ladder.
+
+El lenguaje Ladder es muy común en la programación de automatas debido a que es un 
+lenguaje gráfico que esta basado en esquemas eléctricos de control clásicos. En el
+de acuerdo a una combinación de contactos en la entrada se obtiene una acción en la
+salida. De esta manera paso a paso vamos describiendo las acciones que deseamos
+realice el controlador de acuerdo al estado del sistema o las ordenes recibidas desde
+el escada.
+
+Entre otros, los elementos de entrada con los que cuenta el programa son:
+
+ \begin{itemize}
+  \item Contacto normalmente abierto
+  \item Contacto normalmente cerrado
+ \end{itemize}
+ 
+Como acciones de salida encontramos la siguientes:
+
+  \begin{itemize}
+   \item Tomar el valor lógico de la función de entrada.
+   \item Tomar el valor lógico negado de la función de entrada.
+   \item Seteo la bobina de salida.
+   \item Reseteo de la bobina de salida.
+  \end{itemize}
 
 El software Twido Soft sirve tanto como para enviar el programa al \gls{plc}, así como 
 para descargar el programa que esta en el \gls{plc}. A tal efecto a continuación 
@@ -36,9 +84,7 @@ se explicaran algunas cualidades del programa para que sea simple su comprensió
 
 Lo primero que se presenta son la acción realizada en cada RUNG (pasos del programa).
 
-\usetikzlibrary{trees}
-\tikzstyle{every node}=[draw=black,thick,anchor=west,inner sep=2pt,minimum size=1pt]
-\tikzstyle{selected}=[draw=cyan,fill=cyan!30]
+
 \begin{tikzpicture}[
   grow via three points={one child at (0.5,-0.7) and
   two children at (0.5,-0.7) and (0.5,-1.4)},   
@@ -70,6 +116,7 @@ Lo primero que se presenta son la acción realizada en cada RUNG (pasos del prog
 \end{tikzpicture}
 \tikzstyle{every node}=[] % resets borders of tables
 \tikzstyle{selected}=[] % resets selected
+
 \todo{Anexo de lo que imprimimos desde el twido soft}
 
 
@@ -199,7 +246,7 @@ Esc & \verb|MW9| & Valor de escritura de la válvula (manual) (era
 \verb|MW15|) \\
 Esc & \verb|MW10|  & Valor de escritura del SP \\
 Esc & \verb|MW11|  & Valor de escritura Kp \\
-Esc & \verb|MW12|  & Valor de escritura ki) \\
+Esc & \verb|MW12|  & Valor de escritura Ki \\
 Esc & \verb|MW13| & Valor de escritura Kd \\
 \hline
 \end{tabular}
