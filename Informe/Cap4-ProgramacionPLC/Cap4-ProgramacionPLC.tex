@@ -1,12 +1,13 @@
 \chapter{Programación PLC}
 \label{ch:progPLC}
 
-Uno de las partes principales de este trabajo es la que respecta a
-la programación del \gls{plc}. Una vez montado todo el sistema, 
+Uno de las partes principales de este trabajo es la programación del \gls{plc}. 
+Una vez montado todo el sistema, 
 realizado el cableado eléctrico y verificado su correcto funcionamiento
 para verificar la seguridad del sistema se procedió a la programación.
-En el presente capítulo se describe el algoritmo 
-de programación del programa que se grabo en el \gls{plc}, así como el 
+
+En el presente capítulo se describe tanto el algoritmo del programa que se grabo
+en el \gls{plc}, así como el 
 lenguaje utilizado y las diferentes herramientas que ofrece el software 
 con el que se trabajo para poder llevar a cabo la tarea.
 
@@ -39,7 +40,7 @@ sistema debe comportarse.
     limpieza de alerta\;}
   
   \eIf{deseo setear parámetros del controlador}{
-    adquisición Kp, Ki y Kd\;}{}
+    adquisición Kp, Ti y Td\;}{}
     
   \eIf{deseo controlar el sistema manualmente}{
     
@@ -311,6 +312,69 @@ Para accionar la válvula de manera manual el bloque tiene una bandera
 que una vez activada permite que la salida del módulo, siendo esta la 
 apertura de la válvula, sea una palabra de memoria. De esta manera se 
 permite el control control de la válvula desde el software \gls{scada}.
+
+\subsection{Determinación de las ganancias}
+
+Para poder determinar las ganancias del controlador se decidió seguir
+las reglas propuestas por ZIEGLER–NICHOLS, las cuales analizán la respuesta
+del sistema a una perturbación en escalón.
+
+Se presentan dos métodos:
+\begin{itemize}
+ \item Primer método:
+ 
+ Se obtiene experimentalmente la respuesta de la planta a una entrada en escalón,
+ si la respuesta es similar a la de la imagen \ref{fig:primermetodo}.
+ La respuesta puede ser caracterizada por dos constantes, el tiempo de delay L y una
+ constante de tiempo T. Estas pueden ser halladas dibujando una recta tangente al 
+ punto de inflexión de la curva de la respuesta del sistema, a partir la intersección de
+ esta recta con el eje del tiempo como muestra la figura \ref{fig:primermetodo}.
+ 
+ \item Segundo método:
+ 
+ Este método comienza su análisis con un controlador puramente proporcional. Se incrementa 
+ la ganancia proporcional desde cero hasta un valor $Kp_{cr} $ donde la respuesta del 
+ sistema presenta oscilaciones como en la imagen \ref{fig:segundometodo}.
+ A partir de esto hemos obtenido experimentalmente $Kp_{cr} $ y $P_{cr} $.
+\end{itemize}
+
+
+\begin{figure}
+ \centering
+ \includegraphics[scale=0.5]{Cap4-ProgramacionPLC/images/primermetodo.png}
+ \caption{Respuesta del sistema a un escalón.}
+ \label{fig:primermetodo}
+\end{figure}
+
+
+\begin{figure}
+ \centering
+ \includegraphics[scale=0.5]{Cap4-ProgramacionPLC/images/segundometodo.png}
+ \caption{Oscilacion sostenida del sistema.}
+ \label{fig:segundometodo}
+\end{figure}
+
+A partir de los datos obtenidos con la respueta experimental del sistema
+ZIEGLER–NICHOLS proponen elegir el valor de las ganancias de acurdo a los
+valores de la tabla \ref{table:valorganancias}.
+
+
+\begin{table}[!t]
+
+\renewcommand{\arraystretch}{1.3}
+\centering
+\begin{tabular}{c||c||c |c}
+\hline
+\bfseries Método & \bfseries Kp  & \bfseries Ti & \bfseries Td\\
+\hline \hline
+Primero &  $ 1.2 \, \dfrac{T}{L}$ & $2 \, L $ & $ 0.5 \, L $\\
+\hline
+Segundo &  $0.6 \,Kp_{cr}  $ & $ 0.5 \, P_{cr}$ & $0.125 \, P_{cr} $\\
+\hline
+\end{tabular}
+\caption{Valor de las ganacias}
+\label{table:valorganancias}
+\end{table}
 
 
 \section{Depuración (Debug)}
