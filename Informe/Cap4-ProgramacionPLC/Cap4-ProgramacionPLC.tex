@@ -257,9 +257,56 @@ Esc & \verb|MW13| & Valor de escritura Kd \\
 \section{Controlador PID}
 \label{sec:controladorpid}
 
+En un controlador \gls{pid} la acción correctiva se toma de manera que:
+
+\begin{itemize}
+ \item Proporcional al error.
+ \item Proporcional a la integral del error respecto del tiempo
+ \item Proporcional a la derivada del error respecto del tiempo
+\end{itemize}
+
+El software Twido Soft ofrece un modulo \gls{pid} que nos ofrece las
+opciones que necesitamos.
+
+\begin{itemize}
+ \item Módulo automático: se le debe suministrar el valor de las ganancias. 
+ \item Opción de apertura manual.
+\end{itemize}
+
+En la tabla \ref{table:controladorpid} se muestra la configuración del 
+controlador PID.
+
+\begin{table}[!t]
+
+\renewcommand{\arraystretch}{1.3}
+\centering
+\begin{tabular}{c||c||c}
+\hline
+\bfseries Tipo & \bfseries Word  & \bfseries Descripción\\
+\hline \hline
+Entrada & \verb|IW1.0|  & Medida\\
+\hline
+PID & \verb|MW2|  & Consigna\\
+PID & \verb|Kp|  & Ganancia proporcional\\
+PID & \verb|Ti|  & Ganancia integral\\
+PID & \verb|Td|  & Ganancia derivativa\\
+\hline
+Salida & \verb|M2|  & Modo manual\\
+Salida & \verb|MW15|  & Salida\\
+Salida & \verb|QW1.0|  & Salida digital\\
+\hline
+\end{tabular}
+\caption{Entradas y salidas al PLC}
+\label{table:controladorpid}
+\end{table}
+
+Para accionar la válvula de manera manual el bloque tiene una bandera
+que una vez activada permite que la salida del módulo, siendo esta la 
+apertura de la válvula, sea una palabra de memoria. De esta manera se 
+permite el control control de la válvula desde el software \gls{scada}.
 
 
 \section{Depuración (Debug)}
 \label{sec:Debug}
 
-H
+
