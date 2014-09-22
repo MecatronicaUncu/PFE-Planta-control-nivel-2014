@@ -1,8 +1,15 @@
 \chapter{Programación PLC}
 \label{ch:progPLC}
 
+Uno de las partes principales de este trabajo es la que respecta a
+la programación del \gls{plc}. Una vez montado todo el sistema, 
+realizado el cableado eléctrico y verificado su correcto funcionamiento
+para verificar la seguridad del sistema se procedió a la programación.
 En el presente capítulo se describe el algoritmo 
-de programación del programa que se grabo en el \gls{plc} 
+de programación del programa que se grabo en el \gls{plc}, así como el 
+lenguaje utilizado y las diferentes herramientas que ofrece el software 
+con el que se trabajo para poder llevar a cabo la tarea.
+
 \section{Algoritmo}
 \label{sec:Algoritmo}
 Para comenzar la programación realizada en el lenguaje ladder,
@@ -310,3 +317,87 @@ permite el control control de la válvula desde el software \gls{scada}.
 \label{sec:Debug}
 
 
+Una vez finalizada la programación y antes de unirlo al software \gls{scada} 
+se realizaron las pruebas correspondientes al correcto funcionamiento y respuesta
+a las situaciones posibles. 
+
+El software Twido Soft presenta una animación que nos permite realizar un debug en
+tiempo de funcionamiento, sabiendo así la situación real del sistema. 
+La animación colorea las bobinas que están activas de acuerdo a lo especificado
+en las líneas del programa.
+
+También podemos forzar el estado de algunas bobinas y cambiar el valor de las 
+palabras de memoria. Esto nos permite generar las situaciones deseadas.
+Fue muy importante tener esta herramienta para poder analizar el código propuesto
+dada su practicidad, y poder realizar los cambios necesarios.
+
+Las pruebas realizadas fueron las siguientes:
+
+\begin{itemize}
+ \item Lectura de las variables.
+ 
+ Al tener acceso a todas las palabras de memoria se tuvo la precaución de mantener el
+ sistema apagado y se constato que los valores recogidos desde la entrada analógica
+ tengan sentido con lo que sucede en el sistema. Para ello el caudal debía ser cero debido
+ a que no estaba circulando fluido y la altura debía coincidir con lo mostrado por el 
+ indicador visual de nivel. 
+ 
+ \item Correcto funcionamiento del Controlador y adquisición del Set Point.
+ 
+ Se le dio al sistema un Set Point y se verificó su correcto funcionamiento. 
+ La característica principal de esta prueba fue que estaban deshabilitadas las demás
+ funciones del sistema, solo interesaba saber como respondía el bloque controlador.
+ El primer valor otorgado fue al 50 porciento, luego se hizo variar al 25 porciento
+ y por ultimo al 75 porciento.
+ 
+ \item Correcto funcionamiento de las alarmas y paradas de emergencia.
+ 
+ Para poder detectar esta situaciones del sistema se forzo un estado que no es el normal
+ de funcionamiento, se forzo a desplazar el sistema por encima y por debajo de los
+ límites de funcionamiento para conocer la respuesta del sistema. Lo que se esperaba en esta
+ prueba era ver el cambio en la palabra que contiene el estado del sistema.
+ 
+ Para las alarmas de Low Level y High Level solo se envía una señal al software \gls{scada},
+ se verifico correctamente el cambio en la palabra \verb|MW0|.
+ 
+ Para las alarmas de Low Low Level y High High Level, no solo se constato el cambio en la
+ palabra \verb|MW0|, que representa el cambio en el estado de la planta sino que además 
+ se procede a la detención de la planta.
+ 
+ Estas pruebas fueron muy importantes dado que se hizo trabajar al sistema en una situación
+ crítica.
+ 
+ \item Encendido y parada del sistema en modo manual.
+ 
+ Para poder inferir sobre el sistema se debe cambiar la palabra \verb|MW1|, se procedio a
+ hacer funcionar al sistema de modo automático, con un nivel de Set Point preestablecido.
+ 
+ \item Seteo de parámetros.
+ 
+ Hasta este momento los valores de las ganancias del controlador eran las establecidas por 
+ default, una vez asegurados que funcionaba el sistema y sobre todo las paradas de emergencias
+ se probó el seteo de parámetros, modificando la palabra \verb|MW1| y la correspondiente 
+ memoria de acuerdo al valor que se desee modificar.
+ 
+ \item Control del sistema en modo manual.
+ 
+ Otra vez modificando la palabra \verb|MW1| se eligió manejar el sistema de modo manual.
+ Una vez el sistema en modo manual se debe mandar el valor de apertura de la válvula y 
+ la señal para encender cada motor por separado
+ 
+ \item Retroalimentación del estado del sistema.
+ 
+ En esta prueba solo se constato que los valores de las palabras de memoria sean lógicos,
+ se hicieron pruebas de todas las situaciones anteriores con las paradas de emergencia 
+ habilitadas.
+ 
+ \item Parada de emergencia por error en el funcionamiento de los motores.
+ 
+ Por ultimo se forzó nuevamente al sistema a una situación extrema, en la que uno
+ de los motores se para por sobrecalentamiento por ejemplo. Lo que esperamos es que se
+ detenga el sistema una vez que forcemos una salida y la retroalimentación que indica que
+ ese motor se encendió no se active.
+ 
+\end{itemize}
+
+\todo{Capturas de pantalla del sistema de debug}
