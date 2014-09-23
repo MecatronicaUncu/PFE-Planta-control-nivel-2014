@@ -1,28 +1,36 @@
 \chapter{Diseño y Ensamblado}
 \label{ch:DisenoEnsamblado}
-En esta sección intentaremos describir el camino realizado para la concreción del proyecto, desde 
-las primeras instancias con la confección e interpretación del diagrama de cañerías e instrumentación, 
-luego con la construcción de la planta a partir de los elementos disponibles, haciendo mención de 
-las decisiones trascendentes para el trabajo.
 
-\section{P \& I D}
+En esta sección se describirán los pasos necesarios para la concreción física
+del proyecto.
+Se comenzará con la confección e interpretación del diagrama de cañerías e
+instrumentación, con el objetivo de validar la solución propuesta en
+\ref{sec:SolucionPropuesta}.
+Luego se hará énfasis en la construcción de la planta a partir de los elementos
+disponibles.
+Se describirá en detalle cada uno de ellos y se hará mención de
+las decisiones constructivas tomadas durante el ensamblado.
+
+\section{P\&ID}
 \label{sec:p&id}
 
 \subsection{Diagrama de cañerías e instrumentación}
-Un diagrama de cañerías e instrumentación es un esquema de la planta que nos brinda una idea 
-general del problema que debemos abordar. 
-En él se encuentra los elementos que componen el proceso. 
-Se denomina corrientemente \gls{pyid}.
-Estos diagramas emplean círculos y símbolos para representar cada elemento y como están interconectados, 
-los elementos presentes en este esquema están normalizados por la \emph{Standard S5.1
-Instrumentation Symbol Specification}.
+Un diagrama de cañerías e instrumentación es un esquema de la planta en donde
+pueden observarse todos los elementos que componen el proceso.
+Estos diagramas emplean símbolos para representar cada elemento y sus
+conexiones.
+Los elementos presentes en este esquema están regidos por la norma
+\emph{Standard S5.1 Instrumentation Symbol Specification}.
+\todo{poner norma en anexo}
+El diagrama permite una rápida comprensión del proceso, y se denomina
+corrientemente \gls{pyid}.
 
-Cada elemento debe ir acompañado de una denominación la que presenta la siguiente codificación:
-
+Cada elemento debe ir acompañado de una denominación, que utiliza la
+siguiente codificación:
 
 \begin{itemize}  
- \item Primer letra: 
- Es usada para designar la variable medida. Puede ser :
+ \item \textbf{Primer letra:}
+ designa la variable medida. Puede ser :
  \begin{itemize}
   \item Presión
   \item Nivel
@@ -30,9 +38,9 @@ Cada elemento debe ir acompañado de una denominación la que presenta la siguie
   \item Temperatura
  \end{itemize}
 
- \item Letras siguientes:
- Son usadas para designar la función del componente, o para modificar el sentido de la primer letra.
- Pueden ser:
+ \item \textbf{Letras siguientes:}
+ designa la función del componente, o modifica el sentido de la primer letra.
+ Puede ser:
  \begin{itemize}
   \item Indicador
   \item Almacenaje de datos
@@ -41,136 +49,114 @@ Cada elemento debe ir acompañado de una denominación la que presenta la siguie
  \end{itemize}
 \end{itemize}
 
-\subsection{P \& I D de nuestra planta}
-De acuerdo a los componentes detallados en el capitulo 1 de este informe se realizó el esquema \gls{pyid}
-de la planta de control de nivel. Para la confección de la misma se utilizó una plantilla disponible
-en Google Docs, la decisión sobre la misma se hizo dado que era suficiente para la complejidad de
-nuestro proyecto.
-\todo{Colocamos la imagen acá o hacemos una referencia al anexo?}
+\subsection{P\&ID de nuestra planta}
+De acuerdo a los componentes detallados en la sección
+\ref{sec:MaterialesDisponibles} se realizó el esquema \gls{pyid} de la planta
+de control de nivel.
+\todo{Lo dejamos a esto?}{\color{red} Se utilizó una plantilla disponible en
+Google Docs, dado que era suficiente para la complejidad de nuestro proyecto.}
+Para la correcta comprensión de este capítulo es indispensable contar con el
+esquema, que puede encontrarse en el anexo \ref{anexo:pyid}.
+\todo{Poner diag en anexo}
 
 \section{Estructura de Soporte}
 \label{sec:EstructuraSoporte}
 
-Dado que el objetivo principal del proyecto es hacer un elemento para fines educativos, la estructura
-debía ser móvil, dotada de cuatro ruedas con frenos de seguridad que permitan mantener fija la estructura
-al momento de la demostración de la planta.
+Dado que el objetivo principal del proyecto es que la planta sirva para fines
+educativos, se opta por utilizar una estructura móvil.
+De esta manera, la posición de la planta puede modificarse según se requiera.
 
-La estructura es de caño estructural \todo{imagen de la estructura} y se puede apreciar en la figura
-(tanto).
+\todo{imagen de la estructura}
+La estructura, de caño estructural, puede apreciarse en la figura x.
+Está dotada de cuatro ruedas con frenos de seguridad, que permiten fijar la
+planta al momento de una demostración.
 Sus dimensiones son las siguientes:
 
  \begin{itemize}
-  \item Alto:
-  \item Ancho:
-  \item Profundidad:
+  \item Alto:\todo{Medidas} $\,m$
+  \item Ancho: $\,m$
+  \item Profundidad: $\,m$
  \end{itemize}
- \todo{Faltan las medidas}
- Sobre la estructura de la planta, van montado los diferentes elementos, en su sección 
- media presenta unos refuerzos, los cuales son necesarios dada la altura y peso de la misma, en 
- los cuales se fijo una base de madera donde se apoyan la válvula, las celdas de presión diferencial
- y las bombas. La manguera que corresponde al tiempo muerto se colocaron debajo de la base de madera.
  
- Al comienzo del proyecto la estructura de caño estructural estaba ya soldada y pintada, con las ruedas
- colocadas. Este grupo de trabajo continuo con la confección de la misma barnizando las maderas para la
- base.
-\section{Montaje de los elementos}
-En las próximas secciones de este informe se explicara en detalle la solución y la función de las diferentes
-partes de la planta. En esta sección vamos a comentar el montaje de los diferentes elementos, las 
-opciones con las que se contaba y decisiones que se tomaron al respecto. 
+La estructura presenta en su sección media barras de refuerzo.
+Sobre ellas se colocaron los tanques.
+Además, sobre las barras se fijó una base de madera, donde se coloca la
+válvula electroneumática, las celdas de presión diferencial
+y las bombas.
+La manguera que corresponde al tiempo muerto se colocó bajo
+las barras de refuerzo.
+En la parte superior de la planta se instaló una pequeña base de
+madera donde irá montado el receptor inalámbrico.
+Ya está incluida en la estructura el tablero\todo{características}, donde se
+montarán los elementos eléctricos y electrónicos.
 
- \begin{itemize}
-  \item Tanques:
-  Para ser capaces de mostrar el camino del agua en el proceso de manera clara se optó por colocar los
-  tanques de agua a los costados de la estructura sobre la base de madera, de esta manera somos capaces
-  de confeccionar la planta como un loop o ciclo con un claro camino de ida y uno de retorno.
-  Se fijo a los refuerzos laterales de la estructura mediante abrazaderas.
-  \item Bombas:
-  Se colocaron las bombas lo más cerca posible de los respectivos tanques. Se fijaron mediante tornillos
-  a la base de madera.
-  \item Válvula neumática:
-  Es el corazón del sistema, dada su importancia y sus dimensiones se colocó en el centro de la planta.
-  Al momento del montaje se tuvo especial atención en que se pudiera apreciar con claridad las diferentes
-  partes que componen la misma y poder brindar un campo visual de su funcionamiento lo más amplio posible.
-  Se tuvo especial atención en no tapar la válvula con otros elementos de la planta.
-  Se fijo mediante ménsulas a la base de madera y a la estructura de caño estructural, fue importante
-  prestar atención a mantener un nivel adecuado.
-  \item Celdas de presión diferencial:
-  Para la celda de presión diferencial que nos sirve para conocer el nivel de agua se debía colocar
-  cerca del tanque controlado, dado que se necesitaba conectar una de sus entradas al nivel más bajo del
-  tanque y la otra a presión atmosférica. Se fijo a la base de madera mediante tornillos.
-  Para la celda de presión diferencial que nos sirve para inferir el caudal se colocó sobre la base de
-  madera mediante tornillos.
-  \item Placa orificio:
-  Se colocó la placa orificio en serie con la cañería que va hacia el tanque controlado. Junto con esta 
-  se colocaron las mangueras correspondientes para la entrada a la celda de presión diferencial.
-  \item Tablero electrónico:
-  Estaba montado sobre la estructura una caja estanca donde se montaron todos los componentes eléctricos
-  y electrónicos.
- \end{itemize}
+Al comienzo del proyecto la estructura de caño estaba ya soldada y pintada, con
+las ruedas colocadas.
+No obstante, el grupo de trabajo tuvo que barnizar las maderas.
 
 \section{Cañerías}
 \label{sec:Canerias}
 
 \subsection{Mangueras y Caños}
+Luego de analizar el esquema \gls{pyid}, se observa que las cañerías deben
+formar un circuito cerrado (\emph{loop}), diferenciando
+claramente las cañerías de vaciado y llenado.
+Las conexiones fueron echas mayormente en caño de polipropileno de 3/4
+pulgadas.
+En otros puntos del circuito, se optó por utilizar manguera de alta presión
+telada de 3/4 pulgadas.
+Las cañerías utilizadas son suficientes para las presiones de trabajo del
+proyecto, del orden de \todo{Con que
+presión trabaja la planta? 10 m para las bombas, verificar presión max de
+caños}.
 
-Luego de analizar el esquema \gls{pyid} y  la estructura, se realizó la distribución de los elementos.
-Para este fin se tuvo en cuenta la necesidad de mostrar claramente la función y posición de cada uno,
-y ello requiere que todos los elementos y las cañerías se coloquen de manera que el alumno entienda
-el proceso y sus componentes. El camino del  agua debe ser desde el tanque reservorio hacia el tanque
-controlado y el regreso desde este hacia el tanque reservorio.
-
-Las conexiones fueron echas en caño de polipropileno de 3/4 pulgadas y manguera de alta presión telada
-de 3/4 pulgada, suficiente para las presiones con las que vamos a trabajar del orden de \todo{Con que
-presión trabaja la planta?}. 
-
-En este punto del proyecto tuvimos que tomar la decisión de como realizar el conexionado, ya teníamos 
-montados los elementos, bombas y válvula neumática y decidido el espacio para las celdas de presión
-diferencial.
-
-El caño rígido presenta la dificultad al momento de realizar las conexiones de que no tenes tolerancia
-con las medidas, además de que debes colocar más componentes, como uniones dobles, haciendo que las
-cañerías se vean muy cargadas de elementos y de esta manera se pierde el objetivo principal que era 
-ser lo  más claro posible para el alumno. Es por ello que se opto por usar en diferentes partes de 
-la cañería mangueras flexibles.
-A continuación vamos a describir las diferentes partes de la planta y la solución optada:
+Teniendo los elementos montados sobre la planta (bombas, tanques, válvula
+electroneumática) se decidió la manera de realizar el conexionado.
+El caño rígido presenta la dificultad de no tener tolerancia al momento de
+realizar uniones.
+Además, para realizar tuberías complejas con muchas curvas, es necesario
+colocar un gran número de componentes suplementarios (uniones dobles,
+niples).
+La cañería se torna compleja, dificultando la comprensión del circuito
+hidráulico por parte del alumno.
+Es por ello que se opto por usar en diferentes partes de la planta mangueras
+flexibles:
 
 \begin{itemize}
-  \item Salida del tanque reservorio, entrada a la bomba de impulsión:
-  Se utilizo manguera dado que la estructura no permitía colocar caños rígidos, los elementos de 
-  polipropileno necesarios eran más grandes de lo que nos permitía la estructura.
- 
-  \item Conexión de perturbación de la bomba de impulsión:
-  La solución adoptada fue usar manguera para evitar uniones dobles y la realización de niples
-  extremadamente precisos.
+  \item \textbf{Salida del tanque de reserva - entrada a la bomba B1}:
+  se utilizo manguera flexible dado que la estructura no permitía colocar caños
+  rígidos: los elementos de polipropileno necesarios eran más grandes que el
+  espacio disponible en la estructura.
+
+  \item \textbf{Salida de la bomba B1 - entrada a la válvula:}
+  se utilizo manguera, para evitar una unión doble en un trayecto muy pequeño.
   
-  \item Salida de la bomba, entrada a la válvula:
-  Se utilizo manguera para evitar usar una unión doble en un trayecto que era muy pequeño.
+  \item \textbf{Salida de la válvula - entrada al tanque controlado:}
+  debido a la longitud del tramo se opto usar caños rígidos.
+  Además, se montaron los elementos de medición sobre la cañería (manómetro y
+  placa orificio).
   
-  \item Salida de la válvula, entrada al tanque controlado
-  Por la longitud de la misma se opto usar caños rígidos, de esta manera se puede montar los elementos
-  de medición sobre la cañería. Sobre esta se montaron un manómetro y una placa orificio para ser capaces
-  de medir caudal y conocer la situación de la planta.
+  \item \textbf{Salida del tanque controlado - entrada a la bomba B2:}
+  debido al mismo problema de falta de espacio, se opto por el uso de manguera
+  flexible.
   
-  \item Salida del tanque controlado, entrada a la bomba de retorno:
-  Debido a los mismo problemas de espacio con la estructura se opto por el uso de manguera flexible.
- 
-  \item Conexión de perturbación de la bomba de retorno:
-  Se utilizo manguera para evitar usar una unión doble en un trayecto que era muy pequeño.
-  
-  \item Salida de la bomba, entrada al tanque reservorio:
-  Esta conexión es la más larga y sobre la misma van montados manómetros y válvulas manuales. Por ello
-  se eligió una cañería rígida de caño de polipropileno.
-  
+  \item \textbf{Salida de la bomba - entrada al tanque de reserva:}
+  esta conexión es la más larga y en ella van montados manómetros y
+  válvulas manuales. Por ello, se eligió una cañería rígida de polipropileno.
+
+  \item \textbf{Conexión de perturbación de las bombas:}
+  se utilizó manguera flexible, para evitar uniones dobles y
+  niples que requieren de una gran precisión durante el montaje.
  \end{itemize}
 
-Por ultimo se procedió a pintar los caños de diferentes colores para ser capaces de diferenciar el 
-camino del agua que llena el tanque controlado con el de regreso.
-
+Por ultimo se procedió a pintar los caños mediante un código de colores.
  \begin{itemize}
-  \item Celeste: Camino de llenado del tanque.
-  \item Amarillo: Camino de regreso.
+  \item {\color{Cerulean} \textbf{Celeste:}} llenado del tanque controlado.
+  \item {\color{YellowOrange} \textbf{Amarillo:}} vaciado del tanque controlado.
  \end{itemize}
-\todo{bella imagen de los colores de la cañería, fer agradece que no puse q vos sos el q las pinto}
+El código de colores, si bien no es estándar en la industria, permite una fácil
+comprensión del circuito hidráulico.
+\todo{bella imagen de los colores de la cañería}
 
 \subsection{Válvulas manuales}
 
@@ -206,6 +192,12 @@ escenarios que se presentan en la industria.
 \section{Tanques}
 \label{sec:Tanques}
 
+  la cañería deberá colocarse dentro de la estructura de soporte.
+  Por ende, los tanques se ubicaron en los extremos, sobre las barras de 
+  refuerzo.
+  Se fijaron los tanques a los refuerzos laterales de la estructura mediante 
+  abrazaderas.
+
 Cada parte de nuestro sistema tiene una función importante y por ello se colocaron, sin embargo sin los
 tanque no tendríamos nada sobre lo que poder trabajar. Ellos almacenan el agua que presenta el sistema,
 y las acciones de control están dirigidas al nivel del agua presente en los mismo.
@@ -221,6 +213,9 @@ total.
 \todo{Revisar bien ese porcentaje y preguntarle a puglesi si es correcto}
 \section{Bombas}
 \label{sec:Bombas}
+  se colocaron las bombas lo más cerca posible de los respectivos tanques. 
+  Se fijaron mediante tornillos a la base de madera.
+
 Como se comento previamente se utilizaron para este proyecto dos bombas centrífugas, cuya función es
 la de mantener en movimiento el agua en el sistema. No se realiza ninguna acción de control sobre las
 mismas, por lo que van a estar funcionando continuamente mientras se realicen las diferentes 
@@ -265,6 +260,16 @@ Las bombas que se utilizaron en el proyecto presentan las siguientes caracterís
 
 \section{Válvula Neumática}
 \label{sec:ValvulaNeumatica}
+dada su importancia y sus dimensiones se colocó en el centro de la planta, 
+  sobre la base de madera.
+  Al momento del montaje se tuvo especial atención en que se pudiera apreciar 
+  con claridad las diferentes partes que la componen, evitando 
+  obstruirla con otros elementos de la planta (pudiendo observar su   
+  funcionamiento desde todos los ángulos).
+  Durante el montaje se prestó especial atención al nivelado de la válvula.
+  Finalmente, se fijo mediante ménsulas a la base de madera y a la estructura 
+  de caño.
+
 En esta sección nos ocuparemos de la válvula neumática, siendo ella un elemento 
 importantísimo de nuestra planta es la encargada de efectuar las acciones de
 control.
@@ -479,6 +484,14 @@ medir y controlar estas variables de interés.
 
 \subsection{DP Cell}
 \label{subsec:DPCell}
+ distinguimos dos celdas de presión diferencial:
+  aquella que nos sirve para conocer el nivel de agua se colocó cerca del 
+  tanque controlado, dado que se necesitaba conectar una de sus entradas al 
+  nivel más bajo del tanque y la otra a presión atmosférica. 
+  Por otro lado, la celda de presión diferencial utilizada para inferir el 
+  caudal deberá conectarse a ambas secciones de la placa orificio.
+  Ambas fueron fijadas a la base de madera mediante tornillos.
+
 Se denomina \textit{DP Cell}, o celda de presión diferencial, a un sensor
 que mide la diferencia de presión entre dos puntos.\todo{Una foto chabon}
 En nuestro caso, entrega una corriente proporcional a la diferencia de presión 
@@ -519,6 +532,15 @@ de la placa orificio.
 
 \subsection{Placa Orificio}
 \label{subsec:PlacaOrificio}
+  se colocó en serie con la cañería de llenado del tanque controlado.
+  Debieron instalarse además, las mangueras correspondientes de conexión 
+  con la celda de presión diferencial.
+  % El tablero se trata en el cap 3 :)
+  %\item Tablero electrónico:
+  %Estaba montado sobre la estructura una caja estanca donde se montaron todos 
+  %los componentes eléctricos
+  %y electrónicos.
+
 Para medir el caudal en la tubería de ida, se decide
 utilizar una placa orificio\todo{placa orif? u otra cosa?}.
 En la Fig. \ref{fig:placaOrificio} se muestra un corte longitudinal de una placa
