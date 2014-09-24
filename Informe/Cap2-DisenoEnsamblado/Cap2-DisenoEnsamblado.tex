@@ -66,17 +66,24 @@ Dado que el objetivo principal del proyecto es que la planta sirva para fines
 educativos, se opta por utilizar una estructura móvil.
 De esta manera, la posición de la planta puede modificarse según se requiera.
 
-\todo{imagen de la estructura}
+\todo{imagen de la estructura y medidas}
 La estructura, de caño estructural, puede apreciarse en la figura x.
 Está dotada de cuatro ruedas con frenos de seguridad, que permiten fijar la
 planta al momento de una demostración.
-Sus dimensiones son las siguientes:
+Sus dimensiones se presentan en la tabla \ref{tab:dimensionesEstructura}.
 
- \begin{itemize}
-  \item Alto:\todo{Medidas} $\,m$
-  \item Ancho: $\,m$
-  \item Profundidad: $\,m$
- \end{itemize}
+\begin{table}
+\centering
+\begin{tabular}{|l|l|}
+\hline
+Alto & $\,m$\\
+Ancho &  $\,m$\\
+Profundidad &  $\,m$\\
+\hline
+\end{tabular}
+\caption{Dimensiones de la estructura de soporte}
+\label{tab:dimensionesEstructura}
+\end{table}
  
 La estructura presenta en su sección media barras de refuerzo.
 Sobre ellas se colocaron los tanques.
@@ -158,105 +165,157 @@ El código de colores, si bien no es estándar en la industria, permite una fác
 comprensión del circuito hidráulico.
 \todo{bella imagen de los colores de la cañería}
 
+\subsection{Tiempo Muerto}
+\label{subsec:tiempoMuerto}
+Se colocó en la planta un circuito de tiempo muerto, que consta de 20 \todo{no
+son 30?} metros de manguera negra de 1/2 pulgada.
+El tiempo muerto se coloca en paralelo de la cañería de llenado (ver
+\gls{pyid}).
+Mediante una válvula manual puede elegirse utilizar o no el tiempo muerto.
+
+El objetivo del tiempo muerto es alejar la acción de control del tanque
+controlado.
+El sensor de nivel tardará un tiempo adicional $t_d$ en observar los cambios
+que se producen en la válvula electroneumática \cite{bib:ApuntesPuglesiTema2}.
+La función de transferencia de la planta cambiará notablemente:
+\begin{itemize}
+ \item Por un lado, el retraso en la respuesta debe ser tenido en cuenta
+ \begin{align}
+  G_{td}(s) &= e^{-t_d\,s}\,G(s)
+ \end{align}
+ donde $G(s)$ corresponde a la función de transferencia de una planta sin
+ tiempo muerto, y $G_{td}(s)$ es la misma planta con tiempo muerto.
+  \item Por otro lado, se agregan pérdidas por rozamiento del
+  fluido cambiando la función de transferencia original $G(s)$ de nuestra
+  planta.
+\end{itemize}
+En conclusión, el proceso a controlar es diferente comparado con proceso sin
+tiempo muerto.
+La inclusión esta cañería adicional permite disponer de dos escenarios
+diferentes para realizar prácticas, diseñando controladores distintos para
+cada caso \cite{bib:ApuntesPuglesiTema2}.
+
 \subsection{Válvulas manuales}
 
-Nuestro sistema cuenta con diferentes válvulas manuales que tienen diferentes funciones en la planta.
-A continuación vamos a destacar las más importantes y su trabajo.
+Diferentes válvulas manuales pueden encontrarse en las cañerías de la planta.
+A continuación vamos a destacar la función de cada una de ellas:
 
 \begin{itemize}
-  \item Desagote de los tanques:
-  Para poder vaciar los tanques se colocaron dos válvulas esférica plásticas debajo de cada tanque.
-  \item Control de entrada al tanque reservorio:
-  Para poder estabilizar el sistema se colocó en serie con la cañería de retorno.
-  \todo{Que otra función tiene? Lograr el balance de masa, ecualizar la planta para que si
-  le damos una indicacion del 50 tenga esa respuesta. el nivel no se mueve, estq de manra bastante estable, 
-  por eso es importante la valvula. lo de cavitación no va} Es importante notar que de acuerdo a la situación de esta válvula las bombas comienzan a cavitar 
-  por ello para asegurar un correcto funcionamiento del sistema, para poder estabilizarlo se necesita
-  prestar especial atención a esta válvula.
-  \item Tiempo muerto: 
-  Como la planta se va a usar en diferentes cátedras y como se debe asegurar poder presentar diferentes
-  escenarios es que coloco esta válvula para poder elegir realizar controladores con tiempo muerto
-  y sin tiempo muerto.
+  \item \textbf{Desagote de los tanques:}
+  para poder vaciarlos, se colocaron válvulas esféricas plásticas debajo de
+cada tanque.
+
+  \item \textbf{Control de caudal del tanque de reserva:}
+  para poder estabilizar el sistema se colocó en serie con la cañería de
+retorno. Se trata de una válvula manual tipo exclusa.
+  Esta válvula es importante ya que permite modificar el balance de masa y
+ecualizar la planta.
+  \todo{ le damos una indicacion del 50 tenga esa respuesta.
+el nivel no se mueve, estq de manra bastante estable \textbf{no entiendo :(}}
+
+  \item \textbf{Tiempo muerto:}
+  tal como se describió en la sección \ref{subsec:tiempoMuerto}, esta válvula
+esférica plástica permite activar la cañería de tiempo muerto.
+  Notar en el \gls{pyid} que la válvula está sobre la cañería de llenado.
+  Al cerrar la válvula, se fuerza el uso del tiempo muerto.
+  Al abrirla, nada impide que el fluido circule por las dos cañerías al mismo
+tiempo.
+  No obstante, la pérdida de carga del tiempo muerto es significativamente
+mayor que el de la cañería de llenado.
+  Por ello, se considera que al abrir la válvula  el fluido sólo circula
+por la cañería de llenado.
+
+  \item \textbf{Perturbación de las bombas:}
+  una válvula manual de tipo exclusa se coloca entre la tubería de aspiración y
+la tubería de impulsión de las bombas.
+  La apertura de esta válvula permitirá simular perturbaciones en las
+bombas\todo{algo +?}.
  \end{itemize}
 
-\subsection{Tiempo Muerto}
-Una mención especial vamos a dar al denominado tiempo muerto, que consta de 20 metros de manguera negra de 1/2 pulgada, colocados en serie en el sistema, con una válvula que lo
-habilita, cuya función es la de alejar la acción de control del tanque  controlado, esto introduce 
-perturbaciones al sistema aumentando la complejidad del sistema de control. En esta situación el agua
-debe recorrer más metros evidentemente, se agregan pérdidas por rozamiento del fluido y las bombas 
-son forzadas a trabajar más.
-
-Esto fue previsto para ofrecer a las diferentes cátedras que van a trabajar con la planta muchos 
-escenarios que se presentan en la industria.
-\todo{Ver bolilla 2 de la catedra para seguir comentando.}
 \section{Tanques}
 \label{sec:Tanques}
 
-  la cañería deberá colocarse dentro de la estructura de soporte.
-  Por ende, los tanques se ubicaron en los extremos, sobre las barras de 
-  refuerzo.
-  Se fijaron los tanques a los refuerzos laterales de la estructura mediante 
-  abrazaderas.
+Los tanques almacenan el agua que presenta el sistema, y las acciones de
+control están dirigidas a controlar nivel presente en los mismos.
+Se ubicaron en los extremos, sobre las barras de refuerzo.
+Se fijaron los tanques a los refuerzos laterales de la estructura mediante
+abrazaderas.
 
-Cada parte de nuestro sistema tiene una función importante y por ello se colocaron, sin embargo sin los
-tanque no tendríamos nada sobre lo que poder trabajar. Ellos almacenan el agua que presenta el sistema,
-y las acciones de control están dirigidas al nivel del agua presente en los mismo.
+Son dos caños cloacales de 160 mm de diámetro y un metro de altura, que fueron
+sellados en los extremos utilizando tapas.
+La salida de agua se realiza mediante una conexión de tanque de 3/4 pulgada
+colocada en la base del tanque.
+La entrada de agua se realiza por la parte superior, mediante un orificio
+sencillo\todo{verificar}.
 
-Son dos caños de 160 mm de diámetro de un metro de altura, que fueron sellados en un extremo asegurando
-que no existirá perdida de agua.
-La salida de agua se realiza mediante una conexión de tanque de 3/4 pulgada colocada en la base del 
-tanque.
-Dada la existencia de la conexión de tanque y los efectos diversos de rotacionalidad del fluido afectan
-la medición de la presión dada por la celda de presión diferencial. Estos efectos nos limitan en el 
-área operativa de la planta, pudiendo asegurar un buen funcionamiento a partir de un 15\% del nivel 
-total. 
-\todo{Revisar bien ese porcentaje y preguntarle a puglesi si es correcto}
+{\color{red}
+Dada la existencia de la conexión de tanque y los efectos diversos de
+rotacionalidad del fluido afectan
+la medición de la presión dada por la celda de presión diferencial.
+Estos efectos nos limitan en el
+área operativa de la planta, pudiendo asegurar
+un buen funcionamiento a partir de un 15\% del nivel
+total.}
+\todo{\textbf{Preguntar a Puglesi por qué pusimos niples}, después revisar
+porcentajes}
+
 \section{Bombas}
 \label{sec:Bombas}
-  se colocaron las bombas lo más cerca posible de los respectivos tanques. 
-  Se fijaron mediante tornillos a la base de madera.
 
-Como se comento previamente se utilizaron para este proyecto dos bombas centrífugas, cuya función es
-la de mantener en movimiento el agua en el sistema. No se realiza ninguna acción de control sobre las
-mismas, por lo que van a estar funcionando continuamente mientras se realicen las diferentes 
-experiencias. 
+Se utilizaron en el proyecto dos bombas centrífugas, cuya función es
+mantener en movimiento el agua en el sistema.
+No se realiza ninguna acción de control sobre las
+mismas, por lo que funcionarán de manera continua durante la operación de la
+planta.
 
-Vamos a hacer un pequeño comentario sobre las máquinas hidráulicas, que son aquellas que intercambian
-energía con el fluido sin que este modifique su densidad. Estas máquinas absorben energía mecánica 
-proveída por un motor de corriente alterna monofásico y la restituyen al fluido que las atraviesa en
-forma de  energía hidráulica. Las bombas centrífugas consisten en un conjunto de paletas rotatorias 
-encerradas dentro de un conjunto, las paletas imparten energía al fluido por la fuerza centrífuga.
+Las bombas centrífugas son máquinas hidráulicas, que absorben energía mecánica
+de un motor y la restituyen en forma de energía hidráulica al fluido.
+En las bombas centrífugas (o radiales), esta ganancia de energía se realiza por
+medio de la fuerza centrífuga que imparten los álabes del rodete de la bomba.
+Este tipo de bomba se caracteriza por entregar una presión elevada y un caudal
+relativamente bajo \cite{bib:Mataix}.
 
-La bomba centrífuga origina una depresión en la zona de ingreso a los alabes que posibilita
-la succión del líquido a través de la tubería de aspiración. Una vez que recibe la energía del exterior, 
-el líquido aumenta su presión justamente en el valor de la altura manométrica de la bomba. 
-Podríamos decir que la energía provista por el motor a la bomba implica una aceleración del fluido, lo
-origina una caída de presión, responsables del efecto de succión que tienen lugar en el tubo de 
-aspiración. 
-Una vez ingresado el líquido al rotor, recibe energía externa, que se traduce en un aumento violento de la
-presión hasta alcanzar la altura manométrica.
-Esta situación podría generar en el ingreso a la bomba una condensación, producto de la baja presión en 
-la sección de ingreso a la bomba, estas burbujas del fluido se desplazaran hacia una zona de alta presión,
-en la entrada al rotor que obliga a un condensado prácticamente instantáneo de las burbujas de referencia.
-Fue tarea de este grupo de trabajo garantizar el correcto y prologado funcionamiento de la planta y por 
-ello se tuvo en cuenta este efecto conocido como cavitación. Para evitar el condensado se colocar 
-las bombas los más bajo posible, teniendo en claro también que su disposición debía dejar en claro al alumno
-la función e importancia de las bombas en la planta.
+Las especificaciones de las bombas utilizadas se presentan en la tabla
+\ref{tab:caractBombas}.
 
-Las bombas que se utilizaron en el proyecto presentan las siguientes características:
+\begin{table}[t]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+Marca & Czerweny\\
+Caudal máximo &  $100\,l/min$\\
+Altura máxima &  $12\,m$\\
+Tensión & $220\,V$ monofásica $50\,Hz$\\
+Corriente & $1.7\,A$\\
+Seguridad & S1 IP44\\
+\hline
+\end{tabular}
+\caption{Características de las electrobombas monofásicas}
+\label{tab:caractBombas}
+\end{table}
 
- \begin{itemize}
-  \item Electrobomba monofásica Czerweny
-  \item Caudal máximo: 100 l/min
-  \item Altura máxima: 12 m
-  \item Especificaciones eléctricas:
-    \begin{itemize}
-      \item V: 220
-      \item A: 1,7
-      \item Hz: 50
-    \end{itemize}
-  \item Seguridad: S1 IP44
- \end{itemize}
+\subsection{Cavitación}
+Para el ingreso del fluido a la bomba, es necesario realizar una succión
+en la tubería de aspiración, descendiendo la presión del fluido.
+Luego, la presión aumenta violentamente en el rodete de la bomba hasta alcanzar
+la altura manométrica.
+Debido a la baja presión en la tubería de aspiración, el fluido puede
+evaporarse formando burbujas de vapor.
+Luego, el rápido aumento de presión provoca una implosión de las burbujas.
+Este fenómeno, conocido como \textbf{cavitación} genera ruido y disminuye la
+vida útil de las las bombas.
+
+Para evitar la formación de burbujas de vapor, se opta por mantener la presión
+en la tubería de aspiración lo más elevada posible.
+Es por ello que las bombas se instalan en una posición baja.
+Además, las bombas se colocaron lo más cerca posible de los respectivos
+tanques disminuyendo las pérdidas en la cañería de aspiración.
+Se fijaron mediante tornillos a la base de madera.
+
+Durante la operación de la planta se observó un correcto funcionamiento de las
+bombas, salvo cuando la perturbación se encuentra abierta: al incrementar la
+velocidad en la tubería de aspiración, la presión desciende llegando hasta el
+punto de vapor.
 
 \section{Válvula Neumática}
 \label{sec:ValvulaNeumatica}
@@ -345,8 +404,8 @@ algunos aspectos que se destacan en ellas.
   Se representa usualmente considerando como abscisas la carrera del obturador de la
   válvula y como ordenadas el porcentaje de caudal máximo a una presión diferencial 
   constante.
-  \todo{Gráfico de la curva característica de caudal inherente}
-  \todo{imagen del obsturador isoporcentual}
+  \todo{Gráfico de la curva característica de caudal inherente.
+  imagen del obsturador isoporcentual}
   En el obturador isoporcentual, cada incremento de carrera del obturador produce
   un cambio en el caudal que es proporcional al caudal que fluía antes de la 
   variación. 
@@ -500,7 +559,8 @@ medida en el rango de $4-20\,mA$.
 La DP cell utilizada tiene las siguientes características consignadas en 
 la chapa de identificación\todo{Verificar}:
 
-\begin{center}
+\begin{table}
+\centering
 \begin{tabular}{|l|l|}
 \hline
 Marca & Yokogawa\\
@@ -510,7 +570,9 @@ Output & $4-20\,mA$\\
 Seguridad & MWP 160\\
 \hline
 \end{tabular}
-\end{center}
+\caption{Especificaciones de las celdas de presión diferencial}
+\end{table}
+
 
 Dos celdas serán utilizadas:
 \begin{itemize}
@@ -551,7 +613,7 @@ Escribiendo la ecuación de Bernoulli en 1 y 2\todo{verif. puntos}.
 
 \begin{figure}
  \centering
- \missingfigure[figwidth=6cm]{Placa orificio}
+ \missingfigure[figwidth=8cm]{Placa orificio}
  \caption{Corte longitudinal de una placa orificio montado en una tubería.}
  \label{fig:placaOrificio}
 \end{figure}
