@@ -669,16 +669,59 @@ mediante una nueva variable adimensional $C_q$
 \begin{align}
  C_q &= \dfrac{C_v}{\sqrt{1-\beta^4}}
 \end{align}
-$C_q$ depende tanto del número de Reynolds como de la razón de los diámetros $\beta$, 
-y su valor numérico puede ser encontrado en tablas y ábacos en la bibliografía \cite{bib:Mataix},
-\todo{Lo encontramos así, o de otra manera experimental al cq?}
+$C_q$, por consiguiente depende tanto del número de Reynolds como de la razón
+de los diámetros $\beta$. $C_q$ puede ser encontrado en tablas y ábacos en la
+literatura \cite{bib:Mataix}.
 
-Finalmente, la ecuación a aplicar en el autómata para medir el caudal es
+No obstante, se observa que el valor de $C_q$ varia poco con $Re$ ($7\,\%$
+aproximadamente), y depende fundamentalmente de $\beta$.
+Finalmente, la ecuación \eqref{eq:placaOrif1} puede ser expresada como
 \begin{align}
  Q &= C_q\,A_2\, \sqrt{2\,g\,h_f}
 \end{align}
-donde se observa que el caudal $Q$ es proporcional a $\sqrt{h_f}$, que puede
+que puede ser reescrita, teniendo a $C_q$ constante
+\begin{align}
+ Q &= K\,\sqrt{h_f}
+ \label{eq:placaOrifPLC}
+\end{align}
+donde se observa que el caudal $Q$ es proporcional a la raíz cuadrada de
+la diferencia de alturas $\sqrt{h_f}$, que puede
 ser encontrada utilizando un DP cell (ver sección \ref{subsec:DPCell}).
+
+\subsubsection{Metodología experimental}
+Considerando $C_q$ constante
+\begin{align}
+ K = C_q\, A_2\, \sqrt{2\,g}
+\end{align}
+es constante también, y puede ser determinado experimentalmente.
+Para ello, se midió sobre el tanque controlado una distancia $l$.
+Luego, se encendió la bomba B1 con la válvula electroneumática en posición
+abierta, y se midió el tiempo $t$ necesario para que el nivel alcanzara la
+altura $l$.
+Ya que el tanque tiene un diámetro $D=0.2\,m$ el caudal máximo puede ser
+calculado como
+\begin{align}
+ Q_{max} &= \dfrac{\pi\,D^2\,l}{4\,t}
+\end{align}
+
+Ya que el módulo analógico del \gls{plc} tiene una resolución de $12\,bits$
+(ver sección \ref{subsec:plc}), un valor de caudal máximo corresponde $h_f =
+4095$.\todo{Puglesi 4096}
+$K$ se calcula como
+\begin{align}
+ K &= \dfrac{Q_{max}}{\sqrt{4095}}
+\end{align}
+Luego, el caudal puede calcularse fácilmente aplicando la ecuación
+\eqref{eq:placaOrifPLC}.
+
+Se marcó en el tanque controlado una altura $l=xxx\,m$.
+Luego,se procedió a medir el tiempo de llenado, consignando los resultados en
+la tabla\todo{tabla}
+
+Finalmente,
+\begin{align}
+ K  &= xxx
+\end{align}
 
 \subsection{Manómetros}
 \label{subsec:Manometros}
