@@ -304,7 +304,7 @@ Debido a la baja presión en la tubería de aspiración, el fluido puede
 evaporarse formando burbujas de vapor.
 Luego, el rápido aumento de presión provoca una implosión de las burbujas.
 Este fenómeno, conocido como \textbf{cavitación} genera ruido y disminuye la
-vida útil de las las bombas.
+vida útil de las las bombas \cite{bib:ApuntesMDFBombas}.
 
 Para evitar la formación de burbujas de vapor, se opta por mantener la presión
 en la tubería de aspiración lo más elevada posible.
@@ -647,13 +647,13 @@ y reemplazando \eqref{eq:velRef} en \eqref{eq:Bernoulli2} obtenemos
 \begin{align}
  2 \, g \, h_p &= v_2^2 \left( 1 - \dfrac{D_1^4}{D_2^4} \right)\\
  \beta &= \dfrac{D_1}{D_2}\\
- v_2 &= \sqrt{\dfrac{2 \, g \, h_f}{1-\beta^4}} 
+ v_2 &= \sqrt{\dfrac{2 \, g \, h_p}{1-\beta^4}}
 \end{align}
 finalmente, el caudal se obtiene multiplicando la velocidad $v_2$ por el
 área $A_2$.
 Además, se agrega un coeficiente $C_v$ debido al fenómeno de vena contracta:
 \begin{align}
- Q &= \dfrac{C_v \, A_2}{\sqrt{1-\beta^4}}\, \sqrt{2 \, g \, h_f}
+ Q &= \dfrac{C_v \, A_2}{\sqrt{1-\beta^4}}\, \sqrt{2 \, g \, h_p}
  \label{eq:placaOrif1}
 \end{align}
 El coeficiente $C_v$ depende del número de Reynolds $Re$ \cite{bib:Mataix, bib:ApuntesPuglesiPlacaOrif}
@@ -661,8 +661,8 @@ El coeficiente $C_v$ depende del número de Reynolds $Re$ \cite{bib:Mataix, bib:
 Re &= \dfrac{D\,v}{\nu}
 \end{align}
 donde $v$ es la velocidad en la placa orificio, $D$ es el diámetro y ${\nu}$
-es la viscosidad cinemática del fluido\footnote{Para el agua, nuestro fluido de trabajo
-$\nu = 1,003\,10^{-6} \frac{m^2}{s}$.}
+es la viscosidad cinemática del fluido\footnote{Para el agua, nuestro fluido de
+trabajo $\nu = 1,003\,10^{-6} \frac{m^2}{s}$.}
 
 La ecuación \eqref{eq:placaOrif1} puede ser reescrita de una forma más sencilla
 mediante una nueva variable adimensional $C_q$
@@ -673,40 +673,41 @@ $C_q$, por consiguiente depende tanto del número de Reynolds como de la razón
 de los diámetros $\beta$. $C_q$ puede ser encontrado en tablas y ábacos en la
 literatura \cite{bib:Mataix}.
 
-No obstante, se observa que el valor de $C_q$ varia poco con $Re$ ($7\,\%$
-aproximadamente), y depende fundamentalmente de $\beta$.
+No obstante, se observa que el valor de $C_q$ varia poco para valores de
+$Re > 20000$, y depende fundamentalmente de $\beta$.
+Por ende, puede ser considerado constante para una instalación dada.
 Finalmente, la ecuación \eqref{eq:placaOrif1} puede ser expresada como
 \begin{align}
- Q &= C_q\,A_2\, \sqrt{2\,g\,h_f}
+ Q &= C_q\,A_2\, \sqrt{2\,g\,h_p}
 \end{align}
 que puede ser reescrita, teniendo a $C_q$ constante
 \begin{align}
- Q &= K\,\sqrt{h_f}
+ Q &= K\,\sqrt{h_p}
  \label{eq:placaOrifPLC}
 \end{align}
 donde se observa que el caudal $Q$ es proporcional a la raíz cuadrada de
-la diferencia de alturas $\sqrt{h_f}$, que puede
+la diferencia de alturas $\sqrt{h_p}$, que puede
 ser encontrada utilizando un DP cell (ver sección \ref{subsec:DPCell}).
 
 \subsubsection{Metodología experimental}
-Considerando $C_q$ constante
+Considerando $C_q$ constante,
 \begin{align}
  K = C_q\, A_2\, \sqrt{2\,g}
 \end{align}
 es constante también, y puede ser determinado experimentalmente.
 Para ello, se midió sobre el tanque controlado una distancia $l$.
 Luego, se encendió la bomba B1 con la válvula electroneumática en posición
-abierta, y se midió el tiempo $t$ necesario para que el nivel alcanzara la
-altura $l$.
-Ya que el tanque tiene un diámetro $D=0.2\,m$ el caudal máximo puede ser
+abierta (caudal máximo), y se midió el tiempo $t$ necesario para que el nivel
+alcanzara la altura $l$.
+Ya que el tanque tiene un diámetro $D$, el caudal máximo puede ser
 calculado como
 \begin{align}
  Q_{max} &= \dfrac{\pi\,D^2\,l}{4\,t}
 \end{align}
 
-Ya que el módulo analógico del \gls{plc} tiene una resolución de $12\,bits$
-(ver sección \ref{subsec:plc}), un valor de caudal máximo corresponde $h_f =
-4095$.\todo{Puglesi 4096}
+El módulo analógico del \gls{plc} tiene una resolución de $12\,bits$
+(ver sección \ref{subsec:plc}), un valor de caudal máximo corresponde a $h_f =
+4095$.
 $K$ se calcula como
 \begin{align}
  K &= \dfrac{Q_{max}}{\sqrt{4095}}
@@ -714,13 +715,43 @@ $K$ se calcula como
 Luego, el caudal puede calcularse fácilmente aplicando la ecuación
 \eqref{eq:placaOrifPLC}.
 
-Se marcó en el tanque controlado una altura $l=xxx\,m$.
-Luego,se procedió a medir el tiempo de llenado, consignando los resultados en
-la tabla\todo{tabla}
+Para la determinación del valor de $K$ se trabajó sin tiempo muerto.
+Se marcó en el tanque controlado una altura $l=0.5\,m$, teniendo $D=0.2\,m$.
+Luego, se procedió a medir el tiempo de llenado, consignando los resultados en
+la tabla \ref{tab:tiempoK}.
 
-Finalmente,
+\begin{table}
+  \centering
+  \bgroup
+%   \scriptsize
+%   \def\tabcolsep{6.50pt}
+%   \def\arraystretch{1.22}%
+  \begin{tabular}{|c|c|}
+  \hline
+  Medición & Valor\\
+  \hline
+  1 & $27.27\,s$ \\
+  2 & $28.53\,s$ \\
+  3 & $27.98\,s$ \\
+  4 & $28.10\,s$ \\
+  5 & $27.68\,s$ \\
+  6 & $27.66\,s$ \\
+  \hline
+  \hline
+  \textbf{Media} & $27,87\,s$\\
+  \textbf{SD} & $0.43\,s$\\
+  \hline
+  \end{tabular}
+  \egroup
+  \caption{Medición del tiempo de llenado, cálculo de $K$.}
+  \label{tab:tiempoK}
+\end{table}
+
+Finalmente, obtenemos
 \begin{align}
- K  &= xxx
+ Q_{max} &= 33.81\,\dfrac{lts}{min}
+ \\
+ K  &= 0.5285\,\dfrac{lts}{min}
 \end{align}
 
 \subsection{Manómetros}
