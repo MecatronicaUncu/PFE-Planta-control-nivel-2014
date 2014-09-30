@@ -210,8 +210,8 @@ cada tanque.
 retorno. Se trata de una válvula manual tipo exclusa.
   Esta válvula es importante ya que permite modificar el balance de masa y
 ecualizar la planta.
-  \todo{ le damos una indicacion del 50 tenga esa respuesta.
-el nivel no se mueve, estq de manra bastante estable \textbf{no entiendo :(}}
+  \todo{si le damos una indicacion del 50, tenga esa respuesta.
+el nivel no se mueve, esta de manera bastante estable \textbf{no entiendo :(}}
 
   \item \textbf{Tiempo muerto:}
   tal como se describió en la sección \ref{subsec:tiempoMuerto}, esta válvula
@@ -318,217 +318,174 @@ bombas, salvo cuando la perturbación se encuentra abierta: al incrementar la
 velocidad en la tubería de aspiración, la presión desciende llegando hasta el
 punto de vapor.
 
-\section{Válvula Neumática}
+\section{Válvula Electroneumática}
 \label{sec:ValvulaNeumatica}
-dada su importancia y sus dimensiones se colocó en el centro de la planta, 
-  sobre la base de madera.
-  Al momento del montaje se tuvo especial atención en que se pudiera apreciar 
-  con claridad las diferentes partes que la componen, evitando 
-  obstruirla con otros elementos de la planta (pudiendo observar su   
-  funcionamiento desde todos los ángulos).
-  Durante el montaje se prestó especial atención al nivelado de la válvula.
-  Finalmente, se fijo mediante ménsulas a la base de madera y a la estructura 
-  de caño.
 
-En esta sección nos ocuparemos de la válvula neumática, siendo ella un elemento 
-importantísimo de nuestra planta es la encargada de efectuar las acciones de
-control.
+En esta sección se hará énfasis en la válvula electroneumática.
+Es un elemento central en nuestra planta, ya que es la encargada de efectuar
+las acciones de control.
 
-\subsection{Trabajo de la válvula}
-La válvula es un elemento final de control, en nuestro caso su acción es
-automática, cuya función es la de variar el caudal de agua que circula por el
-sistema, modificando de esta manera las variables controladas, el nivel en el
-tanque controlado. Podemos considerar a la válvula como un orificio de área 
-continuamente variable.
-Podemos diferenciar en la válvula dos sistemas fácilmente:
+\subsection{Principio de funcionamiento}
+\label{subsec:principioFuncionamiento}
+Una válvula permite variar el caudal, dependiendo de la consigna que se
+le envíe.
+En la figura \todo{fig valvula} se muestra un ejemplo de válvula de control
+tipo globo con actuador a diafragma.
 
-   \begin{itemize}
-      \item Actuador:Señal de entrada al actuador, 4 a 20 mA provenientes del 
-      \gls{plc}.
-      La salida de este sistema se traduce en un desplazamiento lineal del 
-      vástago.
-      \item Cuerpo: la salida de este sistema es el caudal a través del cuerpo
-      de la válvula.
-    \end{itemize}
-    
-\subsection{Generalidades de las válvulas neumáticas}
-Vamos a describir las diferentes partes de las válvulas neumáticas y comentar 
-algunos aspectos que se destacan en ellas.
+Se observa un obturador que apoya sobre un asiento, permitiendo la variación de
+caudal gracias al orificio de paso variable que forman al variar su posición
+relativa.
+El vástago es el encargado de modificar la posición del obturador.
+A la vez, sobre el vástago actúan las fuerzas del diafragma y del muelle
+(actuadores).
+Puede concluirse, a través del análisis de la válvula, que el caudal depende de
+la presión de aire en el diafragma.
+Generalmente, esta presión oscila entre los $3$ a $15\,psi$.
+% \subsubsection{Rangeabilidad}
+% Se denomina rangeabilidad a la razón entre el caudal máximo y el mínimo que
+% puede controlar una válvula
 
+\subsubsection{Tipos de obturador - Característica de caudal inherente}
+El conjunto asiento-obturador es la parte más importante de la válvula, ya que
+se encargan de controlar el paso del caudal.
+Dependiendo del conjunto obturador-asiento, se obtendrán distintas
+características de caudal inherente de la válvula.
+Podemos distinguir tres conjuntos de válvula, según el tipo de obturador:
 \begin{itemize}
-  \item Actuador a diafragma y resorte:
-  
-  La señal neumática desarrolla una fuerza sobre la superficie del diafragma, a 
-  dicha fuerza se le opone otra proveniente del resorte.
-  
-  \item Cuerpo de las válvulas
-  El cuerpo de la válvula debe resistir la temperatura y la presión del fluido
-  sin pérdidas, tener un tamaño adecuado para el caudal que debe controlar y ser
-  resistente a la erosión o a la corrosión producida por el fluido.
-  El cuerpo es el encargado de regular el pasaje del fluido, transformando los
-  desplazamientos del vástago (lineal en nuestro caso) en una variación 
-  del caudal.
-  Existen varios tipos de cuerpo:
-  \begin{itemize}
-      \item Globo:
-      En el interior de su cuerpo existe un conjunto asiento-obsturador, 
-      éste ultimo unido al vástago.
-      \item Globo de doble asiento:
-      Asegura mejor balance dinámico pero con mayores pérdidas al cierre.
-      \item Jaula:
-      Estas válvulas, dependiendo de las formas de las aberturas de las aberturas
-      realizadas en la misma se obtienen tales características.
-      \item Saunders:
-      Orientada al trabajo con fluidos agresivos.
-      \item De obturador rotativo:
-      Consiste en un obsturador de superficie esférica que tiene un movimiento
-      rotativo y que está unido al eje de giro por uno o dos brazos flexibles.
-      \item Mariposa:
-      El cuerpo esta formado por una anillo cilíndrico dentro del cual gira
-      transversalmente un disco círcular. 
-    \end{itemize}
-  En nuestro caso trabajamos con una válvula globo que son de uso muy frecuente 
-  en los sistemas de control.
-  \item Tapa de la válvula
-  Tiene por objeto unir el cuerpo al accionador neumático. A través de ella de ella
-  se desliza el vástago del obturador.
-  Para que el fluido no se escape a través de la tapa y el contorno del vástago, 
-  se dispone de una caja empaquetadora. La empaquetadura son aros de teflón en 
-  forma de V.
-  \item Conjunto Asiento - Obturador
-  Son el corazón de la válvula al controlar el caudal, gracias al orificio de paso
-  variable que forman al variar su posición relativa.
-  \item Obsturador Isoporcentual
-  La válvula utilizada para este trabajo presenta una curva de caudal inheente 
-  isoporcentual, el caudal inherente es la característica de un fluido incompresible
-  fluyendo en condiciones de presión diferencial constante a tráves de la válvula. 
-  Se representa usualmente considerando como abscisas la carrera del obturador de la
-  válvula y como ordenadas el porcentaje de caudal máximo a una presión diferencial 
-  constante.
-  \todo{Gráfico de la curva característica de caudal inherente.
-  imagen del obsturador isoporcentual}
-  En el obturador isoporcentual, cada incremento de carrera del obturador produce
-  un cambio en el caudal que es proporcional al caudal que fluía antes de la 
-  variación. 
-  El término de isoporcentual deriva del hecho que, por cada
-  incremento porcentual de la carrera de la válvula, se produce el mismo
-  incremento porcentual del caudal. 
-  La expresion se deduce a partir de la siguiente eciación:
-  
+  \item \textbf{Obturador Lineal:} el caudal es proporcional a la carrera
   \begin{align}
-    \dfrac{dq}{dl} = a . q
+	q = k\,l
+	\label{eq:inherenteLineal}
   \end{align}
-  donde:
-  \begin{itemize}
-      \item q: Cáudal a pérdida de carga constante
-      \item l: Carrera
-      \item a: Constante
-    \end{itemize}
-    Que trabajando matemáticamente en la expresión anterior se obtiene:
-    \begin{align}
-       q = b . e^{a\,l}
-    \end{align}
-    De donde puede verse que para:
+  donde $q$ es el caudal a pérdida de carga constante, $k$ es una constante y
+$l$ es la carrera del vástago.
+
+  \item \textbf{Obturador Isoporcentual:}
+  un incremento de carrera produce un cambio de caudal proporcional al caudal
+que circulaba antes de la variación.
+  \begin{align}
+    \dfrac{dq}{dl} = a \, q
+  \end{align}
+  Operando, podemos reescribir esta expresión puede reescribirse mediante una
+función exponencial.
+\begin{align}
+ q = b\,e^{a\,l}
+ \label{eq:InherenteIsoporcentual1}
+\end{align}
+  donde $a$ y $b$ son constantes para una válvula dada.
+  Si consideramos que
     \begin{align}
         l &= 0 \Rightarrow q = q_{min} = b\\
         l &= 1 \Rightarrow q = q_{max} = q_{min} \:e^a
-        \Rightarrow \frac{q_{max}}{q_{min}} = e^a
     \end{align}
-    Basándonos en la definición de rangeabilidad, la expresión anterior
-    queda (entendiendo que ${q}$ es el caudal inherente, esto es ${q_i}$)
+    podemos escribir la expresión \eqref{eq:InherenteIsoporcentual1} como
     \begin{align}
-        \frac{q_i}{q_{max}} = \frac{1}{R} \,R^l
-        \Rightarrow  q_i = \frac{1}{R} \, R^l \, q_{max}
+      \dfrac{q_{max}}{q_{min}} = e^a
     \end{align}
-    Está ultima expresión nos da el porcentaje de caudal en función del
-    campo de control o rangeabilidad de la válvula.
-    La representación gráfica de la curva de una válvula isoporcentual, se
-    caracteriza porque al principio de la carrera, la variación de caudal es
-    pequeña, y al final, pequeños incrementos en la carrera se traducen en
-    grandes variaciones de caudal.
-    
-  \item Características de caudal efectivas
-  
-  Al analizar el caso de una válvula trabajando en condiciones reales la 
-  presión diferencial ${(\Delta_v)}$ a través de ellas cambia cuando varía su
-  apertura, por lo que la curva real que relaciona la carrera con el caudal
-  se aparta de las características de caudal inherente, generando una nueva 
-  curva que recibe el nombre de característica de caudal efectiva.
-  
-  El ${(\Delta \,p_v)}$ variable disponíble para la válvula, que lo vamos a 
-  expresar en forma de altura ${H_1}$, depende de la presión de envío de la 
-  bomba, que vamos a llamar ${H}$ y de la combinación de las pérdidas de carga
-  de la tubería y sus accesorios, de las alturas y de las contrapresiones a 
-  vencer, si el circuito termina en un recipiente a presión, entonces a esta 
-  suma de pérdidas de carga las agrupamos bajo el término de ${H_2}$
-  
-  Como sabemos de la curva de funcionamiento de la bomba, las pérdidas de carga
-  aumenta con el aumento del caudal, estas pérdidas de cargas son absorvidas 
-  por la válvula.
-  A partir de este análisis podemos ver que una misma válvula instalada en
-  procesos diferentes, presentará características de caudal efectivas diferentes,
-  que es la condición que presenta nuestro proyecto.
-  
-  Vamos a analizar un circuíto típico que esperamos que sirva como complemento
-  de este informe para poder ser capaz de entender la respuesta de la planta en 
-  diferentes situaciones.
-  
-  Un proceso típico de un proceso industrial, formado por una bomba centrífuga, 
-  la válvula de control y a tubería, la presión de envío de la primera y la pérdida
-  de carga absorvida por la tubería variarían segúm sea el grado de apertura 
-  de la válvula.
-  
-  Si expresamos la pérdida de la presión de la válvula cuando ésta está totalmente
-  abierta, con relación a la pérdida de carga del sistema y la suma de pérdidas 
-  combinadas, se obtiene un coeficiente ${"r"}$.
-  
-  Si ${H = H_1 + H_2}$, el cociente ${"r"}$ será:
-  
-  \begin{align}
-	r = \frac{H_1(\Delta p \, \text{producido por la válvula totalmente abierta})}
-	{H(\text{presión de envío de la bomba})}
-    \end{align}
-    
-   O sea:
-   
-   \begin{align}
-	r = \frac{H_1}{H_1\,+\,H_2}
-    \end{align} 
-  Para cada valor de ${r}$ puede construirse una curva característica efectiva que se
-  apartará de la curva inherente y que coincidirá con ella cuando ${r=1}$,
-  es decir, cuando la línea no absorbe presión y queda toda disponible para la válvula.
-  
-  Se puede demostrar que se puede relacionar las características explícitas
-  con inherentes a través de ${"r"}$.
-  
-  \begin{align}
-	q_e = \frac{1}{\sqrt{1-r+\frac{r}{q^2}}}
-  \end{align}
-  
-  Si instalamos el caudal efectivo o instalado en función de la carrera, teniendo
-  en cuenta ahora el valor de ${"r"}$, veremos que a medida que éste disminuye una válvula
-  isoporcentual tiende a comportarse como una líneal, en esto radica la importancia
-  de la válvula dado que es una situación deseada. Como un complemento a este análisis
-  vamos a decir que la válvula lineal en esta situación tiende a comportarse como
-  una de apertura rápida, situación no deseada a los efectos de control regulatorio.
-  \todo{Imágenes de los gráficos página 18 del apunte de la cátedra}
-  Estas curvas son fáciles de encontrar a partir de las siguientes expresiones:
-  
-  \begin{itemize}
-      \item Cáudal inherente para válvulas lineales: $q_i = k\,l$.
-      \item Caudal inherente para válvulas isoporcentuales: $q_i = \frac{1}{R}\,R^l\,q_{max}$.
-    \end{itemize}
-  Podemos terminar el analisis comentando que a medida que la pérdida de carga disponible
-  para la válvula disminuye y por lo tanto aumenta la pérdida de carga en la
-  tubería, r se hace más pequeño y con ello la válvula lineal se aproxima a una de apertura rápida
-  y la válvula isoporcentual a una lineal.
-  
+  \item \textbf{Obturador de apertura rápida:} permiten una brusca variación de
+caudal con carreras pequeñas.
+  No son utilizadas en el control regulatorio, ya que no permiten una
+regulación fina del caudal.
 \end{itemize}
+
+Debemos destacar que las características de caudal inherente se obtienen
+manteniendo una presión diferencial $\Delta p$ constante para toda la carrera.
+En la figura \todo{fig}, se muestran las curvas de caudal inherente para cada
+tipo de válvula.
+Se representa en abscisas la carrera del obturador de la válvula y
+en ordenadas el porcentaje de caudal máximo a una presión diferencial constante.
+
+\subsubsection{Característica de caudal efectivas}
+
+La característica de caudal inherente se traza para una presión diferencial
+$\Delta \,p$ constante.
+No obstante, en un proceso real, $\Delta \,p$ no es constante y depende del
+caudal (debido a las pérdidas de carga y a la curva característica de la bomba).
+Se denomina característica de caudal efectiva a la curva que relaciona el
+caudal que atraviesa la válvula dependiendo de su apertura (carrera), cuando la
+válvula está inserta en una planta dada.
+De hecho, diferentes procesos proporcionarán distintos valores de  $\Delta
+\,p$, por lo que la característica de caudal efectiva depende del proceso.
+Evidentemente, esta curva se apartará de la característica de caudal inherente,
+como se demostrará a continuación.
+
+En una cañería, la presión que entregada por la bomba $H$ se utiliza para
+vencer las pérdidas de carga en la cañería, contrapresiones y alturas
+(reagrupadas en $H_2$) y en la válvula.
+Denotando $\Delta \,p = H_1$
+\begin{align}
+ H &= H_1 + H_2
+\end{align}
+$H_2$ varía cuadráticamente con el caudal según la ley de \emph{Darcy-Weisbach}
+\cite{bib:Franzini}
+\begin{align}
+ H_2  &= f \dfrac{L}{D^5}\dfrac{16\,Q^2}{2\,g\,\pi^2} + H_c
+\end{align}
+donde $L$ es la longitud equivalente de la cañería, $D$ es el diámetro y $H_c$
+representa la altura piezométrica (contrapresiones y alturas).
+$H$ varía siguiendo la curva característica caudal-presión de la bomba.
+
+Se denomina coeficiente $r$ a la razón entre la pérdida de carga de la válvula
+$H_1$ comparado con la pérdida de carga total del sistema.
+\begin{align}
+ r &= \dfrac{H_1}{H_1+H_2} = \dfrac{H_1}{H}
+\end{align}
+Evidentemente, $r = 1$ cuando la cañería no tiene pérdida de carga,
+aproximándose la característica efectiva a la inherente.
+Puede demostrarse \cite{bib:Creus} que
+\begin{align}
+ q_e &= \dfrac{1}{\sqrt{1-r+\dfrac{r}{{q_i}^2}}}
+ \label{eq:coef_r_qe_qi}
+\end{align}
+siendo $q_e$ el caudal efectivo y $q_i$ el caudal inherente, que puede
+obtenerse mediante las ecuaciones \eqref{eq:inherenteLineal}
+\eqref{eq:InherenteIsoporcentual1}.
+
+Puede concluirse, a partir de la ecuación \eqref{eq:coef_r_qe_qi} que la curva
+de caudal efectivo varía dependiendo de $H_2$.
+Se observa que al disminuir r una válvula
+isoporcentual tiende a comportarse como una lineal,
+y una válvula lineal se comporta como de apertura rápida.
+
+Dado que las válvulas de apertura rápida no son utilizadas en el control
+regulatorio, se escoge entre una válvula isoporcentual o lineal dependiendo de
+la pérdida de carga de la planta, con el objetivo de tener una característica
+efectiva ``lo más lineal posible''.
 
 \subsection{Válvula utilizada en el proyecto}
 
-A continuación vamos a describir las características de la válvula utilizada 
-en el proyeto.
+En esta sección se describirá las características específicas de la válvula
+utilizada en el proyecto, comparándolas con los principios de funcionamiento
+descriptos en \ref{subsec:principioFuncionamiento}.
+
+\subsubsection{Electroposicionador}
+Se especificó que la presión de aire en el diafragma varía entre $3p\,si$
+(válvula cerrada) y $15\,psi$ (válvula abierta).
+Esta presión de aire generalmente se obtiene mediante un convertidor
+corriente-presión (I/P).
+El convertidor toma en entrada una señal de corriente proveniente del \gls{plc}
+($4$ - $20\,mA$) y lo transforma en un valor de presión para alimentar el
+diafragma.
+
+No obstante, no hay retroalimentación entre la posición del vástago y la señal
+de corriente.
+Un convertidor I/P no puede corregir fenómenos tales como la fricción en el
+vástago, perturbaciones del fluído, fuerzas dinámicas, etc. que modifican la
+apertura de la válvula.
+
+\subsubsection{Característica Efectiva de nuestra válvula}
+
+\subsubsection{Montaje}
+
+dada su importancia y sus dimensiones se colocó en el centro de la planta,
+  sobre la base de madera.
+  Al momento del montaje se tuvo especial atención en que se pudiera apreciar
+  con claridad las diferentes partes que la componen, evitando
+  obstruirla con otros elementos de la planta (pudiendo observar su
+  funcionamiento desde todos los ángulos).
+  Durante el montaje se prestó especial atención al nivelado de la válvula.
+  Finalmente, se fijo mediante ménsulas a la base de madera y a la estructura
+  de caño.
 
 \section{Instrumentos de Medición}
 \label{sec:InstrumentosMedicion}
