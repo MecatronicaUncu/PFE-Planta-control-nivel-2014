@@ -9,59 +9,76 @@ electrónico que anima a la planta, continuando en el capitulo \ref{ch:progPLC} 
 que regula al sistema completo por medio del \gls{plc}. 
 
 Como elemento final del \gls{pfe} se diseño y realizo una \gls{hmi} \gls{scada}
-mediante P-CIM para Windows con el objetivo de poder manipular la planta/el sistema
+mediante P-CIM para Windows de AFCON con el objetivo de poder manipular la planta/el sistema
 sin tener un acceso físico a la misma.
 
-En el siguiente capitulo se detallan cada uno de los pasos para la realización de tal interfaz
-así como también la configuración actual. Mediante esta información el lector podrá entender
-y por lo tanto modificar en caso de ser necesario el entorno. Este capitulo no esta 
-orientado a la operación misma de la planta mediante el \gls{scada} lo cual se detalla en 
+En el siguiente capítulo se detallan cada uno de los pasos seguidos para la realización de tal 
+interfaz así como también la configuración actual. Mediante esta información el lector podrá entender
+y por lo tanto modificar en caso de ser necesario el entorno. Sin embargo, este capitulo no esta 
+orientado a la operación misma de la planta mediante el \gls{scada} lo cual se detalla en la sección
 \todo{agregar la sección donde se describe la operación mediante el scada}
 
 \section{Introducción a SCADA}
 \label{sec:IntroScada}
 
 Aunque un \gls{plc} realiza automáticamente un control pre-programado sobre un proceso, 
-no tienen una manera estándar de presentar la información al operador y normalmente se 
+no tienen una manera estándar de presentar la información al operador y ademas estos se 
 distribuyen a lo largo de toda la planta, haciendo difícil recoger los datos de manera 
 manual.%para poder concentrarlos
-
 En cambio, los sistemas \gls{scada} obtienen los datos desde el \gls{plc} o desde otros controladores 
-por medio de algún tipo de red y de manera automática. Posteriormente esta información 
-es combinada y formateada en una base de datos para proporcionar las tendencias, alarmas 
-integradas y monitoreo de eventos. Luego la presentación de los datos de plantas, máquinas y 
-equipos industriales se realiza mediante una \gls{hmi}. También se pueden 
-incluir datos de diagnóstico y manejo de la información así como un cronograma de 
-procedimientos de mantenimiento, información logística, esquemas detallados para un sensor 
-o máquina en particular o incluso sistemas expertos con guía de resolución de problemas. Es entonces
-claro que la utilización de un sistema \gls{scada} reduce fuertemente las tareas asociadas al control
+por medio de algún tipo de red y de manera automática, facilitando la tarea de concentrar los datos.
+Se puede observar en la Fig.\ref{fig:perspectivaSCADA} de manera esquematica la organizacion 
+de un sistema Planta-PLC-SCADA.
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=0.445\textwidth]
+	{Cap5-SCADA/images/perspectiva.jpeg}
+	\caption{Diagrama de un sistema SCADA}
+	\label{fig:perspectivaSCADA}
+\end{figure}
+
+Un sistema \gls{scada} recopila constantemente información de la planta en tiempo real. Luego en 
+la base de datos se almacenan y evalúan los datos, también se generan alarmas en los casos 
+correspondientes. Finalmente, mediante la \gls{hmi} se brinda la información al operario y 
+este a su vez puede enviar instrucciones a los \gls{plc} en la planta. 
+También se pueden incluir datos de diagnóstico y manejo de la información así como un cronograma 
+de procedimientos de mantenimiento, información logística, esquemas detallados para un sensor 
+o máquina en particular o incluso sistemas expertos con guía de resolución de problemas. Es 
+entonces claro que la utilización de un sistema \gls{scada} reduce fuertemente las tareas asociadas al control
 y monitoreo de plantas industriales.
+ 
 
 \section{Scada P-CIM}
 \label{sec:ScadaPCIM} 
-\todo{agregar link para la descarga?}
 Para el diseño y desarrollo del sistema \gls{scada} de este \gls{pfe} se utilizó el software 
-P-CIM para Windows. El mismo, provee de un ambiente de desarrollo y ejecución de aplicaciones 
-\gls{scada}.Así, una ves concretado el diseño el \gls{scada} recopila constantemente información 
-de la planta en tiempo real. En la base de datos donde se almacenan, evalúan y generan alarmas 
-a partir de estos datos.Finalmente, mediante la \gls{hmi} se brinda la información y se pueden 
-emitir instrucciones a los \gls{plc} en la planta. 
+P-CIM 7.70 SP4 para Windows de AFCON (\url{www.afcon-inc.com}). El mismo, provee de un ambiente 
+tanto de desarrollo como de ejecución de aplicaciones \gls{scada}. Este software puede ser 
+descargado desde la pagina de 
+\href{http://www.afcon-inc.com/Templates/showpage.asp?TMID=108&FID=733&PID=0&IID=8334}{P-CIM 7.70 SP4}.
 
-Dentro de sus características se encuentran:
+Dentro de las características del sofware P-CIM se encuentran:
 \begin{itemize}
- \item Corre en todas las plataformas MS-Windows actuales.
- \item Soporte de un gran número de diferentes \gls{plc} y otros dispositivos periféricos.
- \item Drivers para diversos buses de comunicación.
+ \item Compatible con todas las plataformas MS-Windows actuales.
+ \item Soporta un gran número de diferentes \gls{plc} y otros dispositivos periféricos.
+ \item Posee drivers para diversos buses de comunicación.
  \item Provee herramientas para el desarrollo de \gls{hmi} inteligentes 
- \item Seguimiento de los procesos de la planta y las actividades de los operadores
- \item Entorno para monitorear alarmas y eventos en toda la extensión de la planta
+ \item Permite el seguimiento de los procesos de la planta y las actividades de los operadores
+ \item Brinda un entorno para monitorear alarmas y eventos en toda la extensión de la planta
 \end{itemize}
 
 
 \subsection{Estructura de P-CIM}
 \label{sec:CapasPrograma}
-Como se puede observar en la figura\todo{agregar capas de abstraccion} la estructura de P-CIM 
-para Windows se divide en tres grandes capas:
+Como se puede observar en la Fig.\ref{fig:estructuraSCADA} la estructura de P-CIM se divide en tres 
+grandes capas de abstracción:
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=0.445\textwidth]
+	{Cap5-SCADA/images/estructura.jpeg}
+	\caption{Esquema de la estructura en capas de P-CIM}
+	\label{fig:estructuraSCADA}
+\end{figure}
+
 \begin{itemize}
  \item Capa de Comunicación: Se encarga de la comunicación entre el \gls{plc} y la PC.
  \item Capa de Procesamiento de Datos: Donde se lleva a cabo la mayor parte del procesamiento 
@@ -78,62 +95,102 @@ al sistema \gls{scada} funcionar de manera correcta y con las prestaciones antes
 
 
 \section{Desarrollo de la aplicacion SCADA con P-CIM}
-
-A continuación, se detalla la aplicación \gls{scada} desarrollada para este \gls{pfe} en el software
-P-CIM para Windows. Su exposición esta dividida de acuerdo a la estructura en capas del programa,como 
+A continuación, se detalla la aplicación \gls{scada} desarrollada para este \gls{pfe} en el 
+software P-CIM. Su exposición esta dividida de acuerdo a la estructura en capas del programa,como 
 se describió en la sección \ref{sec:CapasPrograma}.
 
 \subsection{Capa de comunicación}
 \label{subsec:CapaComunicacion}
-
 El primer paso para el desarrollo de un sistema \gls{scada} es lograr la comunicación por medio
-de algún bus con el \gls{plc} que controla la planta, formando así la capa de comunicación. 
-En nuestro caso se utilizó el protocolo de comunicaciones Modbus. A continuación se detalla el 
-proceso de configuración y puesta en marcha del bus. 
+de algún bus con el \gls{plc} que controla la planta. Es decir, lograr un buen funcionamiento de 
+la capa de comunicación. 
+En nuestro caso se utilizó el protocolo de comunicaciones Modbus. 
 
 \subsubsection{Modbus}
-Modbus es un protocolo de comunicaciones diseñado en 1979 por Modicon para su gama de 
-controladores lógicos programables (PLCs). Modbus esta situado en la capa de aplicación 
-del modelo \gls{osi} con una arquitectura maestro/esclavo o cliente/servidor usándose 
-para la conexión entre un computador corriendo un software \gls{scada} y un o varios 
-\gls{plc}. Existen versiones del protocolo Modbus para puerto serie y Ethernet (Modbus/TCP).
+Modbus es un protocolo de comunicaciones diseñado en 1979 por Modicon para su gama de \gls{plc}.
+En abril del 2004, Schneider Electric transfirió los derechos a la la Modbus Organization 
+\url{http://www.modbus.org/}, la cual se encarga desde entonces del desarrollo y actualización 
+del protocolo Modbus.
 
-Simple y robusto, se ha convertido en un protocolo de 
-comunicaciones estándar de facto en la industria, gozando de una gran disponibilidad para la 
-conexión de dispositivos electrónicos industriales. Las principales razones para el uso de Modbus 
-en entornos industriales son:
+Para la conexión entre un computador corriendo un software \gls{scada} y uno o varios \gls{plc} 
+el protocolo Modbus es un estándar de facto en la industria . Por esta razón, también, 
+goza de una gran disponibilidad para la conexión de dispositivos electrónicos industriales. 
+A nivel diseño, se encuentra situado en la capa de aplicación según el modelo \gls{osi} y 
+presenta una arquitectura maestro/esclavo o cliente/servidor.
+
+Las principales razones para el uso de Modbus:
 \begin{itemize}
+ \item Simple y robusto
  \item Fue desarrollado para aplicaciones industriales.
  \item Su implementación es fácil y requiere poco mantenimiento.
  \item Maneja bloques de datos sin suponer restricciones a los vendedores.
  \item Permite la comunicación entre múltiples dispositivos en la misma red. Aprox. 240
  \item De código abierto y libre de regalías.%openly published and royalty-free
 \end{itemize}
-El desarrollo y actualización del protocolo Modbus ha sido manejado por Modbus Organization desde
-abril del 2004 cuando Schneider Electric transfirió los derechos a esta organización.
+
 
 \subsubsection{Instalación Driver Modbus}
-\todo{Agregar link para la descarga?}
-Para realizar la instalación del driver de comunicaciones Modbus seguimos los siguientes pasos: 
+A continuación se detalla el  proceso de configuración y puesta en marcha del bus de comunicaciones. 
+El driver de para Modbus se puede descargar desde esta 
+\href{http://www.afcon-inc.com/afcon/Templates/showpage.asp?TMID=402&FID=832}{pagina}.
+Para realizar la instalación de este driver de comunicaciones en P-CIM seguimos los siguientes pasos: 
 
-\begin{enumerate}
- \item Elija $Setup~de~P-CIM$ del grupo de aplicaciónes P-CIM para Windows 32.
-Aparecerá en la pantalla la ventana de $Setup~de~P-CIM$.\todo{agregar captura de pantalla}
-\item Elija $Install~P-CIM~Driver$. La ventana de diálogo de instalación del Driver de P-
-CIM, le pedirá que indique el directorio de origen.
-\item Oprima Browse, seleccione el directorio de origen del driver para Modbus en el disco 
-C:\todo{agregar ruta completa}, oprima OK y luego Next
-\item El Setup de P-CIM despliega la ventana de diálogo de Bienvenida.
-\item Para continuar, oprima NEXT. El Setup de P-CIM despliega la ventana de
-diálogo de Propiedades del Driver de P-CIM para Windows 32, indicando los
-detalles del driver a ser instalado.
-\item Elija el/los proyecto(s) en los que Ud. desea instalar el driver o bien seleccione
-All (todos) y oprima Next.
-\item El Setup de P-CIM procede a efectuar la instalación y finalmente muestra este mensaje: 
-“la instalación del driver se ha completado”. Oprima OK para que desaparezca el cuadro de diálogo.
-\end{enumerate}
+% \begin{enumerate}
+%  \item Elija $Setup~de~P-CIM$ del grupo de aplicaciones que se encuentran la carpeta $AFCON~P-CIM[7.70SP4]$.
+%  \item Aparecerá en la pantalla la ventana de $Setup~de~P-CIM$. Elija $Install~P-CIM~Driver$.
+%  \item La ventana de diálogo de instalación del Driver de P-CIM, le pedirá que indique el directorio del driver.
+%        Oprima Browse.
+%  \item Seleccione el directorio de origen del driver para Modbus. En nuestro caso $C:/P-CIM32.BAK/DRIVERS/MODBUS.689$.
+%  Oprima OK y luego Next.
+%  \item El Setup de P-CIM despliega la ventana de diálogo de Bienvenida. Para continuar, oprima Next. 
+%  \item El Setup de P-CIM despliega la ventana de diálogo de Propiedades del Driver de P-CIM 
+%   para Windows 32, indicando los detalles del driver a ser instalado.
+%  \item Elija el/los proyecto(s) en los que Ud. desea instalar el driver o bien seleccione
+%   All (todos) y oprima Next.
+%   \item El Setup de P-CIM procede a efectuar la instalación y finalmente muestra este mensaje: 
+%   “La instalación del driver se ha completado”. Oprima OK para que desaparezca el cuadro de diálogo.
+% \end{enumerate}
 
-\todo{Agregar capturas de pantalla para la instalacion del software}
+\begin{table}[H]
+\centering
+\renewcommand*{\arraystretch}{0.3}
+\begin{tabular}{*{2}{m{0.48\textwidth}}}
+\hline
+  Elija $Setup~de~P-CIM$ del grupo de aplicaciones que se encuentran la carpeta 
+  $AFCON~P-CIM[7.70SP4]$. Luego seleccione $Install~P-CIM~Driver$.
+  &\begin{center}
+    \rule{0.4\textwidth}{0.3\textwidth}
+  \end{center}\\
+\hline
+  La ventana de diálogo de instalación del Driver de P-CIM, le pedirá que 
+  indique el directorio del driver.
+       Oprima Browse.
+  &\begin{center}
+    \rule{0.4\textwidth}{0.3\textwidth}
+  \end{center}\\
+\hline
+  Seleccione el directorio de origen del driver para Modbus. En nuestro caso 
+  $C:/P-CIM32.BAK/DRIVERS/MODBUS.689$. Oprima OK y luego Next.
+  &\begin{center}
+    \rule{0.4\textwidth}{0.3\textwidth}
+  \end{center}\\
+\hline
+ Se despliega la ventana de diálogo de Bienvenida, oprima Next. 
+ Aparecerá la ventana de diálogo de Propiedades del Driver de 
+ P-CIM, indicando los detalles del driver a ser instalado.
+ Elija el/los proyecto(s) en los que Ud. desea instalar el driver o bien 
+ seleccione All (todos) y oprima Next.
+ Se efectuará la instalación y finalmente se muestra el mensaje “La instalación 
+ del driver se ha completado”. Oprima OK para que desaparezca el cuadro de 
+ diálogo.
+  &\begin{center}
+    \rule{0.4\textwidth}{0.3\textwidth}
+  \end{center}\\
+\hline
+\end{tabular}
+\label{tab:installModbus}
+\caption{Instalación del Driver Modbus}
+\end{table}
 
 \subsubsection{Configuracion Driver Modbus}
 Una ves que el driver de Modbus para PCIM se ha instalado correctamente procedemos a realizar su 
@@ -141,40 +198,125 @@ configuración para lograr la comunicación entre el PLC y la computadora de con
 divide en dos partes: 
 \begin{itemize}
  \item Asociar el driver con un puerto P-CIM:\\
- P-CIM para Windows 32 soporta 255 puertos lógicos, nombrados de 1 al 255.
- \begin{enumerate}
-  \item Elija el Setup de P-CIM del grupo P-CIM para Windows 32.
-  \item  Elija el Setup de Comunicación de P-CIM (ALT+M). El Setup de P-CIM
-despliega la ventana de diálogo “Communication Setup” de P-CIM.
-  \item Para agregar una nueva asociación driver-puerto, elija New (ALT+N) o para
-  editar una asociación existente, marque la línea correspondiente y
-  elija Edit (ALT+E).
-  \item El Setup de P-CIM despliega la ventana de diálogo “Port properties” (propiedades
-  de puerto).
-  \item Ingrese el número de puerto entre 1 y 255 en la lista de Nombres de Puerto de
-  la ventana.
-  \item Elija el nombre del driver de la lista de Nombres de Drivers de la ventana (la
-  lista contiene nombres de drivers instalados en el proyecto en curso).
-  \item En el cuadro elija la notación numérica del bit – octal, decimal o hexadecimal –
-  de la lista del Sistema de Numeración del Menor Bit.
-  \item Elija la notación usada para referenciar el bit menos significativo – 0 ó 1 – de la
-  Lista del Sistema de Numeración del Menor Bit.
-  \item Para utilizar el driver en modo emulador, selecciones la casilla de Emulación.
- \end{enumerate}
+ P-CIM soporta 255 puertos lógicos, nombrados de 1 al 255.
+%  \begin{enumerate}
+%   \item Elija el Setup de P-CIM del grupo P-CIM para Windows 32.
+%   \item  Elija el Setup de Comunicación de P-CIM (ALT+M). El Setup de P-CIM
+%   despliega la ventana de diálogo “Project Communication Setup” de P-CIM.
+%   \item Para agregar una nueva asociación driver-puerto, elija New.
+%   \item Para editar una asociación existente, marque la línea correspondiente y
+%   elija Edit.
+%   \item El Setup de P-CIM despliega la ventana de diálogo “Port properties” 
+%   (propiedades de puerto).
+%   \item Ingrese el número de puerto entre 1 y 255 en la lista de Nombres de 
+%   Puerto de la ventana.
+%   \item Elija el nombre del driver de la lista de Driver Name (la lista 
+% contiene nombres de drivers instalados en el proyecto en curso).
+%   \item En el cuadro elija la notación numérica del bit – octal, decimal o 
+%    hexadecimal – de la lista de Bit numbering system.
+%   \item Elija la notación usada para referenciar el bit menos significativo – 0 
+%    ó 1 – de la lista de Lowest bit number (Numeración del Menor Bit).
+%   \item Para utilizar el driver en modo emulador, selecciones la casilla de 
+%   Emulación.
+%  \end{enumerate}
 
+\begin{table}[H]
+\centering
+\renewcommand*{\arraystretch}{0.3}
+\begin{tabular}{*{2}{m{0.48\textwidth}}}
+\hline
+  Elija el Setup de P-CIM del grupo P-CIM para Windows 32.
+  Elija el Setup de Comunicación de P-CIM, de donde se despliega la ventana 
+  de diálogo “Project Communication Setup” de P-CIM.
+  &\begin{center}
+    \rule{0.4\textwidth}{0.3\textwidth}
+  \end{center}\\
+\hline
+  Para agregar una nueva asociación driver-puerto, elija New.
+  Para editar una asociación existente, marque la línea correspondiente
+  y elija Edit
+  &\begin{center}
+    \rule{0.4\textwidth}{0.3\textwidth}
+  \end{center}\\
+\hline
+  Ingrese el número de puerto entre 1 y 255 en la lista de Nombres de 
+  Puerto de la ventana.
+  Elija el nombre del driver de la lista de Driver Name (la lista 
+  contiene nombres de drivers instalados en el proyecto en curso).
+  En el cuadro elija la notación numérica del bit – octal, decimal o 
+  hexadecimal – de la lista de Bit numbering system.
+  Elija la notación usada para referenciar el bit menos significativo –0 
+   ó 1 – de la lista de Lowest bit number (Numeración del Menor Bit).
+  Para utilizar el driver en modo emulador, selecciones la casilla de 
+  Emulación.
+  &\begin{center}
+    \rule{0.4\textwidth}{0.3\textwidth}
+  \end{center}\\
+\hline
+\end{tabular}
+\label{tab:ConfigModbus}
+\caption{Configuracion del Driver Modbus}
+\end{table}
+ 
+ 
+ 
  \item Establecer los parámetros operativos del puerto.\\
- En esta etapa Ud. define las propiedades de un driver para cada puerto (lógico)
+ En esta etapa Ud. define las propiedades de un driver para cada puerto(lógico)
  de P-CIM con el que está asociado.
- \begin{enumerate}
-  \item Elegir el Setup de P-CIM del grupo P-CIM para Windows 32.
-  \item Elegir el Setup de Comunicación de P-CIM (ALT+M). El Setup de P-CIM
-  despliega la ventana de diálogo Communication Setup de P-CIM.
-  \item Marque la línea correspondiente en el cuadro de Puertos Asignados y elija
-  Propiedades (ALT+P).
-  \item El Setup de P-CIM despliega la ventana de diálogo driver específico.
-  Proceda como se indica en la guía de ese driver determinado.
- \end{enumerate} 
+%  \begin{enumerate}
+%   \item Elegir el Setup de P-CIM del grupo P-CIM para Windows 32.
+%   \item Elegir el Setup de Comunicación de P-CIM (ALT+M). El Setup de P-CIM
+%   despliega la ventana de diálogo Project Communication Setup.
+%   \item Marque la línea correspondiente en el cuadro de Puertos Asignados y elija
+%   Properties.
+%   \item El Setup de P-CIM despliega la ventana de diálogo driver específico. 
+%   Para el caso de Modbus se despliega la ventana P-CIM Configurator for MODBUS 
+%   Driver
+%   \item Elija el numero del puerto de P-CIM de la lista P-CIM Port
+%   \item Defina la tabla de Polling mediante el botón Polling Configuration
+%   \item Establezca el tipo de interfaz mediante la lista de Network Type en 
+%   RS232. 
+%   \item Transport Parameter despliega una ventana en la que se debe configurar 
+% el puerto serial con  el mismo nombre con el que aparece en el Administrador de 
+% Dispositivos de Windows.
+%  \end{enumerate} 
 \end{itemize}
+
+\begin{table}[H]
+\centering
+\renewcommand*{\arraystretch}{0.01}
+\begin{tabular}{*{2}{m{0.48\textwidth}}}
+\hline
+  Elija el Setup de P-CIM del grupo P-CIM para Windows 32.
+  Elija el Setup de Comunicación de P-CIM, de donde se despliega la ventana 
+  de diálogo “Project Communication Setup” de P-CIM.
+  &\begin{center}
+    \rule{0.4\textwidth}{0.3\textwidth}
+  \end{center}\\
+\hline
+  Marque la línea correspondiente en el cuadro de Puertos Asignados y elija 
+  Properties. El Setup de P-CIM despliega la ventana de diálogo driver 
+  específico. Para el caso de Modbus se despliega la ventana P-CIM Configurator 
+  for MODBUS Driver.
+  &\begin{center}
+    \rule{0.4\textwidth}{0.3\textwidth}
+  \end{center}\\
+\hline
+   Elija el numero del puerto de P-CIM de la lista P-CIM Port. Defina la tabla 
+   de Polling mediante el botón Polling Configuration. Establezca el tipo de 
+   interfaz mediante la lista de Network Type en RS232. Transport Parameter 
+   despliega una ventana en la que se debe configurar el puerto serial con  el 
+   mismo nombre con el que aparece en el Administrador de Dispositivos de 
+   Windows.
+  &\begin{center}
+    \rule{0.4\textwidth}{0.3\textwidth}
+  \end{center}\\
+\hline
+\end{tabular}
+\label{tab:PropModbus}
+\caption{Propiedades del Driver Modbus}
+\end{table}
+
 
 \subsubsection{Verificación comunicación}
 En este punto podemos verificar que la comunicación entre el PLC y la
@@ -182,87 +324,102 @@ computadora de control se haya establecido. Para monitorear el estado
 de la comunicación podemos utilizar las siguientes herramientas:
 \begin{itemize}
  \item Sumario de Alarmas(Alarm Summary):\\
- Despliega mensajes del Sistema de Arranque, uno de los cuales es: “MODBUS
-  Driver successfully loaded” indicando que el driver halló la tabla de comunicación y
-  fue exitosamente cargado.
+  Despliega mensajes del Sistema de Arranque, uno de los cuales es: “MODBUS
+  Driver successfully loaded” indicando que el driver halló la tabla de 
+  comunicación y fue exitosamente cargado.\todo{agregar imagen}
  \item Monitor de Datos (Datascope):\\
- Para monitorear el estado de la comunicación,
-  debe ingresar en el Monitor de Datos cualquier dirección de PLC que esté definida
-  en la tabla de Polling. Al hacerlo, Ud. tendrá un valor por la dirección que insertó,
+  Esta herramienta se encuentra dentro del subdirectorio $Tools$.
+  Para verificar el estado de la comunicación,
+  debe ingresar en el Monitor de Datos cualquier dirección de PLC que esté 
+  definida en la tabla de Polling. Al hacerlo, Ud. tendrá un valor por la 
+  dirección que insertó,
   indicando que la comunicación está funcionando, o bien recibirá un cero, y
   después de un momento se desplegará un mensaje en la ventana de Resumen
-  de Alarma, indicando que la comunicación falló. Veasé la sec\todo{seccion de las direcciones}
-  para mas información acerca de las direcciones del PLC y la base de datos.
+  de Alarma, indicando que la comunicación falló. Veasé la sec
+  \todo{seccion de las direcciones}
+  para mas información acerca de las direcciones del PLC y la base de 
+  datos.\todo{agregar imagen}
 \end{itemize}
 
 
 \subsection{Capa de procesamiento}
 \label{subsec:CapaProcesamiento}
-Una ves que hemos verificado que se ha establecido la comunicación con el \gls{plc}, 
-nos ocuparemos de la base de datos de P-CIM para Windows. Esta se encarga de recuperar, 
-almacenar y procesar la información de tiempo real e histórica de los controladores, 
-dispositivos periféricos y variables internas, por esta razón conforma la capa de 
-procesamiento.
+Una ves que hemos verificado que se ha establecido la comunicación con el 
+\gls{plc}, nos ocuparemos de la base de datos de P-CIM. Esta se encarga de 
+recuperar, almacenar y procesar la información de tiempo real e histórica de los 
+controladores, dispositivos periféricos y variables internas. Es decir, la base 
+de datos conforma la capa de procesamiento.
 
-La base de datos esta formada por elementos llamados bloques que son utilizados para:
+La base de datos esta formada por elementos llamados bloques que son utilizados 
+para:
 \begin{itemize}
- \item Proporcionar una interfase con el operador.
+ \item Proporcionar una interfaz con el operador.
  \item Generar alarmas.
  \item Intercambiar información.
  \item Registrar información a ser usada en las tendencias.
  \item Convertir información en unidades de ingeniería.
 \end{itemize}
-La creación de los bloques de la base de datos es un paso importante que debería
-ser llevado a cabo después de establecer las comunicaciones.
-
+La creación de los bloques de la base de datos es un paso importante que 
+debe ser llevado a cabo después de establecer las comunicaciones.
 
 \subsubsection{Diseño de la base de datos}
-Para configurar y editar la base de datos se utiliza el programa $Editor~de~la~Base~de~Datos$.
-Al crear la base de datos, se deben tener en cuenta los siguientes puntos:
+Para configurar y editar la base de datos se utiliza el programa 
+$Editor~de~la~Base~de~Datos$ que se encuentra dentro del sub-directorio 
+$Development$. Al crear la base de datos, se deben tener en cuenta los 
+siguientes puntos:
 \begin{itemize}
- \item Tipo de Bloque:\\Existen 8 tipos de bloques de base de datos para el
-manejo de 4 tipos básicos de datos: analógicos (enteros o reales), digitales (un
-solo bit), string o cadena de caracteres (veinte palabras de 16 bits) y
-alarmas (en grupos de 16 bits)
-\item Tiempo de Escrutinio (scan) y de Fase:\\Que son respectivamente:
-  \begin{itemize}
-  \item El intervalo entre sucesivos procesamientos del bloque.
-  \item El tiempo inicial de demora entre la carga de la base de datos hasta el primer
-  procesamiento del bloque.
-  \end{itemize}
-  Ambos en el orden de 1-255 unidades donde la unidad de tiempo por defecto es un segundo.
-\item Alarmas:\\Las alarmas pueden ser definidas para los bloques de Valor Analógico, Valor
-Digital, de Cálculo y Booleanos.
-\item Tendencias en tiempo real a corto plazo (S.T.) e Histórica (H.T.):son el número de lecturas 
-  (0-255) a ser promediadas para cada punto 
-  \begin{itemize}
-  \item en un gráfico de tendencia en tiempo real.
-  \item registrado en el archivo de tendencia histórica
-  \end{itemize}
-  respectivamente.
-\item Target y Targetlogic:\\Los bloques del target son campos de la base de datos que reciben valores de
-otros bloques de la base de datos.
-\item Aseguramiento (Clamping):\\Es utilizado para limitar la salida de un bloque de la base de datos o
-la entrada de un control a una especificada amplitud de valores superior/inferior.
-\item Inversión:\\ Invierte los valores de la entrada desde el dispositivo y los
-valores de la salida hacia el dispositivo.
+  \item Tipo de Bloque:\\Existen 8 tipos de bloques de base de datos para el
+    manejo de 4 tipos básicos de datos: analógicos (enteros o reales),digitales 
+    (un solo bit), string o cadena de caracteres (veinte palabras de 16 bits) y
+    alarmas (en grupos de 16 bits)
+  \item Tiempo de Escrutinio (scan) y de Fase:\\Que son respectivamente:
+    \begin{itemize}
+      \item El intervalo entre sucesivos procesamientos del bloque.
+      \item El tiempo inicial de demora entre la carga de la base de datos 
+      hasta el primer procesamiento del bloque.
+    \end{itemize}
+    Ambos en el orden de 1-255 unidades donde la unidad de tiempo por defecto es 
+    un segundo.
+  \item Alarmas:\\Las alarmas pueden ser definidas para los bloques de Valor 
+    Analógico, Valor Digital, de Cálculo y Booleanos.
+  \item Tendencias en tiempo real a corto plazo (S.T.) e Histórica (H.T.):\\son 
+    el número de lecturas (0-255) a ser promediadas para cada punto 
+    \begin{itemize}
+      \item en un gráfico de tendencia en tiempo real.
+      \item registrado en el archivo de tendencia histórica
+    \end{itemize}
+    respectivamente.
+  \item Target y Targetlogic:\\Los bloques del target son campos de la base de 
+    datos que reciben valores de otros bloques de la base de datos.
+  \item Aseguramiento (Clamping):\\Es utilizado para limitar la salida de un 
+    bloque de la base de datos o la entrada de un control a una especificada 
+    amplitud de valores superior/inferior.
+  \item Inversión:\\ Invierte los valores de la entrada desde el dispositivo y 
+    los valores de la salida hacia el dispositivo.
 \end{itemize}
 
-Teniendo en cuenta estos aspectos y las variables definidas en el \gls{plc}(Ver tabla) \todo{agregar la tabla de variables PLCs}
-para ser leidas por el \gls{scada} definimos los siguientes 3 tipos de bloques
+Teniendo en cuenta estos aspectos y las variables establecidas en el \gls{plc} 
+para la comunicación con el \gls{scada} (Ver tabla)\todo{agregar la tabla de 
+variables PLCs} podemos definir los siguientes 3 grandes grupos de bloques con 
+configuraciones similares.
+ 
 \begin{itemize}
- \item Analog Read/Write: Información desde/hacia el \gls{plc} a la base de datos. Debemos definir entradas
- a la base de datos con la dirección del espacio de memoria en el \gls{plc} para poder acceder en Lectura/Escritura
- en estos registros.
- \item Analog Emulation: Información hacia/desde el \gls{hmi} del \gls{scada} a la base de datos. Es necesario 
- definir variables internas del \gls{scada} para ser utilizadas para lectura/escritura de la \gls{hmi}.
- \item Calculation:  Conversiones en unidades de ingeniería o porcentual según sea necesario. 
- Las variables leídas del \gls{plc} estan definidas en una escala de $0~a~4095$ por esta razón deben ser
- convertidas para adaptarse tanto al \gls{plc} como al \gls{hmi} del \gls{scada}.
+ \item Analog Read/Write: Información desde/hacia el \gls{plc} a la base de 
+  datos. Debemos definir entradas a la base de datos con la dirección del 
+  espacio de memoria en el \gls{plc}   para poder acceder en Lectura/Escritura 
+  en estos registros.
+ \item Calculation:  Conversiones en unidades de ingeniería o porcentual 
+  según sea necesario. Las variables leídas del \gls{plc} estan definidas en 
+  una escala de $0~a~4095$ por esta razón deben ser convertidas para adaptarse 
+  tanto al \gls{plc} como al \gls{hmi} del \gls{scada}.
+ \item Analog Emulation: Información hacia/desde el \gls{hmi} del \gls{scada} a 
+%  la base de datos. Es necesario definir variables internas del \gsl{scada} 
+% para ser utilizadas para lectura/escritura de la \gls{hmi}.
+
 \end{itemize}
 Ahora podemos definir el diseño de nuestra base de datos como se muestra en la tabla\todo{tabla con los bloques DB}
 
-%\input{Cap5-SCADA/Diagrama.tex}
+\input{Cap5-SCADA/Diagrama.tex}
 
 
 \subsubsection{Creación de los bloques de la base de datos}
