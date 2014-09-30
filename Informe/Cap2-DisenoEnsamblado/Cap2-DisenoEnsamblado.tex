@@ -474,7 +474,60 @@ Un convertidor I/P no puede corregir fenómenos tales como la fricción en el
 vástago, perturbaciones del fluído, fuerzas dinámicas, etc. que modifican la
 apertura de la válvula.
 
-\subsubsection{Característica Efectiva de nuestra válvula}
+Para paliar estos problemas, la válvula incluye un electroposicionador Power
+Genex.
+Se trata de un controlador proporcional que compara la posición actual del
+vástago con la consigna de corriente.
+En caso de detectar errores, ejerce la acción de control correctiva para
+asegurar la posición del vástago.
+
+\begin{figure}[t]
+ \centering
+ \includegraphics{Cap2-DisenoEnsamblado/images/PG-EPL.pdf}
+ \caption{Esquema de funcionamiento, posicionador electroneumático.}
+ \label{fig:elp-funcionamiento}
+\end{figure}
+
+En la figura \ref{fig:elp-funcionamiento} se muestra el esquema de
+funcionamiento del electroposicionador.
+La entrada de $4$-$20\,mA$ del controlador provoca una rotación en sentido
+antihorario del motor de torque.
+Lleva consigo al \emph{flapper}, liberando
+presión por la boquilla (\emph{nozzle}) y moviendo la válvula hacia la
+izquierda.
+Se provoca un incremento de presión en \emph{OUT1} moviendo el diafragma del
+actuador.
+
+La varilla de feedback (\emph{feedback lever} releva la posición del vástago y
+la transmite mediante el resorte de feedback, que está vinculado con el
+\emph{flapper}.
+Se verifica que la posición del vástago de la válvula permanece constante
+cuando el resorte de feedback iguala el par de rotación del motor de torque.
+Otros elementos (\emph{compensation spring}, \emph{zero adjusting screw}) se
+agregan para poder mejorar la estabilidad del bucle de control, como así
+también poder calibrarlo\footnote{Explicación obtenida del manual del
+electroposicionador.}.
+
+La tabla \ref{tab:especifElectroP} muestra las características más importantes
+del electroposicionador presente en nuestra planta.
+
+\begin{table}
+ \centering
+ \begin{tabular}{|c|c|}
+  \hline
+  Marca & Power Genex\\
+  Modelo & EPL-FA15N4TL\\
+  Señal entrada & $4$-$20\,mA$ DC\\
+  Presión de entrada & $1.4$ - $7\,bar$ máximo\\
+  Temperatura de trabajo & $-20$a $70^\circ$\\
+  Seguridad & Ex dmb IIB+H2 T6 IP66\\
+  \hline
+ \end{tabular}
+ \caption{Especificaciones del electroposicionador.}
+ \label{tab:especifElectroP}
+\end{table}
+
+\subsubsection{Característica Efectiva de la válvula}
 
 \subsubsection{Montaje}
 
