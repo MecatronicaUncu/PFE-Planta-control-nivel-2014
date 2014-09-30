@@ -527,7 +527,55 @@ algunos aspectos que se destacan en ellas.
 \subsection{Válvula utilizada en el proyecto}
 
 A continuación vamos a describir las características de la válvula utilizada 
-en el proyeto.
+en el proyecto.
+
+\subsection{Gráfico de la válvula}
+
+\begin{figure}\centering
+  \begin{tikzpicture}[scale= 0.1, domain=0:110]
+    
+    \draw[ultra thin,color=gray,step=10cm] (100,49.9) grid (0.1,0.1);
+    \draw[thick,->] (-0.2,0) -- (110,0) node[right,draw=none] {$Apertura [\%]$};
+    \draw[->] (0,-1.2) -- (0,50) node[above,draw=none] {$Q [l/m]$};
+    
+    \foreach \x in {0,10,20,30,40,50,60,70,80,90,100}
+    \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north,draw=none] {$\x$};
+    \foreach \y in {10,20,30,40}
+    \draw (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east,draw=none] {$\y$};
+    
+    \draw[color = orange,ultra thick] (0,4.8) -- (10,5.9) -- (20,10.5)
+    -- (30,18.1) -- (40,23.8) -- (50,27.98) -- (60,30.71)
+    -- (70,32.95) -- (80,33.55) -- (90,33.8) -- (100,33.82);
+   
+\end{tikzpicture}
+\caption{Gráfico de la válvula sin tiempo muerto.}
+\label{graf:valvula}
+\end{figure}
+
+\begin{figure}\centering
+  \begin{tikzpicture}[scale= 0.1, domain=0:110]
+    
+    \draw[ultra thin,color=gray,step=10cm] (100,49.9) grid (0.1,0.1);
+    \draw[thick,->] (-0.2,0) -- (110,0) node[right,draw=none] {$Apertura [\%]$};
+    \draw[->] (0,-1.2) -- (0,50) node[above,draw=none] {$Q [l/m]$};
+    
+    \foreach \x in {0,10,20,30,40,50,60,70,80,90,100}
+    \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north,draw=none] {$\x$};
+    \foreach \y in {10,20,30,40}
+    \draw (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east,draw=none] {$\y$};
+    
+    \draw[color = orange,ultra thick] (0,4.75) -- (10,7.9) -- (20,11.7)
+    -- (30,14.3) -- (40,15.23) -- (50,16.72);
+   
+\end{tikzpicture}
+\caption{Gráfico de la válvula con tiempo muerto.}
+\label{graf:valvulatiempomuerto}
+\end{figure}
+
+
+\subsection{Chocked Flow}
+
+
 
 \section{Instrumentos de Medición}
 \label{sec:InstrumentosMedicion}
