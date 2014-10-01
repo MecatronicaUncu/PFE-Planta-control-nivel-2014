@@ -152,9 +152,10 @@ Para realizar la instalación de este driver de comunicaciones en P-CIM seguimos
 % \end{enumerate}
 
 \begin{table}[H]
+\small
 \centering
 \renewcommand*{\arraystretch}{0.3}
-\begin{tabular}{*{2}{m{0.48\textwidth}}}
+\begin{tabular}{*{2}{m{0.45\textwidth}}}
 \hline
   Elija Setup de P-CIM del grupo de aplicaciones que se encuentran la carpeta 
   AFCON P-CIM[7.70SP4]. Luego seleccione Install P-CIM Driver.
@@ -224,7 +225,7 @@ divide en dos partes:
 \begin{table}[H]
 \centering
 \renewcommand*{\arraystretch}{0.3}
-\begin{tabular}{*{2}{m{0.48\textwidth}}}
+\begin{tabular}{*{2}{m{0.45\textwidth}}}
 \hline
   Elija el Setup de P-CIM del grupo P-CIM para Windows 32.
   Elija el Setup de Comunicación de P-CIM, de donde se despliega la ventana 
@@ -285,7 +286,7 @@ divide en dos partes:
 \begin{table}[H]
 \centering
 \renewcommand*{\arraystretch}{0.01}
-\begin{tabular}{*{2}{m{0.48\textwidth}}}
+\begin{tabular}{*{2}{m{0.45\textwidth}}}
 \hline
   Elija el Setup de P-CIM del grupo P-CIM para Windows 32.
   Elija el Setup de Comunicación de P-CIM, de donde se despliega la ventana 
@@ -440,8 +441,8 @@ grandes grupos con configuraciones similares:
   Lectura/Escritura en estos registros.
  \item Calculation:  Conversiones en unidades de ingeniería o porcentual 
   según sea necesario. Las variables leídas del \gls{plc} estan definidas en 
-  una escala de $0~a~4095$ por esta razón deben ser convertidas para adaptarse 
-  tanto al \gls{plc} como al \gls{hmi} del \gls{scada}.
+  una escala de $0$ a $4095$ por esta razón deben ser convertidas para
+adaptarse tanto al \gls{plc} como al \gls{hmi} del \gls{scada}.
  \item Analog Emulation: Bloque analógico con información hacia/desde el 
   \gls{hmi} del \gls{scada} a la base de datos. Es necesario definir variables 
   internas del \gls{scada} para ser utilizadas para lectura/escritura de la 
@@ -482,7 +483,7 @@ A continuación se muestran los pasos necesarios para la creación de un element
 \begin{table}[H]
 \centering
 \renewcommand*{\arraystretch}{0.01}
-\begin{tabular}{*{2}{m{0.48\textwidth}}}
+\begin{tabular}{*{2}{m{0.45\textwidth}}}
 \hline
   Active P-CIM utilizando el Startup de P-CIM. En el sub-directorio Development 
   de P-CIM oprima el icono del Editor de la Base de Datos
@@ -506,7 +507,7 @@ A continuación se muestran los pasos necesarios para la creación de un element
   \end{center}\\
 \hline
 \end{tabular}
-\label{tab:PropModbus}
+\label{tab:confBlockDB}
 \caption{Configuración de los bloques de la base de datos.}
 \end{table}
 
