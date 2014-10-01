@@ -6,8 +6,8 @@
     \tikzstyle{every pin edge}=[<-,shorten <=1pt, ultra thick]
     \tikzstyle{neuron}=[rectangle,fill=black!25,minimum size=17pt,inner 
 sep=4pt, rounded corners]
-    \tikzstyle{annot} = [text width=4em, text centered]
-    
+    \tikzstyle{annot} = [text width=7em, text centered]
+
     \tikzstyle{plc neuron}=[neuron, fill=green!50];
     \tikzstyle{modbus neuron}=[neuron, fill=red!50, node 
     distance=0.4*5cm];
@@ -19,9 +19,6 @@ sep=4pt, rounded corners]
     distance=0.85*5cm];
     \tikzstyle{emula neuron}=[neuron, fill=green!50, node 
     distance=0.6*5cm];
-    
-    
-    
 
     % Draw the plc layer nodes
      \node[plc neuron, pin=left:Entradas/Salidas] (mw0) at (0,0) 
@@ -229,11 +226,11 @@ cm){\texttt{EMUL\_KP\_WRITE}};
  
   % Annotate the layers
   \node[annot,above of=mw0, node distance=1cm] (plc) {PLC};
-  \node[annot,above of=40001, node distance=1cm] (modbus) {MODBUS};
+  \node[annot,above of=40001, node distance=1cm] (modbus) {MODBUS Address};
   \node[annot,above of=io, node distance=1cm] (aio) {Analog Input Ouput};
-  \node[annot,right of=aio, node distance=0.5*5cm] (calc) {Calculation};
+  \node[annot,right of=aio, node distance=0.75*5cm] (calc) {Calculation};
   \node[annot,above of=eio, node distance=1cm] (emul) {Emulation};
-  \node[annot,above of=a1, node distance=1cm] (emula) {Emulation Adress};
+  \node[annot,above of=a1, node distance=1cm] (emula) {Emulation Address};
 
 \end{tikzpicture}
   }

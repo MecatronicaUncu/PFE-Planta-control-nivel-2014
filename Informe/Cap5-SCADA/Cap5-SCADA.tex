@@ -152,12 +152,13 @@ Para realizar la instalación de este driver de comunicaciones en P-CIM seguimos
 % \end{enumerate}
 
 \begin{table}[H]
+\small
 \centering
 \renewcommand*{\arraystretch}{0.3}
-\begin{tabular}{*{2}{m{0.48\textwidth}}}
+\begin{tabular}{*{2}{m{0.45\textwidth}}}
 \hline
-  Elija $Setup~de~P-CIM$ del grupo de aplicaciones que se encuentran la carpeta 
-  $AFCON~P-CIM[7.70SP4]$. Luego seleccione $Install~P-CIM~Driver$.
+  Elija Setup de P-CIM del grupo de aplicaciones que se encuentran la carpeta 
+  AFCON P-CIM[7.70SP4]. Luego seleccione Install P-CIM Driver.
   &\begin{center}
     \rule{0.4\textwidth}{0.3\textwidth}
   \end{center}\\
@@ -170,7 +171,8 @@ Para realizar la instalación de este driver de comunicaciones en P-CIM seguimos
   \end{center}\\
 \hline
   Seleccione el directorio de origen del driver para Modbus. En nuestro caso 
-  $C:/P-CIM32.BAK/DRIVERS/MODBUS.689$. Oprima OK y luego Next.
+  \texttt{C:\slash P-CIM32.BAK\slash DRIVERS\slash MODBUS.689}. Oprima OK y 
+luego Next.
   &\begin{center}
     \rule{0.4\textwidth}{0.3\textwidth}
   \end{center}\\
@@ -197,6 +199,7 @@ Una ves que el driver de Modbus para PCIM se ha instalado correctamente procedem
 configuración para lograr la comunicación entre el PLC y la computadora de control. Esta tarea se
 divide en dos partes: 
 \begin{itemize}
+
  \item Asociar el driver con un puerto P-CIM:\\
  P-CIM soporta 255 puertos lógicos, nombrados de 1 al 255.
 %  \begin{enumerate}
@@ -219,15 +222,14 @@ divide en dos partes:
 %   \item Para utilizar el driver en modo emulador, selecciones la casilla de 
 %   Emulación.
 %  \end{enumerate}
-
-\begin{table}[H]
+\begin{table}[!ht]
 \centering
 \renewcommand*{\arraystretch}{0.3}
-\begin{tabular}{*{2}{m{0.48\textwidth}}}
+\begin{tabular}{*{2}{m{0.45\textwidth}}}
 \hline
   Elija el Setup de P-CIM del grupo P-CIM para Windows 32.
   Elija el Setup de Comunicación de P-CIM, de donde se despliega la ventana 
-  de diálogo “Project Communication Setup” de P-CIM.
+  de diálogo "Project Communication Setup" de P-CIM.
   &\begin{center}
     \rule{0.4\textwidth}{0.3\textwidth}
   \end{center}\\
@@ -260,9 +262,9 @@ divide en dos partes:
  
  
  
- \item Establecer los parámetros operativos del puerto.\\
- En esta etapa Ud. define las propiedades de un driver para cada puerto(lógico)
- de P-CIM con el que está asociado.
+\item Establecer los parámetros operativos del puerto.\\
+  En esta etapa Ud. define las propiedades de un driver para cada puerto(lógico)
+  de P-CIM con el que está asociado.
 %  \begin{enumerate}
 %   \item Elegir el Setup de P-CIM del grupo P-CIM para Windows 32.
 %   \item Elegir el Setup de Comunicación de P-CIM (ALT+M). El Setup de P-CIM
@@ -281,11 +283,10 @@ divide en dos partes:
 % Dispositivos de Windows.
 %  \end{enumerate} 
 \end{itemize}
-
-\begin{table}[H]
+\begin{table}[!ht]
 \centering
 \renewcommand*{\arraystretch}{0.01}
-\begin{tabular}{*{2}{m{0.48\textwidth}}}
+\begin{tabular}{*{2}{m{0.45\textwidth}}}
 \hline
   Elija el Setup de P-CIM del grupo P-CIM para Windows 32.
   Elija el Setup de Comunicación de P-CIM, de donde se despliega la ventana 
@@ -317,6 +318,35 @@ divide en dos partes:
 \caption{Propiedades del Driver Modbus}
 \end{table}
 
+\subsubsection{Direccionando Información del Driver}
+\label{subsubsec:InforDriver}
+El acceso directo es el método por el cual los programas de aplicación (por
+ejemplo, la base de datos) recuperan la información recibida directamente de 
+los drivers de comunicación.
+
+El formato en el cual las direcciones externas son especificadas en las
+aplicaciones de P-CIM (Database, Animation Editor, y Operator
+Workstation) es driver-dependiente. Estas son referenciadas especificando:
+\begin{itemize}
+ \item Server:El nombre del servidor es DBSR
+ \item Topic: El nombre del tópico es PCIM
+ \item Item: Especificado en el formato genérico Port:PLC:Address:Bit, en
+  el que:
+  \begin{itemize}
+   \item Port number: el puerto de P-CIM asignado utilizado para la 
+información, 
+    tal como se especificó en el Setup de Comunicación de P-CIM.
+   \item PLC number: el número del PLC en la red de PLC (la sintaxis es driver-
+    dependiente).
+    \item Address: la dirección del dato o registro. La sintáxis depende 
+    directamente del driver. Siendo para el driver Modbus la direccion 40001 el 
+equivalente directo a MW0 en el \gls{plc}
+    \item Bit number: (opcional) el número de un bit específico en una palabra 
+    o registro.
+  \end{itemize}
+  Ejemplo: 1:1:40001:2 hace referencia al bit 2 del registro 40001 o MW0 en el 
+  PLC 1 que está conectado al Puerto 1.
+\end{itemize}
 
 \subsubsection{Verificación comunicación}
 En este punto podemos verificar que la comunicación entre el PLC y la
@@ -328,17 +358,16 @@ de la comunicación podemos utilizar las siguientes herramientas:
   Driver successfully loaded” indicando que el driver halló la tabla de 
   comunicación y fue exitosamente cargado.\todo{agregar imagen}
  \item Monitor de Datos (Datascope):\\
-  Esta herramienta se encuentra dentro del subdirectorio $Tools$.
+  Esta herramienta se encuentra dentro del subdirectorio Tools.
   Para verificar el estado de la comunicación,
   debe ingresar en el Monitor de Datos cualquier dirección de PLC que esté 
   definida en la tabla de Polling. Al hacerlo, Ud. tendrá un valor por la 
   dirección que insertó,
   indicando que la comunicación está funcionando, o bien recibirá un cero, y
   después de un momento se desplegará un mensaje en la ventana de Resumen
-  de Alarma, indicando que la comunicación falló. Veasé la sec
-  \todo{seccion de las direcciones}
-  para mas información acerca de las direcciones del PLC y la base de 
-  datos.\todo{agregar imagen}
+  de Alarma, indicando que la comunicación falló. Veasé la 
+  sección\ref{subsubsec:InforDriver} para mas información acerca de las 
+  direcciones del PLC y la base de datos.\todo{agregar imagen}
 \end{itemize}
 
 
@@ -364,8 +393,8 @@ debe ser llevado a cabo después de establecer las comunicaciones.
 
 \subsubsection{Diseño de la base de datos}
 Para configurar y editar la base de datos se utiliza el programa 
-$Editor~de~la~Base~de~Datos$ que se encuentra dentro del sub-directorio 
-$Development$. Al crear la base de datos, se deben tener en cuenta los 
+Editor de la Base de Datos que se encuentra dentro del sub-directorio 
+Development. Al crear la base de datos, se deben tener en cuenta los 
 siguientes puntos:
 \begin{itemize}
   \item Tipo de Bloque:\\Existen 8 tipos de bloques de base de datos para el
@@ -398,83 +427,134 @@ siguientes puntos:
     los valores de la salida hacia el dispositivo.
 \end{itemize}
 
-Teniendo en cuenta estos aspectos y las variables establecidas en el \gls{plc} 
-para la comunicación con el \gls{scada} (Ver tabla)\todo{agregar la tabla de 
-variables PLCs} podemos definir los siguientes 3 grandes grupos de bloques con 
-configuraciones similares.
+Ahora, teniendo en cuenta las variables establecidas en el \gls{plc} 
+para la comunicación con el \gls{scada} (Ver 
+tablas \ref{table:bitlecturasescrituras} y 
+\ref{table:palabraslecturasescrituras}) podemos definir los bloques de la base 
+de datos que serán necesarios. Estos bloques los dividimos en tres 
+grandes grupos con configuraciones similares:
  
 \begin{itemize}
- \item Analog Read/Write: Información desde/hacia el \gls{plc} a la base de 
-  datos. Debemos definir entradas a la base de datos con la dirección del 
-  espacio de memoria en el \gls{plc}   para poder acceder en Lectura/Escritura 
-  en estos registros.
+ \item Analog Input/Output: Bloque analógico con información desde/hacia el 
+  \gls{plc} a la base de datos. Debemos definir entradas a la base de datos con 
+  la dirección del espacio de memoria en el \gls{plc} para poder acceder en 
+  Lectura/Escritura en estos registros.
  \item Calculation:  Conversiones en unidades de ingeniería o porcentual 
   según sea necesario. Las variables leídas del \gls{plc} estan definidas en 
-  una escala de $0~a~4095$ por esta razón deben ser convertidas para adaptarse 
-  tanto al \gls{plc} como al \gls{hmi} del \gls{scada}.
- \item Analog Emulation: Información hacia/desde el \gls{hmi} del \gls{scada} a 
-%  la base de datos. Es necesario definir variables internas del \gsl{scada} 
-% para ser utilizadas para lectura/escritura de la \gls{hmi}.
-
+  una escala de $0$ a $4095$ por esta razón deben ser convertidas para
+adaptarse tanto al \gls{plc} como al \gls{hmi} del \gls{scada}.
+ \item Analog Emulation: Bloque analógico con información hacia/desde el 
+  \gls{hmi} del \gls{scada} a la base de datos. Es necesario definir variables 
+  internas del \gls{scada} para ser utilizadas para lectura/escritura de la 
+  \gls{hmi}.
 \end{itemize}
-Ahora podemos definir el diseño de nuestra base de datos como se muestra en la tabla\todo{tabla con los bloques DB}
+
+En la figura \ref{fig:bloqDB} se presenta un esquema que sintetiza la 
+configuracion de los bloques que forman la base de datos. En esta, se observa 
+como el dato que se origina del lado \gls{plc} o \gls{hmi} viaja hasta el otro 
+lado por medio de la base de datos.
+La configuracion de los bloques debe ser tal que para:
+\begin{itemize}
+  \item Analog Input/Output: Adress debe tener el valor de MODBUS Driver 
+  correspondiente. El Target esta dado por la punta de la flecha que se origina 
+  en ese bloque.
+  \item Calculation: Parameter es el bloque entretante y Target es el bloque 
+  saliente en el esquema.
+  \item Analog Emulation: Address toma el valor de Emulation Address y el 
+  Target es el bloque al que apunta la flecha. 
+\end{itemize}
 
 \input{Cap5-SCADA/Diagrama.tex}
 
-
 \subsubsection{Creación de los bloques de la base de datos}
-
 A continuación se muestran los pasos necesarios para la creación de un elemento de la base de datos.
-\begin{enumerate}
- \item Active P-CIM para Windows utilizando el Startup de P-CIM.
- \item En el directorio de P-CIM oprima el icono del Editor de la Base de Datos.
- \item Oprima la tecla Add. El Editor de la Base de Datos despliega la ventana de
-  especificaciones de Valor Analógico.
- \item  Ingrese el nombre y complete los campos que correspondan en cada bloque. No se han utilizado
- el resto de las opciones que presenta la base de datos excepto aquellos que fueron expresados anteriormente 
- en la tabla \todo{agregar tabla}
- \item Oprima la tecla OK para regresar al directorio del Bloque.
- \item Oprima la tecla Save DB para guardar la Base de Datos.
-\end{enumerate}
+% \begin{enumerate}
+%  \item Active P-CIM para Windows utilizando el Startup de P-CIM.
+%  \item En el directorio de P-CIM oprima el icono del Editor de la Base de Datos.
+%  \item Oprima la tecla Add. El Editor de la Base de Datos despliega la ventana de
+%   especificaciones de Valor Analógico.
+%  \item Ingrese el nombre y complete los campos que correspondan en cada 
+% bloque. No se han utilizado
+%  el resto de las opciones que presenta la base de datos excepto aquellos que fueron expresados anteriormente 
+%  en la tabla \todo{agregar tabla}
+%  \item Oprima la tecla OK para regresar al directorio del Bloque.
+%  \item Oprima la tecla Save DB para guardar la Base de Datos.
+% \end{enumerate}
+\begin{table}[H]
+\centering
+\renewcommand*{\arraystretch}{0.01}
+\begin{tabular}{*{2}{m{0.45\textwidth}}}
+\hline
+  Active P-CIM utilizando el Startup de P-CIM. En el sub-directorio Development 
+  de P-CIM oprima el icono del Editor de la Base de Datos
+  &\begin{center}
+    \rule{0.4\textwidth}{0.3\textwidth}
+  \end{center}\\
+\hline
+  Oprima la tecla Add. El Editor de la Base de Datos despliega la ventana de
+  especificaciones de Valor Analógico. Ingrese el nombre y complete los campos 
+  que correspondan en cada bloque. No se han utilizado el resto de las opciones 
+  que presenta la base de datos excepto aquellos que fueron expresados 
+  anteriormente 
+  &\begin{center}
+    \rule{0.4\textwidth}{0.3\textwidth}
+  \end{center}\\
+\hline
+    Oprima la tecla OK para regresar al directorio del Bloque.
+    Oprima la tecla Save DB para guardar la Base de Datos.
+  &\begin{center}
+    \rule{0.4\textwidth}{0.3\textwidth}
+  \end{center}\\
+\hline
+\end{tabular}
+\label{tab:confBlockDB}
+\caption{Configuración de los bloques de la base de datos.}
+\end{table}
 
-Ahora podemos controlar el funcionamiento del bloque recién configurado de la siguiente manera:
+
+
+Ahora podemos controlar el funcionamiento del bloque recién configurado de la 
+siguiente manera:
 \begin{enumerate}
- \item Abra el Datascope (Monitor de Datos), con un doble click sobre su icono en el
- directorio de P-CIM.
- \item Escriba el nombre de alguno de los bloques antes definidos  y en otro item su
- dirección.
- \item Se debe poder observar en ambos el mismo valor leído(en caso de registros de lectura) o el 
- mismo valor al escribir en uno u otro de los items.
+  \item Abra el Datascope (Monitor de Datos), con un doble click sobre su icono 
+  en el directorio de P-CIM.
+  \item Escriba el nombre de alguno de los bloques antes definidos  y en otro 
+  item su dirección.
+  \item Se debe poder observar en ambos el mismo valor leído(en caso de 
+  registros de lectura) o el mismo valor al escribir en uno u otro de los items.
 \end{enumerate}
-Si esta prueba nos ha dado los resultados esperados podemos estar seguros que nuestros bloques se encuentran 
-bien configurados y podemos proseguir con el desarrollo de nuestro sistema \gls{scada}.
+Si esta prueba nos ha dado los resultados esperados podemos estar seguros que 
+nuestros bloques se encuentran bien configurados y podemos proseguir con el 
+desarrollo de nuestro sistema \gls{scada}.
 
 
 \subsection{Capa de aplicación}
 \label{subsec:CapaAplicacion}
-La tercer y última capa del sistema \gls{scada} es la capa de aplicación. Esta será utilizada en nuestro 
-\gls{pfe} unicamente como \gls{hmi}. Para el desarrollo de la interfaz gráfica definimos un documento 
-gráfico creado con el Editor de Animaciones (Animation Editor). Finalmente, mediante el Servidor de 
-Pantallas (Operator Workstation) se pone en marcha el sistema. A continuación se presentan el desarrollo 
-y descripción de la pantalla realizada mediante las herramientas gráficas provistas por P-CIM para Windows
+La tercer y última capa del sistema \gls{scada} es la capa de aplicación. Esta 
+será utilizada en nuestro \gls{pfe} unicamente como \gls{hmi}. Para el 
+desarrollo de la interfaz gráfica definimos un documento gráfico creado con el 
+Editor de Animaciones (Animation Editor). Finalmente, mediante el Servidor de 
+Pantallas (Operator Workstation) se pone en marcha el sistema. A continuación se 
+presentan el desarrollo y descripción de la pantalla realizada mediante las 
+herramientas gráficas provistas por P-CIM.
 
-Incluye ilustraciones, indicadores y controles emulando un panel de control real
-pero con muchos más elementos. Actúa como interfase entre el operador y la planta.
+%Incluye ilustraciones, indicadores y controles emulando un panel de control 
+%real pero con muchos más elementos. Actúa como interfase entre el operador y 
+%la planta.
 
 
 \subsubsection{Diseño de una pantalla}
-El primer paso en el diseño de un pantalla es la definición de requerimientos con los que debemos cumplir. 
-Estos se resumen en:
+El primer paso en el diseño de un pantalla es la definición de requerimientos 
+con los que debemos cumplir. Estos se resumen en:
 \begin{itemize}
- \item Encendido y Parada de la planta.
- \item Visualización del estado actual de la planta: Niveles, caudal, bombas encendidas, etc
-
+ \item Botones de encendido y parada de la planta.
+ \item Visualización del estado actual de la planta: Niveles, caudal, bombas 
+ encendidas, etc.
  \item Control Manual
  \begin{itemize}
   \item Encender las bombas de manera independiente.
   \item Controlar la abertura de la válvula
  \end{itemize}
-
  \item Control Automático
  \begin{itemize}
   \item Visualizar el seguimiento de la consigna.
@@ -483,12 +563,13 @@ Estos se resumen en:
  \end{itemize}
 \end{itemize}
 
-Ahora mediante el Editor de Animaciones procedemos a producir y definir las características 
-funcionales de la pantalla  que correrá en el Operator Workstation. Mediante las 
-características antes especificadas se obtuvo el resultado que se observa 
-en la figura \todo{agregar figura hmi}. 
+Ahora mediante el Editor de Animaciones (ubicado en el sub-directorio 
+Development) diseñaños y definimos las características funcionales de 
+la pantalla que correrá en el Operator Workstation. Mediante las 
+características antes especificadas se obtuvo el resultado que se observa en la 
+figura \todo{agregar figura hmi}. 
 
-Para dicha interfaz se procedió en el siguiente orden
+Para dicha interfaz se procedió en el siguiente orden:
 \begin{enumerate}
  \item Iniciar el Editor de Animaciones. Elegir el icono de la carpeta de P-CIM. Aparece un pantalla 
  sin nombre. Guarde el archivo asignandole un nombre.
@@ -518,7 +599,7 @@ Para dicha interfaz se procedió en el siguiente orden
 	\item Elegir Properties List (Lista de Propiedades) 
       \end{enumerate}
       Las propiedades están divididas en tres
-      categorías principales: Controls, Indicators, y Special 
+      categorías principales: Controls, Indicators y Special 
       (controles, indicadores y especiales).
       \begin{itemize}
 	\item  Controls: especifica una entrada de datos la cual puede estar dada por 
@@ -542,15 +623,8 @@ Para dicha interfaz se procedió en el siguiente orden
       \begin{enumerate}
        \item 
       \end{enumerate}
-
 \end{enumerate}
-
-
-Diseño y Requerimientos del Pantalla
-Supóngase que el depósito de A en el edificio B se usa para almacenar flores de
-exportación. Almacenar flores requiere condiciones especiales, como iluminación y
-temperatura. 
-
+ 
 
 \section{Ejecución}
 \label{sec:Ejecucion}
