@@ -1,0 +1,61 @@
+\documentclass[10pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage[spanish]{babel}
+\usepackage{etex}
+\usetheme{AmsterdamFclad} %% Nigga nigga nigga
+\usepackage{concrete}
+
+% pdf is displayed in full screen mode automatically
+%\hypersetup{pdfpagemode=FullScreen}
+
+% include packages
+\usepackage{verbatim}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage[all,knot]{xy}
+\xyoption{arc}
+\usepackage{url}
+\usepackage{multimedia}
+\usepackage{hyperref}
+\usepackage{setspace}
+%\usepackage{subcaption}
+\usepackage{todonotes}
+\usepackage{color}
+\usepackage{pbox}
+%\usepackage{pdfpages}
+\usepackage{array}
+
+%% Compilation conditionnelle
+\usepackage{ifthen}
+\newboolean{showcaptions}
+\setboolean{showcaptions}{false}
+
+\setbeamercovered{transparent} % interactive table of contents
+
+%% Include only, to boost compilation speed
+% \includeonly{extraFrames}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{frontPage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\frame{
+	\titlepage
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{Sections/1-Introduccion/1-Introduccion}
+\include{Sections/6-Conclusiones/6-Conclusiones}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

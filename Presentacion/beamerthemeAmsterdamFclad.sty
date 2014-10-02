@@ -1,0 +1,85 @@
+\DeclareOptionBeamer{compress}{\beamer@compresstrue}
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+\useoutertheme[footline=authortitle,subsection=false]{miniframes}
+\useoutertheme[subsection=false]{smoothbars}
+% outer themes include default, infolines, miniframes, shadow, sidebar, smoothbars, smoothtree, split, tree
+
+\useinnertheme{circles}
+% inner themes include circles, default, inmargin, rectangles, rounded
+
+\usefonttheme{professionalfonts}
+% font themes: default, professionalfonts, serif, structurebold, structureitalicserif, structuresmallcapsserif
+
+\definecolor{beamer@blendedblue}{rgb}{0.137,0.466,0.741}
+% define your own colours:
+\definecolor{Red}{rgb}{1,0,0}
+\definecolor{Blue}{rgb}{0,0,1}
+\definecolor{Green}{rgb}{0,1,0}
+\definecolor{Black}{rgb}{0,0,0}
+\definecolor{magenta}{rgb}{1,0,.6}
+\definecolor{lightblue}{rgb}{0,.5,1}
+\definecolor{lightpurple}{rgb}{.6,.4,1}
+\definecolor{gold}{rgb}{.6,.5,0}
+\definecolor{orange}{rgb}{1,0.4,0}
+\definecolor{hotpink}{rgb}{1,0,0.5}
+\definecolor{newcolor2}{rgb}{.5,.3,.5}
+\definecolor{newcolor}{rgb}{0,.3,1}
+\definecolor{newcolor3}{rgb}{1,0,.35}
+\definecolor{darkgreen1}{rgb}{0, .35, 0}
+\definecolor{darkgreen}{rgb}{0, .6, 0}
+\definecolor{darkred}{rgb}{.75,0,0}
+\definecolor{strongOrange}{rgb}{1, 0.4, 0.2}
+\definecolor{softOrange}{rgb}{1,0.8,0.6}
+\definecolor{strongGreen}{rgb}{0.5, 0.65,0.278}
+\definecolor{softBlue}{rgb}{0.81,0.905,0.96}
+\definecolor{greyBlue}{rgb}{0.9019,0.9019,0.9215}
+
+\xdefinecolor{olive}{cmyk}{0.64,0,0.95,0.4}
+\xdefinecolor{purpleish}{cmyk}{0.75,0.75,0,0}
+
+% some code embedded from colorthemes orchid et whale
+
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=structure.fg!75!black}
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=structure.fg!75!black}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=structure.fg!60!black}
+\setbeamercolor*{palette quaternary}{fg=white,bg=structure.fg!50!black}
+
+\setbeamercolor*{sidebar}{use=structure,bg=structure.fg}
+
+\setbeamercolor*{palette sidebar primary}{use=structure,fg=structure.fg!10}
+\setbeamercolor*{palette sidebar secondary}{fg=white}
+\setbeamercolor*{palette sidebar tertiary}{use=structure,fg=structure.fg!50}
+\setbeamercolor*{palette sidebar quaternary}{fg=white}
+
+\setbeamercolor{block title}{use=structure,fg=white,bg=structure.fg!75!black}
+\setbeamercolor{block title alerted}{use=alerted text,fg=white,bg=alerted text.fg!75!black}
+\setbeamercolor{block title example}{use=example text,fg=white,bg=example text.fg!75!black}
+
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!10!bg}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!10!bg}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+\setbeamercolor{structure}{fg=beamer@blendedblue}
+\setbeamercolor{titlelike}{parent=structure}
+\setbeamercolor{frametitle}{fg=white}
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{item}{fg=black}
+
+% to have the same footer on all slides
+%\setbeamertemplate{footline}[text line]{xxx xxx xxx}
+%\setbeamertemplate{footline}[text line]{} % or empty footer
+
+
+%Enlever la barre de navegation
+\setbeamertemplate{navigation symbols}{}
+
+\mode
+<all>
