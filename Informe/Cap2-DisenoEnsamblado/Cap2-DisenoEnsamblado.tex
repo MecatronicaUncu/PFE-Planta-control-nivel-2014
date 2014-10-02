@@ -327,30 +327,68 @@ las acciones de control.
 
 \subsection{Principio de funcionamiento}
 \label{subsec:principioFuncionamiento}
+
+\begin{figure}[ht]
+        \centering
+        \begin{subfigure}[b]{0.36\textwidth}
+\includegraphics[width=\textwidth]
+	{Cap2-DisenoEnsamblado/images/ActuadorValvNeum.pdf}
+                \caption{Actuador neumático inverso.}
+                \label{fig:actuadorValv}
+        \end{subfigure}%
+        ~
+        \begin{subfigure}[b]{0.36\textwidth}
+\includegraphics[width=\textwidth]{Cap2-DisenoEnsamblado/images/ValvGlob.pdf}
+                \caption{Cuerpo de una válvula globo.}
+                \label{fig:cuerpoValv}
+        \end{subfigure}
+        \caption{Elementos constitutivos de una válvula neumática.}
+        \label{fig:elementosValv}
+\end{figure}
+
 Una válvula permite variar el caudal, dependiendo de la consigna que se
 le envíe.
-En la figura \todo{fig valvula} se muestra un ejemplo de válvula de control
-tipo globo con actuador a diafragma.
+En las válvulas neumáticas, la consigna es un valor de presión de aire.
+En la figura \ref{fig:elementosValv} se muestra un ejemplo de válvula de control
+tipo globo, con actuador a diafragma inverso (aire para
+abrir)\footnote{Figuras extraídas de \cite{bib:controlValveHandbook}.}.
+La válvula está compuesta de dos elementos principales: el actuador
+(figura \ref{fig:actuadorValv}) y el cuerpo de la válvula (figura
+\ref{fig:cuerpoValv}).
 
-Se observa un obturador que apoya sobre un asiento, permitiendo la variación de
-caudal gracias al orificio de paso variable que forman al variar su posición
-relativa.
-El vástago es el encargado de modificar la posición del obturador.
-A la vez, sobre el vástago actúan las fuerzas del diafragma y del muelle
-(actuadores).
+El obturador en el cuerpo de la válvula (figura \ref{fig:cuerpoValv}) apoya
+sobre un asiento.
+La variación del caudal se produce gracias al orificio de paso variable
+que forman al variar su posición relativa el conjunto asiento-obturador.
+Sobre el vástago, encargado de modificar la posición del obturador,
+actúan las fuerzas del actuador.
+Como se observa en la figura \ref{fig:actuadorValv}, el actuador en una válvula
+neumática es el conjunto diafragma-muelle.
+
 Puede concluirse, a través del análisis de la válvula, que el caudal depende de
 la presión de aire en el diafragma.
-Generalmente, esta presión oscila entre los $3$ a $15\,psi$.
+Generalmente, la presión oscila entre $3$ a $15\,psi$.
+Esta presión de aire generalmente se obtiene mediante un convertidor
+corriente-presión (I/P).
+El convertidor toma en entrada una señal de corriente proveniente del \gls{plc}
+($4$ - $20\,mA$) y lo transforma en un valor de presión para alimentar el
+diafragma \cite{bib:ApuntesPuglesiValvulas}.
 % \subsubsection{Rangeabilidad}
 % Se denomina rangeabilidad a la razón entre el caudal máximo y el mínimo que
 % puede controlar una válvula
 
 \subsubsection{Tipos de obturador - Característica de caudal inherente}
+Se denomina característica de caudal inherente a la variación del caudal de
+la válvula en función de la carrera, manteniendo una presión diferencial
+$\Delta p$ constante.
+Para representar la característica inherente de una válvula, se grafica en
+abscisas la carrera del obturador y en ordenadas el porcentaje de caudal máximo.
+
 El conjunto asiento-obturador es la parte más importante de la válvula, ya que
-se encargan de controlar el paso del caudal.
-Dependiendo del conjunto obturador-asiento, se obtendrán distintas
-características de caudal inherente de la válvula.
-Podemos distinguir tres conjuntos de válvula, según el tipo de obturador:
+es el elemento final que controla el caudal.
+Dependiendo del tipo de conjunto asiento-obturador, se obtendrán distintas
+características de caudal inherente.
+Podemos distinguir tres conjuntos de válvula:
 \begin{itemize}
   \item \textbf{Obturador Lineal:} el caudal es proporcional a la carrera
   \begin{align}
@@ -366,8 +404,7 @@ que circulaba antes de la variación.
   \begin{align}
     \dfrac{dq}{dl} = a \, q
   \end{align}
-  Operando, podemos reescribir esta expresión puede reescribirse mediante una
-función exponencial.
+  Operando, podemos reescribir esta expresión mediante una función exponencial.
 \begin{align}
  q = b\,e^{a\,l}
  \label{eq:InherenteIsoporcentual1}
@@ -388,24 +425,34 @@ caudal con carreras pequeñas.
 regulación fina del caudal.
 \end{itemize}
 
-Debemos destacar que las características de caudal inherente se obtienen
-manteniendo una presión diferencial $\Delta p$ constante para toda la carrera.
-En la figura \todo{fig}, se muestran las curvas de caudal inherente para cada
-tipo de válvula.
-Se representa en abscisas la carrera del obturador de la válvula y
-en ordenadas el porcentaje de caudal máximo a una presión diferencial constante.
+En la figura \ref{fig:caractInherente}, se grafican las curvas de caudal
+inherente para cada tipo de válvula.
+A simple vista, la válvula con obturador lineal ofrece las mejores
+características para el control regulatorio.
+No obstante, como se expondrá posteriormente, las curvas características de las
+válvulas quedan afectadas por el proceso en el que se utilizan.
+
+\begin{figure}
+ \centering
+ \includegraphics[scale=1.5]{Cap2-DisenoEnsamblado/images/Inherente.png}
+ \caption{Características inherentes según el tipo de obturador.}
+ \label{fig:caractInherente}
+\end{figure}
+
 
 \subsubsection{Característica de caudal efectivas}
 
 La característica de caudal inherente se traza para una presión diferencial
 $\Delta \,p$ constante.
-No obstante, en un proceso real, $\Delta \,p$ no es constante y depende del
-caudal (debido a las pérdidas de carga y a la curva característica de la bomba).
-Se denomina característica de caudal efectiva a la curva que relaciona el
-caudal que atraviesa la válvula dependiendo de su apertura (carrera), cuando la
-válvula está inserta en una planta dada.
-De hecho, diferentes procesos proporcionarán distintos valores de  $\Delta
-\,p$, por lo que la característica de caudal efectiva depende del proceso.
+No obstante, en un proceso real, $\Delta \,p$ no es constante.
+En efecto, las pérdidas de carga y presión entregada por la bomba presentan
+variaciones para diferentes caudales.
+
+Se denomina característica de caudal efectiva a la variación del
+caudal que atraviesa la válvula en función de su carrera, cuando la
+válvula está inserta en una planta.
+Dado que diferentes procesos proporcionarán distintos valores de  $\Delta
+\,p$, la característica de caudal efectiva depende del proceso.
 Evidentemente, esta curva se apartará de la característica de caudal inherente,
 como se demostrará a continuación.
 
@@ -438,12 +485,13 @@ Puede demostrarse \cite{bib:Creus} que
  \label{eq:coef_r_qe_qi}
 \end{align}
 siendo $q_e$ el caudal efectivo y $q_i$ el caudal inherente, que puede
-obtenerse mediante las ecuaciones \eqref{eq:inherenteLineal}
+obtenerse mediante las ecuaciones \eqref{eq:inherenteLineal} y
 \eqref{eq:InherenteIsoporcentual1}.
 
 Puede concluirse, a partir de la ecuación \eqref{eq:coef_r_qe_qi} que la curva
 de caudal efectivo varía dependiendo de $H_2$.
-Se observa que al disminuir r una válvula
+Si se grafican las características efectivas de diferentes tipos de válvulas,
+se observa que al disminuir $r$ (pérdida de carga elevada) una válvula
 isoporcentual tiende a comportarse como una lineal,
 y una válvula lineal se comporta como de apertura rápida.
 
@@ -454,25 +502,41 @@ efectiva ``lo más lineal posible''.
 
 \subsection{Válvula utilizada en el proyecto}
 
-
 En esta sección se describirá las características específicas de la válvula
 utilizada en el proyecto, comparándolas con los principios de funcionamiento
-descriptos en \ref{subsec:principioFuncionamiento}.
+descriptos en la sección \ref{subsec:principioFuncionamiento}.
+
+\subsubsection{Especificaciones}
+Se muestran en la tabla \ref{tab:especifValvs} las especificaciones más
+importantes de la válvula, consignada en su chapa de identificación.
+
+\begin{table}
+\centering
+ \begin{tabular}{|c|c|}
+  \hline
+  Marca & Foxboro\\
+  Modelo & V1S-30CNTSSEBK-50\\
+	& Stabilflo Serie V1\\
+ Actuador & P-50 EA-DO\\
+ Medida Cuerpo & 3/4 roscado\\
+ Interior & Globo vástago\\
+ Característica $C_v$ & $=\%\,CV=10$\\
+ Temperatura & $-30$ a $207^\circ C$\\
+ Aire para & Abrir  \\
+ Carrera & $19\,mm$ \\
+  \hline
+ \end{tabular}
+ \caption{Especificaciones de la válvula electroneumática.}
+ \label{tab:especifValvs}
+\end{table}
 
 \subsubsection{Electroposicionador}
-Se especificó que la presión de aire en el diafragma varía entre $3p\,si$
+Se especificó que la presión de aire en el diafragma varía entre $3\,psi$
 (válvula cerrada) y $15\,psi$ (válvula abierta).
-Esta presión de aire generalmente se obtiene mediante un convertidor
-corriente-presión (I/P).
-El convertidor toma en entrada una señal de corriente proveniente del \gls{plc}
-($4$ - $20\,mA$) y lo transforma en un valor de presión para alimentar el
-diafragma.
-
-No obstante, no hay retroalimentación entre la posición del vástago y la señal
-de corriente.
-Un convertidor I/P no puede corregir fenómenos tales como la fricción en el
-vástago, perturbaciones del fluído, fuerzas dinámicas, etc. que modifican la
-apertura de la válvula.
+No obstante, en un convertidor I/P no hay una real comparación entre
+la posición del vástago y la señal de corriente.
+Ciertos fenómenos como la fricción en el vástago, perturbaciones del fluido,
+fuerzas dinámicas, etc. pueden modificar la apertura de la válvula.
 
 Para paliar estos problemas, la válvula incluye un electroposicionador Power
 Genex.
@@ -481,9 +545,9 @@ vástago con la consigna de corriente.
 En caso de detectar errores, ejerce la acción de control correctiva para
 asegurar la posición del vástago.
 
-\begin{figure}[t]
+\begin{figure}[ht]
  \centering
- \includegraphics{Cap2-DisenoEnsamblado/images/PG-EPL.pdf}
+ \includegraphics[scale=1.1]{Cap2-DisenoEnsamblado/images/PG-EPL.pdf}
  \caption{Esquema de funcionamiento, posicionador electroneumático.}
  \label{fig:elp-funcionamiento}
 \end{figure}
@@ -498,7 +562,7 @@ izquierda.
 Se provoca un incremento de presión en \emph{OUT1} moviendo el diafragma del
 actuador.
 
-La varilla de feedback (\emph{feedback lever} releva la posición del vástago y
+La varilla de feedback (\emph{feedback lever}) releva la posición del vástago y
 la transmite mediante el resorte de feedback, que está vinculado con el
 \emph{flapper}.
 Se verifica que la posición del vástago de la válvula permanece constante
@@ -529,25 +593,45 @@ del electroposicionador presente en nuestra planta.
 
 \subsubsection{Característica Efectiva de la válvula}
 
-\subsubsection{Montaje}
+Como se describió en la sección \ref{subsec:principioFuncionamiento}, la
+característica de caudal efectiva depende del proceso en donde la válvula esté
+inserta.
 
-dada su importancia y sus dimensiones se colocó en el centro de la planta,
-  sobre la base de madera.
-  Al momento del montaje se tuvo especial atención en que se pudiera apreciar
-  con claridad las diferentes partes que la componen, evitando
-  obstruirla con otros elementos de la planta (pudiendo observar su
-  funcionamiento desde todos los ángulos).
-  Durante el montaje se prestó especial atención al nivelado de la válvula.
-  Finalmente, se fijo mediante ménsulas a la base de madera y a la estructura
-  de caño.
+La característica de caudal efectiva puede encontrarse experimentalmente:
+\begin{enumerate}
+ \item La planta se coloca en modo manual, encendiendo ambas bombas.
+ \item Se coloca la válvula en una posición determinada enviando una consigna
+de apertura manual.
+ \item Se ecualiza la planta mediante la válvula manual de la cañería de
+retorno.
+ \item Se obtiene mediante lectura en el DP cell el valor del la presión $h_p$,
+y se calcula el caudal correspondiente.
+ \item Se cambia la posición de la válvula. Se repite 3 a 5.
+\end{enumerate}
 
-\subsection{Gráfico de la válvula}
+Los resultados se muestran en las figuras \ref{fig:valvulaStiempoMuerto} y
+\ref{fig:valvulaCtiempoMuerto}.
+\todo{Sacamos la curva con tiempo muerto?}
+En el caso de la planta con tiempo muerto, sólo fue posible realizar mediciones
+hasta una carrera del $50\,\%$\footnote{En caso de utilizar carreras mayores,
+el manómetro colocado en la cañería de llenado superaba su escala, con el
+riesgo consiguiente de rotura.}.
 
-\begin{figure}\centering
+Puede apreciarse un comportamiento aproximadamente lineal de la válvula entre
+$10\%$ y $70\%$.
+Sobre $70\%$  se produce un fenómeno de saturación conocido como flujo
+estrangulado (\emph{choked flow}), que se discutirá posteriormente.
+Se concluye que la válvula utilizada es adecuada para el
+control regulatorio, debido a su característica efectiva aproximadamente lineal
+en la zona de trabajo.
+
+
+\begin{figure}[ht]
+  \centering
   \begin{tikzpicture}[scale= 0.1, domain=0:110]
     
     \draw[ultra thin,color=gray,step=10cm] (100,49.9) grid (0.1,0.1);
-    \draw[thick,->] (-0.2,0) -- (110,0) node[right,draw=none] {$Apertura [\%]$};
+    \draw[thick,->] (-0.2,0) -- (110,0) node[right,draw=none] {$Carrera [\%]$};
     \draw[->] (0,-1.2) -- (0,50) node[above,draw=none] {$Q [l/m]$};
     
     \foreach \x in {0,10,20,30,40,50,60,70,80,90,100}
@@ -560,15 +644,16 @@ dada su importancia y sus dimensiones se colocó en el centro de la planta,
     -- (70,32.95) -- (80,33.55) -- (90,33.8) -- (100,33.82);
    
 \end{tikzpicture}
-\caption{Gráfico de la válvula sin tiempo muerto.}
-\label{graf:valvula}
+\caption{Característica efectiva de la válvula sin tiempo muerto.}
+\label{fig:valvulaStiempoMuerto}
 \end{figure}
 
-\begin{figure}\centering
+\begin{figure}[ht]
+  \centering
   \begin{tikzpicture}[scale= 0.1, domain=0:110]
     
     \draw[ultra thin,color=gray,step=10cm] (100,49.9) grid (0.1,0.1);
-    \draw[thick,->] (-0.2,0) -- (110,0) node[right,draw=none] {$Apertura [\%]$};
+    \draw[thick,->] (-0.2,0) -- (110,0) node[right,draw=none] {$Carrera [\%]$};
     \draw[->] (0,-1.2) -- (0,50) node[above,draw=none] {$Q [l/m]$};
     
     \foreach \x in {0,10,20,30,40,50,60,70,80,90,100}
@@ -580,22 +665,23 @@ dada su importancia y sus dimensiones se colocó en el centro de la planta,
     -- (30,14.3) -- (40,15.23) -- (50,16.72);
    
 \end{tikzpicture}
-\caption{Gráfico de la válvula con tiempo muerto.}
-\label{graf:valvulatiempomuerto}
+\caption{Característica efectiva de la válvula con tiempo muerto.}
+\label{fig:valvulaCtiempoMuerto}
 \end{figure}
-
 
 \subsection{Efecto de flujo estrangulado}
 
 Luego de analizar los resultados obtenidos en la pruebas de la planta se pudo
-constatar la presencia del efecto de flujo estrangulado o Chocked Flow por su 
-traducción al ingles. En el mismo se observa que el parámetro que se limita es 
-la velocidad del fluido.
+constatar la presencia del efecto de flujo estrangulado o \emph{Choked
+Flow}: se observa que la velocidad del fluido permanece constante, a partir de
+una carrera del $70\%$.
+Posteriores incrementos de la carrera no aumentan la velocidad del fluido en la
+válvula.
 
-Es una condición dinámica del fluido asociada con el efecto Venturi. Cuando un flujo
-de fluido a una presión y temperatura dada pasa a través de una restricción, como
-una garganta, una zona convergente/divergente o una válvula, mientras que disminuye
-la presión la velocidad del fluido aumenta.
+Es una condición dinámica del fluido asociada con el efecto Venturi.
+Cuando un flujo de fluido a una presión y temperatura dada pasa a través de una
+restricción (por ejemplo: garganta, zona convergente/divergente o válvula),
+la presión disminuye y la velocidad del fluido aumenta.
 Considerando condiciones de fluidos subsónico, el principio de conservación de
 masa exige que la velocidad del fluido aumente a medida que disminuye el diámetro 
 de la garganta. Al mismo tiempo, el efecto Venturi ocasiona que la presión estática
@@ -603,9 +689,16 @@ y por lo tanto la densidad disminuyan luego de la restricción. El efecto de flu
 estrangulado es una condición limitante que se genera cuando el caudal no se 
 incrementará con una disminución adicional en la presión aguas abajo de la 
 restricción mientras la presión aguas arriba se mantiene constante.
+\todo{Fuentes? No es por cavitación?}
 
-En el gráfico \ref{graf:valvula} se observa que sobre el 70 \% de apertura de la 
-válvula el caudal no se incrementó significativamente.
+\subsection{Montaje}
+Dada la importancia y tamaño de la válvula, se colocó en el centro de
+la planta, sobre la base de madera.
+Al momento del montaje se tuvo especial atención en que se pudieran apreciar
+con claridad las diferentes partes que la componen.
+Se prestó especial atención al nivelado de la válvula.
+Finalmente, se fijó mediante ménsulas a la base de madera y a la estructura
+de caño.
 
 \section{Instrumentos de Medición}
 \label{sec:InstrumentosMedicion}
