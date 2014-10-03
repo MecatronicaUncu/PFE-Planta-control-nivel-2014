@@ -235,30 +235,38 @@ bombas\todo{algo +?}.
 \section{Tanques}
 \label{sec:Tanques}
 
-Los tanques almacenan el agua que presenta el sistema, y las acciones de
-control están dirigidas a controlar nivel presente en los mismos.
+Los tanques almacenan el agua que del sistema, y las acciones de
+control están dirigidas a establecer el nivel presente en los mismos.
 Se ubicaron en los extremos, sobre las barras de refuerzo.
-Se fijaron los tanques a los refuerzos laterales de la estructura mediante
+Se fijaron los tanques a las barras laterales de la estructura mediante
 abrazaderas.
 
 Son dos caños cloacales de $200\,mm$ de diámetro y un metro de altura, que
 fueron
 sellados en los extremos utilizando tapas.
-La salida de agua se realiza mediante una conexión de tanque de 3/4 pulgada
-colocada en la base del tanque.
+La salida de agua hacia la tubería de aspiración de la bomba se realiza
+mediante una conexión de tanque de 3/4 pulgada colocada en la base del tanque.
 La entrada de agua se realiza por la parte superior, mediante un orificio
-sencillo\todo{verificar}.
+sencillo.
 
-{\color{red}
-Dada la existencia de la conexión de tanque y los efectos diversos de
-rotacionalidad del fluido afectan
-la medición de la presión dada por la celda de presión diferencial.
-Estos efectos nos limitan en el
-área operativa de la planta, pudiendo asegurar
-un buen funcionamiento a partir de un 15\% del nivel
-total.}
-\todo{\textbf{Preguntar a Puglesi por qué pusimos niples}, después revisar
-porcentajes}
+Además, en la base del tanque se colocó una segunda conexión de tanque de 3/4
+pulgada, que se utilizará para medir el nivel.
+Se conectan a esta cañería la celda de presión diferencial y una manguera
+flexible transparente.
+La manguera flexible, colocada en el lateral del tanque, permite obtener una
+lectura visual directa del nivel.
+Por otro lado, la celda de presión diferencial es un elemento de adquisición
+que permite transformar un valor de presión (altura de la columna de agua) en
+una señal $4$-$20\,mA$.
+Se discutirá en la sección \ref{subsec:DPCell}.
+
+Finalmente, dado que la cañería de aspiración de la bomba puede provocar
+perturbaciones en la medición de la celda de presión diferencial, se optó por
+colocar un niple en la conexión del tanque de aspiración.
+De esta manera, se separan físicamente ambas cañerías, reduciendo las
+perturbaciones en la medición de presión.
+Cabe destacar que la inclusión del niple limita el nivel mínimo de la planta a
+un 15\% del nivel total, aproximadamente.
 
 \section{Bombas}
 \label{sec:Bombas}
