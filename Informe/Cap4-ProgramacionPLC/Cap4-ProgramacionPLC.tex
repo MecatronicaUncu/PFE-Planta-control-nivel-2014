@@ -1,23 +1,26 @@
-\chapter{Programación PLC}
+\chapter{Programación del PLC}
 \label{ch:progPLC}
 
-Uno de las partes principales de este trabajo es la programación del \gls{plc}. 
-Una vez montado todo el sistema, 
-realizado el cableado eléctrico y verificado su correcto funcionamiento
-para verificar la seguridad del sistema se procedió a la programación.
+Una vez montado todo el sistema,
+realizado el cableado eléctrico y verificado su correcto funcionamiento de
+manera manual, se procedió a la programación del \gls{plc}.
+Es uno de los objetivos principales para validar el correcto funcionamiento de
+la planta.
 
-En el presente capítulo se describe tanto el algoritmo del programa que se grabo
-en el \gls{plc}, así como el 
-lenguaje utilizado y las diferentes herramientas que ofrece el software 
-con el que se trabajo para poder llevar a cabo la tarea.
+En el presente capítulo se describe tanto el algoritmo del programa de
+control de la planta. como así también el
+lenguaje utilizado para implementar este algoritmo.
+Además, se hará mención a las diferentes herramientas que ofrece el software
+utilizado para el desarrollo y la implementación del programa en el \gls{plc}.
 
 \section{Algoritmo}
 \label{sec:Algoritmo}
-Para comenzar la programación realizada en el lenguaje ladder,
-se pensó en el algoritmo que nos permitiría realizar las acciones
-necesarias para alcanzar los objetivos propuestos. Comenzamos describiendo
-en el algoritmo \ref{img:algoritmo} como de manera estructurada nuestro
-sistema debe comportarse.
+Antes de realizar la programación en lenguaje Ladder, propio del \gls{plc},
+se pensó en el algoritmo para cumplir con todas las tareas que el controlador
+debía realizar (gestión de alarmas, adquisición de parámetros, control de la
+válvula, encendido y apagado de motores).
+Se observa en en el algoritmo \ref{img:algoritmo}, como el controlador
+sistema debe comportarse, de manera estructurada, para cumplir estas tareas.
 
 \begin{algorithm}[!ht]
  \small
@@ -26,10 +29,9 @@ sistema debe comportarse.
   adquisición de nivel, caudal y Set Point\;
   
   \If{nivel > HHL}{
-   alerta de HHL y detención del sistema\;
-   }
+   alerta HHL y detención del sistema (si en modo automático)\;}
   \If{nivel < LLL}{
-    alerta LLL y detención del sistema\;}
+   alerta LLL y detención del sistema (si en modo automático)\;}
   
   \eIf{nivel > HL}{
    alerta de HL\;}{
@@ -38,52 +40,72 @@ sistema debe comportarse.
   \eIf{nivel < LL}{
     alerta LL\;}{
     limpieza de alerta\;}
-  
+
   \If{deseo setear parámetros del controlador}{
-    adquisición Kp, Ti y Td\;}
-    
+    adquisición de nuevos valores Kp, Ti y Td\;}
+
   \eIf{deseo controlar el sistema manualmente}{
-    
-    \eIf{motor 1}{activo motor 1\;}{}
-    \eIf{motor 2}{activo motor 2\;}{}
-    \eIf{válvula}{activo bandera para el bloque del controlador PID}{}
-    }{
-    el sistema continúa trabajando en modo automático\;
+    \If{motor 1}{activo motor 1\;}
+    \If{motor 2}{activo motor 2\;}
+    Desactivo el PID y establezco la posición de la válvula de manera manual\;
     }
-  bloque del controlador PID\;
-  constatar que el sistema funciona segun lo esperado\;
+    {
+    el sistema trabaja en modo automático\;
+    \eIf{Planta en funcionamiento}{
+	Enciendo los motores\;
+	generación de consigna de la válvula en bloque del controlador PID\;
+	constatar que el relevo térmico no se ha activado\;
+	}{
+	Apago los motores\;
+    }
   }
-  
- \caption{Algoritmo de programación}
+}
+ \caption{tareas a cumplir por el controlador de manera secuencial.}
  \label{img:algoritmo}
 \end{algorithm}
 
 \section{Programación}
 \label{sec:Programacion}
-Se utilizó el programa Twido Soft para poder programar el \gls{plc}. Se programó
-en lenguaje Ladder.
+Se utilizó el programa Twido Soft, de Schneider Electric, para poder programar
+el \gls{plc}. Se programó en lenguaje Ladder.
 
-El lenguaje Ladder es muy común en la programación de automatas debido a que es un 
-lenguaje gráfico que esta basado en esquemas eléctricos de control clásicos. En el
-de acuerdo a una combinación de contactos en la entrada se obtiene una acción en la
-salida. De esta manera paso a paso vamos describiendo las acciones que deseamos
-realice el controlador de acuerdo al estado del sistema o las ordenes recibidas desde
-el escada.
+\subsection{Breve descripción de Ladder}
 
-Entre otros, los elementos de entrada con los que cuenta el programa son:
+El lenguaje Ladder es muy utilizado en la programación de autómatas debido a
+que es un lenguaje gráfico, basado en esquemas de tableros eléctricos de
+lógica cableada \cite{bib:ApuntesPuglesiPLC}.
+El principio de funcionamiento es sencillo: de acuerdo a una combinación
+lógica de contactos en la entrada se obtiene una acción en la
+salida.
+De esta manera, vamos describiendo paso a paso las acciones que deseamos que
+el controlador realice, de acuerdo al estado del sistema o las ordenes
+recibidas desde el \gls{scada}.
+
+Los elementos de entrada principales en Ladder son:
 
  \begin{itemize}
   \item Contacto normalmente abierto
   \item Contacto normalmente cerrado
+  \item Función lógica (comparación de una variable con una constante)
  \end{itemize}
- 
-Como acciones de salida encontramos la siguientes:
+
+Los elementos de entrada se combinan mediante acciones lógicas \verb|AND|,
+\verb|OR|, \verb|NOT| (representadas mediante ``conductores'') y otros bloques
+de funciones (timers, contadores, registros).
+Se obtienen así nuevas señales, que pueden ser utilizadas para realizar
+acciones de salida.
+
+Las acciones de salida se representan como bobinas. Encontramos los
+siguientes tipos:
 
   \begin{itemize}
-   \item Tomar el valor lógico de la función de entrada.
-   \item Tomar el valor lógico negado de la función de entrada.
-   \item Seteo la bobina de salida.
-   \item Reseteo de la bobina de salida.
+   \item \textbf{Bobina directa:} toma el valor lógico de la entrada.
+   \item \textbf{Bobina inversa:} toma el valor lógico negado de la entrada.
+   \item \textbf{Bobina set}: establece un valor de salida activo si encuentra
+un valor lógico activo en la entrada. A diferencia de la bobina directa, si la
+entrada se hace inactiva, el valor de salida se mantiene.
+   \item \textbf{Bobina reset:} establece un valor de salida inactivo si
+encuentra un valor lógico activo en la entrada.
   \end{itemize}
 
 El software Twido Soft sirve tanto como para enviar el programa al \gls{plc}, así como 
