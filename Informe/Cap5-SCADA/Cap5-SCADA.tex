@@ -3,34 +3,34 @@
 %Finalmente y para resumir la evolución del proyecto hasta este punto
 Para continuar en el desarrollo es necesario analizar los pasos antes descriptos 
 para la construcción de la planta. De esta manera, en el capitulo 
-\ref{ch:DisenoEnsamblado} detallamos el sistema físico, lo que nos conduce a 
-describir en el capitulo \ref{ch:tablero} el sistema eléctrico y electrónico 
-que anima a la planta, continuando en el capitulo \ref{ch:progPLC} con la lógica
-que regula al sistema completo por medio del \gls{plc}. 
+\ref{ch:DisenoEnsamblado} detallamos el sistema físico de la misma, lo que nos 
+condujo a describir en el capitulo \ref{ch:tablero} el sistema eléctrico y 
+electrónico que la anima, continuamos en el capitulo \ref{ch:progPLC} con la 
+lógica que regula al sistema completo por medio del \gls{plc}. 
 
-Como elemento final del \gls{pfe} se diseño y realizo una \gls{hmi} \gls{scada}
-mediante P-CIM para Windows de AFCON con el objetivo de poder manipular la 
-planta/el sistema sin tener un acceso físico a la misma.
+Como elemento final de este \gls{pfe} se diseño y realizo una \gls{hmi} 
+\gls{scada} mediante P-CIM para Windows de AFCON con el objetivo de poder 
+manipular la planta/el sistema sin tener un acceso físico a la misma.
 
 En el siguiente capítulo se detallan cada uno de los pasos seguidos para la 
 realización de tal interfaz así como también la configuración actual. Mediante 
-esta información el lector podrá entender y por lo tanto modificar en caso de 
-ser necesario el entorno. Sin embargo, este capitulo no esta orientado a la 
-operación misma de la planta mediante el \gls{scada} lo cual se detalla en la 
-sección \todo{agregar la sección donde se describe la operación mediante el 
-scada}
+la información que se brinda en esta sección el lector podrá entender y por lo 
+tanto modificar en caso de ser necesario todo el entorno \gls{scada}. Sin 
+embargo, este capitulo no esta orientado a la operación misma de la planta 
+mediante el \gls{scada} lo cual se detalla en la sección \todo{agregar la 
+sección donde se describe la operación mediante el scada}
 
 \section{Introducción a SCADA}
 \label{sec:IntroScada}
 Aunque un \gls{plc} realiza automáticamente un control pre-programado sobre un 
 proceso, no tienen una manera estándar de presentar la información al operador y 
-ademas estos se distribuyen a lo largo de toda la planta, haciendo difícil 
+ademas suelen estar distribuidos a lo largo de toda la planta, haciendo difícil 
 recoger los datos de manera manual.%para poder concentrarlos
-En cambio, los sistemas \gls{scada} obtienen los datos desde el \gls{plc} o 
-desde otros controladores por medio de algún tipo de red y de manera automática, 
-facilitando la tarea de concentrar los datos. Se puede observar en la 
-Fig.\ref{fig:perspectivaSCADA} de manera esquematica la organizacion 
-de un sistema Planta-PLC-SCADA.
+En cambio, los sistemas \gls{scada} obtienen los datos de manera 
+automática desde múltiples \gls{plc} o desde otros controladores por medio de 
+algún tipo de red de extensión variable, facilitando la tarea de concentrar 
+los datos. Se puede observar en la Fig.\ref{fig:perspectivaSCADA} la 
+organización esquemática de un sistema Planta-PLC-SCADA.
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=0.445\textwidth]
@@ -38,17 +38,19 @@ de un sistema Planta-PLC-SCADA.
 	\caption{Diagrama de un sistema SCADA}
 	\label{fig:perspectivaSCADA}
 \end{figure}
+
 Un sistema \gls{scada} recopila constantemente información de la planta en 
-tiempo real. Luego en la base de datos se almacenan y evalúan los datos, también 
-se generan alarmas en los casos correspondientes. Finalmente, mediante la 
-\gls{hmi} se brinda la información al operario y este a su vez puede enviar 
+tiempo real. Luego mediante una base de datos se almacenan y evalúan los datos, 
+generandose alarmas en los casos correspondientes. Finalmente, mediante 
+la \gls{hmi} se brinda la información al operario y este a su vez puede enviar 
 instrucciones a los \gls{plc} en la planta. También se pueden incluir datos de 
 diagnóstico y manejo de la información así como un cronograma de procedimientos 
 de mantenimiento, información logística, esquemas detallados para un sensor o 
 máquina en particular o incluso sistemas expertos con guía de resolución de 
-problemas. Es entonces claro que la utilización de un sistema \gls{scada} reduce 
+problemas. 
+
+Es entonces claro que la utilización de un sistema \gls{scada} reduce 
 fuertemente las tareas asociadas al control y monitoreo de plantas industriales.
- 
 
 \section{Scada P-CIM}
 \label{sec:ScadaPCIM} 
@@ -60,7 +62,7 @@ descargado desde la pagina de \href{
 http://www.afcon-inc.com/Templates/showpage.asp?TMID=108&FID=733&PID=0&IID=8334}
 {P-CIM 7.70 SP4}.
 
-Dentro de las características del sofware P-CIM se encuentran:
+Dentro de las características que ofrece este sofware se encuentran:
 \begin{itemize}
  \item Compatible con todas las plataformas MS-Windows actuales.
  \item Soporta un gran número de diferentes \gls{plc} y otros dispositivos 
@@ -76,11 +78,13 @@ Dentro de las características del sofware P-CIM se encuentran:
 
 \subsection{Estructura de P-CIM}
 \label{sec:CapasPrograma}
-Como se puede observar en la Fig.\ref{fig:estructuraSCADA} la estructura de 
-P-CIM se divide en tres grandes capas de abstracción:
+P-CIM presenta una estructura que se divide en tres grandes capas de 
+abstracción. Dicha estructura se puede observar en la 
+Fig.\ref{fig:estructuraSCADA}, donde ademas se detallan los diferentes 
+componente de P-CIM que intervienen en cada una de ellas.
 \begin{figure}[ht!]
 \centering
-	\includegraphics[width=0.445\textwidth]
+	\includegraphics[width=0.5\textwidth]
 	{Cap5-SCADA/images/estructura.jpeg}
 	\caption{Esquema de la estructura en capas de P-CIM}
 	\label{fig:estructuraSCADA}
@@ -88,26 +92,28 @@ P-CIM se divide en tres grandes capas de abstracción:
 
 \begin{itemize}
  \item Capa de Comunicación: Se encarga de la comunicación entre el \gls{plc} y 
- la PC.
- \item Capa de Procesamiento de Datos: Donde se lleva a cabo la mayor parte del 
-  procesamiento de datos, registro histórico y manejo de alarmas.
+ la PC. Por ello es necesario la instalación y configuración de un driver que 
+ gestione tal comunicación. Ver Sec.\ref{subsec:CapaComunicacion}.
+ \item Capa de Procesamiento de Datos: Donde por medio de una base de datos se 
+lleva a cabo el procesamiento de datos, registro histórico y manejo de alarmas. 
+Ver Sec.\ref{subsec:CapaProcesamiento}.
  \item Capa de aplicación: Presenta la información, interactúa con el operador 
-  y realiza los controles de alto nivel y de programación.
+  y realiza los controles de alto nivel y de programación. Esta tarea 
 \end{itemize}
 
 El trabajo coordinado se resume en que la información de campo del PLC llega al 
 \gls{scada} a través de la capa de comunicación. Esta se transfiere a la Capa de 
 Procesamiento de Datos (Servidor de la Base de Datos o Database Server) donde se 
-analiza. La capa de aplicación la procesa y envía hacia la \gls{hmi}. De esta 
-manera el funcionamiento conjunto de cada una de estas capas permite al sistema 
-\gls{scada} funcionar de manera correcta y con las prestaciones antes 
-mencionadas.
+analiza. La capa de aplicación la procesa y envía hacia el Operator 
+Workstation(\gls{hmi}). De esta manera el funcionamiento conjunto de cada una de 
+estas capas permite al sistema \gls{scada} funcionar de manera correcta y con 
+las prestaciones antes mencionadas.
 
 
 \section{Desarrollo de la aplicacion SCADA con P-CIM}
 A continuación, se detalla la aplicación \gls{scada} desarrollada para este 
 \gls{pfe} en el software P-CIM. Su exposición esta dividida de acuerdo a la 
-estructura en capas del programa,como se describió en la sección 
+estructura en capas del programa, como se describió en la sección 
 \ref{sec:CapasPrograma}.
 
 \subsection{Capa de comunicación}
@@ -537,23 +543,31 @@ de la base de datos (Ver Tab.\ref{tab:confBlockDB}).
   Active P-CIM utilizando el Startup de P-CIM. En el sub-directorio Development 
   de P-CIM oprima el icono del Editor de la Base de Datos
   &\begin{center}
-    \rule{0.4\textwidth}{0.3\textwidth}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[width=0.4\textwidth]
+      {Cap5-SCADA/images/startUp.jpeg}
   \end{center}\\
 \hline
-  Oprima la tecla Add. El Editor de la Base de Datos despliega la ventana de
-  especificaciones de Valor Analógico. Ingrese el nombre y complete los campos 
-  que correspondan en cada bloque. No se han utilizado el resto de las opciones 
-  que presenta la base de datos excepto aquellos que fueron expresados 
-  anteriormente 
-  &\begin{center}
-    \rule{0.4\textwidth}{0.3\textwidth}
-  \end{center}\\
+    Dentro del Editor de la Base de Datos se desplegara la ventana de Block 
+    Directory. En esta ultima se muestran los bloques que han sido creados y 
+    están clasificados en las pestañas según su tipo.  Oprima la tecla Add, se 
+    despliega la ventana de especificaciones de Valor Analógico 
+    &\begin{center}
+      %\rule{0.4\textwidth}{0.3\textwidth}
+      \includegraphics[width=0.4\textwidth]
+	{Cap5-SCADA/images/database.jpeg}
+    \end{center}\\
 \hline
+    Ingrese el nombre y complete los campos que correspondan en cada bloque. 
+    No se han utilizado el resto de las opciones que presenta la base de datos 
+    excepto aquellos que fueron expresados anteriormente 
     Oprima la tecla OK para regresar al directorio del Bloque.
-    Oprima la tecla Save DB para guardar la Base de Datos.
-  &\begin{center}
-    \rule{0.4\textwidth}{0.3\textwidth}
-  \end{center}\\
+    y Save DB para guardar la Base de Datos.
+    &\begin{center}
+      %\rule{0.4\textwidth}{0.3\textwidth}
+      \includegraphics[width=0.4\textwidth]
+	{Cap5-SCADA/images/database1.jpeg}
+    \end{center}\\
 \hline
 \end{tabular}
 \caption{Configuración de los bloques de la base de datos.}
@@ -613,10 +627,9 @@ con los que debemos cumplir. Estos se resumen en:
 \end{itemize}
 
 Ahora mediante el Editor de Animaciones (ubicado en el sub-directorio 
-Development) diseñaños y definimos las características funcionales de 
-la pantalla que correrá en el Operator Workstation. Mediante las 
-características antes especificadas se obtuvo el resultado que se observa en la 
-figura \todo{agregar figura hmi}. 
+Development) diseñamos y definimos las características funcionales de 
+la pantalla que correrá en el Operator Workstation. 
+
 
 Para la realización de dicha interfaz se procedió en el siguiente orden:(Ver 
 Tab.\ref{tab:diseñoAnimGraf})
@@ -681,11 +694,13 @@ Tab.\ref{tab:diseñoAnimGraf})
 \renewcommand*{\arraystretch}{0.01}
 \begin{tabular}{*{2}{m{0.435\textwidth}}}
    \hline
-	Iniciar el Editor de Animaciones. Elegir el icono de la carpeta de 
-	P-CIM. Aparece un pantalla sin nombre. Guarde el archivo asignándole un 
-	nombre.
+	Iniciar el Editor de Animaciones que se encuentra en el sub-directorio 
+	Development. Aparece un pantalla sin nombre "untitled". Guarde el 
+archivo 	asignándole un nombre.
 	&\begin{center}
-	  \rule{0.4\textwidth}{0.3\textwidth}
+	  %\rule{0.4\textwidth}{0.3\textwidth}
+	 \includegraphics[width=0.4\textwidth]
+	{Cap5-SCADA/images/animEdit.jpeg}
 	\end{center}\\
    \hline
 	Crear la ilustración básica con el Editor de Animaciones para  
@@ -693,7 +708,9 @@ Tab.\ref{tab:diseñoAnimGraf})
 	la biblioteca de ClipArt. Los objetos gráficos insertados pueden ser 
 	movidos, redimensionados, editados y asignarle propiedades.
 	&\begin{center}
-	  \rule{0.4\textwidth}{0.3\textwidth}
+	  %\rule{0.4\textwidth}{0.3\textwidth}
+	   \includegraphics[width=0.4\textwidth]
+	{Cap5-SCADA/images/animEdit1.jpeg}
 	\end{center}\\
    \hline
 	  Para animar un objeto gráfico se debe seleccionar 
@@ -702,7 +719,9 @@ Tab.\ref{tab:diseñoAnimGraf})
 	  Propiedades). Un signo de visto en una casilla de propiedades 
 	  significa que ésta es la propiedad asignada al objeto gráfico. 
 	&\begin{center}
-	  \rule{0.4\textwidth}{0.3\textwidth}
+	  %\rule{0.4\textwidth}{0.3\textwidth}
+	   \includegraphics[width=0.4\textwidth]
+	{Cap5-SCADA/images/animEdit2.jpeg}
 	\end{center}\\
    \hline
 	  Luego aparece otra ventana de diálogo:
@@ -712,7 +731,9 @@ Tab.\ref{tab:diseñoAnimGraf})
 	  respectivamente el origen de los datos mostrados por el indicador o 
 	  el destino de los datos escritos por el objeto de control. 
 	&\begin{center}
-	  \rule{0.4\textwidth}{0.3\textwidth}
+	  %\rule{0.4\textwidth}{0.3\textwidth}
+	   \includegraphics[width=0.4\textwidth]
+	{Cap5-SCADA/images/animEdit3.jpeg}
 	\end{center}\\
    \hline
       \end{tabular}
@@ -723,18 +744,98 @@ Tab.\ref{tab:diseñoAnimGraf})
 
 Las propiedades que pueden ser asignadas a un elemento gráfico están divididas 
 en tres categorías principales: Controls, Indicators y Special (controles, 
-indicadores y especiales).
+indicadores y especiales). Como se puede ver \todo{agregar imagen}
 \begin{itemize}
 \item  Controls: especifica una entrada de datos la cual puede estar dada por 
 	casillas de entrada de datos, botones que inician acciones, o
 	potenciómetros que permiten fijar valores analógicos.
+	
+	
+  \begin{figure}[!ht]
+	\centering
+	\begin{subfigure}[b]{0.2\textwidth}
+	    \includegraphics[width=\textwidth]{Cap5-SCADA/images/actbtn.jpeg}
+	    \caption{}
+	    \label{}
+  	\end{subfigure}
+	\begin{subfigure}[b]{0.2\textwidth}
+	    \includegraphics[width=\textwidth]{Cap5-SCADA/images/actbtn1.jpeg}
+	    \caption{}
+	    \label{}
+  	\end{subfigure}
+% 	\begin{subfigure}[3]{0.3\textwidth}
+% 	    \includegraphics[width=\textwidth]{Cap5-SCADA/images/actbtn2.jpeg}}
+% 	    \caption{}
+% 	    \label{}
+%   	\end{subfigure}
+	\caption{Interfaz Gráfica del SCADA}
+	\label{fig:controlshmi}
+  \end{figure}
+	
+	
 \item Indicators: usados para crear presentaciones textuales, de color
 	y gráficas de los datos, en estos los contenidos, posición, color y
 	tamaño cambian en función del valor de los datos.
+  \begin{figure}[!ht]
+	\centering
+	\begin{subfigure}[b]{0.2\textwidth}
+	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/indicator.jpeg}
+	    \caption{}
+	    \label{}
+  	\end{subfigure}
+	\begin{subfigure}[b]{0.2\textwidth}
+	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/indicator1.jpeg}
+	    \caption{}
+	    \label{}
+  	\end{subfigure}
+% 	\begin{subfigure}[3]{0.3\textwidth}
+% 	    \includegraphics[width=\textwidth]{Cap5-SCADA/images/actbtn2.jpeg}}
+% 	    \caption{}
+% 	    \label{}
+%   	\end{subfigure}
+	\caption{Interfaz Gráfica del SCADA}
+	\label{fig:indicatorhmi}
+  \end{figure}
+	
 \item Special: esta categoría es usada para especificar Gráficos de Tendencia o
 	“Medidores de Desviación”.
 \end{itemize}
+  \begin{figure}[!ht]
+	\centering
+	\begin{subfigure}[b]{0.2\textwidth}
+	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/tendencia.jpeg}
+	    \caption{}
+	    \label{}
+  	\end{subfigure}
+	\begin{subfigure}[b]{0.2\textwidth}
+	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/tendencia1.jpeg}
+	    \caption{}
+	    \label{}
+  	\end{subfigure}
+	\begin{subfigure}[b]{0.2\textwidth}
+	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/tendencia2.jpeg}
+	    \caption{}
+	    \label{}
+  	\end{subfigure}
+	\begin{subfigure}[b]{0.2\textwidth}
+	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/tendencia3.jpeg}
+	    \caption{}
+	    \label{}
+  	\end{subfigure}
+	\caption{Interfaz Gráfica del SCADA}
+	\label{fig:tendhmi}
+  \end{figure}
 
+
+Mediante las características antes especificadas se obtuvo el resultado que se 
+observa en la figura \ref{fig:hmiscada}.
+  \begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]
+	{Cap5-SCADA/images/hmiScada.jpeg}
+	\caption{Interfaz Gráfica del SCADA}
+	\label{fig:hmiscada}
+  \end{figure}
 
 \section{Ejecución}
 \label{sec:Ejecucion}
