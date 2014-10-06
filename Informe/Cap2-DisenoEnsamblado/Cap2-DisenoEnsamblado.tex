@@ -711,7 +711,7 @@ de caño.
 \section{Instrumentos de Medición}
 \label{sec:InstrumentosMedicion}
 Para conocer el estado de la planta, es necesario tener conocimiento del
-estado de numerosas variables, a saber:
+estado de varias variables de la planta, a saber:
 \begin{itemize}
  \item \textbf{Nivel de los tanques}
  \item \textbf{Caudal en las tuberías}
@@ -722,21 +722,14 @@ medir y controlar estas variables de interés.
 
 \subsection{DP Cell}
 \label{subsec:DPCell}
- distinguimos dos celdas de presión diferencial:
-  aquella que nos sirve para conocer el nivel de agua se colocó cerca del 
-  tanque controlado, dado que se necesitaba conectar una de sus entradas al 
-  nivel más bajo del tanque y la otra a presión atmosférica. 
-  Por otro lado, la celda de presión diferencial utilizada para inferir el 
-  caudal deberá conectarse a ambas secciones de la placa orificio.
-  Ambas fueron fijadas a la base de madera mediante tornillos.
 
 Se denomina \textit{DP Cell}, o celda de presión diferencial, a un sensor
 que mide la diferencia de presión entre dos puntos.\todo{Una foto chabon}
-En nuestro caso, entrega una corriente proporcional a la diferencia de presión 
-medida en el rango de $4-20\,mA$.
-
-La DP cell utilizada tiene las siguientes características consignadas en 
-la chapa de identificación\todo{Verificar}:
+En nuestro caso, la celda entrega una corriente proporcional a la diferencia de
+presión medida, en el rango de $4-20\,mA$.
+Este valor de corriente será leído por el controlador de la planta.
+Las DP cell utilizadas tienen las especificaciones que se muestran en la tabla
+\ref{tab:caractDPcell}.
 
 \begin{table}
 \centering
@@ -744,32 +737,52 @@ la chapa de identificación\todo{Verificar}:
 \hline
 Marca & Yokogawa\\
 Modelo & EJA 110 A\\
+Sufijo & EMSOA - 22EN / FU1 / D4\\
 Tensión & $10.5\,-\,30 \, DC$\\
 Output & $4-20\,mA$\\
-Seguridad & MWP 160\\
+Presión máxima & $160\,bar$\\
+Rango de calibración & $0$ a $10000\,mmCa$\\
 \hline
 \end{tabular}
-\caption{Especificaciones de las celdas de presión diferencial}
+\caption{Especificaciones de las celdas de presión diferencial.}
+\label{tab:caractDPcell}
 \end{table}
-
 
 Dos celdas serán utilizadas:
 \begin{itemize}
- \item \textbf{Medición del nivel del tanque:} La celda se encuentra conectada
- al fondo del tanque controlado, y mide la presión debida al peso
- de la columna de agua en el tanque. 
- Podemos encontrar la altura del nivel en el tanque $h$ mediante la ecuación
- \begin{align}
-  h &= \dfrac{P}{\gamma}
- \end{align}
-donde $P$ es la presión medida por la celda, y $\gamma$ es el peso especifico
-del fluído.
-\item \textbf{Medición del caudal en la tubería de ida al tanque controlado:}
-Se utilizará una placa orificio para generar una caída de presión debida al 
-caudal (ver sección \ref{subsec:PlacaOrificio}). 
-La celda deberá entonces medir la diferencia de presión antes y después
+ \item \textbf{Medición del nivel del tanque:} una de las entradas de la celda
+se conecta  al nivel más bajo del tanque y la otra a presión atmosférica.
+La celda mide la presión debida al peso  de la columna de agua en el tanque.
+Fue calibrada de manera que entregara un valor de corriente mínimo
+cuando el tanque está vacío, y un valor máximo en el caso de que esté
+lleno.
+Así, el valor entregado por la celda es proporcional al nivel de
+agua en el tanque.
+
+\item \textbf{Medición del caudal en la tubería de llenado del tanque
+controlado:}
+Se utilizará una placa orificio para generar una caída de presión debida al
+caudal.
+Las entradas de la celda se conectan aguas arriba y aguas abajo
 de la placa orificio.
+Se mide de esta manera la diferencia de presión entre ambos puntos, que será
+traducido en un valor de caudal en el
+controlador (ver sección \ref{subsec:PlacaOrificio}).
 \end{itemize}
+
+Ambas celdas fueron fijadas a la base de madera mediante tornillos.
+Las conexiones de las entradas se realizaron con mangueras de alta presión
+malladas, de $6\,mm$.
+
+Debemos destacar que, para el caso de la celda de caudal, ambas
+entradas se conectaron entre si mediante una válvula manual.
+Esta válvula se utiliza solamente durante el primer arranque de la planta:
+cuando la cañería está vacía y la bomba B1 se activa, tenemos por una pequeña
+fracción de tiempo una presión diferencial de $12\,mCa$ que puede dañar la
+celda.
+Para evitar este fenómeno, la válvula manual que conecta ambas entradas
+permanece abierta durante el primer arranque.
+Luego, debe cerrarse para poder realizar la lectura diferencial de presión.
 
 \subsection{Placa Orificio}
 \label{subsec:PlacaOrificio}
