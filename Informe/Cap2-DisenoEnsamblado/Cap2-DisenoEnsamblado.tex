@@ -53,8 +53,6 @@ siguiente codificación:
 De acuerdo a los componentes detallados en la sección
 \ref{sec:MaterialesDisponibles} se realizó el esquema \gls{pyid} de la planta
 de control de nivel.
-\todo{Lo dejamos a esto?}{\color{red} Se utilizó una plantilla disponible en
-Google Docs, dado que era suficiente para la complejidad de nuestro proyecto.}
 Para la correcta comprensión de este capítulo es indispensable contar con el
 esquema, que puede encontrarse en el anexo \ref{anexo:pyid}.
 \todo{Poner diag en anexo}
@@ -66,7 +64,7 @@ Dado que el objetivo principal del proyecto es que la planta sirva para fines
 educativos, se opta por utilizar una estructura móvil.
 De esta manera, la posición de la planta puede modificarse según se requiera.
 
-\todo{imagen de la estructura y medidas}
+\todo{imagen de la estructura}
 La estructura, de caño estructural, puede apreciarse en la figura x.
 Está dotada de cuatro ruedas con frenos de seguridad, que permiten fijar la
 planta al momento de una demostración.
@@ -76,9 +74,9 @@ Sus dimensiones se presentan en la tabla \ref{tab:dimensionesEstructura}.
 \centering
 \begin{tabular}{|l|l|}
 \hline
-Alto & $\,m$\\
-Ancho &  $\,m$\\
-Profundidad &  $\,m$\\
+Alto & $1.55\,m$ (incluido ruedas)\\
+Ancho &  $1.50\,m$\\
+Profundidad &  $0.52\,m$\\
 \hline
 \end{tabular}
 \caption{Dimensiones de la estructura de soporte}
@@ -94,8 +92,22 @@ La manguera que corresponde al tiempo muerto se colocó bajo
 las barras de refuerzo.
 En la parte superior de la planta se instaló una pequeña base de
 madera donde irá montado el receptor inalámbrico.
-Ya está incluida en la estructura el tablero\todo{características}, donde se
+Ya está incluida en la estructura el tablero, donde se
 montarán los elementos eléctricos y electrónicos.
+Sus dimensiones se observan en la tabla \ref{tab:dimensionesTablero}.
+
+\begin{table}
+\centering
+\begin{tabular}{|l|l|}
+\hline
+Alto & $62\,cm$\\
+Ancho &  $30\,cm$\\
+Profundidad &  $20\,cm$\\
+\hline
+\end{tabular}
+\caption{Dimensiones del tablero.}
+\label{tab:dimensionesTablero}
+\end{table}
 
 Al comienzo del proyecto la estructura de caño estaba ya soldada y pintada, con
 las ruedas colocadas.
@@ -109,13 +121,11 @@ Luego de analizar el esquema \gls{pyid}, se observa que las cañerías deben
 formar un circuito cerrado (\emph{loop}), diferenciando
 claramente las cañerías de vaciado y llenado.
 Las conexiones fueron echas mayormente en caño de polipropileno de 3/4
-pulgadas.
+pulgadas (presión de servicio: $11.7\,kgf/cm^2$ a $20^\circ C$).
 En otros puntos del circuito, se optó por utilizar manguera de alta presión
-telada de 3/4 pulgadas.
+telada de 3/4 pulgadas (presión de servicio: $10\,kgf/cm^2$ a $20^\circ C$).
 Las cañerías utilizadas son suficientes para las presiones de trabajo del
-proyecto, del orden de \todo{Con que
-presión trabaja la planta? 10 m para las bombas, verificar presión max de
-caños}.
+proyecto, del orden de $1.2\,kgf/cm^2$.
 
 Teniendo los elementos montados sobre la planta (bombas, tanques, válvula
 electroneumática) se decidió la manera de realizar el conexionado.
@@ -167,8 +177,8 @@ comprensión del circuito hidráulico.
 
 \subsection{Tiempo Muerto}
 \label{subsec:tiempoMuerto}
-Se colocó en la planta un circuito de tiempo muerto, que consta de 20 \todo{no
-son 30?} metros de manguera negra de 1/2 pulgada.
+Se colocó en la planta un circuito de tiempo muerto, que consta de 20 metros de
+manguera negra de 1/2 pulgada.
 El tiempo muerto se coloca en paralelo de la cañería de llenado (ver
 \gls{pyid}).
 Mediante una válvula manual puede elegirse utilizar o no el tiempo muerto.
@@ -205,13 +215,10 @@ A continuación vamos a destacar la función de cada una de ellas:
   para poder vaciarlos, se colocaron válvulas esféricas plásticas debajo de
 cada tanque.
 
-  \item \textbf{Control de caudal del tanque de reserva:}
-  para poder estabilizar el sistema se colocó en serie con la cañería de
-retorno. Se trata de una válvula manual tipo exclusa.
+  \item \textbf{Control de caudal del tanque de reserva:} se colocó en serie
+con la cañería de retorno. Se trata de una válvula manual, tipo exclusa.
   Esta válvula es importante ya que permite modificar el balance de masa y
 ecualizar la planta.
-  \todo{si le damos una indicacion del 50, tenga esa respuesta.
-el nivel no se mueve, esta de manera bastante estable \textbf{no entiendo :(}}
 
   \item \textbf{Tiempo muerto:}
   tal como se describió en la sección \ref{subsec:tiempoMuerto}, esta válvula
@@ -229,7 +236,8 @@ por la cañería de llenado.
   una válvula manual de tipo exclusa se coloca entre la tubería de aspiración y
 la tubería de impulsión de las bombas.
   La apertura de esta válvula permitirá simular perturbaciones en las
-bombas\todo{algo +?}.
+bombas.
+ Al abrir la válvula, el rendimiento de la bomba decae.
  \end{itemize}
 
 \section{Tanques}
@@ -293,7 +301,7 @@ Las especificaciones de las bombas utilizadas se presentan en la tabla
 \hline
 Marca & Czerweny\\
 Caudal máximo &  $100\,l/min$\\
-Altura máxima &  $12\,m$\\
+Altura máxima &  $12\,m = 1.2 kgf/cm^2$\\
 Tensión & $220\,V$ monofásica $50\,Hz$\\
 Corriente & $1.7\,A$\\
 Seguridad & S1 IP44\\
@@ -975,7 +983,7 @@ y el manómetro refleja el valor medio de la presión.
 Las especificaciones de los manómetros se muestran en la tabla
 \ref{tab:EspManoms}.
 
-\begin{table}[t]
+\begin{table}[ht]
 \centering
 \begin{tabular}{|l|l|}
 \hline
