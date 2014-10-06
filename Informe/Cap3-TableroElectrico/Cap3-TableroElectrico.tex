@@ -1,23 +1,24 @@
-\chapter{Tablero Eléctrico}
+\chapter{Tablero Eléctrico y Conexionado}
 \label{ch:tablero}
 
-Luego del diseño y ensamblado descripto en el capítulo
+Luego del diseño y ensamblado de los componentes de la planta, descripto en el
+capítulo
 \ref{ch:DisenoEnsamblado}, se procedió al diseño y montaje del
 tablero eléctrico.
-Es decir, se realizó la instalación y cableado de los elementos eléctricos y
-electrónicos de la planta.
+Es decir, se realizó la instalación y el cableado de los elementos eléctricos y
+electrónicos.
 Para comprender este capítulo es imprescindible utilizar los diagramas
 del tablero, que pueden encontrarse en el anexo \ref{anexo:diag}.
 Por simplicidad, se dividirá el análisis del tablero en dos secciones\todo{Foto
 o diagrama del tablero}:
 \begin{itemize}
- \item \textbf{Potencia:} Corresponde a la instalación y el cableado
+ \item \textbf{Potencia:} corresponde a la instalación y el cableado
  de los elementos eléctricos de la planta, destinados a alimentar los motores de 
  las bombas y los circuitos lógicos.
- \item \textbf{Señal:} Corresponde a la instalación y el cableado
+ \item \textbf{Señal:} corresponde a la instalación y el cableado
  de los elementos electrónicos cuyo objetivo es controlar la planta.
  Podemos citar: \gls{plc}, módulos inalámbricos,
- sensores de presión y caudal, actuadores (electroposicionador).
+ sensores de presión y caudal, actuadores (válvula electroneumática).
 \end{itemize}
 
 \section{Potencia}
@@ -25,7 +26,7 @@ o diagrama del tablero}:
 Tal como se describió previamente, los elementos de potencia deben
 \textbf{alimentar} los motores y elementos lógicos de la planta.
 Se optó por trabajar con corriente alterna monofásica ($220\,V\,-\,50\,Hz$),
-debido a que es la alimentación de las bombas.
+dado que es la alimentación de las bombas.
 En el anexo \ref{anexo:diag}, se muestran los conductores de fase y neutro en
 colores marrón y azul respectivamente.
 Los elementos de potencia se describen a continuación.
@@ -38,7 +39,7 @@ El interruptor es bipolar (neutro y fase), modelo \verb|C60 N|, número de
 referencia \verb|24335| y marca Merlin Gerin (Schneider).
 Se trata de un termomagnético para cargas convencionales, con una corriente
 nominal $I_n$ de $6\,A$ y una corriente de corte por cortocircuito de $5$ a
-$10\,I_n$.\todo{datasheet}
+$10\,I_n$.
 
 La función del termomagnético es proteger la instalación frente a posibles
 sobrecargas (mediante la interrupción del circuito térmico) y cortocircuitos
@@ -51,14 +52,14 @@ planta.
 Puede verse el esquema de alimentación de los motores en los folios 1 y 2 del
 anexo \ref{anexo:diag}.
 Para cada una de las bombas, se utilizarán los siguientes elementos de
-protección y comando\todo{agregar hojas de datos para todos}:
+protección y comando:
 \begin{itemize}
  \item \textbf{Relés:}
  Los relés reciben una señal de activación de $24\,V$, de parte del PLC.
- Al activarse, se tiene en el borne \verb|11 (7)| una señal de $220\,V$
+ Al activarse, el relé entrega en el borne \verb|11 (7)| una señal de $220\,V$
 de corriente alterna.
-Esta señal activará la bobina de los los contactores de los motores, previo paso
-por el relevo térmico. Se utilizaron relés \verb|LZX:PT 370| de Siemens.
+Esta señal alimentará la bobina de los los contactores de los motores, previo 
+paso por el relevo térmico. Se utilizaron relés \verb|LZX:PT 370| de Siemens.
  \item \textbf{Relevo Térmico:}
  Tiene como objetivo evitar la sobrecorriente en los motores.
  Para el proyecto, se configuró el relevo térmico con una corriente
@@ -66,12 +67,11 @@ por el relevo térmico. Se utilizaron relés \verb|LZX:PT 370| de Siemens.
  En caso de superar este valor, interrumpe tensión en la bobina
  del contactor y se detienen los motores.
  Se utilizaron relevos térmicos \verb|LRD 06| de Telemecanique, conectados
-inmediatamente después del contactor.
+inmediatamente después del relé.
  \item \textbf{Contactores:}
  Encienden los motores, a partir de una señal de activación de $220\,V$ de
 corriente alterna.
-Se utilizaron contactores \verb|LC1-D09| de Schneider Electric, cuya hoja de
-datos puede encontrarse en el anexo \todo{anexo contactor}.
+Se utilizaron contactores \verb|LC1-D09| de Schneider Electric.
 Debido a que los contactores son trifásicos, debió realizarse un bucle con dos
 de las fases (ver diagrama del tablero).
 \end{itemize}
@@ -108,7 +108,7 @@ Potencia & $100\,W$\\
 \end{center}
 
 En el diagrama de tablero, se muestran los conductores de $+24\,V$ y $0\,V$ en
-rojo y negro respectivamente\todo{mantiene color?}.
+rojo y negro respectivamente.
 La fuente de alimentación se muestra en el folio 1.
 
 \section{Señal}
@@ -121,8 +121,7 @@ señales de control a la válvula electroneumática.
 \item Activar los relés descriptos en la sección
 \ref{subsec:alimentacionMotores} para encender o apagar los motores de las
 bombas.
-\item Conectar la planta a una computadora de control (\gls{scada}\todo{Esta
-bien? Scada debería aparecer antes}), para poder
+\item Conectar la planta a una computadora de control (\gls{scada}), para poder
 monitorear su estado como así también recibir señales de control.
 \end{itemize}
 
@@ -134,8 +133,7 @@ Para automatizar nuestra planta se optó por utilizar un \gls{plc} Twido
 \verb|TWD LMDA 40 DTK| de Schneider.
 Se trata de un sistema electrónico digital de automatización y control, pensado
 para aplicaciones industriales, seguro frente a condiciones adversas,
-vibraciones\todo{buscar autómatas programables y sistemas de automatización
-Mandado}, ruido electromagnético, etc \cite{bib:ApuntesJGabriel}.
+vibraciones, ruido electromagnético, etc \cite{bib:ApuntesJGabriel}.
 El autómata se adapta al proceso a controlar mediante un
 \textit{software} o programa de aplicación específico, que contiene la secuencia
 de operaciones a realizar.
@@ -155,7 +153,7 @@ podemos citar: Ladder, Texto Estructurado, Lista de Instrucciones y GRAFCET
 (SFC).
  \item \textbf{I/O discretas:} las entradas y salidas discretas se
 utilizan para acciones de control discretas, tal como encender motores
-o leer sensores discretos (fin de carrera, por ejemplo).
+o leer sensores discretos (fines de carrera, pulsadores, señales binarias).
 En nuestro proyecto, se utilizan las salidas discretas \verb|Q0.0| y \verb|Q0.1|
 para activar los relés de los motores.
 Además \verb|I0.0| e \verb|I0.1| se
@@ -165,22 +163,21 @@ Se pueden observar estas señales de control en los folios 1 y 2 del diagrama de
 tablero.
 Además, se muestra el esquema de conexionado del \gls{plc} en el folio
 3 del diagrama de tablero.
-\item \textbf{I/O analógicas:} \todo{por qué es IW0.1.0?} Mediante una entrada
+\item \textbf{I/O analógicas:} mediante una entrada
 analógica, se pueden leer
 señales de corriente ($4-20\,mA$) o tensión ($0-10\,V$) provenientes de los
 sensores.
 De la misma manera, las salidas analógicas permiten enviar consignas
 de tensión o corriente a los actuadores.
 En nuestro proyecto, las entradas analógicas \verb|IW0.1.0| e \verb|IW0.1.1|
-permiten leer los valores de los DP cell de caudal y nivel, respectivamente.
-Se emplea la salida analógica \verb|IW1.0| para controlar el
-electroposicionador\todo[noprepend]{Verificad iw1.0}.
+permiten leer los valores de los DP cell de nivel y caudal, respectivamente.
+Se emplea la salida analógica \verb|QW0.1.0| para controlar el
+electroposicionador.
 Cabe destacar que nuestro \gls{plc} no posee I/O analógicas.
 Por ello, debió anexarse un módulo \verb|TWD AMM 6HT|.
 La resolución de lectura máxima de las entradas analógicas es de $12\,bits$,
 con un tiempo de muestreo de $16\,ms$.
 Se pueden ver estas señales de control en el folio 4 del diagrama de tablero.
-\todo[noline]{verificar orden, también en gráfico}
 
 \item \textbf{Comunicación:} El puerto de comunicaciones permite programar el 
 controlador, como así también enviar comandos y recibir información de
@@ -229,7 +226,7 @@ Frecuencia& 431 a 470 Mhz en más de 100 canales\\
 
 Para el proyecto, se conectó el módulo tal como lo indica el
 diagrama de tablero (folio 5), estipulando una velocidad de transferencia de
-\verb|xxxx bps|, sin pariedad\todo{verificar velocidad y paridad}.
+\verb|19200 bps|, sin pariedad, con un bit de stop.
 
 Además, dado que el módulo inalámbrico debe alimentarse con una tensión de
 $5\,V$ de corriente continua, se desarrolló una fuente conversora de $24\,V$ a
@@ -239,8 +236,8 @@ El circuito esquemático de la fuente puede encontrarse en el folio 2 del anexo
 Además, se incluye el diseño del PCB para poder replicar el circuito.
 
 Cabe destacar que el módulo inalámbrico \textbf{no puede utilizarse} para
-la programación del \gls{plc}, debido a que el software (Twido) acusa un error
-de timeout.
+la programación del \gls{plc}, debido a que el software (Twido Soft) acusa un
+error de timeout.
 No obstante, su funcionamiento es correcto para recibir información
 del estado de la planta y enviar consignas mediante el \gls{scada}.
 
