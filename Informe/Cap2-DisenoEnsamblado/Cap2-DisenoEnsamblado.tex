@@ -54,14 +54,13 @@ De acuerdo a los componentes detallados en la sección
 \ref{sec:MaterialesDisponibles} se realizó el esquema \gls{pyid} de la planta
 de control de nivel.
 Para la correcta comprensión de este capítulo es indispensable contar con el
-esquema, que puede encontrarse en la imagen \ref{img:p&id}.
+esquema, que puede encontrarse en la imagen \ref{img:pyid}.
 
 \begin{figure}
 	\centering
-	\includegraphics[]
-	{Cap2-DisenoEnsamblado/images/p&id.pdf}
+\includegraphics[width=\textwidth]{Cap2-DisenoEnsamblado/images/p&id.pdf}
 	\caption{Diagrama P\&ID}
-	\label{img:p&id}
+	\label{img:pyid}
 \end{figure}
 
 \section{Estructura de Soporte}
@@ -626,10 +625,13 @@ La característica de caudal efectiva puede encontrarse experimentalmente:
  \item Se coloca la válvula en una posición determinada enviando una consigna
 de apertura manual.
  \item Se ecualiza la planta mediante la válvula manual de la cañería de
-retorno.
- \item Se obtiene mediante lectura en el DP cell el valor del la presión $h_p$,
+retorno. Se trata de fijar el nivel de los tanques al 50\%.
+ \item Establecido el nivel de la planta (sin oscilaciones) se realiza la
+lectura en el DP cell del valor de la presión $h_p$,
 y se calcula el caudal correspondiente.
- \item Se cambia la posición de la válvula. Se repite 3 a 5.
+ \item Se cambia la posición de la válvula en intervalos de
+ 10\%, desde el 0\% (totalmente cerrada) hasta el 100\% (totalmente abierta).
+Se repite 3 a 5.
 \end{enumerate}
 
 Los resultados se muestran en las figuras \ref{fig:valvulaStiempoMuerto} y
@@ -648,31 +650,8 @@ Se concluye que la válvula utilizada es adecuada para el
 control regulatorio, debido a su característica efectiva aproximadamente lineal
 en la zona de trabajo.
 
-
-<<<<<<< HEAD
-\subsection{Característica efectiva de la válvula}
-
-Para poder realizar el gráfico característico de la válvula se realizaron 
-los siguientes pasos:
-
-\begin{enumerate}
- \item Se fija el nivel de los tanques al 50\%.
- \item Se realiza una apertura progresiva de la válvula en intervalos de
- 10\%, desde el 0\%, totalmente cerrada, hasta el 100\%, totalmente abierta.
- \item Se activan los motores.
- \item Se toma la medición una vez estabilizado el caudal.
-\end{enumerate}
-
-Los resultados del gráfico de la válvula sin tiempo muerto se pueden observar
-en la figura \ref{graf:valvula}, en tanto que el gráfico de la válvula para
-la planta trabajando con tiempo muerto se puede observar en la figura 
-\ref{graf:valvulatiempomuerto}.
-
-\begin{figure}\centering
-=======
 \begin{figure}[ht]
   \centering
->>>>>>> a5e18655459ac14c2193e0b4f74a6ce29356f57a
   \begin{tikzpicture}[scale= 0.1, domain=0:110]
     
     \draw[ultra thin,color=gray,step=10cm] (100,49.9) grid (0.1,0.1);
