@@ -59,32 +59,37 @@ computadora que lo programará. Siga estos pasos:
 
 \todo{imagen del programa y colocar el nombre definitivo del programa}
 
-Puede proceder de la siguiente manera para escribir el programa propuesto en 
-este informe y partir desde un punto conocido. Para ello debe abrir el programa 
-del \gls{plc} denominado {\color{red}(nombre del programa)} con el Software 
-Twido Soft. Este programa se encuentra en el DVD adjunto a este informe. Luego 
-siga cada uno de estos pasos.
+Para escribir el programa propuesto en este informe y partir desde un punto 
+conocido debe abrir el programa del \gls{plc} denominado {\color{red}(nombre del 
+programa)} con el Software Twido Soft. Este programa se encuentra en el DVD 
+adjunto a este informe. 
+
+Para escribir un programa en el \gls{plc} y poner al mismo en estado de 
+ejecución debe proceder de la manera que se indica en la tabla a continuación:
   
 \begin{table}[H]
 \centering
 \renewcommand*{\arraystretch}{0.01}
 \begin{tabular}{*{2}{m{0.45\textwidth}}}
 \hline
-    Conectarse al \gls{plc}
+    En la pantalla principal de TwidoSoft seleccione 
+Autómata/Conectar.. para poder conectarse al \gls{plc}.
     &\begin{center}
       %\rule{0.4\textwidth}{0.3\textwidth}
       \includegraphics[width=0.4\textwidth]
 	{Anexos/images/twidosoft.PNG}
     \end{center}\\
 \hline
-    Cargar el programa en el \gls{plc}
+    Al conectarse y si existiese una diferencia entre las aplicaciones 
+de la computadora y el \gls{plc} el software demandará elegir una opción.Cargar 
+el programa desde la computadora al \gls{plc}
     &\begin{center}
       %\rule{0.4\textwidth}{0.3\textwidth}
       \includegraphics[width=0.4\textwidth]
 	{Anexos/images/twidosoftcargar.PNG}
     \end{center}\\
 \hline
-    Poner a correr el programa,
+    Poner a correr el programa, mediante el icono de Run.
     &\begin{center}
       %\rule{0.4\textwidth}{0.3\textwidth}
       \includegraphics[width=0.4\textwidth]
@@ -132,13 +137,46 @@ siga cada uno de estos pasos.
 \subsection{SCADA}
 Normalmente, si el programa que corre en el \gls{plc} no ha sido cambiado, 
 usted debería ser capaz de retomar la operación de la planta desde este punto. 
-Para asegurarse de que el programa que corre en el \gls{plc} refiérase a la 
-sección \ref{anexo:operacionPLC} del Manual del Usuario.
+Para asegurarse de que el programa que corre en el \gls{plc} es el correcto 
+refiérase a la sección \ref{anexo:operacionPLC} del Manual del Usuario.
 \begin{lattention}
- Recuerde siempre realizar las verificaciones descriptas en la sección 
+ Recuerde siempre realizar las verificaciones descriptas en la Sección 
 \ref{anexo:verificaciones} del Manual del usuario antes de continuar con la 
 operación de la planta.
 \end{lattention}
 
-Para controlar el sistema desde el \gls{scada} de 
+\subsubsection{Iniciar P-CIM}
+Para controlar el sistema desde el \gls{scada} de P-CIM de AFCON, es necesario 
+iniciar P-CIM y verificar que el driver de Modbus se haya cargado correctamente:
+\begin{table}[!ht]
+\centering
+\renewcommand*{\arraystretch}{0.01}
+\begin{tabular}{*{2}{m{0.45\textwidth}}}
+\hline
+  Active P-CIM utilizando el Startup de P-CIM del grupo de aplicaciones de la 
+carpeta AFCON P-CIM.
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[width=0.4\textwidth]
+      {Cap5-SCADA/images/startUp.jpeg}
+  \end{center}\\
+ \hline
+   Verifique que en la ventana Alarm Summary aparezca el mensaje “MODBUS
+  Driver successfully loaded” indicando que el driver halló la tabla de 
+  comunicación y fue exitosamente cargado.
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[width=0.4\textwidth]
+      {Cap5-SCADA/images/alarm.jpeg}
+  \end{center}\\
+ \hline
+\end{tabular}
+\end{table}
+
+\begin{lattention}
+ En el caso de que no se haya logrado cargar el driver Modbus refiérase a la 
+Tab.\ref{tab:PropModbus} de la sección \ref{subsubsec:InforDriver}.
+\end{lattention}
+
+\subsubsection{Operators Workspace}
 
