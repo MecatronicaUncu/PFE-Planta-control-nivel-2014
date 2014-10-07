@@ -21,11 +21,13 @@ Estos diagramas emplean símbolos para representar cada elemento y sus
 conexiones.
 Los elementos presentes en este esquema están regidos por la norma
 \emph{Standard S5.1 Instrumentation Symbol Specification}.
-\todo{poner norma en anexo}
+
 El diagrama permite una rápida comprensión del proceso, y se denomina
 corrientemente \gls{pyid}.
 
-Cada elemento debe ir acompañado de una denominación, que utiliza la
+En los diagramas \gls{pyid} encontramas grafícados los instrumentos de medición 
+como un círculo y dentro del mismo las letras que indican que elemento es. Cada 
+uno de ellos debe ir acompañado de una denominación, que utiliza la
 siguiente codificación:
 
 \begin{itemize}  
@@ -46,8 +48,19 @@ siguiente codificación:
   \item Almacenaje de datos
   \item Controlador
   \item Transmisor
+  \item Alarma
  \end{itemize}
 \end{itemize}
+
+Al mismo tiempo estos círculos pueden estar intersectados por una linea la cual 
+indica su ubicación:
+
+\begin{itemize}
+ \item Sin línea: En el campo
+ \item Continua: En la sala de control
+ \item Trazos: Fuera del alcance del operario
+\end{itemize}
+
 
 \subsection{P\&ID de nuestra planta}
 De acuerdo a los componentes detallados en la sección
@@ -62,6 +75,169 @@ esquema, que puede encontrarse en la imagen \ref{img:pyid}.
 	\caption{Diagrama P\&ID}
 	\label{img:pyid}
 \end{figure}
+
+Las diferentes partes del diagrama se explicarán a continuación:
+
+\subsubsection{Líneas}
+
+\begin{itemize}
+ \item Línea de trazos: 24 V
+ \item Línea de puntos: 4 - 20 mA
+ \item Línea continua: tubo de polipropileno de 3/4``
+\end{itemize}
+
+\subsubsection{Elementos}
+
+En la tabla \ref{tab:elementos}se presentan los elementos
+que forman parte del diagrama \gls{pyid}.
+
+Por el momento se presentan los elementos correspondientes al 
+proceso, en la sección \ref{subsec:alarmas} se presentan los
+elementos correspondientes al sistema de alarma.
+
+\begin{table}[H]
+\small
+\centering
+\renewcommand*{\arraystretch}{0.3}
+
+\begin{tabular}{*{2}{m{0.435\textwidth}}}
+\hline
+Tanque e indicador de nivel en tanque
+
+LI: Level Indicator
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[height = 0.08\textwidth]
+	{Cap2-DisenoEnsamblado/images/tanque.png}
+  \end{center}\\
+\hline
+Bomba centrífuga
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[height = 0.05\textwidth]
+	{Cap2-DisenoEnsamblado/images/bomba.png}
+  \end{center}\\
+\hline
+Válvula neumática
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[height = 0.05\textwidth]
+	{Cap2-DisenoEnsamblado/images/valvula.png}
+  \end{center}\\
+\hline
+Placa orificio y DP Cell.
+
+FT: Flow Transmitter
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[height = 0.05\textwidth]
+	{Cap2-DisenoEnsamblado/images/placa.png}
+  \end{center}\\
+\hline
+Tiempo muerto
+
+DT: Death Time
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[height = 0.05\textwidth]
+	{Cap2-DisenoEnsamblado/images/tmuerto.png}
+  \end{center}\\
+\hline
+Controlador
+
+LIC: Level Indicator and Controller
+FI: Flow Indicator
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[height = 0.05\textwidth]
+	{Cap2-DisenoEnsamblado/images/controlador.png}
+  \end{center}\\
+\hline
+Transmisor e indicador de nivel
+
+LI: Level Indicator
+LT: Level Transmitter
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[height = 0.08\textwidth]
+	{Cap2-DisenoEnsamblado/images/valvulam.png}
+  \end{center}\\
+\hline
+Válvula e indicador de presión
+
+PI: Pressure Indicator
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[height = 0.08\textwidth]
+	{Cap2-DisenoEnsamblado/images/valvulam.png}
+  \end{center}\\
+\hline
+\hline
+\end{tabular}
+\caption{Elementos del diagrama P\&ID}
+\label{tab:elementos}
+\end{table}
+
+\subsubsection{Alarmas} 
+\label{subsec:alarmas}
+
+La gestión de alarmas se realiza a través del mismo sensor de nivel del sistema,
+tomando entonces la información del mismo para detener el sistema en caso de pasar
+los límites normales de trabajo. Este proceso se debería realizar mediante sensores
+separados, pero debido al costo de los mismo se decidio obtener la información 
+directamente desde el sensor de nivel del sistema.
+
+En la tabla \ref{tab:alarmas} se presenta la descripción de cada simbolo.
+
+\begin{table}[H]
+\small
+\centering
+\renewcommand*{\arraystretch}{0.3}
+
+\begin{tabular}{*{2}{m{0.435\textwidth}}}
+\hline
+LAHH: Level Alarm High High
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[height = 0.08\textwidth]
+	{Cap2-DisenoEnsamblado/images/lahh.png}
+  \end{center}\\
+\hline
+LAH: Level Alarm High
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[height = 0.08\textwidth]
+	{Cap2-DisenoEnsamblado/images/lah.png}
+  \end{center}\\
+\hline
+LALL: Level Alarm Low Low
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[height = 0.08\textwidth]
+	{Cap2-DisenoEnsamblado/images/lall.png}
+  \end{center}\\
+\hline
+LAL: Level Alarm Low
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[height = 0.08\textwidth]
+	{Cap2-DisenoEnsamblado/images/lal.png}
+  \end{center}\\
+\hline
+PLC: Simbolo de la sección del programador encargado
+de la gestión de alarmas
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[height = 0.08\textwidth]
+	{Cap2-DisenoEnsamblado/images/plc.png}
+  \end{center}\\
+\hline
+\hline
+\end{tabular}
+\caption{Instalación del Driver Modbus}
+\label{tab:alarmas}
+\end{table}
+
 
 \section{Estructura de Soporte}
 \label{sec:EstructuraSoporte}
