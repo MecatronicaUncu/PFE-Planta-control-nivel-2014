@@ -136,3 +136,12 @@
 }
 
 \usepackage[]{algorithm2e}
+
+\usepackage[most]{tcolorbox}
+\newtcolorbox{lattention}{
+breakable,
+enhanced,
+leftrule=12mm,%
+overlay={\node[anchor=north west,outer sep=2pt] at (frame.north west) 
+{\includegraphics[width=8mm]{Anexos/images/alert.png}};}
+}
