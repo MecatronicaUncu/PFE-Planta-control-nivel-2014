@@ -1,11 +1,11 @@
-\newpage
-\section{Manual del Usuario}
-\label{anexo:puestaEnMarcha}
+\chapter{Manual del Usuario}
+\label{anexo:manualUsuario}
 
-A continuación se presentan los pasos necesarios para la
-correcta utilización de la planta.
+% A continuación se presentan los pasos necesarios para la
+% correcta utilización de la planta.
 
-\subsection{Verificaciones Iniciales}
+\section{Verificaciones Iniciales}
+\label{anexo:verificaciones}
 Antes de poner en funcionamiento la planta verifique cada uno de los siguientes 
 items:
 
@@ -21,7 +21,7 @@ En modo automático, si el nivel del tanque controlado desciende por debajo del
 
 
 
-\begin{tcolorbox}[title=Válvulas manuales]
+\begin{tcolorbox}[title=Válvulas manuales, breakable]
 La planta cuenta con 5 válvulas manuales, se describirá la posición de cada una 
 de ellas para un correcto funcionamiento de la planta. 
  
@@ -32,7 +32,7 @@ de ellas para un correcto funcionamiento de la planta.
   a la misma marque $0.5\frac{Kg}{cm^2}$. Esto nos asegura que el sistema está 
   equilibrado.
   \item Tiempo muerto: Abierto, De tal manera que no tenga efecto sobre la 
-  platan la manguera del tiempo muerto.
+  planta la manguera del tiempo muerto.
   \item Perturbación bomba llenado: Totalmente cerrada, para asegurar que el 
   tanque controlado no se descargue más rápido de lo que se llena.
   \item Perturbación bomba vaciado: Totalmente abierta.
@@ -59,7 +59,7 @@ ajustar los valores del controlador.
     \item Se vuelve a su posición original la maneta de regulación.
  \end{enumerate}
 \end {tcolorbox}
-\todo{agregar filtro de aire}
+%\todo{agregar filtro de aire}
 
 \begin{lattention}
 Nunca conectar la linea de aire comprimido sin el filtro y  
@@ -91,6 +91,7 @@ motores.
  es necesario la activación manual de los motores.
  %, como por ejemplo podría ser el exceso de nivel en 
  %uno de los tanques, problemas con el Software SCADA, etc.
+ Por favor, en caso de dudas consulte con el encargado del laboratorio.
 \end{lattention}
 
 %   \begin{enumerate}
@@ -104,13 +105,13 @@ motores.
 \centering
 \renewcommand*{\arraystretch}{0.01}
 \begin{tabular}{*{2}{m{0.45\textwidth}}}
-\hline
-  Controlar que las bombas no estén bloqueadas.
-  &\begin{center}
-    \rule{0.4\textwidth}{0.3\textwidth}
-    %\includegraphics[width=0.4\textwidth]
-    %  {Cap5-SCADA/images/startUp.jpeg}
-  \end{center}\\
+% \hline
+%   Controlar que las bombas no estén bloqueadas.
+%   &\begin{center}
+%     \rule{0.4\textwidth}{0.3\textwidth}
+%     %\includegraphics[width=0.4\textwidth]
+%     %  {Cap5-SCADA/images/startUp.jpeg}
+%   \end{center}\\
 \hline
     Conectar la planta a la linea de presión de aire. Presión 4 bares
     &\begin{center}
@@ -127,7 +128,7 @@ motores.
 	%{Cap5-SCADA/images/database1.jpeg}
     \end{center}\\
 \hline
-    Activar el relé manualmente que sea necesario. En la imagen se puede 
+    Activar el relé manualmente lo que sea necesario. En la imagen se puede 
     apreciar la manija que se debe accionar para activar el 
     relé.
     &\begin{center}
@@ -137,8 +138,6 @@ motores.
     \end{center}\\
 \hline
 \end{tabular}
-%\caption{Configuración de los bloques de la base de datos.}
-%\label{tab:confBlockDB}
 \end{table}
 
 \todo{referencia a la hoja de datos del relé}
