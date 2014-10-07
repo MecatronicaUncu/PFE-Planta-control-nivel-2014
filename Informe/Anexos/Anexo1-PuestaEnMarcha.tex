@@ -1,84 +1,143 @@
-\section{Puesta en Marcha de la planta}
-\label{anexo:puestaEnMarcha}
+\chapter{Manual del Usuario}
+\label{anexo:manualUsuario}
 
-En el siguiente anexo se presentan las condiciones necesarias para el
-correcto funcionamiento de la planta.
+% A continuación se presentan los pasos necesarios para la
+% correcta utilización de la planta.
 
-\begin{itemize}
- \item Energía
- 
- Se debe conectar a la red eléctrica 220 V, corriente alterna.
- 
- \item Nivel de agua
- 
- Se recomienda que cada tanque no tenga más del 55 \% del total de su 
- capacidad. Es importante destacar que si el nivel del tanque desciende
- debajo del 20 \% se detiene la planta. 
- 
- \item Válvulas manuales
- 
- La planta cuenta con 5 Válvulas manuales, se describirá la posición de 
- cada una de ellas para un correcto funcionamiento de la planta. De todas
- maneras cabe recordar que estas válvulas están presentes para modificar el 
- sistema y generar una situación de la planta distinta, la que para ser 
- controlada deben cambiarse los valores del controlador.
+\section{Verificaciones Iniciales}
+\label{anexo:verificaciones}
+Antes de poner en funcionamiento la planta verifique cada uno de los siguientes 
+items:
+
+
+\begin{tcolorbox}[title=Nivel de agua]
+Verifique que cada tanque no tenga más del 55 \% (aprox.) del total de su 
+capacidad. 
+\end {tcolorbox}
+\begin{lattention}
+En modo automático, si el nivel del tanque controlado desciende por debajo del 
+20 \% se detiene la planta. 
+\end{lattention}
+
+
+
+\begin{tcolorbox}[title=Válvulas manuales, breakable]
+La planta cuenta con 5 válvulas manuales, se describirá la posición de cada una 
+de ellas para un correcto funcionamiento de la planta. 
  
  \begin{itemize}
   \item Vaciado de los tanques: Completamente cerradas
   \item Control de caudal del tanque de reserva:
   La apertura de la válvula debe ser tal que el manómetro que esta junto
-  a la misma marque tantos bares. Esto nos asegura que el sistema está 
+  a la misma marque $0.5\frac{Kg}{cm^2}$. Esto nos asegura que el sistema está 
   equilibrado.
   \item Tiempo muerto: Abierto, De tal manera que no tenga efecto sobre la 
-  platan la manguera del tiempo muerto.
+  planta la manguera del tiempo muerto.
   \item Perturbación bomba llenado: Totalmente cerrada, para asegurar que el 
-  reservorio no se descargue más rápido de lo que se llena.
+  tanque controlado no se descargue más rápido de lo que se llena.
   \item Perturbación bomba vaciado: Totalmente abierta.
  \end{itemize}
+ \tcblower
+ Estas válvulas están presentes para modificar el sistema y generar distintos 
+escenarios en la planta. Al modificar las características del sistema se deben 
+ajustar los valores del controlador.
+\end {tcolorbox}
 
- \item Presión de aire
- 
- La presión de aire debe ser de 4 bares. Se debe controlar el correcto 
- funcionamiento del filtro y regulador. Nunca conectar el aire sin el filtro y 
- regulador.
- 
- Un filtro regulador como el presente en la planta se utiliza de la siguiente manera:
- 
+
+\begin{tcolorbox}[title=Presión de aire]
+  Asegúrese que la presión de aire este regulada a 4 bares. Se debe controlar 
+  el correcto funcionamiento del filtro y regulador. 
+ \tcblower
+  Un filtro regulador como el presente en la planta se utiliza de la siguiente 
+  manera: 
  \begin{enumerate}
-  \item Se conecta el aire. Tener precaución de desconectar la entrada a la válvula. 
-  \item Se visualiza el manómetro, sobre el mismo hay una perilla.
-  \item Se desplaza hacia arriba la maneta de regulación y se gira hasta alcanzar el
-  valor de presión deseado.
-  \item Se vuelve a su posición original la maneta de regulación.
+    \item Tener precaución de desconectar la entrada a la válvula. 
+    \item Se conecta el aire al regulador. 
+    \item Se visualiza el valor de presión en el manómetro
+    \item Se desplaza hacia arriba la maneta de regulación y se gira hasta 
+      alcanzar el valor de presión deseado.
+    \item Se vuelve a su posición original la maneta de regulación.
  \end{enumerate}
+\end {tcolorbox}
+%\todo{agregar filtro de aire}
+
+\begin{lattention}
+Nunca conectar la linea de aire comprimido sin el filtro y  
+regulador de manera directa a la válvula.
+\end{lattention}
+
+
+\begin{tcolorbox}[title=Motores]
+Para poder activar los motores necesitamos estar seguros que no están trabados.
+ Para ello antes de comenzar con la actividad sobre la planta se recomienda 
+retirar la jaula que recubre los ventiladores de los motores y hacer girar los 
+mismos para destrabarlos.
+\end {tcolorbox}
+
+
+\begin{lattention}
+Luego de haber realizado todas las verificaciones se debe conectar a la red 
+eléctrica 220 V, corriente alterna.
+\end{lattention}
+
 
  
- \todo{Referencia a la imagen del filtro}
- 
- \item Motores
- 
- Para poder activar los motores necesitamos estar seguros que no están trabados.
- Para ello antes de comenzar con la actividad sobre la planta se recomienda retirar
- la jaula que recubre los ventiladores de los motores y hacer girar los mismos
- para destrabarlos.
- 
- \end{itemize}
+ \section{Activación Manual de los Motores}
+  Se explica a continuación los pasos a seguir para activar de modo manual los 
+motores.
+ \begin{lattention}
+ Exclusivamente en el caso de que el sistema SCADA no responda 
+ %Para ciertos casos en los que puede llegar a ser% 
+ es necesario la activación manual de los motores.
+ %, como por ejemplo podría ser el exceso de nivel en 
+ %uno de los tanques, problemas con el Software SCADA, etc.
+ Por favor, en caso de dudas consulte con el encargado del laboratorio.
+\end{lattention}
 
- 
- \section{Activación de los motores}
- 
- Para ciertos casos en los que puede llegar a ser necesario la activación 
- manual de los motores, como por ejemplo podría ser el exceso de nivel en 
- uno de los tanques, problemas con el Software \gls{scada}, etc. se explican
- a continuación los pasos a seguir para activar de modo manual los motores.
+%   \begin{enumerate}
+%    \item Controlar que no estén trabados.
+%    \item Energizar el sistema.
+%    \item Conectar el aire, presión 4 bares.
+%    \item Activar el relé manualmente que sea necesario.
+%   \end{enumerate}
 
-  \begin{enumerate}
-   \item Controlar que no estén trabados.
-   \item Energizar el sistema.
-   \item Conectar el aire, presión 4 bares.
-   \item Activar el relé manualmente que sea necesario.
-  \end{enumerate}
-  
-  En la imagen se puede apreciar la manija que se debe accionar para activar 
-  el relé.
+\begin{table}[H]
+\centering
+\renewcommand*{\arraystretch}{0.01}
+\begin{tabular}{*{2}{m{0.45\textwidth}}}
+% \hline
+%   Controlar que las bombas no estén bloqueadas.
+%   &\begin{center}
+%     \rule{0.4\textwidth}{0.3\textwidth}
+%     %\includegraphics[width=0.4\textwidth]
+%     %  {Cap5-SCADA/images/startUp.jpeg}
+%   \end{center}\\
+\hline
+    Conectar la planta a la linea de presión de aire. Presión 4 bares
+    &\begin{center}
+      \rule{0.4\textwidth}{0.3\textwidth}
+      %\includegraphics[width=0.4\textwidth]
+	%{Cap5-SCADA/images/database.jpeg}
+    \end{center}\\
+\hline
+    Energizar el sistema. Activar en interruptor termomagnético ubicado dentro 
+    del tablero eléctrico
+    &\begin{center}
+      \rule{0.4\textwidth}{0.3\textwidth}
+      %\includegraphics[width=0.4\textwidth]
+	%{Cap5-SCADA/images/database1.jpeg}
+    \end{center}\\
+\hline
+    Activar el relé manualmente lo que sea necesario. En la imagen se puede 
+    apreciar la manija que se debe accionar para activar el 
+    relé.
+    &\begin{center}
+      \rule{0.4\textwidth}{0.3\textwidth}
+      %\includegraphics[width=0.4\textwidth]
+	%{Cap5-SCADA/images/database1.jpeg}
+    \end{center}\\
+\hline
+\end{tabular}
+\end{table}
+
 \todo{referencia a la hoja de datos del relé}
