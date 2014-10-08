@@ -1,26 +1,22 @@
 \chapter{Programación del PLC}
 \label{ch:progPLC}
 
-Una vez montado todo el sistema,
-realizado el cableado eléctrico y verificado su correcto funcionamiento de
+Una vez montado el sistema, realizado el cableado eléctrico y verificado su
+correcto funcionamiento de
 manera manual, se procedió a la programación del \gls{plc}.
-Es uno de los objetivos principales para validar el correcto funcionamiento de
-la planta.
 
-En el presente capítulo se describe tanto el algoritmo del programa de
-control de la planta. como así también el
-lenguaje utilizado para implementar este algoritmo.
+En el presente capítulo se describe tanto el algoritmo del programa de control,
+como así también el lenguaje utilizado para implementar este algoritmo.
 Además, se hará mención a las diferentes herramientas que ofrece el software
 utilizado para el desarrollo y la implementación del programa en el \gls{plc}.
 
 \section{Algoritmo}
 \label{sec:Algoritmo}
 Antes de realizar la programación en lenguaje Ladder, propio del \gls{plc},
-se pensó en el algoritmo para cumplir con todas las tareas que el controlador
-debía realizar (gestión de alarmas, adquisición de parámetros, control de la
-válvula, encendido y apagado de motores).
-Se observa en en el algoritmo \ref{img:algoritmo}, como el controlador
-sistema debe comportarse, de manera estructurada, para cumplir estas tareas.
+se pensó en el algoritmo que incluya todas las tareas que el
+controlador debe cumplir (gestión de alarmas, adquisición de parámetros,
+control de la válvula, encendido y apagado de motores).
+Se observa en en el algoritmo \ref{img:algoritmo} la solución propuesta.
 
 \begin{algorithm}[!ht]
  \small
@@ -69,7 +65,7 @@ sistema debe comportarse, de manera estructurada, para cumplir estas tareas.
 Se utilizó el programa Twido Soft, de Schneider Electric, para poder programar
 el \gls{plc}. Se programó en lenguaje Ladder.
 
-\subsection{Breve descripción de Ladder}
+\subsection{Breve descripción del programa en Ladder}
 
 El lenguaje Ladder es muy utilizado en la programación de autómatas debido a
 que es un lenguaje gráfico, basado en esquemas de tableros eléctricos de
@@ -77,45 +73,53 @@ lógica cableada \cite{bib:ApuntesPuglesiPLC}.
 El principio de funcionamiento es sencillo: de acuerdo a una combinación
 lógica de contactos en la entrada se obtiene una acción en la
 salida.
-De esta manera, vamos describiendo paso a paso las acciones que deseamos que
-el controlador realice, de acuerdo al estado del sistema o las ordenes
-recibidas desde el \gls{scada}.
-
 Los elementos de entrada principales en Ladder son:
 
  \begin{itemize}
   \item Contacto normalmente abierto
   \item Contacto normalmente cerrado
-  \item Función lógica (comparación de una variable con una constante)
+  \item Conductor directo (representa un $1$ lógico)
  \end{itemize}
 
-Los elementos de entrada se combinan mediante acciones lógicas \verb|AND|,
-\verb|OR|, \verb|NOT| (representadas mediante ``conductores'') y otros bloques
-de funciones (timers, contadores, registros).
+Los contactores pueden representar entradas/salidas de la
+planta o valores en memoria.
+Se combinan mediante acciones lógicas \verb|AND|, \verb|OR|, \verb|NOT|
+(representadas mediante ``conductores'') y otros bloques de funciones (timers,
+comparadores).
 Se obtienen así nuevas señales, que pueden ser utilizadas para realizar
 acciones de salida.
 
-Las acciones de salida se representan como bobinas. Encontramos los
-siguientes tipos:
+Las acciones de salida se representan como bobinas.
+Las bobinas pueden estar aplicadas tanto a salidas físicas de la planta, como a
+valores en memoria. Encontramos los siguientes tipos:
 
   \begin{itemize}
    \item \textbf{Bobina directa:} toma el valor lógico de la entrada.
    \item \textbf{Bobina inversa:} toma el valor lógico negado de la entrada.
    \item \textbf{Bobina set}: establece un valor de salida activo si encuentra
 un valor lógico activo en la entrada. A diferencia de la bobina directa, si la
-entrada se hace inactiva, el valor de salida se mantiene.
+entrada se inactiva, el valor de salida se mantiene.
    \item \textbf{Bobina reset:} establece un valor de salida inactivo si
 encuentra un valor lógico activo en la entrada.
+   \item \textbf{Bloques de funciones:} permiten leer y escribir variables
+numéticas, realizar bucles \gls{pid}, contadores, registros, etc.
   \end{itemize}
 
-El software Twido Soft sirve tanto como para enviar el programa al \gls{plc}, así como 
-para descargar el programa que esta en el \gls{plc}. A tal efecto a continuación 
-se explicaran algunas cualidades del programa para que sea simple su comprensión.
+Cada una de las partes del programa se denomina \emph{RUNG} (escalón o
+peldaño).
+La ejecución de los peldaños es secuencial, comenzando por \verb|RUNG 0|.
+En cada peldaño se describen paso a paso las acciones que deseamos que
+el controlador realice, de acuerdo al estado del sistema o las ordenes
+recibidas desde el \gls{scada}.
 
-\todo{Anexo de lo que imprimimos desde el twido soft}Lo primero que se presenta
-son la acción realizada en cada RUNG (pasos del programa).
+La figura \ref{fig:ladder} muestra un diagrama de los diferentes peldaños de
+nuestro programa de aplicación.
+Se observa que la estructura secuencial del algoritmo \ref{img:algoritmo} ha
+sido respetada en los peldaños.\todo{comparar Ladder y algoritmo con el programa
+final buscando discrepancias}
 
-
+\begin{figure}
+\centering
 \begin{tikzpicture}[
   grow via three points={one child at (0.5,-0.7) and
   two children at (0.5,-0.7) and (0.5,-1.4)},   
@@ -143,21 +147,21 @@ son la acción realizada en cada RUNG (pasos del programa).
     child { node {Indicador de error en bombas}    }
     child { node {Gestión de bandera del sistema trabajando en modo normal}    }
     child { node {Limpieza de alarmas}    };
-  
 \end{tikzpicture}
 \tikzstyle{every node}=[] % resets borders of tables
 \tikzstyle{selected}=[] % resets selected
+\caption{Esquema de Rungs del programa Ladder de la planta de control de nivel}
+\label{fig:ladder}
+\end{figure}
 
+El \gls{plc} puede guardar información de diversa índole en memoria.
+Estos valores en memoria pueden ser utilizados para modificar las salidas, a
+modo de banderas.
+También pueden guardarse valores numéricos, útiles para consignas,
+ganancias, etc.
+Se diferencian dos tipos de celdas de memoria:
 
-
-
-El programa presenta baderas que nos sirven para conocer diferentes estados
-de la planta. En la tabla \ref{table:Banderasinternas} se pueden ver el nombre 
-de las mismas y sus funciones.
-
-
-\begin{table}[!t]
-
+\begin{table}[ht]
 \renewcommand{\arraystretch}{1.3}
 \centering
 \begin{tabular}{c||c}
@@ -171,48 +175,34 @@ de las mismas y sus funciones.
 \verb|M4|  & Error de Motor\\
 \hline
 \end{tabular}
-\caption{Banderas internas}
+\caption{Banderas internas.}
 \label{table:Banderasinternas}
 \end{table}
 
-Por ultimo se expresan las entradas y salidas al \gls{plc}, tanto analógicas
-como discretas en la tabla \ref{table:entradassalidas}.
+\begin{itemize}
+ \item \textbf{\gls{memory}:} tienen el formato \verb|Mx|, donde \verb|x| es un
+número que comienza por $0$.
+Son capaces de guardar un único bit.
+Por esa razón, se utilizan como banderas internas del programa, que representan
+distintos estados de la planta.
+En la tabla \ref{table:Banderasinternas} se pueden ver el nombre
+de las banderas utilizadas en nuestro programa y sus funciones.
+ \item \textbf{\gls{memoryWord}:} conocidas también como palabras, tienen el
+formato \verb|MWx|, donde \verb|x| es un número que comienza por $0$.
+Representan valores de 16 bits. En ellos puede guardarse información numérica
+(constantes, valores de lectura o escritura) o pueden utilizarse para guardar
+hasta 16 banderas (bits).
+Cabe destacar que las \gls{memoryWord} pueden ser leídas mediante el bus MODBUS
+(ver \ref{sec:Comunicacion}).
+En la tabla  \ref{table:mwBanderas} se muestran las \gls{memoryWord}
+utilizadas como banderas, en tanto que en la tabla
+\ref{table:mwNumericos}
+se muestran las \gls{memoryWord} utilizadas para guardar valores numéricos del
+programa.
+\end{itemize}
+
 
 \begin{table}[!t]
-
-\renewcommand{\arraystretch}{1.3}
-\centering
-\begin{tabular}{c||c}
-\hline
-\bfseries Memoria & \bfseries Descripción\\
-\hline \hline
-\verb|Q0.0|  & Encender motor 1\\
-\verb|Q0.1|  & Encender motor 2\\
-\verb|Q0.7|  & Señal de encendido de los motores\\
-\verb|I0.0|  & Retroalimentación desde el relevo térmico motor 1\\
-\verb|I0.1|  & Retroalimentación desde el relevo térmico motor 2\\
-\verb|IW0.1.0|  & Señal analógica de nivel\\
-\verb|IW0.1.1|  & Señal analógica de caudal \\
-\verb|QW0.1.0|  & Señal analógica de salida de apertura de la válvula \\
-\hline
-\end{tabular}
-\caption{Entradas y salidas al PLC}
-\label{table:entradassalidas}
-\end{table}
-
-\section{Comunicación}
-\label{sec:Comunicacion}
-
-Para ser capaces de interactuar con la aplicación de \gls{scada} definimos
-ciertas palabras que nos permiten realizar acciones en el sistema y conocer
-el estado del mismo.
-
-La tabla \ref{table:bitlecturasescrituras} presenta dos palabras de dieciséis
-bits, \verb|MW0| y \verb|MW1|, la primera de ella presenta bits de lectura, en donde se
-refleja el estado del la plata, mientras que la segunda palabra sus bits son
-de escritura y nos da la posibilidad de manejar la planta.
-\begin{table}[!t]
-
 \renewcommand{\arraystretch}{1.3}
 \centering
 \begin{tabular}{c||c||c||c}
@@ -243,19 +233,10 @@ Esc & & \verb|X6|& Encender M1 (manual) (era \verb|MW8:X1|)\\
 Esc & & \verb|X7|& Encender M2 (manual) (era \verb|MW8:X2|)\\
 Esc & & \verb|X8|& Limpiar errores (era \verb|MW8:X0|)\\
 \hline
-
-\hline
 \end{tabular}
-\caption{Bits lectura/escritura}
-\label{table:bitlecturasescrituras}
+\caption{Memory Words utilizadas como banderas.}
+\label{table:mwBanderas}
 \end{table}
-
-Por otro lado la tabla \ref{table:palabraslecturasescrituras} nos presenta 
-las palabras de las restantes palabras de memoria que ocupa el programa, en 
-la primer parte de la tabla se encuentran las palabras de solo lectura que 
-presentan los valores que presentan las variables del sistema, mientras que en la 
-segunda parte de la misma se encuentran las memorias reservadas al cambio
-de los parámetros del sistema.
 
 \begin{table}[!t]
 
@@ -281,31 +262,18 @@ Esc & \verb|MW12|  & Valor de escritura Ki \\
 Esc & \verb|MW13| & Valor de escritura Kd \\
 \hline
 \end{tabular}
-\caption{Palabras lectura/escritura}
-\label{table:palabraslecturasescrituras}
+\caption{Memory Words utilizadas para almacenar valores numéricos.}
+\label{table:mwNumericos}
 \end{table}
 
-\section{Controlador PID}
-\label{sec:controladorpid}
-
-En un controlador \gls{pid} la acción correctiva se toma de manera que:
-
-\begin{itemize}
- \item Proporcional al error.
- \item Proporcional a la integral del error respecto del tiempo
- \item Proporcional a la derivada del error respecto del tiempo
-\end{itemize}
-
-El software Twido Soft ofrece un modulo \gls{pid} que nos ofrece las
-opciones que necesitamos.
-
-\begin{itemize}
- \item Módulo automático: se le debe suministrar el valor de las ganancias. 
- \item Opción de apertura manual.
-\end{itemize}
-
-En la tabla \ref{table:controladorpid} se muestra la configuración del 
-controlador PID.
+Finalmente, se muestran las entradas y salidas al \gls{plc} de la planta.
+Descriptas en la sección \ref{subsec:plc}, permiten al
+controlador relevar variables de la planta y aplicar acciones de control. 
+Se muestran en la tabla \ref{table:entradassalidas} las
+entradas/salidas tanto analógicas como discretas.
+Cabe destacar que la salida \verb|Q0.7| se utilizó para obtener un indicador
+visual del estado de la planta en el plc.
+Esta salida no está conectada.\todo{En anexo, diagrama ladder de twido soft}
 
 \begin{table}[!t]
 
@@ -313,187 +281,257 @@ controlador PID.
 \centering
 \begin{tabular}{c||c||c}
 \hline
-\bfseries Tipo & \bfseries Word  & \bfseries Descripción\\
+\bfseries Tipo & \bfseries Memoria & \bfseries Descripción\\
 \hline \hline
-Entrada & \verb|IW1.0|  & Medida\\
+Salida & \verb|Q0.0|  & Encendido motor 1\\
+Salida & \verb|Q0.1|  & Encendido motor 2\\
+Salida & \verb|Q0.7|  & Señal de encendido de la planta en modo automático\\
+Salida & \verb|I0.0|  & Retroalimentación desde el relevo térmico motor 1\\
 \hline
-PID & \verb|MW2|  & Consigna\\
-PID & \verb|Kp|  & Ganancia proporcional\\
-PID & \verb|Ti|  & Ganancia integral\\
-PID & \verb|Td|  & Ganancia derivativa\\
-\hline
-Salida & \verb|M2|  & Modo manual\\
-Salida & \verb|MW15|  & Salida\\
-Salida & \verb|QW1.0|  & Salida digital\\
+Entrada & \verb|I0.1|  & Retroalimentación desde el relevo térmico motor 2\\
+Entrada & \verb|IW0.1.0|  & Señal analógica de nivel\\
+Entrada & \verb|IW0.1.1|  & Señal analógica de caudal \\
+Entrada & \verb|QW0.1.0|  & Señal analógica de salida de apertura de la válvula
+\\
 \hline
 \end{tabular}
-\caption{Entradas y salidas al PID}
+\caption{Entradas y salidas al PLC}
+\label{table:entradassalidas}
+\end{table}
+
+\section{Controlador PID}
+\label{sec:controladorpid}
+\glsreset{pid}
+
+El algoritmo utilizado en la planta de control de nivel, implantado en el
+\gls{plc}, es de tipo \gls{pid}.
+En un controlador \gls{pid} la acción correctiva es la suma de tres valores, a
+saber:
+
+\begin{itemize}
+ \item Proporcional al error.
+ \item Proporcional a la integral del error respecto del tiempo.
+ \item Proporcional a la derivada del error respecto del tiempo.
+\end{itemize}
+La constante de proporcionalidad para cada caso se conocen como ganancias del
+controlador ($K_p$, $T_i$ y $T_d$).
+
+El \gls{plc} utilizado ofrece hasta 14 bloques \gls{pid}, del cual utilizamos
+sólo uno.
+Se muestran en la tabla \ref{table:controladorpid} los valores utilizados para
+la configuración del controlador PID.
+Cada bloque \gls{pid} tiene dos modos de trabajo.
+\begin{itemize}
+ \item \textbf{Modo automático:} conociendo los valores de las ganancias, el
+set point y la variable controlada, realiza el algoritmo de \gls{pid} y entrega
+un valor de la variable manipulada en salida.
+En nuestro caso, la variable manipulada es la apertura de la válvula.
+La variable controlada y el set point corresponden a los valores de nivel
+presente en el tanque y deseado, respectivamente.
+ \item \textbf{Modo manual:} permite anular el controlador, enviando un valor
+manual a la variable controlada.
+Podemos así controlar la apertura a la válvula cuando se
+trabaja en modo manual desde el \gls{scada}.
+\end{itemize}
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\centering
+\begin{tabular}{c||c||c}
+\hline
+\bfseries Tipo & \bfseries Word  & \bfseries Descripción\\
+\hline \hline
+Variable Manipulada & \verb|IW1.0|  & Nivel actual del tanque controlado\\
+Consigna & \verb|MW2|  & Nivel deseado\\
+Ganancia PID & \verb|Kp|  & Ganancia proporcional\\
+Ganancia PID & \verb|Ti|  & Ganancia integral\\
+Ganancia PID & \verb|Td|  & Ganancia derivativa\\
+Variable controlada & \verb|QW1.0|  &  Apertura de la válvula (automático)\\
+Bandera & \verb|M2|  & 1: Modo manual, 0: Modo automático \\
+Valor manual & \verb|MW15|  & Apertura de la válvula (manual)\\
+\hline
+\end{tabular}
+\caption{Configuración del PID.}
 \label{table:controladorpid}
 \end{table}
 
-Para accionar la válvula de manera manual el bloque tiene una bandera
-que una vez activada permite que la salida del módulo, siendo esta la 
-apertura de la válvula, sea una palabra de memoria. De esta manera se 
-permite el control control de la válvula desde el software \gls{scada}.
-
 \subsection{Determinación de las ganancias}
 
-Para poder determinar las ganancias del controlador se decidió seguir
-las reglas propuestas por ZIEGLER–NICHOLS, las cuales analizán la respuesta
-del sistema a una perturbación en escalón.
+Para poder determinar las ganancias del controlador se decidió seguir el método
+de Ziegler–Nichols.
+Se trata de una serie de reglas basadas en la respuesta experimental
+del sistema.
+Estas reglas son aplicables a sistemas de primer orden, donde no se conoce con
+precisión el modelado matemático del sistema \cite{bib:Ogata}.
 
 Se presentan dos métodos:
 \begin{itemize}
- \item Primer método:
- 
- Se obtiene experimentalmente la respuesta de la planta a una entrada en escalón,
- si la respuesta es similar a la de la imagen \ref{fig:primermetodo}.
- La respuesta puede ser caracterizada por dos constantes, el tiempo de delay L y una
- constante de tiempo T. Estas pueden ser halladas dibujando una recta tangente al 
- punto de inflexión de la curva de la respuesta del sistema, a partir la intersección de
- esta recta con el eje del tiempo como muestra la figura \ref{fig:primermetodo}.
- 
- \item Segundo método:
- 
- Este método comienza su análisis con un controlador puramente proporcional. Se incrementa 
- la ganancia proporcional desde cero hasta un valor $Kp_{cr} $ donde la respuesta del 
- sistema presenta oscilaciones como en la imagen \ref{fig:segundometodo}.
- A partir de esto hemos obtenido experimentalmente $Kp_{cr} $ y $P_{cr} $.
+ \item \textbf{Primer método:} se obtiene experimentalmente la respuesta de la
+planta a una entrada en escalón.
+ La respuesta puede ser caracterizada por dos constantes, el tiempo de retardo
+$L$ y una constante de tiempo $T$.
+Se obtienen las constantes dibujando
+una recta tangente al  punto de inflexión de la curva de la respuesta del
+sistema, como muestra la figura \ref{fig:primermetodo}.
+Luego, se calculan las ganancias utilizando la tabla \ref{tab:valorganancias}.
+
+ \item \textbf{Segundo método:}
+ este método comienza su análisis con un controlador puramente proporcional.
+ Se incrementa  la ganancia proporcional desde cero hasta un valor $Kp_{cr} $
+donde la respuesta del  sistema presenta oscilaciones permanentes como en la
+imagen \ref{fig:segundometodo}.
+ Mediante los valores de $Kp_{cr} $ y $P_{cr}$ pueden calcularse las ganancias
+del controlador.
+Nuevamente, las ganancias pueden ser calculadas utilizando la tabla
+\ref{tab:valorganancias}.
 \end{itemize}
 
-
-\begin{figure}
+\begin{figure}[ht]
  \centering
  \includegraphics[scale=0.5]{Cap4-ProgramacionPLC/images/primermetodo.png}
- \caption{Respuesta del sistema a un escalón.}
+ \caption{Respuesta del sistema a un escalón \cite{bib:Ogata}.}
  \label{fig:primermetodo}
 \end{figure}
 
-
-\begin{figure}
+\begin{figure}[ht]
  \centering
  \includegraphics[scale=0.5]{Cap4-ProgramacionPLC/images/segundometodo.png}
- \caption{Oscilacion sostenida del sistema.}
+ \caption{Oscilación permanente del sistema \cite{bib:Ogata}.}
  \label{fig:segundometodo}
 \end{figure}
 
-A partir de los datos obtenidos con la respueta experimental del sistema
-ZIEGLER–NICHOLS proponen elegir el valor de las ganancias de acurdo a los
-valores de la tabla \ref{table:valorganancias}.
-
-
 \begin{table}[!t]
-
 \renewcommand{\arraystretch}{1.3}
 \centering
 \begin{tabular}{c||c||c |c}
 \hline
 \bfseries Método & \bfseries Kp  & \bfseries Ti & \bfseries Td\\
 \hline \hline
-Primero &  $ 1.2 \, \dfrac{T}{L}$ & $2 \, L $ & $ 0.5 \, L $\\
+Primero &  $ 1.2 \, {T}/{L}$ & $2 \, L $ & $ 0.5 \, L $\\
 \hline
 Segundo &  $0.6 \,Kp_{cr}  $ & $ 0.5 \, P_{cr}$ & $0.125 \, P_{cr} $\\
 \hline
 \end{tabular}
-\caption{Valor de las ganacias}
-\label{table:valorganancias}
+\caption{Valor de las ganacias según el método Ziegler–Nichols.}
+\label{tab:valorganancias}
 \end{table}
 
+\subsubsection{Cálculo de ganancia en nuestra planta}
+
+Se realizó el método experimental, obteniéndose...\todo{hacer ZN}.
+
+\section{Comunicación}
+\label{sec:Comunicacion}
+
+Tal como se mencionó anteriormente, sólo los \gls{memoryWord} (palabras) pueden
+ser leídas mediante MODBUS.
+Para interactuar con la planta debieron definirse ciertas palabras, que
+permiten realizar acciones en el sistema y conocer el estado del mismo.
+Por simplicidad, se optó por utilizar dos grupos de palabras bien
+diferenciadas:
+\begin{itemize}
+ \item \textbf{Palabras de lectura:} pueden ser leídas por la computadora de
+control mediante MODBUS. En las palabras de lectura agruparemos aquellas
+banderas de estado (motores encendidos, alarmas) y las palabras con valores
+numéricos de lectura (mediciones de nivel, caudal, valor presente de set point
+y de ganancias).
+ \item \textbf{Palabras de escritura:} pueden ser escritas por la computadora
+de control. Aquí se agrupan valores numéricos que pueden ser cambiados (set
+point, ganancias) y banderas para modificar el estado de la planta (encenderla,
+seteo en modo manual, encendido de las bombas).
+\end{itemize}
+
+Destacamos que en algunos casos (por ejemplo, set point) tenemos tanto palabras
+de lectura o escritura.
+Esto se debe a que estas variables, importantes para el funcionamiento de la
+planta, deben ser modificadas solamente bajo solicitud expresa del usuario
+(poniendo a 1 alguna bandera).
+
+La tabla \ref{table:mwBanderas} presenta dos palabras de dieciséis
+bits, \verb|MW0| y \verb|MW1|, la primera de ella presenta bits de lectura, en
+donde se
+refleja el estado del la plata, mientras que la segunda palabra tiene bits de
+de escritura para enviar acciones de control.
+
+Por otro lado la tabla \ref{table:mwNumericos} nos presenta
+las palabras de las restantes que se utilizan en el programa, para
+almacenar valores numéricos.
+La primer parte de la tabla muestra las palabras de solo lectura (valores que
+presentan las variables del sistema), mientras que en la
+segunda parte muestra las palabras de escritura (reservadas al cambio
+de los parámetros del sistema).
 
 \section{Depuración (Debug)}
 \label{sec:Debug}
 
+Una vez finalizada la programación y antes de vincular el \gls{plc}
+al \gls{scada}, se realizaron una serie de pruebas correspondientes para
+validar el correcto funcionamiento del programa.
 
-Una vez finalizada la programación y antes de unirlo al software \gls{scada} 
-se realizaron las pruebas correspondientes al correcto funcionamiento y respuesta
-a las situaciones posibles. 
+El software Twido Soft permite realizar la depuración
+en tiempo de ejecución, observando el estado de las diferentes variables
+de la planta.
+La animación colorea las bobinas y contactores que están activas, permitiendo
+identificar problemas lógicos en el programa.
+Además, podemos observar el valor de las entradas y salidas detectando
+errores con la instrumentación y los actuadores.
 
-El software Twido Soft presenta una animación que nos permite realizar un debug en
-tiempo de funcionamiento, sabiendo así la situación real del sistema. 
-La animación colorea las bobinas que están activas de acuerdo a lo especificado
-en las líneas del programa.
+En la imagen \ref{img:twidosoftdebug} se observa el módulo \emph{tablas
+de animación} de Twido Soft.
+Mediante este módulo, se puede forzar el estado de algunas bobinas y cambiar el
+valor de las palabras en memoria.
+Podemos así generar situaciones características que encontraremos durante la
+operación de la planta.
+Podemos citar:
 
-También podemos forzar el estado de algunas bobinas y cambiar el valor de las 
-palabras de memoria. Esto nos permite generar las situaciones deseadas.
-Fue muy importante tener esta herramienta para poder analizar el código propuesto
-dada su practicidad, y poder realizar los cambios necesarios.
-
-Las pruebas realizadas fueron las siguientes:
-
-\begin{itemize}
- \item Lectura de las variables.
- 
- Al tener acceso a todas las palabras de memoria se tuvo la precaución de mantener el
- sistema apagado y se constato que los valores recogidos desde la entrada analógica
- tengan sentido con lo que sucede en el sistema. Para ello el caudal debía ser cero debido
- a que no estaba circulando fluido y la altura debía coincidir con lo mostrado por el 
- indicador visual de nivel. 
- 
- \item Correcto funcionamiento del Controlador y adquisición del Set Point.
- 
- Se le dio al sistema un Set Point y se verificó su correcto funcionamiento. 
- La característica principal de esta prueba fue que estaban deshabilitadas las demás
- funciones del sistema, solo interesaba saber como respondía el bloque controlador.
- El primer valor otorgado fue al 50 porciento, luego se hizo variar al 25 porciento
- y por ultimo al 75 porciento.
- 
- \item Correcto funcionamiento de las alarmas y paradas de emergencia.
- 
- Para poder detectar esta situaciones del sistema se forzo un estado que no es el normal
- de funcionamiento, se forzo a desplazar el sistema por encima y por debajo de los
- límites de funcionamiento para conocer la respuesta del sistema. Lo que se esperaba en esta
- prueba era ver el cambio en la palabra que contiene el estado del sistema.
- 
- Para las alarmas de Low Level y High Level solo se envía una señal al software \gls{scada},
- se verifico correctamente el cambio en la palabra \verb|MW0|.
- 
- Para las alarmas de Low Low Level y High High Level, no solo se constato el cambio en la
- palabra \verb|MW0|, que representa el cambio en el estado de la planta sino que además 
- se procede a la detención de la planta.
- 
- Estas pruebas fueron muy importantes dado que se hizo trabajar al sistema en una situación
- crítica.
- 
- \item Encendido y parada del sistema en modo manual.
- 
- Para poder inferir sobre el sistema se debe cambiar la palabra \verb|MW1|, se procedio a
- hacer funcionar al sistema de modo automático, con un nivel de Set Point preestablecido.
- 
- \item Seteo de parámetros.
- 
- Hasta este momento los valores de las ganancias del controlador eran las establecidas por 
- default, una vez asegurados que funcionaba el sistema y sobre todo las paradas de emergencias
- se probó el seteo de parámetros, modificando la palabra \verb|MW1| y la correspondiente 
- memoria de acuerdo al valor que se desee modificar.
- 
- \item Control del sistema en modo manual.
- 
- Otra vez modificando la palabra \verb|MW1| se eligió manejar el sistema de modo manual.
- Una vez el sistema en modo manual se debe mandar el valor de apertura de la válvula y 
- la señal para encender cada motor por separado
- 
- \item Retroalimentación del estado del sistema.
- 
- En esta prueba solo se constato que los valores de las palabras de memoria sean lógicos,
- se hicieron pruebas de todas las situaciones anteriores con las paradas de emergencia 
- habilitadas.
- 
- \item Parada de emergencia por error en el funcionamiento de los motores.
- 
- Por ultimo se forzó nuevamente al sistema a una situación extrema, en la que uno
- de los motores se para por sobrecalentamiento por ejemplo. Lo que esperamos es que se
- detenga el sistema una vez que forcemos una salida y la retroalimentación que indica que
- ese motor se encendió no se active.
- 
-\end{itemize}
-
-En la imagen \ref{img:twidosoftdebug} se puede apreciar las table que nos permite realizar
-el debug desde el programa.
-
-\begin{figure}[ht!]
+\begin{figure}[ht]
 	\centering
-	\includegraphics[width=.6\textwidth]
+	\includegraphics[width=.8\textwidth]
 	{Cap4-ProgramacionPLC/images/twidosoftdebug.png}
 	\caption{Esquema de la división del tiempo}
 	\label{img:twidosoftdebug}
 \end{figure}
+
+\begin{itemize}
+ \item \textbf{Lectura de las variables analógicas:}
+ se constato que los valores recogidos con las entradas analógicas sean
+congruentes con el valor que se observa en las DP cell.
+
+  \item \textbf{Encendido y parada del sistema en modo automático:} cambiando
+la palabra \verb|MW1|, se verificó el correcto arranque del sistema en modo
+automático, con un Set Point preestablecido.
+
+ \item \textbf{Correcto funcionamiento del Controlador \gls{pid}:}
+ se verificó el funcionamiento de la planta al cambiar el Set Point.
+Se verifican así las ganancias del controlador, como así también el correcto
+funcionamiento de la válvula de control.
+
+ \item \textbf{Correcto funcionamiento de las alarmas y paradas de emergencia:}
+ se forzó un estado anormal en el sistema para verificar el funcionamiento de
+las alarmas y paradas de emergencia, en una situación crítica. Por ejemplo, se
+estableció un set point superior a HHL.
+ Se verifica cambio en la palabra \verb|MW0| al sobrepasar HL.
+ Luego, al sobrepasar HHL, no solo se constato el cambio en la
+ palabra \verb|MW0|, sino que además se verificó la correcta detención de la
+planta (bandera \verb|M3|).
+ De la misma manera se verificaron las alarmas y paradas por bajo nivel.
+ 
+ \item \textbf{Seteo de parámetros:}
+ hasta este momento los valores de las ganancias del controlador eran las
+establecidas por defecto durante el arranque del controlador.
+ En esta prueba, se verificó el cambio de las ganancias del \gls{pid} en tiempo
+de ejecución, modificando la palabra \verb|MW1| y la
+correspondiente palabra de acuerdo al valor que se desee modificar.
+ 
+ \item \textbf{Control del sistema en modo manual:}
+ modificando la palabra \verb|MW1| se puso el sistema de modo manual.
+ Se cambió la apertura de la válvula y se verificó el arranque de cada motor
+por separado.
+ 
+ \item \textbf{Parada de emergencia por error en el funcionamiento de los
+motores:} por ultimo se forzó nuevamente al sistema a una situación extrema, en
+la que uno de los motores se detiene por sobrecorriente (debido al rotor
+atascado o sobrecalentamiento).
+ El sistema se detiene (bandera \verb|M4|) y la palabra \verb|MW0| acusa que el
+motor no está encendido.
+\end{itemize}
