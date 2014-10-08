@@ -9,7 +9,7 @@
 Antes de poner en funcionamiento la planta verifique cada uno de los siguientes 
 items:
 
-
+\tcbset{before app=\parfillskip 0pt}
 \begin{tcolorbox}[title=Nivel de agua]
 Verifique que cada tanque no tenga más del 55 \% (aprox.) del total de su 
 capacidad. 
@@ -120,7 +120,7 @@ motores.
 	%{Cap5-SCADA/images/database.jpeg}
     \end{center}\\
 \hline
-    Energizar el sistema. Activar en interruptor termomagnético ubicado dentro 
+    Energizar el sistema. Activar el interruptor termomagnético ubicado dentro 
     del tablero eléctrico
     &\begin{center}
       \rule{0.4\textwidth}{0.3\textwidth}
@@ -128,9 +128,8 @@ motores.
 	%{Cap5-SCADA/images/database1.jpeg}
     \end{center}\\
 \hline
-    Activar el relé manualmente lo que sea necesario. En la imagen se puede 
-    apreciar la manija que se debe accionar para activar el 
-    relé.
+    Activar manualmente el relé de la bomba correspondiente. En la imagen se 
+    puede apreciar la manija que se debe accionar para activar un relé.
     &\begin{center}
       \rule{0.4\textwidth}{0.3\textwidth}
       %\includegraphics[width=0.4\textwidth]
@@ -140,4 +139,7 @@ motores.
 \end{tabular}
 \end{table}
 
-\todo{referencia a la hoja de datos del relé}
+Para mas información acerca del relé utilizado en esta planta, refiérase a la 
+hoja de datos del mismo, que se encuentra en \todo{referencia a la hoja de 
+datos}. Por favor, si tiene dudas acerca de como se acciona de manera manual 
+este relé 

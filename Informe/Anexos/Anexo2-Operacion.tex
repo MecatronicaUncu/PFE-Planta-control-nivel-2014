@@ -38,8 +38,8 @@ computadora que lo programará. Siga estos pasos:
 \renewcommand*{\arraystretch}{0.01}
 \begin{tabular}{*{2}{m{0.45\textwidth}}}
 \hline
-    Energizar el sistema. Activar en interruptor termomagnético ubicado dentro 
-    del tablero eléctrico
+    Energizar el sistema. Activar el interruptor termomagnético ubicado dentro 
+    del tablero eléctrico.
     &\begin{center}
       \rule{0.4\textwidth}{0.3\textwidth}
       %\includegraphics[width=0.4\textwidth]
@@ -57,9 +57,10 @@ computadora que lo programará. Siga estos pasos:
 \end{tabular}
 \end{table}
 
-\todo{imagen del programa y colocar el nombre definitivo del programa}
 
-Para escribir el programa propuesto en este informe y partir desde un punto 
+
+Para escribir el programa propuesto en este informe y partir desde un punto
+\todo{imagen del programa y colocar el nombre definitivo del programa}
 conocido debe abrir el programa del \gls{plc} denominado {\color{red}(nombre del 
 programa)} con el Software Twido Soft. Este programa se encuentra en el DVD 
 adjunto a este informe. 
@@ -174,9 +175,25 @@ carpeta AFCON P-CIM.
 \end{table}
 
 \begin{lattention}
- En el caso de que no se haya logrado cargar el driver Modbus refiérase a la 
+En el caso de que no se haya logrado cargar el driver Modbus refiérase a la 
 Tab.\ref{tab:PropModbus} de la sección \ref{subsubsec:InforDriver}.
 \end{lattention}
 
 \subsubsection{Operators Workspace}
+Para ejecutar el entorno gráfico del sistema \gls{scada} ejecute la aplicación 
+Operator Workspace que se encuentra en el directorio \todo{agregar directorio}
+
+A través de esta interfaz es posible manejar la planta. La misma se encuentra 
+organizada en 4 bloques Principales.(Ver Fig.\todo{agregar foto})
+\begin{enumerate}
+ \item Control Automatico: En esta sección usted puede pasar al controlador de 
+la planta la consigna/setpoint y las constantes del controlador Kp, Ti y Td.
+ \item Control Manual: Este modo debe ser usado solamente como un medio para 
+sacar a la planta de un estado de emergencia tras  haberse declarado una alarma 
+por HHL o LLL.
+ \item Sistema: En este apartado podemos ver el estado del actual del sistema. 
+Es decir se muestran los valores de nivel y caudal actuales e históricos juntos 
+con las alarmas.
+ \item Activación: Desde estos controles se activa o se frena la planta.
+\end{enumerate}
 
