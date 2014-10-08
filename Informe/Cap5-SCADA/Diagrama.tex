@@ -67,7 +67,7 @@ sep=4pt, rounded corners]
     \node[modbus neuron, right of=mw15] (40016)  {\texttt{1:1:40016}};
      
     %Draw Analog Input Output layer nodes
-    \node[aio neuron, right of=40001] (io)  {\texttt{ENTRADAS\_DISCRETAS}};
+    \node[aio neuron, right of=40001] (io)  {\texttt{SEÑALES\_SISTEMA}};
     \node[aio neuron, right of=40002] (niv)  {\texttt{NIVEL\_TANQUE}};
     \node[aio neuron, right of=40003] (spr)  {\texttt{SP\_READ}};
     \node[aio neuron, right of=40004] (caudal)  {\texttt{CAUDAL}};
@@ -75,7 +75,7 @@ sep=4pt, rounded corners]
     \node[aio neuron, right of=40006] (tir)  {\texttt{TI\_READ}};
     \node[aio neuron, right of=40007] (tdr)  {\texttt{TD\_READ}};
     \node[aio neuron, right of=40008] (vr)  {\texttt{VALVE\_READ}};
-    \node[aio neuron, right of=40009] (md)  {\texttt{MOTOR\_DIGITAL}};
+    \node[aio neuron, right of=40009] (md)  {\texttt{SEÑALES\_MOTOR}};
     \node[aio neuron, right of=40011] (spw)  {\texttt{SP\_WRITE}};
     \node[aio neuron, right of=40012] (kpw)  {\texttt{KP\_WRITE}};
     \node[aio neuron, right of=40013] (tiw)  {\texttt{TI\_WRITE}};
@@ -100,7 +100,7 @@ sep=4pt, rounded corners]
     
     %Draw Emulation
     \node[emul neuron] (eio) at (2.75*5cm,0 cm) 
-{\texttt{EMUL\_ENT\_DISCRETAS}};
+{\texttt{EMUL\_S\_SISTEMA}};
     \node[emul neuron] (ekpr) at (2.75*5cm,-5 cm) 
 {\texttt{EMUL\_KP\_READ}};
     \node[emul neuron] (etir) at (2.75*5cm,-7 cm) 
@@ -108,7 +108,7 @@ sep=4pt, rounded corners]
     \node[emul neuron] (etdr) at (2.75*5cm,-9 cm) 
 {\texttt{EMUL\_TD\_READ}};
     \node[emul neuron] (emd) at (2.75*5cm,-13 cm) 
-{\texttt{EMUL\_MOT\_DIGITAL}};
+{\texttt{EMUL\_S\_MOTOR}};
     \node[emul neuron] (ekpw) at (2.75*5cm,-6 
 cm){\texttt{EMUL\_KP\_WRITE}};
     \node[emul neuron] (etiw) at (2.75*5cm,-8 cm) 
