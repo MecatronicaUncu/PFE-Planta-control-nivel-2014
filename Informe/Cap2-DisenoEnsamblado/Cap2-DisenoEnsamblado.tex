@@ -25,10 +25,9 @@ Los elementos presentes en este esquema están regidos por la norma
 El diagrama permite una rápida comprensión del proceso, y se denomina
 corrientemente \gls{pyid}.
 
-En los diagramas \gls{pyid} encontramas grafícados los instrumentos de medición 
-como un círculo y dentro del mismo las letras que indican que elemento es. Cada 
-uno de ellos debe ir acompañado de una denominación, que utiliza la
-siguiente codificación:
+En los diagramas \gls{pyid} encontramas grafícados los elementos 
+como un círculo, cada uno de ellos debe ir acompañado de una denominación,
+que utiliza la siguiente codificación:
 
 \begin{itemize}  
  \item \textbf{Primer letra:}
@@ -61,6 +60,26 @@ indica su ubicación:
  \item Trazos: Fuera del alcance del operario
 \end{itemize}
 
+Como su nombre lo indica también esta presente en el diagrama la descripción de las
+cañerías que forman el sistema, esto incluye el material y los diámetros de las mismas.
+Cabe destacar que en este diagrama y en esta instancia no es necesario especificar las 
+longitudes y accesorios, dado que ello forma parte de un diagrama que se debe realizar 
+en una etapa posterior del proyecto.
+
+También se diferencia en el diagrama la naturaleza de cada señal, las cuales se describen
+a continuación:
+
+\begin{itemize}
+ \item Tubería:
+ Línea continua.
+ \item Señal hidráulica:
+ Línea continua intersectada con líneas perpendiculares en forma de L.
+ \item Señal neumática:
+ Linea continua intersectada por pequeñas líneas paralelas. 
+ \item Señal eléctrica:
+ Línea de trazos.
+\end{itemize}
+
 
 \subsection{P\&ID de nuestra planta}
 De acuerdo a los componentes detallados en la sección
@@ -89,11 +108,10 @@ Las diferentes partes del diagrama se explicarán a continuación:
 \subsubsection{Elementos}
 
 En la tabla \ref{tab:elementos}se presentan los elementos
-que forman parte del diagrama \gls{pyid}.
-
-Por el momento se presentan los elementos correspondientes al 
-proceso, en la sección \ref{subsec:alarmas} se presentan los
-elementos correspondientes al sistema de alarma.
+que forman parte del diagrama \gls{pyid}. Se muestra en la misma
+los simbolos que tienen cada una de las partes del sistema, así como
+también se detalla el significado de las siglas que acompañan a
+cada uno.
 
 \begin{table}[H]
 \small
@@ -160,7 +178,7 @@ LT: Level Transmitter
   &\begin{center}
     %\rule{0.4\textwidth}{0.3\textwidth}
     \includegraphics[height = 0.08\textwidth]
-	{Cap2-DisenoEnsamblado/images/valvulam.png}
+	{Cap2-DisenoEnsamblado/images/tnivel.png}
   \end{center}\\
 \hline
 Válvula e indicador de presión
