@@ -21,7 +21,7 @@ sep=4pt, rounded corners]
     distance=0.6*5cm];
 
     % Draw the plc layer nodes
-     \node[plc neuron, pin=left:Entradas/Salidas] (mw0) at (0,0) 
+     \node[plc neuron, pin=left:Lecturas] (mw0) at (0,0) 
 {\texttt{MW0}};
      \node[plc neuron, pin=left:Nivel] (mw1) at (0,-1) 
 {\texttt{MW2}};
@@ -47,7 +47,7 @@ sep=4pt, rounded corners]
  {\texttt{MW8}};
       \node[plc neuron, pin=left: Valvula Escrbir] (mw15) at (0,-12) 
  {\texttt{MW9}};
-      \node[plc neuron, pin=left: Motores] (mw8) at (0,-13) 
+      \node[plc neuron, pin=left: Escrituras] (mw8) at (0,-13) 
  {\texttt{MW1}};
 
     %Draw Modbus layer nodes
@@ -59,7 +59,7 @@ sep=4pt, rounded corners]
     \node[modbus neuron, right of=mw5] (40006)  {\texttt{1:1:40006}};
     \node[modbus neuron, right of=mw6] (40007)  {\texttt{1:1:40007}};
     \node[modbus neuron, right of=mw7] (40008)  {\texttt{1:1:40009}};
-    \node[modbus neuron, right of=mw8] (40009)  {\texttt{1:1:40009}};
+    \node[modbus neuron, right of=mw8] (40009)  {\texttt{1:1:40002}};
     \node[modbus neuron, right of=mw10] (40011)  {\texttt{1:1:40011}};
     \node[modbus neuron, right of=mw11] (40012)  {\texttt{1:1:40012}};
     \node[modbus neuron, right of=mw12] (40013)  {\texttt{1:1:40013}};
@@ -67,7 +67,7 @@ sep=4pt, rounded corners]
     \node[modbus neuron, right of=mw15] (40016)  {\texttt{1:1:40010}};
      
     %Draw Analog Input Output layer nodes
-    \node[aio neuron, right of=40001] (io)  {\texttt{SEÑALES\_SISTEMA}};
+    \node[aio neuron, right of=40001] (io)  {\texttt{LECTURA\_DIGITAL}};
     \node[aio neuron, right of=40002] (niv)  {\texttt{NIVEL\_TANQUE}};
     \node[aio neuron, right of=40003] (spr)  {\texttt{SP\_READ}};
     \node[aio neuron, right of=40004] (caudal)  {\texttt{CAUDAL}};
@@ -75,7 +75,7 @@ sep=4pt, rounded corners]
     \node[aio neuron, right of=40006] (tir)  {\texttt{TI\_READ}};
     \node[aio neuron, right of=40007] (tdr)  {\texttt{TD\_READ}};
     \node[aio neuron, right of=40008] (vr)  {\texttt{VALVE\_READ}};
-    \node[aio neuron, right of=40009] (md)  {\texttt{SEÑALES\_MOTOR}};
+    \node[aio neuron, right of=40009] (md)  {\texttt{ESCRITURA\_DIGITAL}};
     \node[aio neuron, right of=40011] (spw)  {\texttt{SP\_WRITE}};
     \node[aio neuron, right of=40012] (kpw)  {\texttt{KP\_WRITE}};
     \node[aio neuron, right of=40013] (tiw)  {\texttt{TI\_WRITE}};
@@ -100,7 +100,7 @@ sep=4pt, rounded corners]
     
     %Draw Emulation
     \node[emul neuron] (eio) at (2.75*5cm,0 cm) 
-{\texttt{EMUL\_S\_SISTEMA}};
+{\texttt{EMUL\_L\_DIGITAL}};
     \node[emul neuron] (ekpr) at (2.75*5cm,-5 cm) 
 {\texttt{EMUL\_KP\_READ}};
     \node[emul neuron] (etir) at (2.75*5cm,-7 cm) 
@@ -108,7 +108,7 @@ sep=4pt, rounded corners]
     \node[emul neuron] (etdr) at (2.75*5cm,-9 cm) 
 {\texttt{EMUL\_TD\_READ}};
     \node[emul neuron] (emd) at (2.75*5cm,-13 cm) 
-{\texttt{EMUL\_S\_MOTOR}};
+{\texttt{EMUL\_E\_DIGITAL}};
     \node[emul neuron] (ekpw) at (2.75*5cm,-6 
 cm){\texttt{EMUL\_KP\_WRITE}};
     \node[emul neuron] (etiw) at (2.75*5cm,-8 cm) 
@@ -120,9 +120,9 @@ cm){\texttt{EMUL\_KP\_WRITE}};
    \node[emula neuron, pin=right:Entradas/Salidas,right of=eio] (a1) 
   {\texttt{A:1}};
   \node[emula neuron, pin=right:Entradas/Salidas,right of=eniv] (a2) 
-  {\texttt{A:2}};
-  \node[emula neuron, pin=right:Entradas/Salidas,right of=espr] (a3) 
   {\texttt{A:3}};
+  \node[emula neuron, pin=right:Entradas/Salidas,right of=espr] (a3) 
+  {\texttt{A:8}};
   \node[emula neuron, pin=right:Entradas/Salidas,right of=espw] (a11) 
   {\texttt{A:11}};
   \node[emula neuron, pin=right:Entradas/Salidas,right of=ecaudal] (a4) 
@@ -140,16 +140,16 @@ cm){\texttt{EMUL\_KP\_WRITE}};
   \node[emula neuron, pin=right:Entradas/Salidas,right of=etdw] (a14) 
   {\texttt{A:14}};
   \node[emula neuron, pin=right:Entradas/Salidas,right of=evr] (a8) 
-  {\texttt{A:8}};
-  \node[emula neuron, pin=right:Entradas/Salidas,right of=evw] (a16) 
-  {\texttt{A:16}};
-  \node[emula neuron, pin=right:Entradas/Salidas,right of=emd] (a9) 
   {\texttt{A:9}};
+  \node[emula neuron, pin=right:Entradas/Salidas,right of=evw] (a16) 
+  {\texttt{A:10}};
+  \node[emula neuron, pin=right:Entradas/Salidas,right of=emd] (a9) 
+  {\texttt{A:2}};
 
    
   % Connect every node 
   %PLC -> MODBUS
-  \path (mw0) edge[<->,ultra thick] (40001); 
+  \path (mw0) edge[ultra thick] (40001); 
   \path (mw1) edge[ultra thick] (40002); 
   \path (mw2) edge[ultra thick] (40003);
   \path (mw3) edge[ultra thick] (40004); 
@@ -157,7 +157,7 @@ cm){\texttt{EMUL\_KP\_WRITE}};
   \path (mw5) edge[ultra thick] (40006); 
   \path (mw6) edge[ultra thick] (40007); 
   \path (mw7) edge[ultra thick] (40008); 
-  \path (mw8) edge[<->,ultra thick] (40009);
+  \path (mw8) edge[ultra thick] (40009);
   \path (mw10) edge[ultra thick] (40011); 
   \path (mw11) edge[ultra thick] (40012); 
   \path (mw12) edge[ultra thick] (40013);
@@ -165,7 +165,7 @@ cm){\texttt{EMUL\_KP\_WRITE}};
   \path (mw15) edge[ultra thick] (40016); 
 
   %MODBUS -> Analog IO
-  \path (40001) edge[<->,ultra thick] (io); 
+  \path (io) edge[ultra thick] (40001);
   \path (40002) edge[ultra thick] (niv); 
   \path (40003) edge[ultra thick] (spr);
   \path (40004) edge[ultra thick] (caudal);
@@ -197,7 +197,7 @@ cm){\texttt{EMUL\_KP\_WRITE}};
   \path (evw) edge[ultra thick] (cvw); 
   
   %Analog IO -> Emulation
-  \path (io) edge[<->,ultra thick] (eio);
+  \path (eio) edge[ultra thick] (io);
   \path (kpr) edge[ultra thick] (ekpr);
   \path (ekpw) edge[ultra thick] (kpw);
   \path (tir) edge[ultra thick] (etir);
@@ -207,7 +207,7 @@ cm){\texttt{EMUL\_KP\_WRITE}};
   \path (md) edge[<->,ultra thick] (emd);
 
   %Emulation -> Address
-  \path (eio) edge[<->,ultra thick] (a1);
+  \path (a1) edge[ultra thick] (eio);
   \path (eniv) edge[ultra thick] (a2);
   \path (espr) edge[ultra thick] (a3);
   \path  (a11) edge[ultra thick] (espw);
