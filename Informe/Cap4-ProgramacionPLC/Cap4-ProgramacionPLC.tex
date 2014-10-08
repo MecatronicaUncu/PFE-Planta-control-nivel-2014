@@ -120,6 +120,9 @@ final buscando discrepancias}
 
 \begin{figure}
 \centering
+\tikzstyle{every node}=[draw=black,thick,anchor=west,inner sep=2pt,minimum
+size=1pt]
+\tikzstyle{selected}=[draw=cyan,fill=cyan!30]
 \begin{tikzpicture}[
   grow via three points={one child at (0.5,-0.7) and
   two children at (0.5,-0.7) and (0.5,-1.4)},   
@@ -148,8 +151,6 @@ final buscando discrepancias}
     child { node {Gestión de bandera del sistema trabajando en modo normal}    }
     child { node {Limpieza de alarmas}    };
 \end{tikzpicture}
-\tikzstyle{every node}=[] % resets borders of tables
-\tikzstyle{selected}=[] % resets selected
 \caption{Esquema de Rungs del programa Ladder de la planta de control de nivel}
 \label{fig:ladder}
 \end{figure}
