@@ -24,9 +24,9 @@ sep=4pt, rounded corners]
      \node[plc neuron, pin=left:Entradas/Salidas] (mw0) at (0,0) 
 {\texttt{MW0}};
      \node[plc neuron, pin=left:Nivel] (mw1) at (0,-1) 
-{\texttt{MW1}};
-     \node[plc neuron, pin=left: Consigna Leer] (mw2) at (0,-2) 
 {\texttt{MW2}};
+     \node[plc neuron, pin=left: Consigna Leer] (mw2) at (0,-2) 
+{\texttt{MW7}};
      \node[plc neuron, pin=left: Consigna Escribir] (mw10) at (0,-3) 
 {\texttt{MW10}};
      \node[plc neuron, pin=left: Caudal] (mw3) at (0,-4) 
@@ -44,27 +44,27 @@ sep=4pt, rounded corners]
       \node[plc neuron, pin=left: Td Escribir] (mw13) at (0,-10) 
  {\texttt{MW13}};
       \node[plc neuron, pin=left: Valvula Leer] (mw7) at (0,-11) 
- {\texttt{MW7}};
-      \node[plc neuron, pin=left: Valvula Escrbir] (mw15) at (0,-12) 
- {\texttt{MW15}};
-      \node[plc neuron, pin=left: Motores] (mw8) at (0,-13) 
  {\texttt{MW8}};
+      \node[plc neuron, pin=left: Valvula Escrbir] (mw15) at (0,-12) 
+ {\texttt{MW9}};
+      \node[plc neuron, pin=left: Motores] (mw8) at (0,-13) 
+ {\texttt{MW1}};
 
     %Draw Modbus layer nodes
     \node[modbus neuron, right of=mw0] (40001)  {\texttt{1:1:40001}};
-    \node[modbus neuron, right of=mw1] (40002)  {\texttt{1:1:40002}};
-    \node[modbus neuron, right of=mw2] (40003)  {\texttt{1:1:40003}};
+    \node[modbus neuron, right of=mw1] (40002)  {\texttt{1:1:40003}};
+    \node[modbus neuron, right of=mw2] (40003)  {\texttt{1:1:40008}};
     \node[modbus neuron, right of=mw3] (40004)  {\texttt{1:1:40004}};
     \node[modbus neuron, right of=mw4] (40005)  {\texttt{1:1:40005}};
     \node[modbus neuron, right of=mw5] (40006)  {\texttt{1:1:40006}};
     \node[modbus neuron, right of=mw6] (40007)  {\texttt{1:1:40007}};
-    \node[modbus neuron, right of=mw7] (40008)  {\texttt{1:1:40008}};
+    \node[modbus neuron, right of=mw7] (40008)  {\texttt{1:1:40009}};
     \node[modbus neuron, right of=mw8] (40009)  {\texttt{1:1:40009}};
     \node[modbus neuron, right of=mw10] (40011)  {\texttt{1:1:40011}};
     \node[modbus neuron, right of=mw11] (40012)  {\texttt{1:1:40012}};
     \node[modbus neuron, right of=mw12] (40013)  {\texttt{1:1:40013}};
     \node[modbus neuron, right of=mw13] (40014)  {\texttt{1:1:40014}};
-    \node[modbus neuron, right of=mw15] (40016)  {\texttt{1:1:40016}};
+    \node[modbus neuron, right of=mw15] (40016)  {\texttt{1:1:40010}};
      
     %Draw Analog Input Output layer nodes
     \node[aio neuron, right of=40001] (io)  {\texttt{SEÑALES\_SISTEMA}};
