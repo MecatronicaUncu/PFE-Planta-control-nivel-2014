@@ -2,10 +2,8 @@
 \label{anexo:operacion}
 
 Tras realizar las verificaciones mencionadas en la Sec. 
-\ref{anexo:verificaciones} del Manual del Utilizador proceda de la siguiente 
+\ref{anexo:verificaciones} del Manual de Usuario proceda de la siguiente
 manera para la operación normal de la planta.
-% A continuación se describen los pasos a seguir para operar 
-% de manera correcta la planta.
 
 \subsection{Carga del programa en el PLC}
 \label{anexo:operacionPLC}
@@ -28,26 +26,28 @@ manera para la operación normal de la planta.
 %  \item Poner a correr el programa, imagen\ref{img:twidosoftrun}.
 %  \item Desconectarse del \gls{plc}, imagen \ref{img:twidosoftdesc}.
 % \end{enumerate}
-En este punto usted puede acceder para leer el programa que se encuentra en la 
-memoria del \gls{plc} o bien para escribir un nuevo programa en el mismo. Para 
-esta tarea es necesario que el \gls{plc} se encuentre encendido y conectado a la 
-computadora que lo programará. Siga estos pasos:
+Usted puede leer el programa que se encuentra en la memoria del \gls{plc} o bien
+para escribir un nuevo programa.
+Para esta tarea es necesario que el \gls{plc} se encuentre encendido y
+conectado a la computadora que lo programará.
+Deberá entonces:
 
 \begin{table}[H]
 \centering
 \renewcommand*{\arraystretch}{0.01}
-\begin{tabular}{*{2}{m{0.45\textwidth}}}
+\begin{tabular}{*{2}{m{0.44\textwidth}}}
 \hline
-    Energizar el sistema. Activar el interruptor termomagnético ubicado dentro 
-    del tablero eléctrico.
+    Energizar la planta accionando el interruptor
+termomagnético ubicado dentro del tablero eléctrico.
     &\begin{center}
       \rule{0.4\textwidth}{0.3\textwidth}
       %\includegraphics[width=0.4\textwidth]
 	%{Cap5-SCADA/images/database1.jpeg}
     \end{center}\\
 \hline
-    Conectar la planta con la computadora mediante el cable cable RS-485 
- con adaptación a RS-232. Puede ser necesario utilizar un adaptador RS-232/USB.
+    Conectar la planta con la computadora de control, mediante el cable cable
+\verb|RS-485|  con adaptación a \verb|RS-232|. Puede ser necesario utilizar un
+adaptador \verb|RS-232/USB|.
     &\begin{center}
       \rule{0.4\textwidth}{0.3\textwidth}
       %\includegraphics[width=0.4\textwidth]
@@ -57,40 +57,38 @@ computadora que lo programará. Siga estos pasos:
 \end{tabular}
 \end{table}
 
-
-
-Para escribir el programa propuesto en este informe y partir desde un punto
+Procederemos a escribir y ejecutar en el \gls{plc} el programa propuesto en
+durante el desarrollo de la planta, así el sistema estará en un estado conocido.
 \todo{imagen del programa y colocar el nombre definitivo del programa}
-conocido debe abrir el programa del \gls{plc} denominado {\color{red}(nombre del 
+Se debe abrir el programa del \gls{plc} denominado {\color{red}(nombre del
 programa)} con el Software Twido Soft. Este programa se encuentra en el DVD 
 adjunto a este informe. 
+Luego, se debe proceder de la manera que se indica a continuación:
 
-Para escribir un programa en el \gls{plc} y poner al mismo en estado de 
-ejecución debe proceder de la manera que se indica en la tabla a continuación:
-  
 \begin{table}[H]
 \centering
 \renewcommand*{\arraystretch}{0.01}
 \begin{tabular}{*{2}{m{0.45\textwidth}}}
 \hline
     En la pantalla principal de TwidoSoft seleccione 
-Autómata/Conectar.. para poder conectarse al \gls{plc}.
+Autómata/Conectar para poder conectarse al \gls{plc}.
     &\begin{center}
       %\rule{0.4\textwidth}{0.3\textwidth}
       \includegraphics[width=0.4\textwidth]
 	{Anexos/images/twidosoft.PNG}
     \end{center}\\
 \hline
-    Al conectarse y si existiese una diferencia entre las aplicaciones 
-de la computadora y el \gls{plc} el software demandará elegir una opción.Cargar 
-el programa desde la computadora al \gls{plc}
+    Al conectarse, y si existiese una diferencia entre las aplicaciones
+de la computadora y el \gls{plc}, el software solicitará en qué sentido debe
+realizarse la transferencia de datos.
+Cargar el programa desde la computadora al \gls{plc}.
     &\begin{center}
       %\rule{0.4\textwidth}{0.3\textwidth}
       \includegraphics[width=0.4\textwidth]
 	{Anexos/images/twidosoftcargar.PNG}
     \end{center}\\
 \hline
-    Poner a correr el programa, mediante el icono de Run.
+    Ejecutar el programa, haciendo click el icono \emph{Run}.
     &\begin{center}
       %\rule{0.4\textwidth}{0.3\textwidth}
       \includegraphics[width=0.4\textwidth]
@@ -107,33 +105,6 @@ el programa desde la computadora al \gls{plc}
 \end{tabular}
 \end{table}
 
-% \begin{figure}[ht!]
-% 	\centering
-% 	\includegraphics[scale=0.5]{Anexos/images/twidosoft.PNG}
-% 	\caption{Esquema de la división del tiempo}
-% 	\label{img:twidosoft}
-% \end{figure}
-% 
-% \begin{figure}[ht!]
-% 	\centering
-% 	\includegraphics[scale=0.3]{Anexos/images/twidosoftcargar.PNG}
-% 	\caption{Esquema de la división del tiempo}
-% 	\label{img:twidosoftcargar}
-% \end{figure}
-% 
-% \begin{figure}[ht!]
-% 	\centering
-% 	\includegraphics[scale=0.3]{Anexos/images/twidosoftrun.PNG}
-% 	\caption{Esquema de la división del tiempo}
-% 	\label{img:twidosoftrun}
-% \end{figure}
-% 
-% \begin{figure}[ht!]
-% 	\centering
-% 	\includegraphics[scale=0.3]{Anexos/images/twidosoftdesc.PNG}
-% 	\caption{Esquema de la división del tiempo}
-% 	\label{img:twidosoftdesc}
-% \end{figure}
 
 \subsection{SCADA}
 Normalmente, si el programa que corre en el \gls{plc} no ha sido cambiado, 
@@ -142,11 +113,12 @@ Para asegurarse de que el programa que corre en el \gls{plc} es el correcto
 refiérase a la sección \ref{anexo:operacionPLC} del Manual del Usuario.
 \begin{lattention}
  Recuerde siempre realizar las verificaciones descriptas en la Sección 
-\ref{anexo:verificaciones} del Manual del usuario antes de continuar con la 
+\ref{anexo:verificaciones} del Manual del Usuario antes de continuar con la
 operación de la planta.
 \end{lattention}
 
 \subsubsection{Iniciar P-CIM}
+
 Para controlar el sistema desde el \gls{scada} de P-CIM de AFCON, es necesario 
 iniciar P-CIM y verificar que el driver de Modbus se haya cargado correctamente:
 \begin{table}[!ht]
@@ -162,7 +134,7 @@ carpeta AFCON P-CIM.
       {Cap5-SCADA/images/startUp.jpeg}
   \end{center}\\
  \hline
-   Verifique que en la ventana Alarm Summary aparezca el mensaje “MODBUS
+   Verifique que en la ventana Alarm Summary muestre el mensaje “MODBUS
   Driver successfully loaded” indicando que el driver halló la tabla de 
   comunicación y fue exitosamente cargado.
   &\begin{center}
@@ -176,24 +148,32 @@ carpeta AFCON P-CIM.
 
 \begin{lattention}
 En el caso de que no se haya logrado cargar el driver Modbus refiérase a la 
-Tab.\ref{tab:PropModbus} de la sección \ref{subsubsec:InforDriver}.
+Tab.\ref{tab:PropModbus} de la sección \ref{subsubsec:InforDriver} del informe
+de proyecto final.
 \end{lattention}
 
 \subsubsection{Operators Workspace}
-Para ejecutar el entorno gráfico del sistema \gls{scada} ejecute la aplicación 
-Operator Workspace que se encuentra en el directorio \todo{agregar directorio}
 
-A través de esta interfaz es posible manejar la planta. La misma se encuentra 
-organizada en 4 bloques Principales.(Ver Fig.\todo{agregar foto})
+\todo{agregar directorio}
+Para ejecutar el entorno gráfico del sistema \gls{scada} abra la aplicación
+Operator Workspace que se encuentra en el directorio
+
+A través de esta interfaz es posible manejar la planta.
+Pueden diferenciarse 4 bloques principales (Ver Fig.\todo{agregar foto})
 \begin{enumerate}
- \item Control Automatico: En esta sección usted puede pasar al controlador de 
-la planta la consigna/setpoint y las constantes del controlador Kp, Ti y Td.
- \item Control Manual: Este modo debe ser usado solamente como un medio para 
-sacar a la planta de un estado de emergencia tras  haberse declarado una alarma 
+ \item \textbf{Control Automatico:} En esta sección usted puede enviar al
+\gls{plc} de la planta la consigna/setpoint y las constantes del controlador
+$K_p$, $T_i$ y $T_d$.
+ \item \textbf{Control Manual:} Este modo debe ser usado solamente como un
+medio para
+sacar a la planta de un estado de emergencia tras  haberse declarado una alarma
 por HHL o LLL.
- \item Sistema: En este apartado podemos ver el estado del actual del sistema. 
-Es decir se muestran los valores de nivel y caudal actuales e históricos juntos 
+Aquí podrá encender las bombas individualmente y controlar la apertura de la
+válvula.
+ \item \textbf{Sistema:} En este apartado podemos ver el estado del actual del
+sistema.
+Es decir se muestran los valores de nivel y caudal actuales e históricos juntos
 con las alarmas.
- \item Activación: Desde estos controles se activa o se frena la planta.
+ \item \textbf{Activación:} Desde estos controles se activa o detiene la
+planta.
 \end{enumerate}
-
