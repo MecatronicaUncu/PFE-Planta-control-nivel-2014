@@ -2,7 +2,7 @@
 \label{ch:tablero}
 
 Luego del diseño y ensamblado de los componentes de la planta, descripto en el
-capítulo
+Cap.
 \ref{ch:DisenoEnsamblado}, se procedió al diseño y montaje del
 tablero eléctrico.
 Es decir, se realizó la instalación y el cableado de los elementos eléctricos y
@@ -76,7 +76,7 @@ Debido a que los contactores son trifásicos, debió realizarse un bucle con dos
 de las fases (ver diagrama del tablero).
 \end{itemize}
 
-En la figura \ref{fig:diagramaLadderContactor} se muestra el diagrama ladder
+En la Fig. \ref{fig:diagramaLadderContactor} se muestra el diagrama ladder
 del conexionado de los motores.
 Se observa que  el motor estará encendido si la bobina del relé esta activada y
 si el relevo térmico no acusa sobrecorriente.
@@ -118,7 +118,7 @@ El circuito de señal tiene como objetivos:
 \begin{itemize}
  \item Relevar variables de la planta (caudal, presión), procesarlas y entregar
 señales de control a la válvula electroneumática.
-\item Activar los relés descriptos en la sección
+\item Activar los relés descriptos en la Sec.
 \ref{subsec:alimentacionMotores} para encender o apagar los motores de las
 bombas.
 \item Conectar la planta a una computadora de control (\gls{scada}), para poder
@@ -198,7 +198,7 @@ Además, se incluyen los diseños de PCB para replicar el circuito.
 No obstante, utilizar una conexión cableada impone un vínculo físico entre
 el \gls{plc} y la computadora de control (impidiendo que la planta sea móvil).
 \item Mediante un módulo de comunicación inalámbrica:
-descripto en la sección \ref{subsec:inalambrico}.
+descripto en la Sec. \ref{subsec:inalambrico}.
 \end{itemize}
 \end{itemize}
 
@@ -242,19 +242,19 @@ No obstante, su funcionamiento es correcto para recibir información
 del estado de la planta y enviar consignas mediante el \gls{scada}.
 
 \section{Imagen del tablero}
-En la imagen \ref{fig:fotoTablero} \todo{incluir una foto del tablero}se muestra
+En la Fig. \ref{fig:fotoTablero} \todo{incluir una foto del tablero}se muestra
 una fotografía del tablero finalizado. 
 Pueden observarse tres niveles diferenciados:
 \begin{itemize}
  \item En el nivel superior se encuentra el interruptor termomagnético de corte
-general descripto en la sección \ref{subsec:alimentacionMotores}.
+general descripto en la Sec. \ref{subsec:alimentacionMotores}.
 Este interruptor debe ser accionado para encender la planta.
 \item En el nivel medio se encuentran los relés, contactores y relevos térmicos
-para accionar los motores de las bombas (sección
+para accionar los motores de las bombas (Sec.
 \ref{subsec:alimentacionMotores}).
-\item En el nivel inferior está la fuente de alimentación de $24\,V$ (sección
+\item En el nivel inferior está la fuente de alimentación de $24\,V$ (Sec.
 \ref{subsec:fuenteAlim}) y el
-\gls{plc}, con su módulo de E/S analógicas (sección \ref{subsec:plc}).
+\gls{plc}, con su módulo de E/S analógicas (Sec. \ref{subsec:plc}).
 \end{itemize}
 Los elementos fueron montados sobre
 rieles DIN.  Además, todos los elementos (a excepción del interruptor

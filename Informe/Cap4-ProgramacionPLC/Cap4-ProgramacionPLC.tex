@@ -112,7 +112,7 @@ En cada peldaño se describen paso a paso las acciones que deseamos que
 el controlador realice, de acuerdo al estado del sistema o las ordenes
 recibidas desde el \gls{scada}.
 
-La figura \ref{fig:ladder} muestra un diagrama de los diferentes peldaños de
+La Fig. \ref{fig:ladder} muestra un diagrama de los diferentes peldaños de
 nuestro programa de aplicación.
 Se observa que la estructura secuencial del algoritmo \ref{img:algoritmo} ha
 sido respetada en los peldaños.\todo{comparar Ladder y algoritmo con el programa
@@ -186,7 +186,7 @@ número que comienza por $0$.
 Son capaces de guardar un único bit.
 Por esa razón, se utilizan como banderas internas del programa, que representan
 distintos estados de la planta.
-En la tabla \ref{table:Banderasinternas} se pueden ver el nombre
+En la Tab. \ref{table:Banderasinternas} se pueden ver el nombre
 de las banderas utilizadas en nuestro programa y sus funciones.
  \item \textbf{\gls{memoryWord}:} conocidas también como palabras, tienen el
 formato \verb|MWx|, donde \verb|x| es un número que comienza por $0$.
@@ -195,8 +195,8 @@ Representan valores de 16 bits. En ellos puede guardarse información numérica
 hasta 16 banderas (bits).
 Cabe destacar que las \gls{memoryWord} pueden ser leídas mediante el bus MODBUS
 (ver \ref{sec:Comunicacion}).
-En la tabla  \ref{table:mwBanderas} se muestran las \gls{memoryWord}
-utilizadas como banderas, en tanto que en la tabla
+En la Tab. \ref{table:mwBanderas} se muestran las \gls{memoryWord}
+utilizadas como banderas, en tanto que en la Tab.
 \ref{table:mwNumericos}
 se muestran las \gls{memoryWord} utilizadas para guardar valores numéricos del
 programa.
@@ -267,9 +267,9 @@ Esc & \verb|MW13| & Valor de escritura Td \\
 \end{table}
 
 Finalmente, se muestran las entradas y salidas al \gls{plc} de la planta.
-Descriptas en la sección \ref{subsec:plc}, permiten al
+Descriptas en la Sec. \ref{subsec:plc}, permiten al
 controlador relevar variables de la planta y aplicar acciones de control. 
-Se muestran en la tabla \ref{table:entradassalidas} las
+Se muestran en la Tab. \ref{table:entradassalidas} las
 entradas/salidas tanto analógicas como discretas.
 Cabe destacar que la salida \verb|Q0.7| se utilizó para obtener un indicador
 visual del estado de la planta en el plc.
@@ -318,7 +318,7 @@ controlador ($K_p$, $T_i$ y $T_d$).
 
 El \gls{plc} utilizado ofrece hasta 14 bloques \gls{pid}, del cual utilizamos
 sólo uno.
-Se muestran en la tabla \ref{table:controladorpid} los valores utilizados para
+Se muestran en la Tab. \ref{table:controladorpid} los valores utilizados para
 la configuración del controlador PID.
 Cada bloque \gls{pid} tiene dos modos de trabajo.
 \begin{itemize}
@@ -372,17 +372,17 @@ planta a una entrada en escalón.
 $L$ y una constante de tiempo $T$.
 Se obtienen las constantes dibujando
 una recta tangente al  punto de inflexión de la curva de la respuesta del
-sistema, como muestra la figura \ref{fig:primermetodo}.
-Luego, se calculan las ganancias utilizando la tabla \ref{tab:valorganancias}.
+sistema, como muestra la Fig. \ref{fig:primermetodo}.
+Luego, se calculan las ganancias utilizando la Tab. \ref{tab:valorganancias}.
 
  \item \textbf{Segundo método:}
  este método comienza su análisis con un controlador puramente proporcional.
  Se incrementa  la ganancia proporcional desde cero hasta un valor $Kp_{cr} $
 donde la respuesta del  sistema presenta oscilaciones permanentes como en la
-imagen \ref{fig:segundometodo}.
+Fig. \ref{fig:segundometodo}.
  Mediante los valores de $Kp_{cr} $ y $P_{cr}$ pueden calcularse las ganancias
 del controlador.
-Nuevamente, las ganancias pueden ser calculadas utilizando la tabla
+Nuevamente, las ganancias pueden ser calculadas utilizando la Tab.
 \ref{tab:valorganancias}.
 \end{itemize}
 
@@ -447,13 +447,13 @@ Esto se debe a que estas variables, importantes para el funcionamiento de la
 planta, deben ser modificadas solamente bajo solicitud expresa del usuario
 (poniendo a 1 alguna bandera).
 
-La tabla \ref{table:mwBanderas} presenta dos palabras de dieciséis
+La Tab. \ref{table:mwBanderas} presenta dos palabras de dieciséis
 bits, \verb|MW0| y \verb|MW1|, la primera de ella presenta bits de lectura, en
 donde se
 refleja el estado del la plata, mientras que la segunda palabra tiene bits de
 de escritura para enviar acciones de control.
 
-Por otro lado la tabla \ref{table:mwNumericos} nos presenta
+Por otro lado la Tab. \ref{table:mwNumericos} nos presenta
 las palabras de las restantes que se utilizan en el programa, para
 almacenar valores numéricos.
 La primer parte de la tabla muestra las palabras de solo lectura (valores que
@@ -476,7 +476,7 @@ identificar problemas lógicos en el programa.
 Además, podemos observar el valor de las entradas y salidas detectando
 errores con la instrumentación y los actuadores.
 
-En la imagen \ref{img:twidosoftdebug} se observa el módulo \emph{tablas
+En la Fig. \ref{img:twidosoftdebug} se observa el módulo \emph{tablas
 de animación} de Twido Soft.
 Mediante este módulo, se puede forzar el estado de algunas bobinas y cambiar el
 valor de las palabras en memoria.

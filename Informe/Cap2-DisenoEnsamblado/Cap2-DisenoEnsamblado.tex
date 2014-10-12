@@ -82,11 +82,11 @@ a continuación:
 
 
 \subsection{P\&ID de nuestra planta}
-De acuerdo a los componentes detallados en la sección
+De acuerdo a los componentes detallados en la Sec.
 \ref{sec:MaterialesDisponibles} se realizó el esquema \gls{pyid} de la planta
 de control de nivel.
 Para la correcta comprensión de este capítulo es indispensable contar con el
-esquema, que puede encontrarse en la imagen \ref{img:pyid}.
+esquema, que puede encontrarse en la Fig. \ref{img:pyid}.
 
 \begin{figure}
 	\centering
@@ -107,7 +107,7 @@ Las diferentes partes del diagrama se explicarán a continuación:
 
 \subsubsection{Elementos}
 
-En la tabla \ref{tab:elementos}se presentan los elementos
+En la Tab. \ref{tab:elementos}se presentan los elementos
 que forman parte del diagrama \gls{pyid}. Se muestra en la misma
 los simbolos que tienen cada una de las partes del sistema, así como
 también se detalla el significado de las siglas que acompañan a
@@ -205,7 +205,7 @@ los límites normales de trabajo. Este proceso se debería realizar mediante sen
 separados, pero debido al costo de los mismo se decidio obtener la información 
 directamente desde el sensor de nivel del sistema.
 
-En la tabla \ref{tab:alarmas} se presenta la descripción de cada simbolo.
+En la Tab. \ref{tab:alarmas} se presenta la descripción de cada simbolo.
 
 \begin{table}[H]
 \small
@@ -268,7 +268,7 @@ De esta manera, la posición de la planta puede modificarse según se requiera.
 La estructura, de caño estructural, puede apreciarse en la figura x.
 Está dotada de cuatro ruedas con frenos de seguridad, que permiten fijar la
 planta al momento de una demostración.
-Sus dimensiones se presentan en la tabla \ref{tab:dimensionesEstructura}.
+Sus dimensiones se presentan en la Tab. \ref{tab:dimensionesEstructura}.
 
 \begin{table}
 \centering
@@ -294,7 +294,7 @@ En la parte superior de la planta se instaló una pequeña base de
 madera donde irá montado el receptor inalámbrico.
 Ya está incluida en la estructura el tablero, donde se
 montarán los elementos eléctricos y electrónicos.
-Sus dimensiones se observan en la tabla \ref{tab:dimensionesTablero}.
+Sus dimensiones se observan en la Tab. \ref{tab:dimensionesTablero}.
 
 \begin{table}
 \centering
@@ -421,7 +421,7 @@ con la cañería de retorno. Se trata de una válvula manual, tipo exclusa.
 ecualizar la planta.
 
   \item \textbf{Tiempo muerto:}
-  tal como se describió en la sección \ref{subsec:tiempoMuerto}, esta válvula
+  tal como se describió en la Sec. \ref{subsec:tiempoMuerto}, esta válvula
 esférica plástica permite activar la cañería de tiempo muerto.
   Notar en el \gls{pyid} que la válvula está sobre la cañería de llenado.
   Al cerrar la válvula, se fuerza el uso del tiempo muerto.
@@ -466,7 +466,7 @@ lectura visual directa del nivel.
 Por otro lado, la celda de presión diferencial es un elemento de adquisición
 que permite transformar un valor de presión (altura de la columna de agua) en
 una señal $4$-$20\,mA$.
-Se discutirá en la sección \ref{subsec:DPCell}.
+Se discutirá en la Sec. \ref{subsec:DPCell}.
 
 Finalmente, dado que la cañería de aspiración de la bomba puede provocar
 perturbaciones en la medición de la celda de presión diferencial, se optó por
@@ -492,7 +492,7 @@ medio de la fuerza centrífuga que imparten los álabes del rodete de la bomba.
 Este tipo de bomba se caracteriza por entregar una presión elevada y un caudal
 relativamente bajo \cite{bib:Mataix}.
 
-Las especificaciones de las bombas utilizadas se presentan en la tabla
+Las especificaciones de las bombas utilizadas se presentan en la Tab.
 \ref{tab:caractBombas}.
 
 \begin{table}[t]
@@ -565,20 +565,20 @@ las acciones de control.
 Una válvula permite variar el caudal, dependiendo de la consigna que se
 le envíe.
 En las válvulas neumáticas, la consigna es un valor de presión de aire.
-En la figura \ref{fig:elementosValv} se muestra un ejemplo de válvula de control
+En la Fig. \ref{fig:elementosValv} se muestra un ejemplo de válvula de control
 tipo globo, con actuador a diafragma inverso (aire para
 abrir)\footnote{Figuras extraídas de \cite{bib:controlValveHandbook}.}.
 La válvula está compuesta de dos elementos principales: el actuador
-(figura \ref{fig:actuadorValv}) y el cuerpo de la válvula (figura
+(Fig. \ref{fig:actuadorValv}) y el cuerpo de la válvula (Fig.
 \ref{fig:cuerpoValv}).
 
-El obturador en el cuerpo de la válvula (figura \ref{fig:cuerpoValv}) apoya
+El obturador en el cuerpo de la válvula (Fig. \ref{fig:cuerpoValv}) apoya
 sobre un asiento.
 La variación del caudal se produce gracias al orificio de paso variable
 que forman al variar su posición relativa el conjunto asiento-obturador.
 Sobre el vástago, encargado de modificar la posición del obturador,
 actúan las fuerzas del actuador.
-Como se observa en la figura \ref{fig:actuadorValv}, el actuador en una válvula
+Como se observa en la Fig. \ref{fig:actuadorValv}, el actuador en una válvula
 neumática es el conjunto diafragma-muelle.
 
 Puede concluirse, a través del análisis de la válvula, que el caudal depende de
@@ -641,7 +641,7 @@ caudal con carreras pequeñas.
 regulación fina del caudal.
 \end{itemize}
 
-En la figura \ref{fig:caractInherente}, se grafican las curvas de caudal
+En la Fig. \ref{fig:caractInherente}, se grafican las curvas de caudal
 inherente para cada tipo de válvula.
 A simple vista, la válvula con obturador lineal ofrece las mejores
 características para el control regulatorio.
@@ -720,10 +720,10 @@ efectiva ``lo más lineal posible''.
 
 En esta sección se describirá las características específicas de la válvula
 utilizada en el proyecto, comparándolas con los principios de funcionamiento
-descriptos en la sección \ref{subsec:principioFuncionamiento}.
+descriptos en la Sec. \ref{subsec:principioFuncionamiento}.
 
 \subsubsection{Especificaciones}
-Se muestran en la tabla \ref{tab:especifValvs} las especificaciones más
+Se muestran en la Tab. \ref{tab:especifValvs} las especificaciones más
 importantes de la válvula, consignada en su chapa de identificación.
 
 \begin{table}
@@ -768,7 +768,7 @@ asegurar la posición del vástago.
  \label{fig:elp-funcionamiento}
 \end{figure}
 
-En la figura \ref{fig:elp-funcionamiento} se muestra el esquema de
+En la Fig. \ref{fig:elp-funcionamiento} se muestra el esquema de
 funcionamiento del electroposicionador.
 La entrada de $4$-$20\,mA$ del controlador provoca una rotación en sentido
 antihorario del motor de torque.
@@ -788,7 +788,7 @@ agregan para poder mejorar la estabilidad del bucle de control, como así
 también poder calibrarlo\footnote{Explicación obtenida del manual del
 electroposicionador.}.
 
-La tabla \ref{tab:especifElectroP} muestra las características más importantes
+La Tab. \ref{tab:especifElectroP} muestra las características más importantes
 del electroposicionador presente en nuestra planta.
 
 \begin{table}
@@ -809,7 +809,7 @@ del electroposicionador presente en nuestra planta.
 
 \subsubsection{Característica Efectiva de la válvula}
 
-Como se describió en la sección \ref{subsec:principioFuncionamiento}, la
+Como se describió en la Sec. \ref{subsec:principioFuncionamiento}, la
 característica de caudal efectiva depende del proceso en donde la válvula esté
 inserta.
 
@@ -828,7 +828,7 @@ y se calcula el caudal correspondiente.
 Se repite 3 a 5.
 \end{enumerate}
 
-Los resultados se muestran en las figuras \ref{fig:valvulaStiempoMuerto} y
+Los resultados se muestran en las Figs. \ref{fig:valvulaStiempoMuerto} y
 \ref{fig:valvulaCtiempoMuerto}.
 \todo{Sacamos la curva con tiempo muerto?}
 En el caso de la planta con tiempo muerto, sólo fue posible realizar mediciones
@@ -938,7 +938,7 @@ que mide la diferencia de presión entre dos puntos.\todo{Una foto chabon}
 En nuestro caso, la celda entrega una corriente proporcional a la diferencia de
 presión medida, en el rango de $4-20\,mA$.
 Este valor de corriente será leído por el controlador de la planta.
-Las DP cell utilizadas tienen las especificaciones que se muestran en la tabla
+Las DP cell utilizadas tienen las especificaciones que se muestran en la Tab.
 \ref{tab:caractDPcell}.
 
 \begin{table}
@@ -977,7 +977,7 @@ Las entradas de la celda se conectan aguas arriba y aguas abajo
 de la placa orificio.
 Se mide de esta manera la diferencia de presión entre ambos puntos, que será
 traducido en un valor de caudal en el
-controlador (ver sección \ref{subsec:PlacaOrificio}).
+controlador (ver Sec. \ref{subsec:PlacaOrificio}).
 \end{itemize}
 
 Ambas celdas fueron fijadas a la base de madera mediante tornillos.
@@ -1088,7 +1088,7 @@ que puede ser reescrita, teniendo a $C_q$ constante
 \end{align}
 donde se observa que el caudal $Q$ es proporcional a la raíz cuadrada de
 la diferencia de alturas $\sqrt{h_p}$, que puede
-ser encontrada utilizando un DP cell (ver sección \ref{subsec:DPCell}).
+ser encontrada utilizando un DP cell (ver Sec. \ref{subsec:DPCell}).
 
 \subsubsection{Metodología experimental}
 Considerando $C_q$ constante,
@@ -1107,7 +1107,7 @@ calculado como
 \end{align}
 
 El módulo analógico del \gls{plc} tiene una resolución de $12\,bits$
-(ver sección \ref{subsec:plc}), un valor de caudal máximo corresponde a $h_f =
+(ver Sec. \ref{subsec:plc}), un valor de caudal máximo corresponde a $h_f =
 4095$.
 $K$ se calcula como
 \begin{align}
@@ -1119,7 +1119,7 @@ Luego, el caudal puede calcularse fácilmente aplicando la ecuación
 Para la determinación del valor de $K$ se trabajó sin tiempo muerto.
 Se marcó en el tanque controlado una altura $l=0.5\,m$, teniendo $D=0.2\,m$.
 Luego, se procedió a medir el tiempo de llenado, consignando los resultados en
-la tabla \ref{tab:tiempoK}.
+la Tab. \ref{tab:tiempoK}.
 
 \begin{table}
   \centering
@@ -1166,7 +1166,7 @@ Finalmente, obtenemos
 \end{figure}
 
 Para conocer los valores de presión en ambas cañerías
-(referirse al \gls{pyid}, sección \ref{sec:p&id}),
+(referirse al \gls{pyid}, Sec. \ref{sec:p&id}),
 se instalaron manómetros comunes, de tipo Bourdon.
 Un ejemplo de estos manómetros se muestra en la Fig. \ref{fig:manometroBourdon}.
 Se observa que un incremento de la presión produce una deformación
@@ -1182,7 +1182,7 @@ donde el mecanismo del manómetro se encuentra sumergido en un baño de glicerin
 Debido a la viscosidad del fluido, las vibraciones quedan amortiguadas
 y el manómetro refleja el valor medio de la presión.
 
-Las especificaciones de los manómetros se muestran en la tabla
+Las especificaciones de los manómetros se muestran en la Tab,
 \ref{tab:EspManoms}.
 
 \begin{table}[ht]

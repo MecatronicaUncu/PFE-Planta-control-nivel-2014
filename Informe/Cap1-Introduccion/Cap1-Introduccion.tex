@@ -87,18 +87,18 @@ disponibles en el Laboratorio de Control Automático:
 \begin{itemize}
   \item \textbf{Estructura:} un marco de caño estructural montado sobre
   ruedas. En él se colocarán todos los elementos de la planta.
-  Ver sección \ref{sec:EstructuraSoporte}.
+  Ver Sec. \ref{sec:EstructuraSoporte}.
 
   \item \textbf{Cañerías y accesorios}: serán utilizados para realizar el
-  circuito hidráulico de la planta. Ver sección \ref{sec:Canerias}.
+  circuito hidráulico de la planta. Ver Sec. \ref{sec:Canerias}.
 
   \item \textbf{Tanques:} se trata de dos caños cloacales sellados en sus
-  extremos, de $200\,mm$ de diámetro. Ver sección \ref{sec:Tanques}.
+  extremos, de $200\,mm$ de diámetro. Ver Sec. \ref{sec:Tanques}.
 
   \item \textbf{Electrobombas monofásicas (2):} impulsarán el fluido
   en el circuito hidráulico.
   La velocidad de las bombas (frecuencia) no será controlada.
-  Ver sección \ref{sec:Bombas}.
+  Ver Sec. \ref{sec:Bombas}.
 
   \item \textbf{Válvula electroneumática:} marca Foxboro, modelo
   Stabilflo (serie V1), para controlar el caudal.
@@ -106,45 +106,45 @@ disponibles en el Laboratorio de Control Automático:
   Power Genex.
   La apertura de la válvula será nuestra variable manipulada en
   el sistema.
-  Ver sección \ref{sec:ValvulaNeumatica}.
+  Ver Sec. \ref{sec:ValvulaNeumatica}.
 
   \item \textbf{Placa orificio:} permite medir el
   caudal en una tubería midiendo la diferencia de presión.
-  Ver sección \ref{subsec:PlacaOrificio}.
+  Ver Sec. \ref{subsec:PlacaOrificio}.
 
   \item \textbf{DP cells (2):} sensores de presión
   diferencial Yokogawa, modelo \verb|EJA 110 A|.
   Uno de los sensores será utilizado para medir el nivel del tanque controlado,
   en tanto que el segundo medirá caudal con la ayuda de la placa orificio.
-  Ver sección \ref{subsec:DPCell}.
+  Ver Sec. \ref{subsec:DPCell}.
 
   \item \textbf{Manómetros (2):} A colocar en
   puntos específicos de la planta, para medir los valores instantáneos de
   presión.
-  Ver Sección \ref{subsec:Manometros}.
+  Ver Sec. \ref{subsec:Manometros}.
 
   \item \textbf{Instrumentos de protección y comando:}
   en primer lugar, tenemos un interruptor magnetotérmico de corte general.
-  Ver sección \ref{subsec:corteGeneral}.
+  Ver Sec. \ref{subsec:corteGeneral}.
   Para las bombas, podemos citar: contactores, relés y los relevos térmicos.
-  Ver sección \ref{subsec:alimentacionMotores}.
+  Ver Sec. \ref{subsec:alimentacionMotores}.
 
   \item \textbf{Fuente de alimentación:}
   de $220\,V$ en corriente alterna a $24\,V$ en corriente continua.
   Permite alimentar el \gls{plc} y el módulo inalámbrico (previa conversión a
   $5\,V$ en corriente continua).
-  Ver sección \ref{subsec:fuenteAlim}.
+  Ver Sec. \ref{subsec:fuenteAlim}.
 
   \item{\textbf{\gls{plc}}}: Twido \verb|40 DTK| (Schneider) con un módulo
   analógico \verb|TWD AMM 6HT|.
   Permitirá controlar las bombas (encendido/apagado), 
   leer valores de presión de las DP Cell y modificar la apertura de la 
-  válvula. Ver sección \ref{subsec:plc}.
+  válvula. Ver Sec. \ref{subsec:plc}.
 
   \item \textbf{Módulos inalámbricos:} marca CTM Electrónica,
   modelo \verb|AD-200|.
   Permite enlazar la interfaz \verb|RS 485| a la computadora de control
-  de manera inalámbrica. Ver sección \ref{subsec:inalambrico}.
+  de manera inalámbrica. Ver Sec. \ref{subsec:inalambrico}.
 \end{itemize}
 
 A partir de los materias disponibles, se confeccionó
@@ -192,7 +192,7 @@ manuales, para poder limitar el caudal.
 \end{itemize}
 
 Una explicación completa del diseño e implementación del circuito hidráulico
-propuesto se realiza en el capítulo \ref{ch:DisenoEnsamblado}.
+propuesto se realiza en el Cap. \ref{ch:DisenoEnsamblado}.
 
 Luego de la instalación del circuito hidráulico, deben cablearse los elementos
 de protección y comando de los motores.
@@ -200,29 +200,29 @@ Además, se propone controlar la planta utilizando un autómata
 programable (\gls{plc}).
 La válvula electroneumática, el comando de las bombas y los sensores de presión
 deben ser correctamente conectados en el tablero de control.
-El cableado se analiza en el capítulo \ref{ch:tablero}.
+El cableado se analiza en el Cap. \ref{ch:tablero}.
 
-En el capítulo \ref{ch:progPLC} se programará el autómata que controlará la
-planta. Finalmente, en el capítulo \ref{ch:scada} se desarrollará el software
+En el Cap. \ref{ch:progPLC} se programará el autómata que controlará la
+planta. Finalmente, en el Cap. \ref{ch:scada} se desarrollará el software
 de control \gls{scada}, que se ejecuta en la computadora de control.
 
 \section{Análisis económico}
 \label{sec:AnalisisEconomico}
-Los elementos descriptos en la sección \ref{sec:MaterialesDisponibles} fueron
+Los elementos descriptos en la Sec. \ref{sec:MaterialesDisponibles} fueron
 obtenidos mediante donaciones para el proyecto.
 Distinguimos tres donantes:
 \begin{itemize}
  \item \textbf{Techint:} donó el \gls{plc} (con su módulo analógico y fuente),
 las celdas de presión diferencial, las electrobombas y la válvula de control.
-Esta donación está especificada en detalle en la tabla
+Esta donación está especificada en detalle en la Tab.
 \ref{tab:donacionTechint}.
  \item \textbf{La Facultad de Ingeniería:} donó la estructura, la cañería, los
 accesorios, las válvulas manuales, los manómetros, los elementos de ferretería,
 los elementos de electricidad (contactores, relés) y el módulo inalámbrico.
-El detalle de la donación puede observarse en la tabla \ref{tab:donacionFing}.
+El detalle de la donación puede observarse en la Tab. \ref{tab:donacionFing}.
 \item \textbf{El director de proyecto, Ing. Puglesi:} donó la placa orificio,
 necesaria para poder medir el caudal en la cañería de llenado.
-El detalle de la donación puede observarse en la tabla
+El detalle de la donación puede observarse en la Tab.
 \ref{tab:donacionPuglesi}.
 \end{itemize}
 
@@ -323,7 +323,7 @@ puntos:
 
 \subsection{Planning}
 Se optó por dividir el tiempo disponible en cada una de las tareas, tal como lo
-explicita el planning propuesto en la figura \ref{fig:EDT}.
+explicita el planning propuesto en la Fig. \ref{fig:EDT}.
 Se observa que la mayor parte de las actividades de construcción de la planta
 debieron realizarse de manera seriada, en tanto que la programación del
 \gls{plc} y el \gls{scada} puede realizarse de forma paralela.
