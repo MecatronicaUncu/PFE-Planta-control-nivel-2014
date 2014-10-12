@@ -25,9 +25,9 @@ Los elementos presentes en este esquema están regidos por la norma
 El diagrama permite una rápida comprensión del proceso, y se denomina
 corrientemente \gls{pyid}.
 
-En los diagramas \gls{pyid} encontramas grafícados los elementos 
-como un círculo, cada uno de ellos debe ir acompañado de una denominación,
-que utiliza la siguiente codificación:
+En los diagramas \gls{pyid} encontramos graficados los diferentes elementos
+como círculos o símbolos representativos, cada uno de ellos acompañado de una
+denominación que utiliza la siguiente codificación:
 
 \begin{itemize}  
  \item \textbf{Primer letra:}
@@ -51,35 +51,33 @@ que utiliza la siguiente codificación:
  \end{itemize}
 \end{itemize}
 
-Al mismo tiempo estos círculos pueden estar intersectados por una linea la cual 
+Así mismo, estos círculos pueden estar intersectados por una línea, la
+cual
 indica su ubicación:
 
 \begin{itemize}
- \item Sin línea: En el campo
- \item Continua: En la sala de control
- \item Trazos: Fuera del alcance del operario
+ \item \textbf{Sin línea:} en el campo.
+ \item \textbf{Continua:} en la sala de control.
+ \item \textbf{Trazos:} fuera del alcance del operario.
 \end{itemize}
 
-Como su nombre lo indica también esta presente en el diagrama la descripción de las
-cañerías que forman el sistema, esto incluye el material y los diámetros de las mismas.
-Cabe destacar que en este diagrama y en esta instancia no es necesario especificar las 
-longitudes y accesorios, dado que ello forma parte de un diagrama que se debe realizar 
+Como su nombre lo indica, también están presente en el diagrama la descripción
+de las cañerías que forman el sistema (material y diámetros).
+Cabe destacar que en esta instancia no es necesario especificar las
+longitudes y accesorios.
+Esta información forma parte de un diagrama que se debe realizar
 en una etapa posterior del proyecto.
 
-También se diferencia en el diagrama la naturaleza de cada señal, las cuales se describen
-a continuación:
+También se diferencian en el diagrama la naturaleza de cada señal:
 
 \begin{itemize}
- \item Tubería:
- Línea continua.
- \item Señal hidráulica:
- Línea continua intersectada con líneas perpendiculares en forma de L.
- \item Señal neumática:
- Linea continua intersectada por pequeñas líneas paralelas. 
- \item Señal eléctrica:
- Línea de trazos.
+ \item \textbf{Tubería:} línea continua.
+ \item \textbf{Señal hidráulica:} línea continua intersectada con líneas
+perpendiculares en forma de L.
+ \item \textbf{Señal neumática:} linea continua intersectada por pequeñas
+líneas paralelas.
+ \item \textbf{Señal eléctrica:} línea de trazos.
 \end{itemize}
-
 
 \subsection{P\&ID de nuestra planta}
 De acuerdo a los componentes detallados en la Sec.
@@ -91,7 +89,7 @@ esquema, que puede encontrarse en la Fig. \ref{img:pyid}.
 \begin{figure}
 	\centering
 \includegraphics[width=\textwidth]{Cap2-DisenoEnsamblado/images/p&id.pdf}
-	\caption{Diagrama P\&ID}
+	\caption{Diagrama P\&ID del proyecto}
 	\label{img:pyid}
 \end{figure}
 
@@ -100,15 +98,15 @@ Las diferentes partes del diagrama se explicarán a continuación:
 \subsubsection{Líneas}
 
 \begin{itemize}
- \item Línea de trazos: 24 V
- \item Línea de puntos: 4 - 20 mA
- \item Línea continua: tubo de polipropileno de 3/4``
+ \item \textbf{Línea de trazos:} $24\,V$.
+ \item \textbf{Línea de puntos:} $4$ - $20\,mA$.
+ \item \textbf{Línea continua:} tubo de polipropileno de 3/4 pulgada.
 \end{itemize}
 
 \subsubsection{Elementos}
 
-En la Tab. \ref{tab:elementos}se presentan los elementos
-que forman parte del diagrama \gls{pyid}. Se muestra en la misma
+En la Tab. \ref{tab:elementos} se presentan los elementos
+que forman parte del diagrama \gls{pyid}. Se muestran
 los simbolos que tienen cada una de las partes del sistema, así como
 también se detalla el significado de las siglas que acompañan a
 cada uno.
@@ -199,13 +197,17 @@ PI: Pressure Indicator
 \subsubsection{Alarmas} 
 \label{subsec:alarmas}
 
-La gestión de alarmas se realiza a través del mismo sensor de nivel del sistema,
-tomando entonces la información del mismo para detener el sistema en caso de pasar
-los límites normales de trabajo. Este proceso se debería realizar mediante sensores
-separados, pero debido al costo de los mismo se decidio obtener la información 
-directamente desde el sensor de nivel del sistema.
+La gestión de alarmas se realiza a través del sensor de nivel presente en la
+planta,
+tomando la información del mismo para detener el sistema en caso de pasar
+los límites normales de trabajo.
+Este proceso debería realizarse utilizando sensores separados (redundancia).
+No obstante, debido al costo de incluir sensores suplementarios,
+se decidió utilizar
+directamente el sensor de nivel presente.
 
-En la Tab. \ref{tab:alarmas} se presenta la descripción de cada simbolo.
+En la Tab. \ref{tab:alarmas} se presenta la descripción de cada símbolo de
+alarma.
 
 \begin{table}[H]
 \small
@@ -252,10 +254,9 @@ de la gestión de alarmas
 \hline
 \hline
 \end{tabular}
-\caption{Instalación del Driver Modbus}
+\caption{Alarmas en el P\&ID}
 \label{tab:alarmas}
 \end{table}
-
 
 \section{Estructura de Soporte}
 \label{sec:EstructuraSoporte}
