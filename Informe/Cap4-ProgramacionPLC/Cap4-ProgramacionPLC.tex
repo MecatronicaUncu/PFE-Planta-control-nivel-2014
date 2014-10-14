@@ -24,6 +24,9 @@ Se observa en en el algoritmo \ref{img:algoritmo} la solución propuesta.
   señal de PLC run\;
   adquisición de nivel, caudal y Set Point\;
   
+  \If{Señal de parada de emergencia}{
+   Apago los motores\;}
+  
   \If{nivel > HHL}{
    alerta HHL y detención del sistema (si en modo automático)\;}
   \If{nivel < LLL}{
@@ -115,7 +118,8 @@ recibidas desde el \gls{scada}.
 La Fig. \ref{fig:ladder} muestra un diagrama de los diferentes peldaños de
 nuestro programa de aplicación.
 Se observa que la estructura secuencial del algoritmo \ref{img:algoritmo} ha
-sido respetada en los peldaños.\todo{comparar Ladder y algoritmo con el programa
+sido respetada en los peldaños.
+\todo{comparar Ladder y algoritmo con el programa
 final buscando discrepancias}
 
 \begin{figure}
@@ -130,6 +134,7 @@ size=1pt]
   \node (init) {Inicio del programa  }
     child { node {Inicialización} }
     child { node {Señal PLC run}    }
+    child { node {Verificación de parada de emergencia}    }
     child { node {Adquisición de Nivel y Caudal}    }
     child { node {Gestión de alarmas HHL y LLL}    }
     child { node {Gestión de banderas de alarmas HHL y LLL}    }
@@ -149,6 +154,7 @@ size=1pt]
     child { node {Indicador del estado del Motor 2}    }
     child { node {Indicador de error en bombas}    }
     child { node {Gestión de bandera del sistema trabajando en modo normal}    }
+    child { node {Limpieza de señal de parada de emergencia}    }
     child { node {Limpieza de alarmas}    };
 \end{tikzpicture}
 \caption{Esquema de Rungs del programa Ladder de la planta de control de nivel}
@@ -174,6 +180,7 @@ Se diferencian dos tipos de celdas de memoria:
 \verb|M2|  & Sistema en modo Manual/Automático\\
 \verb|M3|  & Error de Nivel\\
 \verb|M4|  & Error de Motor\\
+\verb|M4|  & Parade de emergencia\\
 \hline
 \end{tabular}
 \caption{Banderas internas.}
@@ -215,23 +222,23 @@ Lect & & \verb|X1| & Alarma HHL\\
 Lect & & \verb|X2|& Alarma LLL\\
 Lect & & \verb|X3|& Alarma HL\\
 Lect & & \verb|X4|& Alarma LL\\
-Lect & & \verb|X5|& Error en motores (era \verb|MW0:X13|)\\
-Lect & & \verb|X6|& Motor 1 encendido (era \verb|MW0:X11|)\\
-Lect & & \verb|X7|& Motor 2 encendido(era \verb|MW0:X12|)\\
-Lect & & \verb|X8|& Modo manual activado (era \verb|MW0:X14|)\\
-Lect & & \verb|X9|& Modo automático activado y funcionando (Nuevo)\\
-Lect & & \verb|X10|& Planta funcionando sin errores (era \verb|MW0:X15|)\\
+Lect & & \verb|X5|& Error en motores\\
+Lect & & \verb|X6|& Motor 1 encendido\\
+Lect & & \verb|X7|& Motor 2 encendido\\
+Lect & & \verb|X8|& Modo manual activado\\
+Lect & & \verb|X9|& Modo automático activado y funcionando\\
+Lect & & \verb|X10|& Planta funcionando sin errores\\
 \hline
-Esc & \verb|MW1| & \verb|X0|& Switch Encender(1)/Apagar(0)(era 
-\verb|MW0:X10|)\\
-Esc & & \verb|X1|& Manual(1)/Automático(0) (era \verb|MW0:X15|)\\
-Esc & & \verb|X2|& Cambiar parámetros PID (era \verb|MW0:X9|)\\
-Esc & & \verb|X3|& Cambiar Set Point (era
-\verb|MW0:X7|)\\
-Esc & & \verb|X4|& Manual(0)/Default(1) (era \verb|MW0:X8|)\\
-Esc & & \verb|X5|& Encender M1 (manual) (era \verb|MW8:X1|)\\
-Esc & & \verb|X6|& Encender M2 (manual) (era \verb|MW8:X2|)\\
-Esc & & \verb|X7|& Limpiar errores (era \verb|MW8:X0|)\\
+Esc & \verb|MW1| & \verb|X0|& Switch Encender(1)/Apagar(0)\\
+Esc & & \verb|X1|& Manual(1)/Automático(0)\\
+Esc & & \verb|X2|& Cambiar parámetros PID\\
+Esc & & \verb|X3|& Cambiar Set Point\\
+Esc & & \verb|X4|& Manual(0)/Default(1)\\
+Esc & & \verb|X5|& Encender M1 (manual)\\
+Esc & & \verb|X6|& Encender M2 (manual)\\
+Esc & & \verb|X7|& Limpiar errores\\
+Esc & & \verb|X8|& Parada de emergencia\\
+Esc & & \verb|X9|& Limpiar señal de parada de emergencia\\
 \hline
 \end{tabular}
 \caption{Memory Words utilizadas como banderas.}
@@ -273,7 +280,11 @@ Se muestran en la Tab. \ref{table:entradassalidas} las
 entradas/salidas tanto analógicas como discretas.
 Cabe destacar que la salida \verb|Q0.7| se utilizó para obtener un indicador
 visual del estado de la planta en el plc.
-Esta salida no está conectada.\todo{En anexo, diagrama ladder de twido soft}
+Esta salida no está conectada.
+
+En el anexo \ref{anexo:programaLadder} se puede
+observar la impresión que otorga el programa Twido Soft del programa en 
+lenguaje ladder completo y todos los parámetros del \gls{plc}.
 
 \begin{table}[!t]
 
@@ -332,6 +343,14 @@ presente en el tanque y deseado, respectivamente.
 manual a la variable controlada.
 Podemos así controlar la apertura a la válvula cuando se
 trabaja en modo manual desde el \gls{scada}.
+ \item \textbf{Parada de emergencia:} se previó como un sistema de parada de emergencia.
+ Como se explicara en el capitulo \ref{ch:scada} esta previsto un
+ botón exclusivo para esta acción. Este debe detener
+ los motores en no importa que modo de funcionamiento de la planta. Al accionar el 
+ botón desde el software \gls{scada} se levanta una bandera en el \gls{plc} 
+ que da la señal de detener los motores. Luego de solucionar el posible inconveniente
+ que desencadeno la parada de emergencia de la planta se debe enviar una señal 
+ al \gls{plc} para limpiar la bandera de señal de emergencia.
 \end{itemize}
 
 \begin{table}[!t]
