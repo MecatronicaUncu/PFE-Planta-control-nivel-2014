@@ -513,6 +513,7 @@ Seguridad & S1 IP44\\
 \end{table}
 
 \subsection{Cavitación}
+\label{subsec:cavitacion}
 Para el ingreso del fluido a la bomba, es necesario realizar una succión
 en la tubería de aspiración, descendiendo la presión del fluido.
 Luego, la presión aumenta violentamente en el rodete de la bomba hasta alcanzar
@@ -889,26 +890,30 @@ en la zona de trabajo.
 \end{figure}
 
 \subsection{Efecto de flujo estrangulado}
+\label{subsec:chokedflow}
 
 Luego de analizar los resultados obtenidos en la pruebas de la planta se pudo
 constatar la presencia del efecto de flujo estrangulado o \emph{Choked
 Flow}: se observa que la velocidad del fluido permanece constante, a partir de
 una carrera del $70\%$.
-Posteriores incrementos de la carrera no aumentan la velocidad del fluido en la
-válvula.
+Posteriores incrementos de la carrera (y por ende, de la presión diferencial
+en la válvula) no aumentan la velocidad del fluido en la válvula.
 
 Es una condición dinámica del fluido asociada con el efecto Venturi.
 Cuando un flujo de fluido a una presión y temperatura dada pasa a través de una
 restricción (por ejemplo: garganta, zona convergente/divergente o válvula),
 la presión disminuye y la velocidad del fluido aumenta.
-Considerando condiciones de fluidos subsónico, el principio de conservación de
-masa exige que la velocidad del fluido aumente a medida que disminuye el diámetro 
-de la garganta. Al mismo tiempo, el efecto Venturi ocasiona que la presión estática
-y por lo tanto la densidad disminuyan luego de la restricción. El efecto de flujo
-estrangulado es una condición limitante que se genera cuando el caudal no se 
-incrementará con una disminución adicional en la presión aguas abajo de la 
-restricción mientras la presión aguas arriba se mantiene constante.
-\todo{Fuentes? No es por cavitación?}
+Si la presión desciende por debajo de la presión de vapor, a la
+temperatura del fluido se da un fenómeno de evaporación violenta denominado
+\emph{flashing}.
+Las burbujas entorpecen el paso del líquido, limitando el caudal máximo
+\cite{bib:ApuntesPuglesiValvulas}\cite{bib:controlValveHandbook}.
+
+Además, si el fluido regresa a una presión superior a la presión de vapor luego
+de pasar por la válvula, se obtiene el fenómeno de cavitación descripto en la
+Sec. \ref{subsec:cavitacion}.
+La cavitación, además de generar el efecto de flujo estrangulado, produce daños
+en el conjunto asiento-obturador.
 
 \subsection{Montaje}
 Dada la importancia y tamaño de la válvula, se colocó en el centro de
