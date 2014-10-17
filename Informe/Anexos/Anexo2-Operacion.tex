@@ -40,25 +40,25 @@ Deberá entonces:
     Energizar la planta accionando el interruptor
 termomagnético ubicado dentro del tablero eléctrico.
     &\begin{center}
-      \rule{0.4\textwidth}{0.3\textwidth}
-      %\includegraphics[width=0.4\textwidth]
-	%{Cap5-SCADA/images/database1.jpeg}
+      %\rule{0.4\textwidth}{0.3\textwidth}
+      \includegraphics[width=0.4\textwidth]
+	{Anexos/images/disyuntor.JPG}
     \end{center}\\
 \hline
     Conectar la planta con la computadora de control, mediante el cable cable
 \verb|RS-485|  con adaptación a \verb|RS-232|. Puede ser necesario utilizar un
 adaptador \verb|RS-232/USB|.
     &\begin{center}
-      \rule{0.4\textwidth}{0.3\textwidth}
-      %\includegraphics[width=0.4\textwidth]
-	%{Cap5-SCADA/images/database1.jpeg}
+      %\rule{0.4\textwidth}{0.3\textwidth}
+      \includegraphics[width=0.4\textwidth]
+	{Anexos/images/ComunicacionRs485.JPG}
     \end{center}\\
 \hline
 \end{tabular}
 \end{table}
 
-Procederemos a escribir y ejecutar en el \gls{plc} el programa propuesto en
-durante el desarrollo de la planta, así el sistema estará en un estado conocido.
+Procederemos a escribir y ejecutar en el \gls{plc} el programa propuesto en el 
+Cap.\ref{ch:progPLC}, así el sistema estará en un estado conocido.
 \todo{imagen del programa y colocar el nombre definitivo del programa}
 Se debe abrir el programa del \gls{plc} denominado {\color{red}(nombre del
 programa)} con el Software Twido Soft. Este programa se encuentra en el DVD 
@@ -78,8 +78,7 @@ Autómata/Conectar para poder conectarse al \gls{plc}.
 	{Anexos/images/twidosoft.PNG}
     \end{center}\\
 \hline
-    Al conectarse, y si existiese una diferencia entre las aplicaciones
-de la computadora y el \gls{plc}, el software solicitará en qué sentido debe
+    Al conectarse el software solicitará en qué sentido debe
 realizarse la transferencia de datos.
 Cargar el programa desde la computadora al \gls{plc}.
     &\begin{center}
@@ -154,9 +153,9 @@ de proyecto final.
 
 \subsubsection{Operators Workspace}
 
-\todo{agregar directorio}
-Para ejecutar el entorno gráfico del sistema \gls{scada} abra la aplicación
-Operator Workspace que se encuentra en el directorio
+Automáticamente tras iniciar P-CIM como se muestra en la sección anterior, se 
+abrirá la aplicación Operator Workspace ejecutando el entorno gráfico del 
+sistema \gls{scada}.
 
 A través de esta interfaz es posible manejar la planta.
 Pueden diferenciarse 4 bloques principales (Ver Fig.\todo{agregar foto})
