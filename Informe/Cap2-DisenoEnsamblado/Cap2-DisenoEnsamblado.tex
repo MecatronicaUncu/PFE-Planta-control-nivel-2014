@@ -1000,14 +1000,18 @@ Este valor de corriente será leído por el controlador de la planta.
 
 \begin{figure}[ht]
         \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-\includegraphics[width=\textwidth]
+        \begin{subfigure}[b]{0.31\textwidth}
+        \centering
+\includegraphics[height=6.3cm]
 	{Cap2-DisenoEnsamblado/images/dpcell1.JPG}
+	\caption{Vista general.}
         \end{subfigure}%
         \hfil
-        \begin{subfigure}[b]{0.6\textwidth}
-\includegraphics[width=\textwidth]
+        \begin{subfigure}[b]{0.69\textwidth}
+        \centering
+\includegraphics[height=6.3cm]
 	{Cap2-DisenoEnsamblado/images/dpcell2.JPG}
+	\caption{Detalle tomas de baja y alta presión.}
         \end{subfigure}
         \caption{DP Cell.}
         \label{fig:dpcelfig}
@@ -1016,7 +1020,7 @@ Este valor de corriente será leído por el controlador de la planta.
 Las DP cell utilizadas tienen las especificaciones que se muestran en la Tab.
 \ref{tab:caractDPcell}.
 
-\begin{table}
+\begin{table}[h]
 \centering
 \begin{tabular}{|l|l|}
 \hline
@@ -1035,9 +1039,11 @@ Rango de calibración & $0$ a $10000\,mmCa$\\
 
 Dos celdas serán utilizadas:
 \begin{itemize}
- \item \textbf{Medición del nivel del tanque:} una de las entradas de la celda
-se conecta  al nivel más bajo del tanque y la otra a presión atmosférica.
-La celda mide la presión debida al peso  de la columna de agua en el tanque.
+ \item \textbf{Medición del nivel del tanque:} la entrada de alta presión de la
+celda
+se conecta  al nivel más bajo del tanque y la de baja se deja desconectada
+(presión atmosférica).
+La celda mide la presión debida al peso de la columna de agua en el tanque.
 Fue calibrada de manera que entregara un valor de corriente mínimo
 cuando el tanque está vacío, y un valor máximo en el caso de que esté
 lleno.
