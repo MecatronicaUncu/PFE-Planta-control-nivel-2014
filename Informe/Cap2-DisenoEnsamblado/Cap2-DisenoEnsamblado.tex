@@ -373,8 +373,21 @@ Por ultimo se procedió a pintar los caños mediante un código de colores.
   \item {\color{YellowOrange} \textbf{Amarillo:}} vaciado del tanque controlado.
  \end{itemize}
 El código de colores, si bien no es estándar en la industria, permite una fácil
-comprensión del circuito hidráulico.
-\todo{bella imagen de los colores de la cañería}
+comprensión del circuito hidráulico, (ver Fig. \ref{fig:canerias}.
+
+\begin{figure}[ht]
+        \centering
+        \begin{subfigure}[b]{0.36\textwidth}
+\includegraphics[width=\textwidth]
+	{Cap2-DisenoEnsamblado/images/caneria1.JPG}
+        \end{subfigure}%
+        \hfil
+        \begin{subfigure}[b]{0.36\textwidth}
+\includegraphics[width=\textwidth]{Cap2-DisenoEnsamblado/images/caneria2.JPG}
+        \end{subfigure}
+        \caption{Código de colores de las cañerías.}
+        \label{fig:canerias}
+\end{figure}
 
 \subsection{Tiempo Muerto}
 \label{subsec:tiempoMuerto}
@@ -940,10 +953,26 @@ medir y controlar estas variables de interés.
 \label{subsec:DPCell}
 
 Se denomina \textit{DP Cell}, o celda de presión diferencial, a un sensor
-que mide la diferencia de presión entre dos puntos.\todo{Una foto chabon}
+que mide la diferencia de presión entre dos puntos (ver Fig. \ref{fig:dpcelfig}).
 En nuestro caso, la celda entrega una corriente proporcional a la diferencia de
 presión medida, en el rango de $4-20\,mA$.
 Este valor de corriente será leído por el controlador de la planta.
+
+\begin{figure}[ht]
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+\includegraphics[width=\textwidth]
+	{Cap2-DisenoEnsamblado/images/dpcell1.JPG}
+        \end{subfigure}%
+        \hfil
+        \begin{subfigure}[b]{0.6\textwidth}
+\includegraphics[width=\textwidth]
+	{Cap2-DisenoEnsamblado/images/dpcell2.JPG}
+        \end{subfigure}
+        \caption{DP Cell.}
+        \label{fig:dpcelfig}
+\end{figure}
+
 Las DP cell utilizadas tienen las especificaciones que se muestran en la Tab.
 \ref{tab:caractDPcell}.
 
@@ -1205,3 +1234,20 @@ Escala & $0.02\,kgf/cm^2/div$\\
 \caption{Especificaciones de los manómetros}
 \label{tab:EspManoms}
 \end{table}
+
+En la Fig. \ref{fig:manometro} se observan los dos manómetros 
+presentes en el proyecto.
+\begin{figure}[ht]
+        \centering
+        \begin{subfigure}[b]{0.36\textwidth}
+\includegraphics[width=\textwidth]
+	{Cap2-DisenoEnsamblado/images/manometro1.JPG}
+        \end{subfigure}%
+        \hfil
+        \begin{subfigure}[b]{0.36\textwidth}
+\includegraphics[width=\textwidth]
+	{Cap2-DisenoEnsamblado/images/manometro2.JPG}
+        \end{subfigure}
+        \caption{Manómetros.}
+        \label{fig:manometro}
+\end{figure}
