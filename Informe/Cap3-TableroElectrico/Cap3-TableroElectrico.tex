@@ -93,8 +93,10 @@ Los circuitos lógicos de la planta (\gls{plc}, sensores) funcionan con una
 tensión de $24\,V$ de corriente continua.
 Se optó por utilizar una fuente de alimentación industrial para energizar estos
 circuitos lógicos.
-Las características técnicas de la fuente son las siguientes:
-\begin{center}
+Las características técnicas de la fuente se muestran en la Tab.
+\ref{tab:fuenteAlim}.
+\begin{table}[h]
+\centering
 \begin{tabular}{|l|l|}
 \hline
 Marca & ReignPower\\
@@ -104,7 +106,9 @@ Corriente Salida Máxima& $4.2\,A$\\
 Potencia & $100\,W$\\
 \hline
 \end{tabular}
-\end{center}
+\caption{Características de la fuente de alimentación.}
+\label{tab:fuenteAlim}
+\end{table}
 
 En el diagrama de tablero, se muestran los conductores de $+24\,V$ y $0\,V$ en
 rojo y negro respectivamente.
@@ -209,7 +213,8 @@ utilizar un cable de par trenzado, se decidió utilizar un módulo inalámbrico
 \verb|ADC-200| de CTM Electrónica (ver Fig. \ref{fig:fotoModuloIn}).
 Se trata de un equipo de comunicaciones para realizar enlaces inalámbricos que
 utilicen la interfaz \verb|RS 232| o \verb|RS 485|.
-Podemos citar, entre las características técnicas relevantes:
+Se muestran las características técnicas relevantes en la Tab.
+\ref{tab:caractMod}.
 
 \begin{figure}[t]
 \centering
@@ -217,6 +222,9 @@ Podemos citar, entre las características técnicas relevantes:
  \caption{Módulo inalámbrico montado sobre la estructura.}
  \label{fig:fotoModuloIn}
 \end{figure}
+
+\begin{table}[h]
+\centering
 \begin{tabular}{|l|l|}
 \hline
 Alimentación & $5\,VCC$\\
@@ -226,7 +234,9 @@ Baud Rate &2400 a 19200 bps \\
 Frecuencia& 431 a 470 Mhz en más de 100 canales\\
 \hline
 \end{tabular}
-\end{center}
+\caption{Características de los módulos inalámbricos.}
+\label{tab:caractMod}
+\end{table}
 
 Para el proyecto, se conectó el módulo tal como lo indica el
 diagrama de tablero (folio 5), estipulando una velocidad de transferencia de
