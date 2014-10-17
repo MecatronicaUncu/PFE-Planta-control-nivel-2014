@@ -17,6 +17,7 @@ Informe.pdf
 *.alg
 *.ist
 *.out
+*.directory
 
 === Temps de Kile ===
 Informe.glsdefs
