@@ -14,7 +14,8 @@ del total de su capacidad aproximadamente.
 En el caso de contener agua, verifique que cada uno de los tanques no esté por
 encima del 80\% ni por debajo del 20\%.
 Puede transvasar el fluido de un tanque a otro utilizando el modo manual del
-\gls{scada} o encendiendo manualmente las bombas.
+\gls{scada} (Ver Sec.\ref{anexo:operacionSCADA}) o encendiendo manualmente las 
+bombas (Ver Sec.\ref{anexo:motoresManual}).
 \end {tcolorbox}
 \begin{lattention}
 En \textbf{modo automático}, si el nivel del tanque controlado desciende por
@@ -22,12 +23,12 @@ debajo del
 20 \% o aumenta por encima del 80\% se detiene la planta automáticamente.
 
 La planta no podrá volver a encenderse en modo automático hasta que se confirme
-de parte del usuario que la planta no está en estado de emergencia (mediante el
+por parte del usuario que la planta no está en estado de emergencia (mediante el
 \gls{scada} o poniendo a 1 la bandera \verb|MW1:X7|).
 \end{lattention}
 
 \begin{tcolorbox}[title=Válvulas manuales, breakable]
-La planta cuenta con 6 válvulas manuales (ver \gls{pyid}).
+La planta cuenta con 6 válvulas manuales (Ver \gls{pyid}).
 Se describirá la posición de cada una
 de ellas para un correcto funcionamiento de la planta.
  
@@ -47,7 +48,8 @@ llena.
 sin forzar una sobrepresión en la válvula \texttt{V1}.
  \end{itemize}
  \tcblower
- Estas válvulas están presentes para modificar el sistema y generar distintos
+ \textbf{Nota:} Estas válvulas están presentes para modificar el sistema y 
+generar distintos
 escenarios en la planta. Al modificar las características del sistema se deben
 ajustar los valores del controlador.
 \end {tcolorbox}
@@ -57,7 +59,7 @@ ajustar los valores del controlador.
   el correcto funcionamiento del filtro y regulador, realizando purgas en caso
 de ser necesario.
  \tcblower
-  Un filtro regulador, se utiliza de la siguiente manera:
+  \textbf{Nota:} Un filtro regulador, se utiliza de la siguiente manera:
  \begin{enumerate}
     \item Tener precaución de desconectar la manguera de aire a la válvula.
     \item Se conecta la línea de aire comprimido al regulador.
@@ -79,7 +81,7 @@ supera los $7\,bar$.
 \begin{tcolorbox}[title=Motores]
 Para poder encender los motores debemos asegurarnos que no están trabados.
 Para verificarlo, se recomienda retirar la jaula que recubre los ventiladores
-de los motores y hacer girarlos manualmente.
+de los motores y hacerlos girar manualmente.
 \end {tcolorbox}
 
 \begin{lattention}
@@ -88,6 +90,7 @@ la red eléctrica ($220\,V$, corriente alterna).
 \end{lattention}
 
 \section{Activación Manual de los Motores}
+\label{anexo:motoresManual}
 Se explican a continuación los pasos a seguir para activar, de modo manual, los
 motores de la planta.
  \begin{lattention}
