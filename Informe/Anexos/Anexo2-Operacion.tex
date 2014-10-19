@@ -5,6 +5,12 @@ Tras realizar las verificaciones mencionadas en la Sec.
 \ref{anexo:verificaciones} del Manual de Usuario proceda de la siguiente
 manera para la operación normal de la planta.
 
+Normalmente, si el programa que corre en el \gls{plc} no ha sido cambiado, 
+usted debería ser capaz de retomar la operación de la planta mediante el 
+sistema \gls{scada} como se describe en la Sec.\ref{anexo:operacionSCADA}. 
+En caso contrario o para asegurarse de que el programa que corre en el 
+\gls{plc} es el correcto  realice los pasos de la Sec. siguiente.
+
 \subsection{Carga del programa en el PLC}
 \label{anexo:operacionPLC}
 
@@ -26,9 +32,9 @@ manera para la operación normal de la planta.
 %  \item Poner a correr el programa, imagen\ref{img:twidosoftrun}.
 %  \item Desconectarse del \gls{plc}, imagen \ref{img:twidosoftdesc}.
 % \end{enumerate}
-Usted puede leer el programa que se encuentra en la memoria del \gls{plc} o bien
-para escribir un nuevo programa.
-Para esta tarea es necesario que el \gls{plc} se encuentre encendido y
+Usted puede leer el programa que se encuentra en la memoria del \gls{plc} o 
+bien escribir en ella un nuevo programa.
+Para ambas tareas es necesario que el \gls{plc} se encuentre encendido y
 conectado a la computadora que lo programará.
 Deberá entonces:
 
@@ -57,13 +63,21 @@ adaptador \verb|RS-232/USB|.
 \end{tabular}
 \end{table}
 
-Procederemos a escribir y ejecutar en el \gls{plc} el programa propuesto en el 
-Cap.\ref{ch:progPLC}, así el sistema estará en un estado conocido.
+% Procederemos a escribir y ejecutar en el \gls{plc} el programa propuesto en el 
+% Cap.\ref{ch:progPLC},\todo{Referencia a un capitulo que es ajeno al Manual del 
+% usuario} así el sistema estará en un estado conocido.
+% \todo{imagen del programa y colocar el nombre definitivo del programa}
+% Se debe abrir el programa del \gls{plc} denominado {\color{red}(nombre del
+% programa)} con el Software Twido Soft. Este programa se encuentra en el DVD 
+% adjunto a este informe. 
+% Luego, se debe proceder de la manera que se indica a continuación:
+Se aconseja escribir y ejecutar en el \gls{plc} el programa que se encuentra en 
+el DVD adjunto, denominado {\color{red}(nombre del programa)}. Así el sistema 
+estará en un estado a partir del cual se puede operar con el sistema 
+\gls{scada} propuesto.
 \todo{imagen del programa y colocar el nombre definitivo del programa}
-Se debe abrir el programa del \gls{plc} denominado {\color{red}(nombre del
-programa)} con el Software Twido Soft. Este programa se encuentra en el DVD 
-adjunto a este informe. 
-Luego, se debe proceder de la manera que se indica a continuación:
+Este programa se debe abrir con el Software Twido Soft y luego proceder de la 
+manera que se indica a continuación:
 
 \begin{table}[H]
 \centering
@@ -104,20 +118,18 @@ Cargar el programa desde la computadora al \gls{plc}.
 \end{tabular}
 \end{table}
 
-
+\newpage
 \subsection{SCADA}
 \label{anexo:operacionSCADA}
-Normalmente, si el programa que corre en el \gls{plc} no ha sido cambiado, 
-usted debería ser capaz de retomar la operación de la planta desde este punto. 
-Para asegurarse de que el programa que corre en el \gls{plc} es el correcto 
-refiérase a la Sec. \ref{anexo:operacionPLC} del Manual del Usuario.
+
 \begin{lattention}
  Recuerde siempre realizar las verificaciones descriptas en la Sección 
 \ref{anexo:verificaciones} del Manual del Usuario antes de continuar con la
 operación de la planta.
 \end{lattention}
 
-\subsubsection{Iniciar P-CIM}
+\subsubsection{Iniciar P-CIM}\todo{Agregar como se recupera un proyecto desde un 
+Backup?}
 
 Para controlar el sistema desde el \gls{scada} de P-CIM de AFCON, es necesario 
 iniciar P-CIM y verificar que el driver de Modbus se haya cargado correctamente:
@@ -159,7 +171,15 @@ abrirá la aplicación Operator Workspace ejecutando el entorno gráfico del
 sistema \gls{scada}.
 
 A través de esta interfaz es posible manejar la planta.
-Pueden diferenciarse 4 bloques principales (Ver Fig.\todo{agregar foto})
+Pueden diferenciarse 4 bloques principales (Ver Fig.\ref{fig:hmiscada2})
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]
+	{Cap5-SCADA/images/hmiScada.jpeg}
+	\caption{Interfaz gráfica del sistema SCADA}
+	\label{fig:hmiscada2}
+  \end{figure}
+  
 \begin{enumerate}
  \item \textbf{Control Automatico:} En esta sección usted puede enviar al
 \gls{plc} de la planta la consigna/setpoint y las constantes del controlador
