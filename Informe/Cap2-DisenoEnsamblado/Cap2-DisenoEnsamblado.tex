@@ -996,6 +996,73 @@ variables de la planta, a saber:
 Debemos entonces instalar elementos de instrumentación, para poder
 medir y controlar estas variables de interés.
 
+\subsection{Manómetros}
+\label{subsec:Manometros}
+
+\begin{figure}[t]
+ \centering
+\includegraphics[width=.6\textwidth]
+{Cap2-DisenoEnsamblado/images/manomBourdon.png}
+ \caption{Manómetro de Bourdon, extraído de \cite{bib:ApuntesPuglesiPlacaOrif}}
+ \label{fig:manometroBourdon}
+\end{figure}
+
+Para conocer los valores de presión en ambas cañerías
+(referirse al \gls{pyid}, Sec. \ref{sec:p&id}),
+se instalaron manómetros comunes, de tipo Bourdon.
+Un ejemplo de estos manómetros se muestra en la Fig. \ref{fig:manometroBourdon}.
+Se observa que un incremento de la presión produce una deformación
+del \emph{tubo de Bourdon}, reflejado en la aguja indicadora.
+El manómetro de Bourdon permite obtener una medición visual de la
+presión relativa, del punto donde se encuentra instalado.
+
+\begin{figure}[t]
+        \centering
+        \begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]
+	{Cap2-DisenoEnsamblado/images/manometro1.JPG}
+	\caption{Cañería de llenado.}
+        \end{subfigure}%
+        \hfill
+        \begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]
+	{Cap2-DisenoEnsamblado/images/manometro2.JPG}
+	\caption{Cañería de vaciado.}
+        \end{subfigure}
+        \caption{Manómetros.}
+        \label{fig:manometro}
+\end{figure}
+
+Durante el montaje, se observó que el manómetro de la cañería de vaciado
+no entregaba una medición definida, sino que oscilaba alrededor de un
+valor medio (imposibilitando la lectura directa).
+Este problema fue solucionado instalando un \textbf{manómetro con glicerina},
+donde el mecanismo del manómetro se encuentra sumergido en un baño de glicerina.
+Debido a la viscosidad del fluido, las vibraciones quedan amortiguadas
+y el manómetro refleja el valor medio de la presión.
+
+Las especificaciones de los manómetros se muestran en la Tab,
+\ref{tab:EspManoms}.
+
+\begin{table}[ht]
+\renewcommand{\arraystretch}{1.3}
+\centering
+\begin{tabular}{|l|l|}
+\hline
+Marca & Beyca\\
+Rango & $0$ - $1\,kgf/cm^2$\\
+ & $0$ - $14\,lb/pulg^2$\\
+Escala & $0.02\,kgf/cm^2/div$\\
+& $0.5\,lb/pulg^2/div$\\
+\hline
+\end{tabular}
+\caption{Especificaciones de los manómetros}
+\label{tab:EspManoms}
+\end{table}
+
+En la Fig. \ref{fig:manometro} se observan los dos manómetros
+presentes en el proyecto.
+
 \subsection{DP Cell}
 \label{subsec:DPCell}
 
@@ -1248,64 +1315,14 @@ Finalmente, obtenemos
  K  &= 0.5285\,\dfrac{lts}{min}
 \end{align}
 
-\subsection{Manómetros}
-\label{subsec:Manometros}
-
-\begin{figure}[ht]
- \centering
- \includegraphics[width=.7\textwidth]{Cap2-DisenoEnsamblado/images/manomBourdon.png}
- \caption{Manómetro de Bourdon, extraído de \cite{bib:ApuntesPuglesiPlacaOrif}}
- \label{fig:manometroBourdon}
-\end{figure}
-
-Para conocer los valores de presión en ambas cañerías
-(referirse al \gls{pyid}, Sec. \ref{sec:p&id}),
-se instalaron manómetros comunes, de tipo Bourdon.
-Un ejemplo de estos manómetros se muestra en la Fig. \ref{fig:manometroBourdon}.
-Se observa que un incremento de la presión produce una deformación
-del \emph{tubo de Bourdon}, reflejado en la aguja indicadora.
-El manómetro de Bourdon permite obtener una medición visual de la
-presión relativa, del punto donde se encuentra instalado.
-
-Durante el montaje, se presentó el problema que uno de los manómetros
-no entregaba una medición definida, sino que oscilaba alrededor de un
-valor medio (imposibilitando la lectura directa).
-Este problema fue solucionado instalando un \textbf{manómetro con glicerina},
-donde el mecanismo del manómetro se encuentra sumergido en un baño de glicerina.
-Debido a la viscosidad del fluido, las vibraciones quedan amortiguadas
-y el manómetro refleja el valor medio de la presión.
-
-Las especificaciones de los manómetros se muestran en la Tab,
-\ref{tab:EspManoms}.
-
-\begin{table}[ht]
-\centering
-\begin{tabular}{|l|l|}
-\hline
-Marca & Beyca\\
-Rango & $0$ - $1\,kgf/cm^2$\\
- & $0$ - $14\,lb/pulg^2$\\
-Escala & $0.02\,kgf/cm^2/div$\\
-& $0.5\,lb/pulg^2/div$\\
-\hline
-\end{tabular}
-\caption{Especificaciones de los manómetros}
-\label{tab:EspManoms}
-\end{table}
-
-En la Fig. \ref{fig:manometro} se observan los dos manómetros 
-presentes en el proyecto.
-\begin{figure}[ht]
-        \centering
-        \begin{subfigure}[b]{0.36\textwidth}
-\includegraphics[width=\textwidth]
-	{Cap2-DisenoEnsamblado/images/manometro1.JPG}
-        \end{subfigure}%
-        \hfil
-        \begin{subfigure}[b]{0.36\textwidth}
-\includegraphics[width=\textwidth]
-	{Cap2-DisenoEnsamblado/images/manometro2.JPG}
-        \end{subfigure}
-        \caption{Manómetros.}
-        \label{fig:manometro}
+\section{Planta ensamblada}
+Se presenta la planta ensamblada en la Fig. \ref{fig:PlantaEnsamblada}.
+Pueden observarse claramente la estructura, la distribución de los elementos,
+las cañerías de llenado y vaciado, las mangueras de conexión, el tiempo muerto y
+los tanques.
+\begin{figure}[h]
+	\centering
+\includegraphics[width=.64\textwidth]{Cap2-DisenoEnsamblado/images/IMG_5123.JPG}
+	\caption{Planta ensamblada.}
+	\label{fig:PlantaEnsamblada}
 \end{figure}
