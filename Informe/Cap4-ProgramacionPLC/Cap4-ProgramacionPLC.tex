@@ -16,7 +16,7 @@ Antes de realizar la programación en lenguaje Ladder, propio del \gls{plc},
 se pensó en el algoritmo que incluya todas las tareas que el
 controlador debe cumplir (gestión de alarmas, adquisición de parámetros,
 control de la válvula, encendido y apagado de motores).
-Se observa en el algoritmo ( Alg. en adelante)\ref{img:algoritmo} la 
+Se observa en el algoritmo (Alg. en adelante) \ref{img:algoritmo} la
 solución propuesta.
 
 \begin{algorithm}[!ht]
@@ -67,9 +67,8 @@ solución propuesta.
 \section{Programación}
 \label{sec:Programacion}
 Se utilizó el programa Twido Soft, de Schneider Electric, para poder programar
-el Alg.\ref{img:algoritmo} en lenguaje Ladder y posteriormente cargarlo en el 
-\gls{plc}. En el Anexo \ref{anexo:programaLadder} se encuentra el programa en 
-Ladder que corre en el   \gls{plc} de la planta.
+el Alg. \ref{img:algoritmo} en lenguaje Ladder y posteriormente cargarlo en el
+\gls{plc}.
 
 \subsection{Breve descripción del lenguaje Ladder}
 
@@ -209,8 +208,7 @@ size=1pt]
 \end{itemize}
 
 
-El \gls{plc} puede guardar información de diversa índole en memoria, por 
-ejemplo valores binarios.
+El \gls{plc} puede guardar información de diversa índole en memoria.
 Estos valores en memoria pueden ser utilizados para modificar las salidas, a
 modo de banderas.
 También pueden guardarse valores numéricos, útiles para consignas,
@@ -246,9 +244,9 @@ En la Tab. \ref{table:Banderasinternas} se pueden ver el nombre
 de las banderas utilizadas en nuestro programa y sus funciones.
  \item \textbf{\gls{memoryWord}:} conocidas también como palabras, tienen el
 formato \verb|MWx|, donde \verb|x| es un número que comienza por $0$.
-Representan valores numéricos de $16$ bits de resolución, es decir de $0$ a 
-$65536$. En ellos puede guardarse información numérica
-(constantes, valores de lectura o escritura) o pueden utilizarse para guardar
+Representan valores de $16$ bits de resolución. En ellos puede guardarse
+información numérica en el rango $0$ a $65535$
+(constantes, valores de lectura o escritura), o pueden utilizarse para guardar
 hasta 16 banderas (bits).
 Cabe destacar que las \gls{memoryWord} pueden ser leídas mediante el bus MODBUS
 (ver \ref{sec:Comunicacion}).
@@ -334,8 +332,9 @@ visual del estado de la planta en el plc.
 Esta salida no está conectada.
 
 En el anexo \ref{anexo:programaLadder} se puede
-observar la impresión que otorga el programa Twido Soft del programa en 
-lenguaje ladder completo y todos los parámetros del \gls{plc}.
+observar el programa en
+lenguaje Ladder completo y todos los parámetros del \gls{plc}, en el
+software Twido Soft.
 
 \begin{table}[!t]
 
@@ -398,7 +397,7 @@ trabaja en modo manual desde el \gls{scada}.
  Como se explicara en el capitulo \ref{ch:scada} esta previsto un
  botón exclusivo para esta acción. Este debe detener
  los motores en no importa que modo de funcionamiento de la planta. Al accionar el 
- botón, desde el software \gls{scada}, se levanta una bandera en el \gls{plc} 
+ botón desde el software \gls{scada}, se levanta una bandera en el \gls{plc}
  que da la señal de detener los motores. Luego de solucionar el posible inconveniente
  que desencadeno la parada de emergencia de la planta se debe enviar una señal 
  al \gls{plc} para limpiar la bandera de señal de emergencia: Rehabilitar al 
@@ -489,9 +488,24 @@ Segundo &  $0.6 \,Kp_{cr}  $ & $ 0.5 \, P_{cr}$ & $0.125 \, P_{cr} $\\
 
 \subsubsection{Cálculo de ganancias en nuestra planta}
 
-Para nuestro trabajo se optó por el segundo método de los presentados 
-anteriormente.
+Para nuestro trabajo se optó por el segundo método de los presentados
+anteriormente, es decir, poniendo al sistema en oscilación permanente en bucle
+cerrado.
+
 \paragraph{Sin tiempo muerto}
+
+Se colocó a la planta en oscilación, como muestra la Fig.
+\ref{fig:oscilacionperm}.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/oscperm.png}
+ \caption{Nivel de la planta en oscilación, sin tiempo muerto.}
+ \label{fig:oscilacionperm}
+\end{figure}
+
+Se obtuvieron los siguientes valores de $Kp_{cr} $ y $P_{cr}$.
+
 \begin{itemize}
  \item $Kp_{cr}$:
  $60$
@@ -499,37 +513,38 @@ anteriormente.
  $8 s$
 \end{itemize}
 
-Se corroboran estos datos en la Fig. \ref{fig:oscilacionperm}.
-
-\begin{figure}[ht]
- \centering
- \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/oscperm.png}
- \caption{Gráfico de la planta sin tiempo muerto.}
- \label{fig:oscilacionperm}
-\end{figure}
-
 A partir de estos datos se obtuvieron los valores de las ganancias:
 
 \begin{itemize}
- \item $K_p $: $36,14$
+ \item $K_p $: $36$
  \item $T_i $: $4$
  \item $T_d $: $1$ 
 \end{itemize}
 
-
-
-En la Fig. \ref{fig:controlado} se puede apreciar laimagen de la planta
-funcionandocon estos valores de ganancias.
+En la Fig. \ref{fig:controlado} se puede apreciar el seguimiento de la
+consigna de nivel en la planta, funcionando con estos valores de ganancias.
 
 \begin{figure}[ht]
  \centering
  \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/controlado.png}
- \caption{Gráfico de la planta controlada sin tiempo muerto.}
+ \caption{Nivel de la planta controlada, sin tiempo muerto.}
  \label{fig:controlado}
 \end{figure}
 
 
 \paragraph{Con tiempo muerto}
+
+Nuevamente, se coloca la planta en oscilación como muestra la Fig.
+\ref{fig:oscilacionpermtd}.
+Se obtuvieron los siguientes valores de los parámetros.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/oscpermtd.png}
+ \caption{Nivel de la planta en oscilación, con tiempo muerto.}
+ \label{fig:oscilacionpermtd}
+\end{figure}
+
 \begin{itemize}
  \item $Kp_{cr}$:
  $120$
@@ -537,35 +552,26 @@ funcionandocon estos valores de ganancias.
  $10 s$
 \end{itemize}
 
-Se corroboran estos datos en la Fig. \ref{fig:oscilacionpermtd}.
-
-\begin{figure}[ht]
- \centering
- \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/oscpermtd.png}
- \caption{Gráfico de los valores de la planta.}
- \label{fig:oscilacionpermtd}
-\end{figure}
-
 A partir de estos datos se obtuvieron los valores de las ganancias
-para la planta trabajando con tiempo muerto:
+para la planta, trabajando con tiempo muerto:
 
 \begin{itemize}
- \item $K_p $: $72.29$
- \item $T_i $: $50$
- \item $T_d $: $12$ 
+ \item $K_p $: $72$
+ \item $T_i $: $5$
+ \item $T_d $: $1.25$
 \end{itemize}
 
-
-
-En la Fig. \ref{fig:controladotd} se puede apreciar laimagen de la planta
-funcionandocon estos valores de ganancias.
+En la Fig. \ref{fig:controladotd} se puede apreciar el seguimiento de consigna
+de nivel, utilizando el circuito de tiempo muerto.
 
 \begin{figure}[ht]
  \centering
  \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/controladotd.png}
- \caption{Gráfico de los valores de la planta.}
+ \caption{Nivel de la planta controlada, con tiempo muerto.}
  \label{fig:controladotd}
 \end{figure}
+
+Queda así validada la sintonía del bucle \gls{pid} en el controlador.
 
 \section{Comunicación}
 \label{sec:Comunicacion}
