@@ -376,15 +376,15 @@ Por ultimo se procedió a pintar los caños mediante un código de colores.
 El código de colores, si bien no es estándar en la industria, permite una fácil
 comprensión del circuito hidráulico (ver Fig. \ref{fig:canerias}).
 
-\begin{figure}[ht]
+\begin{figure}[t]
         \centering
-        \begin{subfigure}[b]{0.36\textwidth}
+        \begin{subfigure}[b]{0.40\textwidth}
 \includegraphics[width=\textwidth]
 	{Cap2-DisenoEnsamblado/images/caneria1.JPG}
 	\caption{Cañería de llenado.}
         \end{subfigure}%
-        \hfil
-        \begin{subfigure}[b]{0.36\textwidth}
+        \hfill
+        \begin{subfigure}[b]{0.40\textwidth}
 \includegraphics[width=\textwidth]{Cap2-DisenoEnsamblado/images/caneria2.JPG}
 	\caption{Cañería de vaciado.}
         \end{subfigure}
@@ -460,17 +460,16 @@ bombas.
  Al abrir la válvula, el rendimiento de la bomba decrece.
  \end{itemize}
 
-\begin{figure}[ht]
+\begin{figure}[t]
         \centering
-        \begin{subfigure}[b]{0.36\textwidth}
-\includegraphics[width=\textwidth]{Cap2-DisenoEnsamblado/images/valvTanque.JPG}
-                \caption{Control de caudal del tanque de reserva.}
+        \begin{subfigure}[b]{0.40\textwidth}
+\includegraphics[height=8.5cm]{Cap2-DisenoEnsamblado/images/valvTanque.JPG}
+                \caption{Control de caudal de vaciado.}
                 \label{fig:valvTanque}
-        \end{subfigure}
-        \hfill
-        \begin{subfigure}[b]{0.36\textwidth}
-\includegraphics[width=\textwidth]
-	{Cap2-DisenoEnsamblado/images/valvBomba.JPG}
+        \end{subfigure}%
+\hfill
+        \begin{subfigure}[b]{0.40\textwidth}
+\includegraphics[height=8.5cm]{Cap2-DisenoEnsamblado/images/valvBomba.JPG}
                 \caption{Perturbación de las bombas.}
                 \label{fig:valvBomba}
         \end{subfigure}
@@ -586,7 +585,7 @@ las acciones de control.
 \subsection{Principio de funcionamiento}
 \label{subsec:principioFuncionamiento}
 
-\begin{figure}[ht]
+\begin{figure}[t]
         \centering
         \begin{subfigure}[b]{0.36\textwidth}
 \includegraphics[width=\textwidth]
@@ -690,7 +689,7 @@ características para el control regulatorio.
 No obstante, como se expondrá posteriormente, las curvas características de las
 válvulas quedan afectadas por el proceso en el que se utilizan.
 
-\begin{figure}
+\begin{figure}[t]
  \centering
  \includegraphics[scale=1.5]{Cap2-DisenoEnsamblado/images/Inherente.png}
  \caption{Características inherentes según el tipo de obturador.}
@@ -762,21 +761,21 @@ efectiva ``lo más lineal posible''.
 
 \begin{figure}[t]
         \centering
-        \begin{subfigure}[b]{0.69\textwidth}
-        \centering
-\includegraphics[height=6.3cm]{Cap2-DisenoEnsamblado/images/IMG_5030.JPG}
- \caption{Detalle varilla de feedback e indicador de posición del vástago.}
- \label{fig:fotoValvDetalle}
-        \end{subfigure}%
-\hfill
-\begin{subfigure}[b]{0.31\textwidth}
-\centering
+        \begin{subfigure}[b]{0.31\textwidth}
+		\centering
 \includegraphics[height=6.3cm]{Cap2-DisenoEnsamblado/images/IMG_5129.JPG}
- \caption{Vista general de la válvula.}
- \label{fig:fotoValvCompl}
-        \end{subfigure}
-        \caption{Válvula utilizada en el proyecto.}
-        \label{fig:fotoValv}
+		\caption{Vista general de la válvula.}
+		\label{fig:fotoValvCompl}
+        \end{subfigure}%
+	\hfill
+	\begin{subfigure}[b]{0.69\textwidth}
+		\centering
+\includegraphics[height=6.3cm]{Cap2-DisenoEnsamblado/images/IMG_5030.JPG}
+	\caption{Varilla de feedback e indicador de posición del vástago.}
+		\label{fig:fotoValvDetalle}
+	\end{subfigure}%
+	\caption{Válvula utilizada en el proyecto.}
+	\label{fig:fotoValv}
 \end{figure}
 
 En esta sección se describirá las características específicas de la válvula
@@ -824,7 +823,7 @@ vástago con la consigna de corriente.
 En caso de detectar errores, ejerce la acción de control correctiva para
 asegurar la posición del vástago.
 
-\begin{figure}[ht]
+\begin{figure}[t]
  \centering
  \includegraphics[scale=1.1]{Cap2-DisenoEnsamblado/images/PG-EPL.pdf}
  \caption{Esquema de funcionamiento, posicionador electroneumático.}
