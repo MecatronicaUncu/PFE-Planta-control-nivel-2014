@@ -19,10 +19,9 @@ Se mostrará también la configuración actual, escogida durante el desarrollo d
 proyecto.
 Con esta información el lector podrá entender, y por lo
 tanto modificar en caso de ser necesario, todo el entorno \gls{scada}. Sin
-embargo, este capitulo no esta orientado a la operación misma de la planta 
-mediante el \gls{scada}, esto último será detallado en la 
-Sec.\ref{anexo:operacionSCADA} 
-del Manual del Usuario que se encuentra en los anexos. 
+embargo, este capitulo no esta orientado a la operación misma de la planta
+mediante el \gls{scada}, que será detallada en el Anexo
+\ref{anexo:operacionSCADA} del Manual del Usuario. 
 
 \section{Introducción a SCADA}
 \label{sec:IntroScada}
@@ -52,7 +51,6 @@ diagnóstico y manejo de la información así como un cronograma de procedimient
 de mantenimiento, información logística, esquemas detallados para un sensor o 
 máquina en particular o incluso sistemas expertos con guía de resolución de 
 problemas, como se detalla en \cite{bib:ManualScada}.
-%\todo{referencia?}
 
 Es entonces claro como la utilización de un sistema \gls{scada} reduce 
 fuertemente las tareas asociadas al control y monitoreo de plantas industriales.
@@ -106,7 +104,7 @@ Ver Sec. \ref{subsec:CapaProcesamiento}.
  \item \textbf{Capa de aplicación:} presenta la información, interactúa con el
 operador
   y realiza los controles de alto nivel y de programación. Ver 
-Sec.\ref{subsec:CapaAplicacion}
+Sec. \ref{subsec:CapaAplicacion}
 \end{itemize}
 
 El trabajo coordinado se resume en que la información de campo del PLC llega al 
@@ -122,7 +120,7 @@ las prestaciones antes mencionadas.
 
 \section{Desarrollo de la aplicacion SCADA con P-CIM}
 A continuación, se detalla la aplicación \gls{scada} desarrollada 
-específicamente para esta planta y en el marco del \gls{pfe} mediante el 
+específicamente para esta planta y en el marco del \gls{pfe}, mediante el
 software P-CIM. Su exposición esta dividida de acuerdo a la estructura en capas 
 con la que este programa trabaja, como se describió en la Sec.
 \ref{sec:CapasPrograma}.
@@ -131,9 +129,9 @@ con la que este programa trabaja, como se describió en la Sec.
 \label{subsec:CapaComunicacion}
 El primer paso para el desarrollo de un sistema \gls{scada} es la 
 implementación de la capa de comunicación, es decir, lograr la 
-comunicación con el \gls{plc} que controla la planta. Esta tarea se alcanza por 
-medio de alguno de los múltiples buses de comunicación que existen en el 
-mercado. En nuestro caso se utilizó el protocolo de comunicaciones Modbus. 
+comunicación con el \gls{plc} que controla la planta. Esta tarea se realiza
+utilizando alguno de los múltiples buses de comunicación que existen en el
+mercado. En nuestro caso, se utilizó el protocolo de comunicaciones Modbus.
 
 \subsubsection{Modbus}
 Modbus es un protocolo de comunicaciones diseñado en 1979 por Modicon para su 
@@ -236,7 +234,7 @@ seguirse los pasos que se muestran en la Tab. \ref{tab:installModbus}.
 \subsubsection{Configuración del Driver Modbus}
 Una vez que el driver de Modbus para PCIM se ha instalado correctamente
 procedemos a realizar su configuración para lograr la comunicación entre el PLC 
-y la computadora de control. Esta tarea se divide en dos partes: Asociar el 
+y la computadora de control. Esta tarea se divide en dos partes: asociar el
 driver con un puerto P-CIM y establecer los parámetros operativos de dicho 
 puerto:
 \begin{itemize}
@@ -354,8 +352,8 @@ Tab. \ref{tab:ConfigModbus}.
    Establezca el tipo de interfaz mediante la lista de Network Type en RS232. 
    El botón Transport Parameter despliega una ventana en la que el valor de COM 
    Port debe ser igual al que aparece en el Administrador de 
-   Dispositivos de Windows correspondiente al puerto serie de 
-   comunicaciones con el \gls{plc}. Baud Rate:19200. 
+   Dispositivos de Windows, correspondiente al puerto serie de
+   comunicaciones con el \gls{plc}. Baud Rate: 19200.
   &\begin{center}
     %\rule{0.4\textwidth}{0.3\textwidth}
         \includegraphics[width=0.4\textwidth]
@@ -469,7 +467,7 @@ siguientes puntos:
 para el manejo de 4 tipos básicos de datos: analógicos (enteros o reales),
 digitales (un único bit), string o cadena de caracteres (veinte palabras de
 16 bits) y alarmas (en grupos de 16 bits).
-  \item \textbf{Tiempo de Escrutinio (scan) y de Fase:} Ambos valores se 
+  \item \textbf{Tiempo de Escrutinio (scan) y de Fase:} ambos valores se
 encuentran en el rango de 1 a 255 unidades, donde la
 unidad de tiempo por defecto es un segundo y son
 respectivamente:
@@ -535,7 +533,7 @@ que para:
 
 \begin{itemize}
   \item \textbf{Analog Input/Output:} Address debe tener el valor de MODBUS
-  Address correspondiente. El Target esta dado por la punta de la flecha que se 
+  Address correspondiente. El Target está dado por la punta de la flecha que se
   origina en ese bloque.
   \item \textbf{Calculation:} Parameter es el bloque entretante y Target es el
   bloque saliente en el esquema.
@@ -543,9 +541,7 @@ que para:
   el Target es el bloque al que apunta la flecha. 
 \end{itemize}
 
-
 \input{Cap5-SCADA/Diagrama.tex}
-
 
 \subsubsection{Creación de los bloques de la base de datos}
 Se muestran los pasos necesarios para la creación de un elemento
@@ -639,7 +635,7 @@ con los que debemos cumplir. Estos se resumen en:
 \begin{itemize}
  \item Botones de parada de emergencia y rehabilitación del sistema.
  \item Botones de encendido y parada del controlador de la planta.
- \item Visualización del estado de la planta: Niveles, caudal, bombas 
+ \item Visualización del estado de la planta: niveles, caudal, bombas
  encendidas, etc.
 %  \begin{itemize}
 %   \item Histórico del nivel controlado.
@@ -648,7 +644,7 @@ con los que debemos cumplir. Estos se resumen en:
  \item Control Manual
 %  \begin{itemize}
 %   \item Encender las bombas de manera independiente.
-%   \item Controlar la abertura de la válvula
+%   \item Controlar la apertura de la válvula
 %  \end{itemize}
  \item Control Automático
 %  \begin{itemize}
