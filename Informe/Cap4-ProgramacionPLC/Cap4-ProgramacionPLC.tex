@@ -128,6 +128,7 @@ final buscando discrepancias}
 
 \begin{figure}
 \centering
+%\resizebox{0.8\textwidth}{0.9\textheight}{
 \tikzstyle{every node}=[draw=black,thick,anchor=west,inner sep=2pt,minimum
 size=1pt]
 \tikzstyle{selected}=[draw=cyan,fill=cyan!30]
@@ -161,6 +162,7 @@ size=1pt]
     child { node {Limpieza de señal de parada de emergencia}    }
     child { node {Limpieza de alarmas}    };
 \end{tikzpicture}
+%}
 \caption{Esquema de Rungs del programa Ladder de la planta de control de nivel}
 \label{fig:ladder}
 \end{figure}
@@ -202,7 +204,8 @@ En la Tab. \ref{table:Banderasinternas} se pueden ver el nombre
 de las banderas utilizadas en nuestro programa y sus funciones.
  \item \textbf{\gls{memoryWord}:} conocidas también como palabras, tienen el
 formato \verb|MWx|, donde \verb|x| es un número que comienza por $0$.
-Representan valores de 16 bits. En ellos puede guardarse información numérica
+Representan valores numéricos de $16$ bits de resolución, es decir de $0$ a 
+$65536$. En ellos puede guardarse información numérica
 (constantes, valores de lectura o escritura) o pueden utilizarse para guardar
 hasta 16 banderas (bits).
 Cabe destacar que las \gls{memoryWord} pueden ser leídas mediante el bus MODBUS
@@ -278,10 +281,11 @@ Esc & \verb|MW13| & Valor de escritura Td \\
 \label{table:mwNumericos}
 \end{table}
 
-Finalmente, se muestran las entradas y salidas al \gls{plc} de la planta.
+Finalmente, se detallan a continuación las entradas y salidas al \gls{plc} de 
+la planta.
 Descriptas en la Sec. \ref{subsec:plc}, permiten al
 controlador relevar variables de la planta y aplicar acciones de control. 
-Se muestran en la Tab. \ref{table:entradassalidas} las
+En la Tab. \ref{table:entradassalidas} se muestran las
 entradas/salidas tanto analógicas como discretas.
 Cabe destacar que la salida \verb|Q0.7| se utilizó para obtener un indicador
 visual del estado de la planta en el plc.
@@ -352,10 +356,11 @@ trabaja en modo manual desde el \gls{scada}.
  Como se explicara en el capitulo \ref{ch:scada} esta previsto un
  botón exclusivo para esta acción. Este debe detener
  los motores en no importa que modo de funcionamiento de la planta. Al accionar el 
- botón desde el software \gls{scada} se levanta una bandera en el \gls{plc} 
+ botón, desde el software \gls{scada}, se levanta una bandera en el \gls{plc} 
  que da la señal de detener los motores. Luego de solucionar el posible inconveniente
  que desencadeno la parada de emergencia de la planta se debe enviar una señal 
- al \gls{plc} para limpiar la bandera de señal de emergencia.
+ al \gls{plc} para limpiar la bandera de señal de emergencia: Rehabilitar al 
+sistema para su funcionamiento normal.
 \end{itemize}
 
 \begin{table}[!t]
@@ -386,7 +391,7 @@ de Ziegler–Nichols.
 Se trata de una serie de reglas basadas en la respuesta experimental
 del sistema.
 Estas reglas son aplicables a sistemas de primer orden, donde no se conoce con
-precisión el modelado matemático del sistema \cite{bib:Ogata}.
+precisión el modelo matemático del sistema \cite{bib:Ogata}.
 
 Se presentan dos métodos:
 \begin{itemize}
@@ -447,8 +452,8 @@ Se realizó el método experimental, obteniéndose...\todo{hacer ZN}.
 \section{Comunicación}
 \label{sec:Comunicacion}
 
-Tal como se mencionó anteriormente, sólo los \gls{memoryWord} (palabras) pueden
-ser leídas mediante MODBUS.
+Tal como se mencionó anteriormente, mediante MODBUS sólo se puede tener acceso 
+a las \gls{memoryWord} (palabras) del \gls{plc}.
 Para interactuar con la planta debieron definirse ciertas palabras, que
 permiten realizar acciones en el sistema y conocer el estado del mismo.
 Por simplicidad, se optó por utilizar dos grupos de palabras bien
@@ -458,7 +463,7 @@ diferenciadas:
 control mediante MODBUS. En las palabras de lectura agruparemos aquellas
 banderas de estado (motores encendidos, alarmas) y las palabras con valores
 numéricos de lectura (mediciones de nivel, caudal, valor presente de set point
-y de ganancias).
+y de ganancias del controlador).
  \item \textbf{Palabras de escritura:} pueden ser escritas por la computadora
 de control. Aquí se agrupan valores numéricos que pueden ser cambiados (set
 point, ganancias) y banderas para modificar el estado de la planta (encenderla,
@@ -469,7 +474,7 @@ Destacamos que en algunos casos (por ejemplo, set point) tenemos tanto palabras
 de lectura o escritura.
 Esto se debe a que estas variables, importantes para el funcionamiento de la
 planta, deben ser modificadas solamente bajo solicitud expresa del usuario
-(poniendo a 1 alguna bandera).
+, es decir, mediante la seteo de la bandera que permita tal modificación.
 
 La Tab. \ref{table:mwBanderas} presenta dos palabras de dieciséis
 bits, \verb|MW0| y \verb|MW1|, la primera de ella presenta bits de lectura, en
@@ -478,7 +483,7 @@ refleja el estado del la plata, mientras que la segunda palabra tiene bits de
 de escritura para enviar acciones de control.
 
 Por otro lado la Tab. \ref{table:mwNumericos} nos presenta
-las palabras de las restantes que se utilizan en el programa, para
+las palabras restantes, utilizadas en el programa para
 almacenar valores numéricos.
 La primer parte de la tabla muestra las palabras de solo lectura (valores que
 presentan las variables del sistema), mientras que en la
@@ -495,13 +500,13 @@ validar el correcto funcionamiento del programa.
 El software Twido Soft permite realizar la depuración
 en tiempo de ejecución, observando el estado de las diferentes variables
 de la planta.
-La animación colorea las bobinas y contactores que están activas, permitiendo
+La animación colorea las bobinas y contactores que están activos, permitiendo
 identificar problemas lógicos en el programa.
-Además, podemos observar el valor de las entradas y salidas detectando
-errores con la instrumentación y los actuadores.
+Además, podemos observar el valor de las entradas y salidas, detectando así
+errores en la instrumentación y/o en los actuadores.
 
-En la Fig. \ref{img:twidosoftdebug} se observa el módulo \emph{tablas
-de animación} de Twido Soft.
+En la Fig. \ref{img:twidosoftdebug} se observa el módulo \emph{Tablas
+de Animación} de Twido Soft.
 Mediante este módulo, se puede forzar el estado de algunas bobinas y cambiar el
 valor de las palabras en memoria.
 Podemos así generar situaciones características que encontraremos durante la

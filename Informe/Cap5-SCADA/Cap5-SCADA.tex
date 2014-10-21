@@ -5,22 +5,24 @@ Hasta este momento se han realizado los siguientes trabajos durante la
 construcción de la planta: en el Cap.
 \ref{ch:DisenoEnsamblado} detallamos los elementos de la misma, lo que nos
 condujo a describir en el Cap. \ref{ch:tablero} el sistema eléctrico y
-electrónico que la anima, continuamos en el Cap. \ref{ch:progPLC} con la
-lógica que regula al sistema completo por medio del \gls{plc}. 
+electrónico que la anima, continuando en el Cap. \ref{ch:progPLC} con la
+lógica que regula al sistema completo por medio del \gls{plc} y que pone a la 
+planta en funcionamiento. 
 
 Como actividad final de este \gls{pfe} se diseñó y realizo una \gls{hmi}
-\gls{scada} mediante P-CIM para Windows (AFCON), con el objetivo de poder
+\gls{scada} mediante P-CIM para Windows de AFCON, con el objetivo de poder
 manipular el sistema sin requerir acceso físico a la misma.
 
 En el siguiente capítulo se detallan cada uno de los pasos seguidos para la 
-construcción de la interfaz.
+construcción de dicha interfaz.
 Se mostrará también la configuración actual, escogida durante el desarrollo del
 proyecto.
-El lector podrá entender, y por lo
+Con esta información el lector podrá entender, y por lo
 tanto modificar en caso de ser necesario, todo el entorno \gls{scada}. Sin
 embargo, este capitulo no esta orientado a la operación misma de la planta 
-mediante el \gls{scada}, que será detallado en la Sec.\ref{anexo:operacionSCADA} 
-del Manual del Usuario. 
+mediante el \gls{scada}, esto último será detallado en la 
+Sec.\ref{anexo:operacionSCADA} 
+del Manual del Usuario que se encuentra en los anexos. 
 
 \section{Introducción a SCADA}
 \label{sec:IntroScada}
@@ -52,26 +54,26 @@ máquina en particular o incluso sistemas expertos con guía de resolución de
 problemas, como se detalla en \cite{bib:ManualScada}.
 %\todo{referencia?}
 
-Es entonces claro que la utilización de un sistema \gls{scada} reduce 
-las tareas asociadas al control y monitoreo de plantas industriales.
+Es entonces claro como la utilización de un sistema \gls{scada} reduce 
+fuertemente las tareas asociadas al control y monitoreo de plantas industriales.
 
 \section{Scada P-CIM}
 \label{sec:ScadaPCIM} 
 Para el diseño y desarrollo del sistema \gls{scada} de este \gls{pfe} se 
 utilizó el software P-CIM 7.70 SP4 para Windows de AFCON 
-(\url{www.afcon-inc.com}). El software, provee un ambiente tanto de desarrollo
-como de ejecución de aplicaciones \gls{scada}\footnote{Este software puede
-ser descargado desde
+(\url{www.afcon-inc.com}). El software\footnote{P-CIM 7.70 SP4 puede
+ser descargado desde:
 \url{
 http://www.afcon-inc.com/Templates/showpage.asp?TMID=108&FID=733&PID=0&IID=8334}
-}.
+}, provee un ambiente tanto de desarrollo
+como de ejecución de aplicaciones \gls{scada}.
 
-Dentro de las características que ofrece este sofware se encuentran:
+Dentro de sus características se encuentran:
 \begin{itemize}
  \item Compatible con todas las plataformas MS-Windows actuales.
  \item Soporta un gran número de diferentes \gls{plc} y otros dispositivos 
   periféricos.
- \item Posee drivers para diversos buses de comunicación.
+ \item Posee drivers para diversos buses de comunicación, por ejemplo MODBUS.
  \item Provee herramientas para el desarrollo de \gls{hmi} inteligentes.
  \item Permite el seguimiento de los procesos de la planta y de las actividades
  de los operadores.
@@ -104,7 +106,8 @@ lleva a cabo el procesamiento de datos, registro histórico y manejo de alarmas.
 Ver Sec. \ref{subsec:CapaProcesamiento}.
  \item \textbf{Capa de aplicación:} presenta la información, interactúa con el
 operador
-  y realiza los controles de alto nivel y de programación.
+  y realiza los controles de alto nivel y de programación. Ver 
+Sec.\ref{subsec:CapaAplicacion}
 \end{itemize}
 
 El trabajo coordinado se resume en que la información de campo del PLC llega al 
@@ -399,7 +402,7 @@ palabra o registro.
 en el PLC 1 que está conectado al Puerto 1.
 \end{itemize}
 
-\subsubsection{Verificación comunicación}
+\subsubsection{Verificación de la comunicación}
 En este punto podemos verificar que la comunicación entre el PLC y la
 computadora de control se encuentre operativa. Para monitorear el estado 
 de la comunicación podemos utilizar las siguientes herramientas:
