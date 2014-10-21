@@ -5,11 +5,11 @@ Tras realizar las verificaciones mencionadas en la Sec.
 \ref{anexo:verificaciones} del Manual de Usuario proceda de la siguiente
 manera para la operación normal de la planta.
 
-Normalmente, si el programa que corre en el \gls{plc} no ha sido cambiado, 
+Normalmente, si el programa que corre en el \gls{plc} no ha sido cambiado,
 usted debería ser capaz de retomar la operación de la planta mediante el 
-sistema \gls{scada} como se describe en la Sec.\ref{anexo:operacionSCADA}. 
-En caso contrario o para asegurarse de que el programa que corre en el 
-\gls{plc} es el correcto  realice los pasos de la Sec. siguiente.
+sistema \gls{scada} como se describe en el Anexo \ref{anexo:operacionSCADA}.
+En caso contrario, o para asegurarse de que el programa que corre en el
+\gls{plc} es el correcto, realice los pasos que siguen a continuación.
 
 \subsection{Carga del programa en el PLC}
 \label{anexo:operacionPLC}
@@ -63,19 +63,11 @@ adaptador \verb|RS-232/USB|.
 \end{tabular}
 \end{table}
 
-% Procederemos a escribir y ejecutar en el \gls{plc} el programa propuesto en el 
-% Cap.\ref{ch:progPLC},\todo{Referencia a un capitulo que es ajeno al Manual del 
-% usuario} así el sistema estará en un estado conocido.
-% \todo{imagen del programa y colocar el nombre definitivo del programa}
-% Se debe abrir el programa del \gls{plc} denominado {\color{red}(nombre del
-% programa)} con el Software Twido Soft. Este programa se encuentra en el DVD 
-% adjunto a este informe. 
-% Luego, se debe proceder de la manera que se indica a continuación:
-Se aconseja escribir y ejecutar en el \gls{plc} el programa que se encuentra en 
-el DVD adjunto, denominado {\color{red}(nombre del programa)}. Así el sistema 
-estará en un estado a partir del cual se puede operar con el sistema 
+Se aconseja escribir y ejecutar en el \gls{plc} el programa que se encuentra en
+el DVD adjunto, denominado {\color{red}(nombre del programa)}. Así, la planta
+estará en un estado a partir del cual se puede operar con el sistema
 \gls{scada} propuesto.
-%\todo{imagen del programa y colocar el nombre definitivo del programa}
+
 Este programa se debe abrir con el Software Twido Soft y luego proceder de la 
 manera que se indica a continuación:
 
@@ -171,8 +163,9 @@ para completar esta tarea:
 
 \subsubsection{Verificar la Comunicación}
 A continuación debemos verificar que la comunicación con el \gls{plc} 
-se encuentra bien configurada y que el sistema \gls{scada} es capas de 
-intercambiar información. Proceda como se describe a continuación:
+se encuentra bien configurada y que el sistema \gls{scada} es capaz de
+intercambiar información con el controlador.
+Proceda como se describe a continuación:
 \begin{table}[!ht]
 \centering
 \renewcommand*{\arraystretch}{0.01}
@@ -214,9 +207,9 @@ intercambiar información. Proceda como se describe a continuación:
 
 \newpage
 \subsubsection{Iniciar P-CIM}
-Finalmente, para controlar el sistema desde el \gls{scada} de P-CIM de AFCON, 
+Finalmente, para controlar el sistema desde el \gls{scada} P-CIM de AFCON,
 es necesario iniciar P-CIM y verificar que el driver de Modbus se haya cargado 
-correctamente permitiendo la comunicación con el \gls{scada}:
+correctamente, permitiendo la comunicación con el \gls{scada}:
 \begin{table}[!ht]
 \centering
 \renewcommand*{\arraystretch}{0.01}
@@ -255,8 +248,9 @@ abrirá la aplicación Operator Workspace ejecutando el entorno gráfico del
 sistema \gls{scada}.
 
 A través de esta interfaz es posible manejar la planta.
-Pueden diferenciarse los siguientes bloques principales (Ver 
-Fig.\ref{fig:hmiscada2})
+Pueden diferenciarse los siguientes bloques principales
+(ver Fig. \ref{fig:hmiscada2}).
+
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.8\textwidth]
@@ -266,9 +260,9 @@ Fig.\ref{fig:hmiscada2})
   \end{figure}
   
 \begin{enumerate}
-\item \textbf{Parada de Emergencia:} Mediante este botón se para totalmente la 
-planta y solo volvera a responde si se presiona \textbf{Rehabilitar Sistema}.
- \item \textbf{Control Automático:} Desde estos controles se activa o detiene 
+\item \textbf{Parada de Emergencia:} mediante este botón se para totalmente la
+planta y solo volverá a responder si se presiona \textbf{Rehabilitar Sistema}.
+ \item \textbf{Control Automático:} desde estos controles se activa o detiene
 la planta cuando el controlador automático esta activo.
  \item \textbf{Control Manual:} Este modo debe ser usado solamente como un
 medio para
@@ -276,19 +270,19 @@ sacar a la planta de un estado de emergencia tras  haberse declarado una alarma
 por HHL o LLL.
 Aquí podrá encender las bombas individualmente y controlar la apertura de la
 válvula.
- \item \textbf{Ganancias del Controlador:} En esta sección usted puede enviar al
+ \item \textbf{Ganancias del Controlador:} en esta sección usted puede enviar al
 \gls{plc} de la planta las constantes del controlador $K_p$, $T_i$ y $T_d$. 
 Puede seleccionar los valores por Default o Manual. Pulse Aplicar para que los 
 cambios sean efectivos.
- \item \textbf{Consigna de Nivel} En esta sección usted puede enviar al
+ \item \textbf{Consigna de Nivel:} en esta sección usted puede enviar al
 \gls{plc} de la planta la consigna/setpoint de nivel del tanque controlado. 
 Puede seleccionar el valor por Default(50\%) o Manual. Pulse Aplicar para que 
 los cambios sean efectivos.
- \item \textbf{Sistema:} En este apartado podemos ver el estado del actual del
-sistema.Es decir, se muestran los valores de consigna de nivel, nivel 
+ \item \textbf{Sistema:} en este apartado podemos ver el estado del actual del
+sistema. Es decir, se muestran los valores de consigna de nivel, nivel
 actual, caudal y apertura de la válvula. También se señalan el estado del 
 \gls{plc} y si el sistema se encuentra funcionando en estado normal.
-\item {Elementos Gráficos}: En ellos se pueden observar los valores actuales e 
-historicos de nivel de ambos tanques. También se señalan las alarmas de nivel y 
+\item {Elementos Gráficos}: en ellos se pueden observar los valores actuales e
+históricos de nivel de ambos tanques. También se señalan las alarmas de nivel y
 sus valores.
 \end{enumerate}
