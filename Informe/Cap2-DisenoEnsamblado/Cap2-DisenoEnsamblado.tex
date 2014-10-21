@@ -4,22 +4,22 @@
 En esta sección se describirán los pasos necesarios para la concreción física
 del proyecto.
 Se comenzará con la confección e interpretación del diagrama de cañerías e
-instrumentación, con el objetivo de validar la solución propuesta en
-\ref{sec:SolucionPropuesta}.
+instrumentación, con el objetivo de detallar la solución propuesta en
+la Sec. \ref{sec:SolucionPropuesta}.
 Luego se hará énfasis en la construcción de la planta a partir de los elementos
 disponibles.
 Se describirá en detalle cada uno de ellos y se hará mención de
 las decisiones constructivas tomadas durante el ensamblado.
 
-\section{P\&ID}
+\section{Diagrama de cañerías e instrumentación - P\&ID}
 \label{sec:p&id}
 
-\subsection{Diagrama de cañerías e instrumentación}
+\subsection{Generalidades}
 Un diagrama de cañerías e instrumentación es un esquema de la planta en donde
 pueden observarse todos los elementos que componen el proceso.
 Estos diagramas emplean símbolos para representar cada elemento y sus
 conexiones.
-Los elementos presentes en este esquema están regidos por la norma
+Los símbolos están regidos por la norma
 \emph{Standard S5.1 Instrumentation Symbol Specification}.
 
 El diagrama permite una rápida comprensión del proceso, y se denomina
@@ -84,7 +84,7 @@ De acuerdo a los componentes detallados en la Sec.
 \ref{sec:MaterialesDisponibles} se realizó el esquema \gls{pyid} de la planta
 de control de nivel.
 Para la correcta comprensión de este capítulo es indispensable contar con el
-esquema, que puede encontrarse en la Fig. \ref{img:pyid}.
+esquema, que puede observarse en la Fig. \ref{img:pyid}.
 
 \begin{figure}
 	\centering
@@ -107,9 +107,8 @@ Las diferentes partes del diagrama se explicarán a continuación:
 
 En la Tab. \ref{tab:elementos} se presentan los elementos
 que forman parte del diagrama \gls{pyid}. Se muestran
-los simbolos que tienen cada una de las partes del sistema, así como
-también se detalla el significado de las siglas que acompañan a
-cada uno.
+los símbolos de cada uno de ellos, como así
+también se detalla el significado de las siglas.
 
 \begin{table}[H]
 \small
@@ -265,9 +264,8 @@ Dado que el objetivo principal del proyecto es que la planta sirva para fines
 educativos, se opta por utilizar una estructura móvil.
 De esta manera, la posición de la planta puede modificarse según se requiera.
 
-\todo{imagen de la estructura}
-La estructura, de caño estructural, puede apreciarse en la figura x.
-Está dotada de cuatro ruedas con frenos de seguridad, que permiten fijar la
+La estructura, de caño estructural, está dotada de cuatro ruedas con frenos de
+seguridad, que permiten fijar la
 planta al momento de una demostración.
 Sus dimensiones se presentan en la Tab. \ref{tab:dimensionesEstructura}.
 
@@ -321,46 +319,47 @@ No obstante, el grupo de trabajo tuvo que barnizar las maderas.
 Luego de analizar el esquema \gls{pyid}, se observa que las cañerías deben
 formar un circuito cerrado (\emph{loop}), diferenciando
 claramente las cañerías de vaciado y llenado.
-Las conexiones fueron echas mayormente en caño de polipropileno de 3/4
+Las conexiones fueron realizadas en su mayoría utilizando caño de polipropileno
+de 3/4
 pulgadas (presión de servicio: $11.7\,kgf/cm^2$ a $20^\circ C$).
 En otros puntos del circuito, se optó por utilizar manguera de alta presión
 telada de 3/4 pulgadas (presión de servicio: $10\,kgf/cm^2$ a $20^\circ C$).
 Las cañerías utilizadas son suficientes para las presiones de trabajo del
 proyecto, del orden de $1.2\,kgf/cm^2$.
 
-Teniendo los elementos montados sobre la planta (bombas, tanques, válvula
+Habiendo los elementos montados sobre la planta (bombas, tanques, válvula
 electroneumática) se decidió la manera de realizar el conexionado.
-El caño rígido presenta la dificultad de no tener tolerancia al momento de
+El caño rígido presenta la dificultad de no tener tolerancia, al momento de
 realizar uniones.
 Además, para realizar tuberías complejas con muchas curvas, es necesario
 colocar un gran número de componentes suplementarios (uniones dobles,
 niples).
 La cañería se torna compleja, dificultando la comprensión del circuito
 hidráulico por parte del alumno.
-Es por ello que se opto por usar en diferentes partes de la planta mangueras
+Es por ello que se optó por usar en diferentes partes de la planta mangueras
 flexibles:
 
 \begin{itemize}
   \item \textbf{Salida del tanque de reserva - entrada a la bomba B1}:
   se utilizo manguera flexible dado que la estructura no permitía colocar caños
   rígidos: los elementos de polipropileno necesarios eran más grandes que el
-  espacio disponible en la estructura.
+  espacio disponible.
 
   \item \textbf{Salida de la bomba B1 - entrada a la válvula:}
   se utilizo manguera, para evitar una unión doble en un trayecto muy pequeño.
   
   \item \textbf{Salida de la válvula - entrada al tanque controlado:}
-  debido a la longitud del tramo se opto usar caños rígidos.
-  Además, se montaron los elementos de medición sobre la cañería (manómetro y
+  debido a la longitud del tramo se optó usar caños rígidos.
+  Además, se montaron elementos de medición sobre la cañería (manómetro y
   placa orificio).
   
   \item \textbf{Salida del tanque controlado - entrada a la bomba B2:}
-  debido al mismo problema de falta de espacio, se opto por el uso de manguera
+  debido al mismo problema de falta de espacio, se optó por el uso de manguera
   flexible.
   
   \item \textbf{Salida de la bomba - entrada al tanque de reserva:}
   esta conexión es la más larga y en ella van montados manómetros y
-  válvulas manuales. Por ello, se eligió una cañería rígida de polipropileno.
+  válvulas manuales. Por ello, se prefirió la cañería rígida de polipropileno.
 
   \item \textbf{Conexión de perturbación de las bombas:}
   se utilizó manguera flexible, para evitar uniones dobles y
@@ -373,17 +372,19 @@ Por ultimo se procedió a pintar los caños mediante un código de colores.
   \item {\color{YellowOrange} \textbf{Amarillo:}} vaciado del tanque controlado.
  \end{itemize}
 El código de colores, si bien no es estándar en la industria, permite una fácil
-comprensión del circuito hidráulico, (ver Fig. \ref{fig:canerias}.
+comprensión del circuito hidráulico (ver Fig. \ref{fig:canerias}).
 
 \begin{figure}[ht]
         \centering
         \begin{subfigure}[b]{0.36\textwidth}
 \includegraphics[width=\textwidth]
 	{Cap2-DisenoEnsamblado/images/caneria1.JPG}
+	\caption{Cañería de llenado.}
         \end{subfigure}%
         \hfil
         \begin{subfigure}[b]{0.36\textwidth}
 \includegraphics[width=\textwidth]{Cap2-DisenoEnsamblado/images/caneria2.JPG}
+	\caption{Cañería de vaciado.}
         \end{subfigure}
         \caption{Código de colores de las cañerías.}
         \label{fig:canerias}
@@ -395,7 +396,7 @@ Se colocó en la planta un circuito de tiempo muerto, que consta de 20 metros de
 manguera negra de 1/2 pulgada.
 El tiempo muerto se coloca en paralelo de la cañería de llenado (ver
 \gls{pyid}).
-Mediante una válvula manual puede elegirse utilizar o no el tiempo muerto.
+Mediante la válvula manual \verb|VDT| puede habilitarse el tiempo muerto.
 
 El objetivo del tiempo muerto es alejar la acción de control del tanque
 controlado.
@@ -416,8 +417,8 @@ La función de transferencia de la planta cambiará notablemente:
 En conclusión, el proceso a controlar es diferente comparado con proceso sin
 tiempo muerto.
 La inclusión esta cañería adicional permite disponer de dos escenarios
-diferentes para realizar prácticas, diseñando controladores distintos para
-cada caso \cite{bib:ApuntesPuglesiTema2}.
+diferentes para realizar prácticas, con la necesidad de contar con
+controladores específicos para cada caso \cite{bib:ApuntesPuglesiTema2}.
 
 \subsection{Válvulas manuales}
 
@@ -427,15 +428,17 @@ A continuación vamos a destacar la función de cada una de ellas:
 \begin{itemize}
   \item \textbf{Desagote de los tanques:}
   para poder vaciarlos, se colocaron válvulas esféricas plásticas debajo de
-cada tanque.
+cada tanque\footnote{Importante: estas válvulas no están dibujadas en el
+\gls{pyid}.}.
 
-  \item \textbf{Control de caudal del tanque de reserva:} se colocó en serie
-con la cañería de retorno (Ver Fig.\ref{fig:valvTanque}). Se trata de una 
+  \item \textbf{Control de caudal del tanque de reserva \texttt{V1}:} se colocó
+en serie
+con la cañería de retorno (ver Fig.\ref{fig:valvTanque}). Se trata de una
 válvula manual, tipo exclusa.
   Esta válvula es importante ya que permite modificar el balance de masa y
 ecualizar la planta.
 
-  \item \textbf{Tiempo muerto:}
+  \item \textbf{Tiempo muerto \texttt{VDT}:}
   tal como se describió en la Sec. \ref{subsec:tiempoMuerto}, esta válvula
 esférica plástica permite activar la cañería de tiempo muerto.
   Notar en el \gls{pyid} que la válvula está sobre la cañería de llenado.
@@ -447,12 +450,12 @@ mayor que el de la cañería de llenado.
   Por ello, se considera que al abrir la válvula  el fluido sólo circula
 por la cañería de llenado.
 
-  \item \textbf{Perturbación de las bombas:}
+  \item \textbf{Perturbación de las bombas \texttt{VP1} y \texttt{VP2}:}
   una válvula manual de tipo exclusa se coloca entre la tubería de aspiración y
-la tubería de impulsión de las bombas (Ver Fig.\ref{fig:valvBomba}).
+la tubería de impulsión de las bombas (ver Fig.\ref{fig:valvBomba}).
   La apertura de esta válvula permitirá simular perturbaciones en las
 bombas.
- Al abrir la válvula, el rendimiento de la bomba decae.
+ Al abrir la válvula, el rendimiento de la bomba decrece.
  \end{itemize}
 
 \begin{figure}[ht]
@@ -501,9 +504,10 @@ que permite transformar un valor de presión (altura de la columna de agua) en
 una señal $4$-$20\,mA$.
 Se discutirá en la Sec. \ref{subsec:DPCell}.
 
-Finalmente, dado que la cañería de aspiración de la bomba puede provocar
-perturbaciones en la medición de la celda de presión diferencial, se optó por
-colocar un niple en la conexión del tanque de aspiración.
+La cañería de aspiración de la bomba puede provocar
+perturbaciones en la medición de la celda de presión diferencial.
+Para evitar este problema, se optó por
+colocar un niple en la conexión de aspiración, en el interior del tanque.
 De esta manera, se separan físicamente ambas cañerías, reduciendo las
 perturbaciones en la medición de presión.
 Cabe destacar que la inclusión del niple limita el nivel mínimo de la planta a
@@ -512,7 +516,8 @@ un 15\% del nivel total, aproximadamente.
 \section{Bombas}
 \label{sec:Bombas}
 
-Se utilizaron en el proyecto dos bombas centrífugas, cuya función es
+Se utilizaron en el proyecto dos bombas centrífugas (\verb|B1| y \verb|B2| en
+el \gls{pyid}), cuya función es
 mantener en movimiento el agua en el sistema.
 No se realiza ninguna acción de control sobre las
 mismas, por lo que funcionarán de manera continua durante la operación de la
@@ -548,11 +553,11 @@ Seguridad & S1 IP44\\
 \label{subsec:cavitacion}
 Para el ingreso del fluido a la bomba, es necesario realizar una succión
 en la tubería de aspiración, descendiendo la presión del fluido.
-Luego, la presión aumenta violentamente en el rodete de la bomba hasta alcanzar
-la altura manométrica.
 Debido a la baja presión en la tubería de aspiración, el fluido puede
 evaporarse formando burbujas de vapor.
-Luego, el rápido aumento de presión provoca una implosión de las burbujas.
+Luego, la presión aumenta violentamente en el rodete de la bomba hasta alcanzar
+la altura manométrica.
+El rápido aumento de presión provoca una implosión de las burbujas.
 Este fenómeno, conocido como \textbf{cavitación} genera ruido y disminuye la
 vida útil de las las bombas \cite{bib:ApuntesMDFBombas}.
 
@@ -596,8 +601,8 @@ las acciones de control.
         \label{fig:elementosValv}
 \end{figure}
 
-Una válvula permite variar el caudal, dependiendo de la consigna que se
-le envíe.
+Una válvula permite variar el caudal en una cañería, dependiendo de la consigna
+que se le envíe.
 En las válvulas neumáticas, la consigna es un valor de presión de aire.
 En la Fig. \ref{fig:elementosValv} se muestra un ejemplo de válvula de control
 tipo globo, con actuador a diafragma inverso (aire para
@@ -620,7 +625,8 @@ la presión de aire en el diafragma.
 Generalmente, la presión oscila entre $3$ a $15\,psi$.
 Esta presión de aire generalmente se obtiene mediante un convertidor
 corriente-presión (I/P).
-El convertidor toma en entrada una señal de corriente proveniente del \gls{plc}
+El convertidor toma en entrada una señal de corriente proveniente del
+controlador
 ($4$ - $20\,mA$) y lo transforma en un valor de presión para alimentar el
 diafragma \cite{bib:ApuntesPuglesiValvulas}.
 % \subsubsection{Rangeabilidad}
@@ -638,7 +644,7 @@ El conjunto asiento-obturador es la parte más importante de la válvula, ya que
 es el elemento final que controla el caudal.
 Dependiendo del tipo de conjunto asiento-obturador, se obtendrán distintas
 características de caudal inherente.
-Podemos distinguir tres conjuntos de válvula:
+Podemos distinguir tres tipos:
 \begin{itemize}
   \item \textbf{Obturador Lineal:} el caudal es proporcional a la carrera
   \begin{align}
@@ -654,7 +660,7 @@ que circulaba antes de la variación.
   \begin{align}
     \dfrac{dq}{dl} = a \, q
   \end{align}
-  Operando, podemos reescribir esta expresión mediante una función exponencial.
+  Operando, podemos reescribir esta expresión mediante una función exponencial
 \begin{align}
  q = b\,e^{a\,l}
  \label{eq:InherenteIsoporcentual1}
@@ -671,8 +677,7 @@ que circulaba antes de la variación.
     \end{align}
   \item \textbf{Obturador de apertura rápida:} permiten una brusca variación de
 caudal con carreras pequeñas.
-  No son utilizadas en el control regulatorio, ya que no permiten una
-regulación fina del caudal.
+  No son utilizadas en el control regulatorio.
 \end{itemize}
 
 En la Fig. \ref{fig:caractInherente}, se grafican las curvas de caudal
@@ -695,12 +700,12 @@ válvulas quedan afectadas por el proceso en el que se utilizan.
 La característica de caudal inherente se traza para una presión diferencial
 $\Delta \,p$ constante.
 No obstante, en un proceso real, $\Delta \,p$ no es constante.
-En efecto, las pérdidas de carga y presión entregada por la bomba presentan
+En efecto, las pérdidas de carga y la presión entregada por la bomba presentan
 variaciones para diferentes caudales.
 
 Se denomina característica de caudal efectiva a la variación del
 caudal que atraviesa la válvula en función de su carrera, cuando la
-válvula está inserta en una planta.
+válvula está inserta en un proceso real.
 Dado que diferentes procesos proporcionarán distintos valores de  $\Delta
 \,p$, la característica de caudal efectiva depende del proceso.
 Evidentemente, esta curva se apartará de la característica de caudal inherente,
@@ -803,8 +808,8 @@ importantes de la válvula, consignada en su chapa de identificación.
 \subsubsection{Electroposicionador}
 Se especificó que la presión de aire en el diafragma varía entre $3\,psi$
 (válvula cerrada) y $15\,psi$ (válvula abierta).
-No obstante, en un convertidor I/P no hay una real comparación entre
-la posición del vástago y la señal de corriente.
+No obstante, en un convertidor I/P no hay comparación entre
+la posición real del vástago y la señal de corriente.
 Ciertos fenómenos como la fricción en el vástago, perturbaciones del fluido,
 fuerzas dinámicas, etc. pueden modificar la apertura de la válvula.
 
@@ -866,26 +871,24 @@ del electroposicionador presente en nuestra planta.
 
 Como se describió en la Sec. \ref{subsec:principioFuncionamiento}, la
 característica de caudal efectiva depende del proceso en donde la válvula esté
-inserta.
-
-La característica de caudal efectiva puede encontrarse experimentalmente:
+inserta. La característica de caudal efectiva puede encontrarse
+experimentalmente:
 \begin{enumerate}
  \item La planta se coloca en modo manual, encendiendo ambas bombas.
  \item Se coloca la válvula en una posición determinada enviando una consigna
 de apertura manual.
- \item Se ecualiza la planta mediante la válvula manual de la cañería de
-retorno. Se trata de fijar el nivel de los tanques al 50\%.
+ \item Se ecualiza la planta mediante la válvula \verb|V1|. Se trata de fijar
+el nivel de los tanques al 50\%.
  \item Establecido el nivel de la planta (sin oscilaciones) se realiza la
 lectura en el DP cell del valor de la presión $h_p$,
-y se calcula el caudal correspondiente.
+y se calcula el caudal correspondiente (ver Sec. \ref{subsec:DPCell}).
  \item Se cambia la posición de la válvula en intervalos de
  10\%, desde el 0\% (totalmente cerrada) hasta el 100\% (totalmente abierta).
 Se repite 3 a 5.
 \end{enumerate}
 
-Los resultados se muestran en las Figs. \ref{fig:valvulaStiempoMuerto} y
-\ref{fig:valvulaCtiempoMuerto}.
-\todo{Sacamos la curva con tiempo muerto?}
+Los resultados de esta experiencia en la planta se muestran en las Figs.
+\ref{fig:valvulaStiempoMuerto} y \ref{fig:valvulaCtiempoMuerto}.
 En el caso de la planta con tiempo muerto, sólo fue posible realizar mediciones
 hasta una carrera del $50\,\%$\footnote{En caso de utilizar carreras mayores,
 el manómetro colocado en la cañería de llenado superaba su escala, con el
@@ -945,22 +948,22 @@ en la zona de trabajo.
 \subsection{Efecto de flujo estrangulado}
 \label{subsec:chokedflow}
 
-Luego de analizar los resultados obtenidos en la pruebas de la planta se pudo
+Luego de analizar los resultados obtenidos en las pruebas de la planta, se pudo
 constatar la presencia del efecto de flujo estrangulado o \emph{Choked
 Flow}: se observa que la velocidad del fluido permanece constante, a partir de
 una carrera del $70\%$.
-Posteriores incrementos de la carrera (y por ende, de la presión diferencial
-en la válvula) no aumentan la velocidad del fluido en la válvula.
+Posteriores incrementos de la carrera (y por ende, de la presión diferencial) no
+aumentan la velocidad del fluido en la válvula.
 
 Es una condición dinámica del fluido asociada con el efecto Venturi.
 Cuando un flujo de fluido a una presión y temperatura dada pasa a través de una
 restricción (por ejemplo: garganta, zona convergente/divergente o válvula),
 la presión disminuye y la velocidad del fluido aumenta.
-Si la presión desciende por debajo de la presión de vapor, a la
-temperatura del fluido se da un fenómeno de evaporación violenta denominado
+Si la presión desciende por debajo de la presión de vapor a la
+temperatura del fluido, se da un fenómeno de evaporación violenta denominado
 \emph{flashing}.
 Las burbujas entorpecen el paso del líquido, limitando el caudal máximo
-\cite{bib:ApuntesPuglesiValvulas}\cite{bib:controlValveHandbook}.
+\cite{bib:controlValveHandbook,bib:ApuntesPuglesiValvulas}.
 
 Además, si el fluido regresa a una presión superior a la presión de vapor luego
 de pasar por la válvula, se obtiene el fenómeno de cavitación descripto en la
@@ -970,8 +973,7 @@ en el conjunto asiento-obturador.
 
 \subsection{Montaje}
 Dada la importancia y tamaño de la válvula, se colocó en el centro de
-la planta, sobre la base de madera.
-Al momento del montaje se tuvo especial atención en que se pudieran apreciar
+la planta, sobre la base de madera. Se trató que se pudieran apreciar
 con claridad las diferentes partes que la componen.
 Se prestó especial atención al nivelado de la válvula.
 Finalmente, se fijó mediante ménsulas a la base de madera y a la estructura
@@ -979,14 +981,14 @@ de caño.
 
 \section{Instrumentos de Medición}
 \label{sec:InstrumentosMedicion}
-Para conocer el estado de la planta, es necesario tener conocimiento del
-estado de varias variables de la planta, a saber:
+Para conocer el estado de la planta, es necesario tener conocimiento de varias
+variables de la planta, a saber:
 \begin{itemize}
  \item \textbf{Nivel de los tanques}
  \item \textbf{Caudal en las tuberías}
  \item \textbf{Presión en las tuberías}
 \end{itemize}
-Debemos entonces, instalar elementos de instrumentación para poder 
+Debemos entonces instalar elementos de instrumentación, para poder
 medir y controlar estas variables de interés.
 
 \subsection{DP Cell}
@@ -1068,7 +1070,8 @@ malladas, de $6\,mm$.
 Debemos destacar que, para el caso de la celda de caudal, ambas
 entradas se conectaron entre si mediante una válvula manual.
 Esta válvula se utiliza solamente durante el primer arranque de la planta:
-cuando la cañería está vacía y la bomba B1 se activa, tenemos por una pequeña
+cuando la cañería está vacía y la bomba \verb|B1| se activa, tenemos por una
+pequeña
 fracción de tiempo una presión diferencial de $12\,mCa$ que puede dañar la
 celda.
 Para evitar este fenómeno, la válvula manual que conecta ambas entradas
@@ -1077,22 +1080,15 @@ Luego, debe cerrarse para poder realizar la lectura diferencial de presión.
 
 \subsection{Placa Orificio}
 \label{subsec:PlacaOrificio}
-  se colocó en serie con la cañería de llenado del tanque controlado.
-  Debieron instalarse además, las mangueras correspondientes de conexión 
-  con la celda de presión diferencial.
-  % El tablero se trata en el cap 3 :)
-  %\item Tablero electrónico:
-  %Estaba montado sobre la estructura una caja estanca donde se montaron todos 
-  %los componentes eléctricos
-  %y electrónicos.
 
-Para medir el caudal en la tubería de ida, se decide
-utilizar una placa orificio\todo{placa orif? u otra cosa?}.
-En la Fig. \ref{fig:placaOrificio} se muestra un corte longitudinal de una placa
-orificio.
+Para medir el caudal en la tubería de llenado, se decide
+utilizar una placa orificio.
+En la Fig. \ref{fig:placaOrificio} se muestra un
+corte longitudinal de la misma.
 Se observa que la placa orificio provoca una disminución del diámetro
 de la cañería, con la consiguiente aceleración del fluido.
-Escribiendo la ecuación de Bernoulli en 1 y 2\todo{verif. puntos}.
+Escribiendo la ecuación de Bernoulli en 0 y 2, considerando que la velocidad en
+2 es aproximadamente igual a la velocidad en 1,
 
 \begin{figure}
  \centering
@@ -1102,7 +1098,8 @@ Escribiendo la ecuación de Bernoulli en 1 y 2\todo{verif. puntos}.
 \end{figure}
 
 \begin{align}
- z_1 \, \gamma + \dfrac{\rho \,v_1^2}{2} + P_1 &= z_2 \, \gamma + \dfrac{\rho \,v_2^2}{2} + P_2
+ z_0 \, \gamma + \dfrac{\rho \,v_0^2}{2} + P_0 &= z_2 \, \gamma + \dfrac{\rho
+\,v_2^2}{2} + P_2
 \label{eq:Bernoulli}
 \end{align}
 donde $z_i$ y $P_i$ es la altura y presión en el punto $i$ y $\rho$ es 
@@ -1110,25 +1107,24 @@ la densidad del fluido.
 Considerando que la altura en ambos puntos es la misma, la ecuación
 \eqref{eq:Bernoulli} puede reescribirse como
 \begin{align}
- v_2^2 - v_1^2 &= 2\,g\,h_p
+ v_2^2 - v_0^2 &= 2\,g\,h_p
  \label{eq:Bernoulli2}
 \end{align}
-donde $h_p$ es la diferencia de presión entre 1 y 2, expresada como 
+donde $h_p$ es la diferencia de presión entre 0 y 2, expresada como
 altura de la columna fluida
 \begin{align}
- h_p &= \dfrac{P_1}{\gamma}-\dfrac{P_2}{\gamma}
+ h_p &= \dfrac{P_0}{\gamma}-\dfrac{P_2}{\gamma}
 \end{align}
 La ecuación de continuidad, para fluidos incompresibles se escribe
 \begin{align}
- A_1\,v_1 &= A_2\,v_2 \\
- v_2 &= \dfrac{A_1}{A_2} v_1 \\
- v_2 &= \dfrac{D_1^2}{D_2^2} v_1
+ A_2\,v_2 &= A_0\,v_0 \\
+ v_2 &= \dfrac{D_0^2}{D_2^2} v_0
  \label{eq:velRef}
 \end{align}
 y reemplazando \eqref{eq:velRef} en \eqref{eq:Bernoulli2} obtenemos
 \begin{align}
- 2 \, g \, h_p &= v_2^2 \left( 1 - \dfrac{D_1^4}{D_2^4} \right)\\
- \beta &= \dfrac{D_1}{D_2}\\
+ 2 \, g \, h_p &= v_2^2 \left( 1 - \dfrac{D_0^4}{D_2^4} \right)\\
+ \beta &= \dfrac{D_0}{D_2}\\
  v_2 &= \sqrt{\dfrac{2 \, g \, h_p}{1-\beta^4}}
 \end{align}
 finalmente, el caudal se obtiene multiplicando la velocidad $v_2$ por el
@@ -1138,13 +1134,14 @@ Además, se agrega un coeficiente $C_v$ debido al fenómeno de vena contracta:
  Q &= \dfrac{C_v \, A_2}{\sqrt{1-\beta^4}}\, \sqrt{2 \, g \, h_p}
  \label{eq:placaOrif1}
 \end{align}
-El coeficiente $C_v$ depende del número de Reynolds $Re$ \cite{bib:Mataix, bib:ApuntesPuglesiPlacaOrif}
+El coeficiente $C_v$ depende del número de Reynolds $Re$
+\cite{bib:Mataix, bib:ApuntesPuglesiPlacaOrif}
 \begin{align}
 Re &= \dfrac{D\,v}{\nu}
 \end{align}
 donde $v$ es la velocidad en la placa orificio, $D$ es el diámetro y ${\nu}$
 es la viscosidad cinemática del fluido\footnote{Para el agua, nuestro fluido de
-trabajo $\nu = 1,003\,10^{-6} \frac{m^2}{s}$.}
+trabajo $\nu = 1,003\,10^{-6} \frac{m^2}{s}$.}.
 
 La ecuación \eqref{eq:placaOrif1} puede ser reescrita de una forma más sencilla
 mediante una nueva variable adimensional $C_q$
@@ -1171,6 +1168,12 @@ donde se observa que el caudal $Q$ es proporcional a la raíz cuadrada de
 la diferencia de alturas $\sqrt{h_p}$, que puede
 ser encontrada utilizando un DP cell (ver Sec. \ref{subsec:DPCell}).
 
+\subsubsection{Montaje}
+La placa orificio se colocó en serie con la cañería de llenado del
+tanque controlado.
+Debieron instalarse además, las mangueras correspondientes de conexión
+con la celda de presión diferencial.
+
 \subsubsection{Metodología experimental}
 Considerando $C_q$ constante,
 \begin{align}
@@ -1178,7 +1181,8 @@ Considerando $C_q$ constante,
 \end{align}
 es constante también, y puede ser determinado experimentalmente.
 Para ello, se midió sobre el tanque controlado una distancia $l$.
-Luego, se encendió la bomba B1 con la válvula electroneumática en posición
+Luego, se encendió la bomba \verb|B1| con la válvula electroneumática en
+posición
 abierta (caudal máximo), y se midió el tiempo $t$ necesario para que el nivel
 alcanzara la altura $l$.
 Ya que el tanque tiene un diámetro $D$, el caudal máximo puede ser
