@@ -76,9 +76,8 @@ Dentro de sus características se encuentran:
  \item Posee drivers para diversos buses de comunicación, por ejemplo MODBUS.
  \item Provee herramientas para el desarrollo de \gls{hmi} inteligentes.
  \item Permite el seguimiento de los procesos de la planta y de las actividades
- de los operadores.
- \item Brinda un entorno para monitorear alarmas y eventos en toda la extensión 
- de la planta.
+  de los operadores. Ademas permite monitorear alarmas y eventos en toda la 
+  extensión de la planta.
 \end{itemize}
 
 \subsection{Estructura de P-CIM}
@@ -122,23 +121,24 @@ las prestaciones antes mencionadas.
 
 
 \section{Desarrollo de la aplicacion SCADA con P-CIM}
-A continuación, se detalla la aplicación \gls{scada} desarrollada para este 
-\gls{pfe} en el software P-CIM. Su exposición esta dividida de acuerdo a la 
-estructura en capas del programa, como se describió en la Sec.
+A continuación, se detalla la aplicación \gls{scada} desarrollada 
+específicamente para esta planta y en el marco del \gls{pfe} mediante el 
+software P-CIM. Su exposición esta dividida de acuerdo a la estructura en capas 
+con la que este programa trabaja, como se describió en la Sec.
 \ref{sec:CapasPrograma}.
 
 \subsection{Capa de comunicación}
 \label{subsec:CapaComunicacion}
-El primer paso para el desarrollo de un sistema \gls{scada} es lograr la 
-comunicación con el \gls{plc} que controla la planta, por medio de algún bus.
-Es decir, lograr un buen funcionamiento de la capa de comunicación. En nuestro
-caso
-se utilizó el protocolo de comunicaciones Modbus. 
+El primer paso para el desarrollo de un sistema \gls{scada} es la 
+implementación de la capa de comunicación, es decir, lograr la 
+comunicación con el \gls{plc} que controla la planta. Esta tarea se alcanza por 
+medio de alguno de los múltiples buses de comunicación que existen en el 
+mercado. En nuestro caso se utilizó el protocolo de comunicaciones Modbus. 
 
 \subsubsection{Modbus}
 Modbus es un protocolo de comunicaciones diseñado en 1979 por Modicon para su 
 gama de \gls{plc}. En abril del 2004, Schneider Electric transfirió los 
-derechos a la la Modbus Organization \url{http://www.modbus.org/}, la cual se 
+derechos a la la Modbus Organization (\url{http://www.modbus.org/}), la cual se 
 encarga desde entonces del desarrollo y actualización del protocolo Modbus.
 
 Para la conexión entre una computadora corriendo un software \gls{scada} y uno
@@ -162,8 +162,8 @@ maestro/esclavo o cliente/servidor.
 
 
 \subsubsection{Instalación Driver Modbus}
-A continuación se detalla el  proceso de configuración y puesta en marcha del 
-bus de comunicaciones\footnote{El driver Modbus se puede descargarse desde
+Procedemos ahora a detallar el  proceso de configuración y puesta en marcha 
+del bus de comunicaciones\footnote{Para descargar el driver Modbus para P-CIM:
 \url{http://www.afcon-inc.com/afcon/Templates/showpage.asp?TMID=402&FID=832}}.
 Para realizar la instalación de este driver de comunicaciones en P-CIM deben
 seguirse los pasos que se muestran en la Tab. \ref{tab:installModbus}.
@@ -205,24 +205,23 @@ seguirse los pasos que se muestran en la Tab. \ref{tab:installModbus}.
   \end{center}\\
 \hline
   La ventana Install P-CIM driver le pedirá que indique el directorio del
-  driver. Seleccione el directorio de origen del driver para Modbus. En este
- proyecto \texttt{C:\slash P-CIM32.BAK\slash DRIVERS\slash MODBUS.689}.
- Oprima OK y luego Next.
+  driver. Seleccione el directorio de origen del driver para Modbus mediante 
+  el botón Browse. 
+%En este proyecto\texttt{C:\slash P-CIM32.BAK\slash DRIVERS\slash MODBUS.689}. 
+  Oprima OK y luego Next. Se despliega la ventana de diálogo de Bienvenida, 
+  oprima Next nuevamente.
   &\begin{center}
     %\rule{0.4\textwidth}{0.3\textwidth}
     \includegraphics[width=0.4\textwidth]
     {Cap5-SCADA/images/installDriver.jpeg}
   \end{center}\\
-\hline
- Se despliega la ventana de diálogo de Bienvenida, oprima Next. 
- Aparecerá la ventana de diálogo de Propiedades del Driver de 
- P-CIM, indicando los detalles del driver a ser instalado.
- Elija el/los proyecto(s) en los que Ud. desea instalar el driver o bien 
- seleccione All (todos) y oprima Next.
- Se efectuará la instalación y finalmente se muestra el mensaje ``La
-instalación  del driver se ha completado''. Oprima OK para que desaparezca el
-cuadro de
- diálogo.
+\hline 
+  Aparecerá la ventana de diálogo de Setup del driver.
+  Elija el/los proyecto(s) en los que Ud. desea instalar el driver o bien 
+  seleccione All (todos) y oprima Next.
+  Se efectuará la instalación y finalmente se muestra el mensaje ``La
+  instalación  del driver se ha completado''. Oprima OK para que desaparezca el
+  cuadro de diálogo.
   &\begin{center}
     %\rule{0.4\textwidth}{0.3\textwidth}
     \includegraphics[width=0.4\textwidth]
