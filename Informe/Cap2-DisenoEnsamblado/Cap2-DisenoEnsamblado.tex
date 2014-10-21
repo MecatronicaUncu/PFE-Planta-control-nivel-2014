@@ -1000,7 +1000,7 @@ medir y controlar estas variables de interés.
 
 \begin{figure}[t]
  \centering
-\includegraphics[width=.6\textwidth]
+\includegraphics[width=.55\textwidth]
 {Cap2-DisenoEnsamblado/images/manomBourdon.png}
  \caption{Manómetro de Bourdon, extraído de \cite{bib:ApuntesPuglesiPlacaOrif}}
  \label{fig:manometroBourdon}
@@ -1014,23 +1014,6 @@ Se observa que un incremento de la presión produce una deformación
 del \emph{tubo de Bourdon}, reflejado en la aguja indicadora.
 El manómetro de Bourdon permite obtener una medición visual de la
 presión relativa, del punto donde se encuentra instalado.
-
-\begin{figure}[t]
-        \centering
-        \begin{subfigure}[b]{0.48\textwidth}
-\includegraphics[width=\textwidth]
-	{Cap2-DisenoEnsamblado/images/manometro1.JPG}
-	\caption{Cañería de llenado.}
-        \end{subfigure}%
-        \hfill
-        \begin{subfigure}[b]{0.48\textwidth}
-\includegraphics[width=\textwidth]
-	{Cap2-DisenoEnsamblado/images/manometro2.JPG}
-	\caption{Cañería de vaciado.}
-        \end{subfigure}
-        \caption{Manómetros.}
-        \label{fig:manometro}
-\end{figure}
 
 Durante el montaje, se observó que el manómetro de la cañería de vaciado
 no entregaba una medición definida, sino que oscilaba alrededor de un
@@ -1049,10 +1032,8 @@ Las especificaciones de los manómetros se muestran en la Tab,
 \begin{tabular}{|l|l|}
 \hline
 Marca & Beyca\\
-Rango & $0$ - $1\,kgf/cm^2$\\
- & $0$ - $14\,lb/pulg^2$\\
-Escala & $0.02\,kgf/cm^2/div$\\
-& $0.5\,lb/pulg^2/div$\\
+Rango & $0$ - $1\,kgf/cm^2$ ($0$ - $14\,lb/pulg^2$)\\
+Escala & $0.02\,kgf/cm^2/div$ ($0.5\,lb/pulg^2/div$)\\
 \hline
 \end{tabular}
 \caption{Especificaciones de los manómetros}
@@ -1062,33 +1043,31 @@ Escala & $0.02\,kgf/cm^2/div$\\
 En la Fig. \ref{fig:manometro} se observan los dos manómetros
 presentes en el proyecto.
 
+\begin{figure}[t]
+        \centering
+        \begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]
+	{Cap2-DisenoEnsamblado/images/manometro1.JPG}
+	\caption{Cañería de llenado.}
+        \end{subfigure}%
+        \hfill
+        \begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]
+	{Cap2-DisenoEnsamblado/images/manometro2.JPG}
+	\caption{Cañería de vaciado.}
+        \end{subfigure}
+        \caption{Manómetros.}
+        \label{fig:manometro}
+\end{figure}
+
 \subsection{DP Cell}
 \label{subsec:DPCell}
 
 Se denomina \textit{DP Cell}, o celda de presión diferencial, a un sensor
-que mide la diferencia de presión entre dos puntos (ver Fig. \ref{fig:dpcelfig}).
+que mide la diferencia de presión entre dos puntos.
 En nuestro caso, la celda entrega una corriente proporcional a la diferencia de
 presión medida, en el rango de $4-20\,mA$.
 Este valor de corriente será leído por el controlador de la planta.
-
-\begin{figure}[ht]
-        \centering
-        \begin{subfigure}[b]{0.31\textwidth}
-        \centering
-\includegraphics[height=6.3cm]
-	{Cap2-DisenoEnsamblado/images/dpcell1.JPG}
-	\caption{Vista general.}
-        \end{subfigure}%
-        \hfil
-        \begin{subfigure}[b]{0.69\textwidth}
-        \centering
-\includegraphics[height=6.3cm]
-	{Cap2-DisenoEnsamblado/images/dpcell2.JPG}
-	\caption{Detalle tomas de baja y alta presión.}
-        \end{subfigure}
-        \caption{DP Cell.}
-        \label{fig:dpcelfig}
-\end{figure}
 
 Las DP cell utilizadas tienen las especificaciones que se muestran en la Tab.
 \ref{tab:caractDPcell}.
@@ -1137,7 +1116,26 @@ controlador (ver Sec. \ref{subsec:PlacaOrificio}).
 
 Ambas celdas fueron fijadas a la base de madera mediante tornillos.
 Las conexiones de las entradas se realizaron con mangueras de alta presión
-malladas, de $6\,mm$.
+malladas, de $6\,mm$. Se muestran en la Fig. \ref{fig:dpcelfig}.
+
+\begin{figure}[t]
+        \centering
+        \begin{subfigure}[b]{0.31\textwidth}
+        \centering
+\includegraphics[height=6.3cm]
+	{Cap2-DisenoEnsamblado/images/dpcell1.JPG}
+	\caption{Vista general.}
+        \end{subfigure}%
+        \hfil
+        \begin{subfigure}[b]{0.69\textwidth}
+        \centering
+\includegraphics[height=6.3cm]
+	{Cap2-DisenoEnsamblado/images/dpcell2.JPG}
+	\caption{Detalle tomas de baja y alta presión.}
+        \end{subfigure}
+        \caption{DP Cell.}
+        \label{fig:dpcelfig}
+\end{figure}
 
 Debemos destacar que, para el caso de la celda de caudal, ambas
 entradas se conectaron entre si mediante una válvula manual.
@@ -1176,9 +1174,10 @@ Escribiendo la ecuación de Bernoulli en 0 y 2, considerando que la velocidad en
 \label{eq:Bernoulli}
 \end{align}
 donde $z_i$ y $P_i$ es la altura y presión en el punto $i$ y $\rho$ es 
-la densidad del fluido. 
+la densidad del fluido.
 Considerando que la altura en ambos puntos es la misma, la ecuación
 \eqref{eq:Bernoulli} puede reescribirse como
+
 \begin{align}
  v_2^2 - v_0^2 &= 2\,g\,h_p
  \label{eq:Bernoulli2}
@@ -1191,6 +1190,7 @@ altura de la columna fluida
 La ecuación de continuidad, para fluidos incompresibles se escribe
 \begin{align}
  A_2\,v_2 &= A_0\,v_0 \\
+ D_2^2\,v_2 &= D_0^2\,v_0 \\
  v_2 &= \dfrac{D_0^2}{D_2^2} v_0
  \label{eq:velRef}
 \end{align}
@@ -1315,13 +1315,15 @@ Finalmente, obtenemos
 \end{align}
 
 \section{Planta ensamblada}
-Se presenta la planta ensamblada en la Fig. \ref{fig:PlantaEnsamblada}.
+Se presenta la planta ensamblada en la Fig. \ref{fig:PlantaEnsamblada}, vista
+desde el lado de la válvula.
 Pueden observarse claramente la estructura, la distribución de los elementos,
 las cañerías de llenado y vaciado, las mangueras de conexión, el tiempo muerto y
 los tanques.
-\begin{figure}[h]
+
+\begin{figure}[t]
 	\centering
-\includegraphics[width=.64\textwidth]{Cap2-DisenoEnsamblado/images/IMG_5123.JPG}
+\includegraphics[width=.8\textwidth]{Cap2-DisenoEnsamblado/images/IMG_5123.JPG}
 	\caption{Planta ensamblada.}
 	\label{fig:PlantaEnsamblada}
 \end{figure}
