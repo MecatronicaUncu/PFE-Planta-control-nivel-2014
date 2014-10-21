@@ -233,10 +233,12 @@ seguirse los pasos que se muestran en la Tab. \ref{tab:installModbus}.
 \label{tab:installModbus}
 \end{table}
 
-\subsubsection{Configuración Driver Modbus}
+\subsubsection{Configuración del Driver Modbus}
 Una vez que el driver de Modbus para PCIM se ha instalado correctamente
 procedemos a realizar su configuración para lograr la comunicación entre el PLC 
-y la computadora de control. Esta tarea se divide en dos partes: 
+y la computadora de control. Esta tarea se divide en dos partes: Asociar el 
+driver con un puerto P-CIM y establecer los parámetros operativos de dicho 
+puerto:
 \begin{itemize}
  \item \textbf{Asociar el driver con un puerto P-CIM:}
   P-CIM soporta 255 puertos lógicos, numerados del 1 al 255. Ver
@@ -261,7 +263,7 @@ Tab. \ref{tab:ConfigModbus}.
 %   \item Para utilizar el driver en modo emulador, selecciones la casilla de 
 %   Emulación.
 %  \end{enumerate}
-  \begin{table}[!ht]
+  \begin{table}[ht]
   \centering
   \renewcommand*{\arraystretch}{0.3}
   \begin{tabular}{*{2}{m{0.435\textwidth}}}
@@ -284,16 +286,13 @@ Tab. \ref{tab:ConfigModbus}.
 	{Cap5-SCADA/images/commSetup.jpeg}
     \end{center}\\
   \hline
-    Ingrese el número de puerto entre 1 y 255 en la lista de Nombres de 
-    Puerto de la ventana.
-    Elija el nombre del driver de la lista de Driver Name (la lista 
-    contiene nombres de drivers instalados en el proyecto en curso).
-    En el cuadro elija la notación numérica del bit – octal, decimal o 
-    hexadecimal – de la lista de Bit numbering system.
-    Elija la notación usada para referenciar el bit menos significativo –0 
-    ó 1 – de la lista de Lowest bit number (Numeración del Menor Bit).
-    Para utilizar el driver en modo emulador, selecciones la casilla de 
-    Emulación.
+    Ingrese el número de puerto entre 1 y 255 en la lista de Port Name.
+    Elija Modbus de la lista de Driver Name.
+    y decimal en el cuadro Bit numbering system.
+    La notación usada para referenciar el bit menos significativo es 1 en 
+    la lista de Lowest bit number.
+%     No utilizaremos el driver en modo emulador, deseleccione la casilla 
+%     de Emulation Mode.
     &\begin{center}
       %\rule{0.4\textwidth}{0.3\textwidth}
        \includegraphics[width=0.4\textwidth]
@@ -327,7 +326,7 @@ Tab. \ref{tab:ConfigModbus}.
 % Dispositivos de Windows.
 %  \end{enumerate} 
 \end{itemize}
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \renewcommand*{\arraystretch}{0.01}
 \begin{tabular}{*{2}{m{0.45\textwidth}}}
@@ -353,10 +352,10 @@ Tab. \ref{tab:ConfigModbus}.
   \end{center}\\
 \hline 
    Establezca el tipo de interfaz mediante la lista de Network Type en RS232. 
-   El botón Transport Parameter despliega una ventana en la que se debe 
-   configurar el puerto serial con  el 
-   mismo nombre con el que aparece en el Administrador de Dispositivos de 
-   Windows.
+   El botón Transport Parameter despliega una ventana en la que el valor de COM 
+   Port debe ser igual al que aparece en el Administrador de 
+   Dispositivos de Windows correspondiente al puerto serie de 
+   comunicaciones con el \gls{plc}. Baud Rate:19200. 
   &\begin{center}
     %\rule{0.4\textwidth}{0.3\textwidth}
         \includegraphics[width=0.4\textwidth]
@@ -470,15 +469,16 @@ siguientes puntos:
 para el manejo de 4 tipos básicos de datos: analógicos (enteros o reales),
 digitales (un único bit), string o cadena de caracteres (veinte palabras de
 16 bits) y alarmas (en grupos de 16 bits).
-  \item \textbf{Tiempo de Escrutinio (scan) y de Fase:} que son
+  \item \textbf{Tiempo de Escrutinio (scan) y de Fase:} Ambos valores se 
+encuentran en el rango de 1 a 255 unidades, donde la
+unidad de tiempo por defecto es un segundo y son
 respectivamente:
     \begin{itemize}
       \item El intervalo entre sucesivos procesamientos del bloque.
       \item El tiempo inicial de demora entre la carga de la base de datos 
       hasta el primer procesamiento del bloque.
     \end{itemize}
-    Ambos valores se encuentran en el rango de 1 a 255 unidades, donde la
-unidad de tiempo por defecto es un segundo.
+    
   \item \textbf{Alarmas:} las alarmas pueden ser definidas para los bloques de
 Valor
     Analógico, Valor Digital, de Cálculo y Booleanos.
@@ -530,23 +530,22 @@ el
 En la Fig. \ref{fig:bloqDB} se presenta un esquema que sintetiza la
 configuración de los bloques que forman la base de datos. Se observa
 como el dato que se origina del lado \gls{plc} o \gls{hmi} viaja hasta el otro 
-lado por medio de la base de datos.
+lado por medio de la base de datos. La configuración de los bloques debe ser tal 
+que para:
+
+\begin{itemize}
+  \item \textbf{Analog Input/Output:} Address debe tener el valor de MODBUS
+  Address correspondiente. El Target esta dado por la punta de la flecha que se 
+  origina en ese bloque.
+  \item \textbf{Calculation:} Parameter es el bloque entretante y Target es el
+  bloque saliente en el esquema.
+  \item \textbf{Analog Emulation:} Address toma el valor de Emulation Address y
+  el Target es el bloque al que apunta la flecha. 
+\end{itemize}
+
 
 \input{Cap5-SCADA/Diagrama.tex}
 
-La configuración de los bloques debe ser tal que para:
-\begin{itemize}
-  \item \textbf{Analog Input/Output:} Address debe tener el valor de MODBUS
-Address
-  correspondiente. El Target esta dado por la punta de la flecha que se origina 
-  en ese bloque.
-  \item \textbf{Calculation:} Parameter es el bloque entretante y Target es el
-bloque
-  saliente en el esquema.
-  \item \textbf{Analog Emulation:} Address toma el valor de Emulation Address y
-el
-  Target es el bloque al que apunta la flecha. 
-\end{itemize}
 
 \subsubsection{Creación de los bloques de la base de datos}
 Se muestran los pasos necesarios para la creación de un elemento
@@ -563,7 +562,7 @@ de la base de datos en la Tab. \ref{tab:confBlockDB}.
 %  \item Oprima la tecla OK para regresar al directorio del Bloque.
 %  \item Oprima la tecla Save DB para guardar la Base de Datos.
 % \end{enumerate}
-\begin{table}[!ht]
+\begin{table}[ht!]
 \centering
 \renewcommand*{\arraystretch}{0.01}
 \begin{tabular}{*{2}{m{0.45\textwidth}}}
@@ -634,33 +633,49 @@ herramientas gráficas provistas por P-CIM.
 %la planta.
 
 
-\subsubsection{Diseño de una pantalla}
+\subsubsection{Requerimientos de pantalla}
 El primer paso en el diseño de un pantalla es la definición de requerimientos 
 con los que debemos cumplir. Estos se resumen en:
 \begin{itemize}
- \item Botones de encendido y parada de la planta.
- \item Visualización del estado actual de la planta: Niveles, caudal, bombas 
+ \item Botones de parada de emergencia y rehabilitación del sistema.
+ \item Botones de encendido y parada del controlador de la planta.
+ \item Visualización del estado de la planta: Niveles, caudal, bombas 
  encendidas, etc.
+%  \begin{itemize}
+%   \item Histórico del nivel controlado.
+%   \item Representación gráfica de la planta.
+%  \end{itemize}
  \item Control Manual
- \begin{itemize}
-  \item Encender las bombas de manera independiente.
-  \item Controlar la abertura de la válvula
- \end{itemize}
+%  \begin{itemize}
+%   \item Encender las bombas de manera independiente.
+%   \item Controlar la abertura de la válvula
+%  \end{itemize}
  \item Control Automático
- \begin{itemize}
-  \item Visualizar el seguimiento de la consigna.
-  \item Visualizar/Definir la consigna
-  \item Visualizar/Definir las constantes del controlador
- \end{itemize}
+%  \begin{itemize}
+%   \item Visualizar el seguimiento de la consigna.
+%   \item Visualizar/Definir la consigna
+%   \item Visualizar/Definir las constantes del controlador
+%  \end{itemize}
 \end{itemize}
 
+\subsubsection{Diseño de una pantalla}
 Mediante el Editor de Animaciones (ubicado en el sub-directorio
 Development) diseñamos y definimos las características funcionales de 
-la pantalla que correrá en el Operator Workstation. 
+la pantalla que correrá en el Operator Workstation. Se muestra en la Fig. 
+\ref{fig:hmiscada} el resultado de la \gls{hmi} diseñada.
+Puede observarse que la interfaz se adapta las características antes
+especificadas.
+  \begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]
+	{Cap5-SCADA/images/hmiScada.jpeg}
+	\caption{Interfaz Gráfica del SCADA}
+	\label{fig:hmiscada}
+  \end{figure}
 
 
 Para la realización de dicha interfaz se procedió como muestra la Tab.
-\ref{tab:diseñoAnimGraf}.
+\ref{tab:diseñoAnimGraf}
 % \begin{enumerate}
 %  \item Iniciar el Editor de Animaciones. Elegir el icono de la carpeta de 
 %   P-CIM. Aparece un pantalla sin nombre. Guarde el archivo asignándole un 
@@ -724,21 +739,21 @@ Para la realización de dicha interfaz se procedió como muestra la Tab.
    \hline
 	Iniciar el Editor de Animaciones que se encuentra en el sub-directorio 
 	Development. Aparece un pantalla sin nombre ``untitled''. Guarde el
-archivo asignándole un nombre.
+	archivo asignándole un nombre.
 	&\begin{center}
 	  %\rule{0.4\textwidth}{0.3\textwidth}
-	 \includegraphics[width=0.4\textwidth]
+	 \includegraphics[width=0.3\textwidth]
 	{Cap5-SCADA/images/animEdit.jpeg}
 	\end{center}\\
    \hline
-	Crear la ilustración básica con el Editor de Animaciones para  
+    	Crear la ilustración básica con el Editor de Animaciones para  
 	dibujar sus propios gráficos o insertar objetos gráficos de 
 	la biblioteca de ClipArt. Los objetos gráficos insertados pueden ser 
-	movidos, redimensionados y editados. Además, pueden
-asignarse propiedades.
+	movidos, redimensionados y editados. Además, pueden asignarse 
+	propiedades.
 	&\begin{center}
 	  %\rule{0.4\textwidth}{0.3\textwidth}
-	   \includegraphics[width=0.4\textwidth]
+	   \includegraphics[width=0.3\textwidth]
 	{Cap5-SCADA/images/animEdit1.jpeg}
 	\end{center}\\
    \hline
@@ -778,83 +793,79 @@ indicadores y especiales):
 \item  \textbf{Controls:} especifica una entrada de datos la cual puede estar
 dada por
 	casillas de entrada de datos, botones que inician acciones, o
-	potenciómetros que permiten fijar valores analógicos.
-	
-	
-  \begin{figure}[!ht]
-	\centering
-	\begin{subfigure}[b]{0.2\textwidth}
-	    \includegraphics[width=\textwidth]{Cap5-SCADA/images/actbtn.jpeg}
-  	\end{subfigure}
-	\begin{subfigure}[b]{0.2\textwidth}
-	    \includegraphics[width=\textwidth]{Cap5-SCADA/images/actbtn1.jpeg}
-  	\end{subfigure}
-% 	\begin{subfigure}[3]{0.3\textwidth}
-% 	    \includegraphics[width=\textwidth]{Cap5-SCADA/images/actbtn2.jpeg}}
-% 	    \caption{}
-% 	    \label{}
+	potenciómetros que permiten fijar valores analógicos.	
+%   \begin{figure}[!ht]
+% 	\centering
+% 	\begin{subfigure}[b]{0.2\textwidth}
+% 	    \includegraphics[width=\textwidth]{Cap5-SCADA/images/actbtn.jpeg}
 %   	\end{subfigure}
-	\caption{Propiedades de tipo Controls.}
-	\label{fig:controlshmi}
-  \end{figure}
+% 	\begin{subfigure}[b]{0.2\textwidth}
+% 	    \includegraphics[width=\textwidth]{Cap5-SCADA/images/actbtn1.jpeg}
+%   	\end{subfigure}
+% % 	\begin{subfigure}[3]{0.3\textwidth}
+% % 	    \includegraphics[width=\textwidth]{Cap5-SCADA/images/actbtn2.jpeg}}
+% % 	    \caption{}
+% % 	    \label{}
+% %   	\end{subfigure}
+% 	\caption{Propiedades de tipo Controls.}
+% 	\label{fig:controlshmi}
+%   \end{figure}
 	
 	
 \item \textbf{Indicators:} usados para crear presentaciones textuales, de color
 	y gráficas de los datos.
 	En esta propiedad los contenidos, posición, color y
 	tamaño de los objetos cambian en función del valor de los datos.
-  \begin{figure}[!ht]
-	\centering
-	\begin{subfigure}[b]{0.2\textwidth}
-	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/indicator.jpeg}
-  	\end{subfigure}
-	\begin{subfigure}[b]{0.2\textwidth}
-	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/indicator1.jpeg}
-  	\end{subfigure}
-% 	\begin{subfigure}[3]{0.3\textwidth}
-% 	    \includegraphics[width=\textwidth]{Cap5-SCADA/images/actbtn2.jpeg}}
-% 	    \caption{}
-% 	    \label{}
+%   \begin{figure}[!ht]
+% 	\centering
+% 	\begin{subfigure}[b]{0.2\textwidth}
+% 	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/indicator.jpeg}
 %   	\end{subfigure}
-	\caption{Propiedades de tipo Indicators.}
-	\label{fig:indicatorhmi}
-  \end{figure}
+% 	\begin{subfigure}[b]{0.2\textwidth}
+% 	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/indicator1.jpeg}
+%   	\end{subfigure}
+% % 	\begin{subfigure}[3]{0.3\textwidth}
+% % 	    \includegraphics[width=\textwidth]{Cap5-SCADA/images/actbtn2.jpeg}}
+% % 	    \caption{}
+% % 	    \label{}
+% %   	\end{subfigure}
+% 	\caption{Propiedades de tipo Indicators.}
+% 	\label{fig:indicatorhmi}
+%   \end{figure}
 	
 \item \textbf{Special:} esta categoría es usada para especificar Gráficos de
 Tendencia o ``Medidores de Desviación''.
 \end{itemize}
-  \begin{figure}[!ht]
-	\centering
-	\begin{subfigure}[b]{0.2\textwidth}
-	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/tendencia.jpeg}
-  	\end{subfigure}
-	\begin{subfigure}[b]{0.2\textwidth}
-	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/tendencia1.jpeg}
-  	\end{subfigure}
-	\begin{subfigure}[b]{0.2\textwidth}
-	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/tendencia2.jpeg}
-  	\end{subfigure}
-	\begin{subfigure}[b]{0.2\textwidth}
-	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/tendencia3.jpeg}
-  	\end{subfigure}
-	\caption{Propiedades de tipo Special.}
-	\label{fig:tendhmi}
-  \end{figure}
+%   \begin{figure}[!ht]
+% 	\centering
+% 	\begin{subfigure}[b]{0.2\textwidth}
+% 	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/tendencia.jpeg}
+%   	\end{subfigure}
+% 	\begin{subfigure}[b]{0.2\textwidth}
+% 	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/tendencia1.jpeg}
+%   	\end{subfigure}
+% 	\begin{subfigure}[b]{0.2\textwidth}
+% 	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/tendencia2.jpeg}
+%   	\end{subfigure}
+% 	\begin{subfigure}[b]{0.2\textwidth}
+% 	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/tendencia3.jpeg}
+%   	\end{subfigure}
+% 	\caption{Propiedades de tipo Special.}
+% 	\label{fig:tendhmi}
+%   \end{figure}
 
-Se muestra en la Fig. \ref{fig:hmiscada} el resultado de la \gls{hmi}
-diseñada.
-Puede observarse que la interfaz se adapta las características antes
-especificadas.
-  \begin{figure}[!ht]
-	\centering
-	\includegraphics[width=0.8\textwidth]
-	{Cap5-SCADA/images/hmiScada.jpeg}
-	\caption{Interfaz Gráfica del SCADA}
-	\label{fig:hmiscada}
-  \end{figure}
-\todo{Agregar la ejecucion automatica de la interfaz HMI}
+
 \section{Ejecución}
 \label{sec:Ejecucion}
-Una vez que han sido configuradas cada una de las partes podemos utilizar
-nuestro sistema SCADA. Para poder probar el funcionamiento de nuestra \gls{hmi} 
-procedemos de la manera que se describe en la Tab.\todo{agregar tabla }
+Durante el desarrollo de la interfaz gráfica podemos previsualizar 
+el resultado. Para esto, en la misma pantalla del Animation Editor, 
+seleccionamos File, Preview. Una vez que han sido configuradas cada una de las 
+partes y se ha completado el desarrollo de nuestro sistema establecemos 
+la auto-ejecución de la interfaz gráfica en el Operator Workstation. De esta 
+manera al realizar el Startup de P-CIM, la pantalla se presenta inmediatamente 
+tras la inicialización. Debemos tildar AutoStart en el panel del Animation 
+Editor la opción Operator Workstation, Options, AutoStart.
+
+Para mas información acerca de la operación del sistema mediante el \gls{hmi} 
+del sistema \gls{scada} refiérase a la Sec.\ref{anexo:operacionSCADA} del 
+Manual del Usuario en los Anexos.
