@@ -16,7 +16,8 @@ Antes de realizar la programación en lenguaje Ladder, propio del \gls{plc},
 se pensó en el algoritmo que incluya todas las tareas que el
 controlador debe cumplir (gestión de alarmas, adquisición de parámetros,
 control de la válvula, encendido y apagado de motores).
-Se observa en en el algoritmo \ref{img:algoritmo} la solución propuesta.
+Se observa en el algoritmo ( Alg. en adelante)\ref{img:algoritmo} la 
+solución propuesta.
 
 \begin{algorithm}[!ht]
  \small
@@ -59,14 +60,16 @@ Se observa en en el algoritmo \ref{img:algoritmo} la solución propuesta.
     }
   }
 }
- \caption{tareas a cumplir por el controlador de manera secuencial.}
+ \caption{Tareas a cumplir por el controlador de manera secuencial.}
  \label{img:algoritmo}
 \end{algorithm}
 
 \section{Programación}
 \label{sec:Programacion}
 Se utilizó el programa Twido Soft, de Schneider Electric, para poder programar
-el \gls{plc}. Se programó en lenguaje Ladder.
+el Alg.\ref{img:algoritmo} en lenguaje Ladder y posteriormente cargarlo en el 
+\gls{plc}. En el Anexo \ref{anexo:programaLadder} se encuentra el programa en 
+Ladder que corre en \gls{plc} de la planta.
 
 \subsection{Breve descripción del programa en Ladder}
 
@@ -110,14 +113,14 @@ numéticas, realizar bucles \gls{pid}, contadores, registros, etc.
 
 Cada una de las partes del programa se denomina \emph{RUNG} (escalón o
 peldaño).
-La ejecución de los peldaños es secuencial, comenzando por \verb|RUNG 0|.
+La ejecución de los peldaños es secuencial, comenzando por el \verb|RUNG 0|.
 En cada peldaño se describen paso a paso las acciones que deseamos que
 el controlador realice, de acuerdo al estado del sistema o las ordenes
 recibidas desde el \gls{scada}.
 
 La Fig. \ref{fig:ladder} muestra un diagrama de los diferentes peldaños de
 nuestro programa de aplicación.
-Se observa que la estructura secuencial del algoritmo \ref{img:algoritmo} ha
+Se observa que la estructura secuencial del Alg. \ref{img:algoritmo} ha
 sido respetada en los peldaños.
 
 \todo{comparar Ladder y algoritmo con el programa
@@ -162,11 +165,12 @@ size=1pt]
 \label{fig:ladder}
 \end{figure}
 
-El \gls{plc} puede guardar información de diversa índole en memoria.
+El \gls{plc} puede guardar información de diversa índole en memoria, por 
+ejemplo valores binarios.
 Estos valores en memoria pueden ser utilizados para modificar las salidas, a
 modo de banderas.
 También pueden guardarse valores numéricos, útiles para consignas,
-ganancias, etc.
+ganancias o lecturas de sensores analógicos.
 Se diferencian dos tipos de celdas de memoria:
 
 \begin{table}[ht]
@@ -181,7 +185,7 @@ Se diferencian dos tipos de celdas de memoria:
 \verb|M2|  & Sistema en modo Manual/Automático\\
 \verb|M3|  & Error de Nivel\\
 \verb|M4|  & Error de Motor\\
-\verb|M4|  & Parade de emergencia\\
+\verb|M4|  & Parada de emergencia\\
 \hline
 \end{tabular}
 \caption{Banderas internas.}

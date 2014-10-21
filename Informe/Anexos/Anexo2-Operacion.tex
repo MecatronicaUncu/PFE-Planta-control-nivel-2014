@@ -75,7 +75,7 @@ Se aconseja escribir y ejecutar en el \gls{plc} el programa que se encuentra en
 el DVD adjunto, denominado {\color{red}(nombre del programa)}. Así el sistema 
 estará en un estado a partir del cual se puede operar con el sistema 
 \gls{scada} propuesto.
-\todo{imagen del programa y colocar el nombre definitivo del programa}
+%\todo{imagen del programa y colocar el nombre definitivo del programa}
 Este programa se debe abrir con el Software Twido Soft y luego proceder de la 
 manera que se indica a continuación:
 
@@ -128,11 +128,95 @@ Cargar el programa desde la computadora al \gls{plc}.
 operación de la planta.
 \end{lattention}
 
-\subsubsection{Iniciar P-CIM}\todo{Agregar como se recupera un proyecto desde un 
-Backup?}
+\subsubsection{Restore Project}
+El primer paso para utilizar el sistema \gls{scada} es recuperar el 
+proyecto para AFCON P-CIM del DVD adjunto. Siga las siguientes instrucciones 
+para completar esta tarea:
+\begin{table}[H]
+\small
+\centering
+\renewcommand*{\arraystretch}{0.3}
+\begin{tabular}{*{2}{m{0.435\textwidth}}}
+\hline
+  Elija Setup de P-CIM del grupo de aplicaciones que se encuentran la carpeta 
+  AFCON P-CIM[7.70SP4]. 
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[width=0.4\textwidth]
+	{Cap5-SCADA/images/Dibujo1.JPG}
+  \end{center}\\
+\hline
+  De la ventana de Setup de P-CIM seleccione Restore Project.
+  Se desplegará la ventana de diálogo de instalación para restaurar el proyecto.
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[height=0.3\textwidth]
+	{Cap5-SCADA/images/PcimSetup.jpeg}
+  \end{center}\\
+\hline
+  De la ventana de Restore Project oprima Browse para seleccionar la carpeta 
+  PFE\_ ABC del DVD adjunto. Luego, se pedirá autorización para continuar con 
+  la restauración. Finalmente, oprima Yes para hacerlo como proyecto por 
+  Default.
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[width=0.4\textwidth]
+	{Anexos/images/restoreProject.JPG}
+  \end{center}\\
+\hline
+\end{tabular}
+%\caption{Instalación del Driver Modbus}
+%\label{tab:installModbus}
+\end{table}
 
-Para controlar el sistema desde el \gls{scada} de P-CIM de AFCON, es necesario 
-iniciar P-CIM y verificar que el driver de Modbus se haya cargado correctamente:
+\subsubsection{Verificar la Comunicación}
+A continuación debemos verificar que la comunicación con el \gls{plc} 
+se encuentra bien configurada y que el sistema \gls{scada} es capas de 
+intercambiar información. Proceda como se describe a continuación:
+\begin{table}[!ht]
+\centering
+\renewcommand*{\arraystretch}{0.01}
+\begin{tabular}{*{2}{m{0.45\textwidth}}}
+\hline
+  Seleccione de la  ventana de P-CIM Setup  el botón P-CIM Communication Setup. 
+  Luego, desde la ventana de diálogo ``Project Communication Setup'' 
+  marque la línea correspondiente en el cuadro de Assigned ports y 
+  elija  Properties.
+    &\begin{center}
+      %\rule{0.4\textwidth}{0.3\textwidth}
+       \includegraphics[width=0.4\textwidth]
+	{Cap5-SCADA/images/commSetup.jpeg}
+    \end{center}\\
+\hline
+   Se despliega la ventana P-CIM Configurator for MODBUS Driver. Verifique 
+   que Network Type sea RS232. Presione el botón Transport Parameter el cual 
+   despliega una nueva ventana
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[width=0.4\textwidth]
+      {Cap5-SCADA/images/modbusDriver.jpeg}
+  \end{center}\\
+\hline 
+   El valor de COM Port debe ser el mismo que aparece en el Administrador de 
+   Dispositivos de Windows correspondiente al puerto serie de 
+   comunicaciones con el \gls{plc}. Baud Rate:19200. 
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+        \includegraphics[width=0.4\textwidth]
+      {Cap5-SCADA/images/modbusDriver2.jpeg}
+  \end{center}\\
+\hline
+\end{tabular}
+%\caption{Propiedades del Driver Modbus}
+%\label{tab:PropModbus}
+\end{table}
+
+
+\newpage
+\subsubsection{Iniciar P-CIM}
+Finalmente, para controlar el sistema desde el \gls{scada} de P-CIM de AFCON, 
+es necesario iniciar P-CIM y verificar que el driver de Modbus se haya cargado 
+correctamente permitiendo la comunicación con el \gls{scada}:
 \begin{table}[!ht]
 \centering
 \renewcommand*{\arraystretch}{0.01}
@@ -171,7 +255,8 @@ abrirá la aplicación Operator Workspace ejecutando el entorno gráfico del
 sistema \gls{scada}.
 
 A través de esta interfaz es posible manejar la planta.
-Pueden diferenciarse 4 bloques principales (Ver Fig.\ref{fig:hmiscada2})
+Pueden diferenciarse los siguientes bloques principales (Ver 
+Fig.\ref{fig:hmiscada2})
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.8\textwidth]
@@ -181,19 +266,29 @@ Pueden diferenciarse 4 bloques principales (Ver Fig.\ref{fig:hmiscada2})
   \end{figure}
   
 \begin{enumerate}
- \item \textbf{Control Automatico:} En esta sección usted puede enviar al
-\gls{plc} de la planta la consigna/setpoint y las constantes del controlador
-$K_p$, $T_i$ y $T_d$.
+\item \textbf{Parada de Emergencia:} Mediante este botón se para totalmente la 
+planta y solo volvera a responde si se presiona \textbf{Rehabilitar Sistema}.
+ \item \textbf{Control Automático:} Desde estos controles se activa o detiene 
+la planta cuando el controlador automático esta activo.
  \item \textbf{Control Manual:} Este modo debe ser usado solamente como un
 medio para
 sacar a la planta de un estado de emergencia tras  haberse declarado una alarma
 por HHL o LLL.
 Aquí podrá encender las bombas individualmente y controlar la apertura de la
 válvula.
+ \item \textbf{Ganancias del Controlador:} En esta sección usted puede enviar al
+\gls{plc} de la planta las constantes del controlador $K_p$, $T_i$ y $T_d$. 
+Puede seleccionar los valores por Default o Manual. Pulse Aplicar para que los 
+cambios sean efectivos.
+ \item \textbf{Consigna de Nivel} En esta sección usted puede enviar al
+\gls{plc} de la planta la consigna/setpoint de nivel del tanque controlado. 
+Puede seleccionar el valor por Default(50\%) o Manual. Pulse Aplicar para que 
+los cambios sean efectivos.
  \item \textbf{Sistema:} En este apartado podemos ver el estado del actual del
-sistema.
-Es decir se muestran los valores de nivel y caudal actuales e históricos juntos
-con las alarmas.
- \item \textbf{Activación:} Desde estos controles se activa o detiene la
-planta.
+sistema.Es decir, se muestran los valores de consigna de nivel, nivel 
+actual, caudal y apertura de la válvula. También se señalan el estado del 
+\gls{plc} y si el sistema se encuentra funcionando en estado normal.
+\item {Elementos Gráficos}: En ellos se pueden observar los valores actuales e 
+historicos de nivel de ambos tanques. También se señalan las alarmas de nivel y 
+sus valores.
 \end{enumerate}
