@@ -443,9 +443,85 @@ Segundo &  $0.6 \,Kp_{cr}  $ & $ 0.5 \, P_{cr}$ & $0.125 \, P_{cr} $\\
 \label{tab:valorganancias}
 \end{table}
 
-\subsubsection{Cálculo de ganancia en nuestra planta}
+\subsubsection{Cálculo de ganancias en nuestra planta}
 
-Se realizó el método experimental, obteniéndose...\todo{hacer ZN}.
+Para nuestro trabajo se optó por el segundo método de los presentados 
+anteriormente.
+\paragraph{Sin tiempo muerto}
+\begin{itemize}
+ \item $Kp_{cr}$:
+ $60$
+ \item $P_{cr}$:
+ $8 s$
+\end{itemize}
+
+Se corroboran estos datos en la Fig. \ref{fig:oscilacionperm}.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/oscperm.png}
+ \caption{Gráfico de la planta sin tiempo muerto.}
+ \label{fig:oscilacionperm}
+\end{figure}
+
+A partir de estos datos se obtuvieron los valores de las ganancias:
+
+\begin{itemize}
+ \item $K_p $: $36,14$
+ \item $T_i $: $4$
+ \item $T_d $: $1$ 
+\end{itemize}
+
+
+
+En la Fig. \ref{fig:controlado} se puede apreciar laimagen de la planta
+funcionandocon estos valores de ganancias.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/controlado.png}
+ \caption{Gráfico de la planta controlada sin tiempo muerto.}
+ \label{fig:controlado}
+\end{figure}
+
+
+\paragraph{Con tiempo muerto}
+\begin{itemize}
+ \item $Kp_{cr}$:
+ $120$
+ \item $P_{cr}$:
+ $10 s$
+\end{itemize}
+
+Se corroboran estos datos en la Fig. \ref{fig:oscilacionpermtd}.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/oscpermtd.png}
+ \caption{Gráfico de los valores de la planta.}
+ \label{fig:oscilacionpermtd}
+\end{figure}
+
+A partir de estos datos se obtuvieron los valores de las ganancias
+para la planta trabajando con tiempo muerto:
+
+\begin{itemize}
+ \item $K_p $: $72.29$
+ \item $T_i $: $50$
+ \item $T_d $: $12$ 
+\end{itemize}
+
+
+
+En la Fig. \ref{fig:controladotd} se puede apreciar laimagen de la planta
+funcionandocon estos valores de ganancias.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/controladotd.png}
+ \caption{Gráfico de los valores de la planta.}
+ \label{fig:controladotd}
+\end{figure}
 
 \section{Comunicación}
 \label{sec:Comunicacion}
