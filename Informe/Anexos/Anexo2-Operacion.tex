@@ -5,6 +5,12 @@ Tras realizar las verificaciones mencionadas en la Sec.
 \ref{anexo:verificaciones} del Manual de Usuario proceda de la siguiente
 manera para la operación normal de la planta.
 
+Normalmente, si el programa que corre en el \gls{plc} no ha sido cambiado, 
+usted debería ser capaz de retomar la operación de la planta mediante el 
+sistema \gls{scada} como se describe en la Sec.\ref{anexo:operacionSCADA}. 
+En caso contrario o para asegurarse de que el programa que corre en el 
+\gls{plc} es el correcto  realice los pasos de la Sec. siguiente.
+
 \subsection{Carga del programa en el PLC}
 \label{anexo:operacionPLC}
 
@@ -26,9 +32,9 @@ manera para la operación normal de la planta.
 %  \item Poner a correr el programa, imagen\ref{img:twidosoftrun}.
 %  \item Desconectarse del \gls{plc}, imagen \ref{img:twidosoftdesc}.
 % \end{enumerate}
-Usted puede leer el programa que se encuentra en la memoria del \gls{plc} o bien
-para escribir un nuevo programa.
-Para esta tarea es necesario que el \gls{plc} se encuentre encendido y
+Usted puede leer el programa que se encuentra en la memoria del \gls{plc} o 
+bien escribir en ella un nuevo programa.
+Para ambas tareas es necesario que el \gls{plc} se encuentre encendido y
 conectado a la computadora que lo programará.
 Deberá entonces:
 
@@ -40,30 +46,38 @@ Deberá entonces:
     Energizar la planta accionando el interruptor
 termomagnético ubicado dentro del tablero eléctrico.
     &\begin{center}
-      \rule{0.4\textwidth}{0.3\textwidth}
-      %\includegraphics[width=0.4\textwidth]
-	%{Cap5-SCADA/images/database1.jpeg}
+      %\rule{0.4\textwidth}{0.3\textwidth}
+      \includegraphics[width=0.4\textwidth]
+	{Anexos/images/disyuntor.JPG}
     \end{center}\\
 \hline
     Conectar la planta con la computadora de control, mediante el cable cable
 \verb|RS-485|  con adaptación a \verb|RS-232|. Puede ser necesario utilizar un
 adaptador \verb|RS-232/USB|.
     &\begin{center}
-      \rule{0.4\textwidth}{0.3\textwidth}
-      %\includegraphics[width=0.4\textwidth]
-	%{Cap5-SCADA/images/database1.jpeg}
+      %\rule{0.4\textwidth}{0.3\textwidth}
+      \includegraphics[width=0.4\textwidth]
+	{Anexos/images/ComunicacionRs485.JPG}
     \end{center}\\
 \hline
 \end{tabular}
 \end{table}
 
-Procederemos a escribir y ejecutar en el \gls{plc} el programa propuesto en
-durante el desarrollo de la planta, así el sistema estará en un estado conocido.
-\todo{imagen del programa y colocar el nombre definitivo del programa}
-Se debe abrir el programa del \gls{plc} denominado {\color{red}(nombre del
-programa)} con el Software Twido Soft. Este programa se encuentra en el DVD 
-adjunto a este informe. 
-Luego, se debe proceder de la manera que se indica a continuación:
+% Procederemos a escribir y ejecutar en el \gls{plc} el programa propuesto en el 
+% Cap.\ref{ch:progPLC},\todo{Referencia a un capitulo que es ajeno al Manual del 
+% usuario} así el sistema estará en un estado conocido.
+% \todo{imagen del programa y colocar el nombre definitivo del programa}
+% Se debe abrir el programa del \gls{plc} denominado {\color{red}(nombre del
+% programa)} con el Software Twido Soft. Este programa se encuentra en el DVD 
+% adjunto a este informe. 
+% Luego, se debe proceder de la manera que se indica a continuación:
+Se aconseja escribir y ejecutar en el \gls{plc} el programa que se encuentra en 
+el DVD adjunto, denominado {\color{red}(nombre del programa)}. Así el sistema 
+estará en un estado a partir del cual se puede operar con el sistema 
+\gls{scada} propuesto.
+%\todo{imagen del programa y colocar el nombre definitivo del programa}
+Este programa se debe abrir con el Software Twido Soft y luego proceder de la 
+manera que se indica a continuación:
 
 \begin{table}[H]
 \centering
@@ -78,8 +92,7 @@ Autómata/Conectar para poder conectarse al \gls{plc}.
 	{Anexos/images/twidosoft.PNG}
     \end{center}\\
 \hline
-    Al conectarse, y si existiese una diferencia entre las aplicaciones
-de la computadora y el \gls{plc}, el software solicitará en qué sentido debe
+    Al conectarse el software solicitará en qué sentido debe
 realizarse la transferencia de datos.
 Cargar el programa desde la computadora al \gls{plc}.
     &\begin{center}
@@ -105,22 +118,105 @@ Cargar el programa desde la computadora al \gls{plc}.
 \end{tabular}
 \end{table}
 
-
+\newpage
 \subsection{SCADA}
-Normalmente, si el programa que corre en el \gls{plc} no ha sido cambiado, 
-usted debería ser capaz de retomar la operación de la planta desde este punto. 
-Para asegurarse de que el programa que corre en el \gls{plc} es el correcto 
-refiérase a la Sec. \ref{anexo:operacionPLC} del Manual del Usuario.
+\label{anexo:operacionSCADA}
+
 \begin{lattention}
  Recuerde siempre realizar las verificaciones descriptas en la Sección 
 \ref{anexo:verificaciones} del Manual del Usuario antes de continuar con la
 operación de la planta.
 \end{lattention}
 
-\subsubsection{Iniciar P-CIM}
+\subsubsection{Restore Project}
+El primer paso para utilizar el sistema \gls{scada} es recuperar el 
+proyecto para AFCON P-CIM del DVD adjunto. Siga las siguientes instrucciones 
+para completar esta tarea:
+\begin{table}[H]
+\small
+\centering
+\renewcommand*{\arraystretch}{0.3}
+\begin{tabular}{*{2}{m{0.435\textwidth}}}
+\hline
+  Elija Setup de P-CIM del grupo de aplicaciones que se encuentran la carpeta 
+  AFCON P-CIM[7.70SP4]. 
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[width=0.4\textwidth]
+	{Cap5-SCADA/images/Dibujo1.JPG}
+  \end{center}\\
+\hline
+  De la ventana de Setup de P-CIM seleccione Restore Project.
+  Se desplegará la ventana de diálogo de instalación para restaurar el proyecto.
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[height=0.3\textwidth]
+	{Cap5-SCADA/images/PcimSetup.jpeg}
+  \end{center}\\
+\hline
+  De la ventana de Restore Project oprima Browse para seleccionar la carpeta 
+  PFE\_ ABC del DVD adjunto. Luego, se pedirá autorización para continuar con 
+  la restauración. Finalmente, oprima Yes para hacerlo como proyecto por 
+  Default.
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[width=0.4\textwidth]
+	{Anexos/images/restoreProject.JPG}
+  \end{center}\\
+\hline
+\end{tabular}
+%\caption{Instalación del Driver Modbus}
+%\label{tab:installModbus}
+\end{table}
 
-Para controlar el sistema desde el \gls{scada} de P-CIM de AFCON, es necesario 
-iniciar P-CIM y verificar que el driver de Modbus se haya cargado correctamente:
+\subsubsection{Verificar la Comunicación}
+A continuación debemos verificar que la comunicación con el \gls{plc} 
+se encuentra bien configurada y que el sistema \gls{scada} es capas de 
+intercambiar información. Proceda como se describe a continuación:
+\begin{table}[!ht]
+\centering
+\renewcommand*{\arraystretch}{0.01}
+\begin{tabular}{*{2}{m{0.45\textwidth}}}
+\hline
+  Seleccione de la  ventana de P-CIM Setup  el botón P-CIM Communication Setup. 
+  Luego, desde la ventana de diálogo ``Project Communication Setup'' 
+  marque la línea correspondiente en el cuadro de Assigned ports y 
+  elija  Properties.
+    &\begin{center}
+      %\rule{0.4\textwidth}{0.3\textwidth}
+       \includegraphics[width=0.4\textwidth]
+	{Cap5-SCADA/images/commSetup.jpeg}
+    \end{center}\\
+\hline
+   Se despliega la ventana P-CIM Configurator for MODBUS Driver. Verifique 
+   que Network Type sea RS232. Presione el botón Transport Parameter el cual 
+   despliega una nueva ventana
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[width=0.4\textwidth]
+      {Cap5-SCADA/images/modbusDriver.jpeg}
+  \end{center}\\
+\hline 
+   El valor de COM Port debe ser el mismo que aparece en el Administrador de 
+   Dispositivos de Windows correspondiente al puerto serie de 
+   comunicaciones con el \gls{plc}. Baud Rate:19200. 
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+        \includegraphics[width=0.4\textwidth]
+      {Cap5-SCADA/images/modbusDriver2.jpeg}
+  \end{center}\\
+\hline
+\end{tabular}
+%\caption{Propiedades del Driver Modbus}
+%\label{tab:PropModbus}
+\end{table}
+
+
+\newpage
+\subsubsection{Iniciar P-CIM}
+Finalmente, para controlar el sistema desde el \gls{scada} de P-CIM de AFCON, 
+es necesario iniciar P-CIM y verificar que el driver de Modbus se haya cargado 
+correctamente permitiendo la comunicación con el \gls{scada}:
 \begin{table}[!ht]
 \centering
 \renewcommand*{\arraystretch}{0.01}
@@ -154,26 +250,45 @@ de proyecto final.
 
 \subsubsection{Operators Workspace}
 
-\todo{agregar directorio}
-Para ejecutar el entorno gráfico del sistema \gls{scada} abra la aplicación
-Operator Workspace que se encuentra en el directorio
+Automáticamente tras iniciar P-CIM como se muestra en la sección anterior, se 
+abrirá la aplicación Operator Workspace ejecutando el entorno gráfico del 
+sistema \gls{scada}.
 
 A través de esta interfaz es posible manejar la planta.
-Pueden diferenciarse 4 bloques principales (Ver Fig.\todo{agregar foto})
+Pueden diferenciarse los siguientes bloques principales (Ver 
+Fig.\ref{fig:hmiscada2})
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.8\textwidth]
+	{Cap5-SCADA/images/hmiScada.jpeg}
+	\caption{Interfaz gráfica del sistema SCADA}
+	\label{fig:hmiscada2}
+  \end{figure}
+  
 \begin{enumerate}
- \item \textbf{Control Automatico:} En esta sección usted puede enviar al
-\gls{plc} de la planta la consigna/setpoint y las constantes del controlador
-$K_p$, $T_i$ y $T_d$.
+\item \textbf{Parada de Emergencia:} Mediante este botón se para totalmente la 
+planta y solo volvera a responde si se presiona \textbf{Rehabilitar Sistema}.
+ \item \textbf{Control Automático:} Desde estos controles se activa o detiene 
+la planta cuando el controlador automático esta activo.
  \item \textbf{Control Manual:} Este modo debe ser usado solamente como un
 medio para
 sacar a la planta de un estado de emergencia tras  haberse declarado una alarma
 por HHL o LLL.
 Aquí podrá encender las bombas individualmente y controlar la apertura de la
 válvula.
+ \item \textbf{Ganancias del Controlador:} En esta sección usted puede enviar al
+\gls{plc} de la planta las constantes del controlador $K_p$, $T_i$ y $T_d$. 
+Puede seleccionar los valores por Default o Manual. Pulse Aplicar para que los 
+cambios sean efectivos.
+ \item \textbf{Consigna de Nivel} En esta sección usted puede enviar al
+\gls{plc} de la planta la consigna/setpoint de nivel del tanque controlado. 
+Puede seleccionar el valor por Default(50\%) o Manual. Pulse Aplicar para que 
+los cambios sean efectivos.
  \item \textbf{Sistema:} En este apartado podemos ver el estado del actual del
-sistema.
-Es decir se muestran los valores de nivel y caudal actuales e históricos juntos
-con las alarmas.
- \item \textbf{Activación:} Desde estos controles se activa o detiene la
-planta.
+sistema.Es decir, se muestran los valores de consigna de nivel, nivel 
+actual, caudal y apertura de la válvula. También se señalan el estado del 
+\gls{plc} y si el sistema se encuentra funcionando en estado normal.
+\item {Elementos Gráficos}: En ellos se pueden observar los valores actuales e 
+historicos de nivel de ambos tanques. También se señalan las alarmas de nivel y 
+sus valores.
 \end{enumerate}
