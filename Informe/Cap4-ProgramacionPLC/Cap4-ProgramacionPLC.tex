@@ -69,9 +69,9 @@ solución propuesta.
 Se utilizó el programa Twido Soft, de Schneider Electric, para poder programar
 el Alg.\ref{img:algoritmo} en lenguaje Ladder y posteriormente cargarlo en el 
 \gls{plc}. En el Anexo \ref{anexo:programaLadder} se encuentra el programa en 
-Ladder que corre en \gls{plc} de la planta.
+Ladder que corre en el   \gls{plc} de la planta.
 
-\subsection{Breve descripción del programa en Ladder}
+\subsection{Breve descripción del lenguaje Ladder}
 
 El lenguaje Ladder es muy utilizado en la programación de autómatas debido a
 que es un lenguaje gráfico, basado en esquemas de tableros eléctricos de
@@ -108,8 +108,10 @@ entrada se inactiva, el valor de salida se mantiene.
    \item \textbf{Bobina reset:} establece un valor de salida inactivo si
 encuentra un valor lógico activo en la entrada.
    \item \textbf{Bloques de funciones:} permiten leer y escribir variables
-numéticas, realizar bucles \gls{pid}, contadores, registros, etc.
+numéricas, realizar bucles \gls{pid}, contadores, registros, etc.
   \end{itemize}
+  
+\subsection{Descripción del programa grabado en el PLC}
 
 Cada una de las partes del programa se denomina \emph{RUNG} (escalón o
 peldaño).
@@ -141,6 +143,7 @@ size=1pt]
     child { node {Adquisición de Nivel y Caudal}    }
     child { node {Gestión de alarmas HHL y LLL}    }
     child { node {Gestión de banderas de alarmas HHL y LLL}    }
+    child { node {Gestión de alarmas HL y LL}    }
     child { node {Seteo de parámetros del controlador: Kp}    }
     child { node {Seteo de parámetros del controlador: Ti}    }
     child { node {Seteo de parámetros del controlador: Td}    }
@@ -164,6 +167,47 @@ size=1pt]
 \caption{Esquema de Rungs del programa Ladder de la planta de control de nivel}
 \label{fig:ladder}
 \end{figure}
+
+\begin{itemize}
+ \item Inicialización: Debido a una bandera se asegura el ingreso solo una vez a
+ este peldaño del algoritmo. Se dan valores por defecto para las ganancias del 
+ controlador y se fijan un Set Point al 50\%.
+ \item Señal PLC run: Se envía una señal desde el \gls{plc} para saber que esta
+ corriendo el programa.
+ \item Verificación de parada de emergencia: Se leen las banderas de parada de 
+ emergencia y se da la acción para parar los motores.
+  \item Adquisición de nivel y caudal: Se leen las entradas analógicas para conocer
+  el nivel del caudal y nivel.
+  \item Gestión de alarmas: En estos escalones del programa lo que se hace es leer
+  el valor de la palabra de memoria donde esta guardado el nivel del tanque, am partir
+  de la comparación de este valor se muestran banderas en el \gls{scada} y si fuese 
+  necesario se levanta la bandera para detener el sistema.
+  \item Seteo de parámetros: En esta parte del programa se va a setear el parámetro
+  correspondiente de acuerdo a lo que se escriba en la palabra \verb|MW1|.
+  \item Encendido de los motores: A partir de la señal de encendido recibida desde el
+  \gls{scada} o la señal de detención, se procede a activar una salida del lógica del
+  \gls{plc}, esto sirve de señal visual para conocer desde el \gls{plc} el estado. 
+  Si esta salida lógica que sirve como bandera esta activada, se activan las salidas
+  lógicas correspondientes a los motores.
+  \item Controlador \gls{pid}: En este peldaño se encuentra el bloque del controlador.
+  La salida del mismo es el valor de apertura de la válvula.  
+  La configuración de este bloque nos permite además de acuerdo a una bandera el manejo
+  de manera manual de la válvula.
+  \item Valor de salida de la válvula: Se lee el valor de salida de la válvula, este dato 
+  nos sirve de retroalimentación a el \gls{scada}.
+  \item Indicadores de estado del sistema: En estos peldaños se envía al software \gls{scada}
+  el estado de los motores y si el sistema esta en modo manual o automático.
+  \item Error en bombas: Una de las entradas digitales al \gls{plc} son la retroalimentación 
+  recibida del rele de los motores. La lectura de esta señal nos indica si el motor esta 
+  encendido. La retroalimentación no es tan rápida y en un primer momento, entonces 
+  \item Sistema funcionando en modo normal: Si todo esta funcionando como esperamos, sin banderas
+  de alarma se envía una señal en la palabra \verb|MW0| que indica que esta todo funcionando
+  de manera correcta.
+  \item Limpieza de alarmas: En este escalón se limpian las banderas de alarmas si eso es requerido
+  por el usuario.
+  
+\end{itemize}
+
 
 El \gls{plc} puede guardar información de diversa índole en memoria, por 
 ejemplo valores binarios.
