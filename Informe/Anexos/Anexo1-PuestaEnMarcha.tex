@@ -8,19 +8,19 @@ items:
 
 \tcbset{before app=\parfillskip 0pt}
 \begin{tcolorbox}[title=Nivel de agua]
-Si los tanques están vacíos, deben llenarse con agua hasta un 55\%
+\textbf{Tanques vacíos}: llene con agua hasta un 55\%
 del total de su capacidad aproximadamente.
 
-En el caso de contener agua, verifique que cada uno de los tanques no esté por
+\textbf{Tanques con agua}, verifique que cada uno de los tanques no esté por
 encima del 80\% ni por debajo del 20\%.
-Puede transvasar el fluido de un tanque a otro utilizando el modo manual del
-\gls{scada} (ver Anexo \ref{anexo:operacionSCADA}) o encendiendo manualmente
-las bombas (ver Anexo \ref{anexo:motoresManual}).
+
 \end {tcolorbox}
 \begin{lattention}
 En \textbf{modo automático}, si el nivel del tanque controlado desciende por
-debajo del
-20 \% o aumenta por encima del 80\% se detiene la planta automáticamente.
+debajo del 20 \% o aumenta por encima del 80\% se detiene la planta 
+automáticamente.Puede transvasar el fluido de un tanque a otro utilizando el 
+modo manual del \gls{scada} (Ver Sec.\ref{anexo:operacionSCADA}) o encendiendo 
+manualmente las bombas (Ver Sec.\ref{anexo:motoresManual}).
 
 La planta no podrá volver a encenderse en modo automático hasta que se confirme
 por parte del usuario que la planta no está en estado de emergencia (mediante el
@@ -28,16 +28,16 @@ por parte del usuario que la planta no está en estado de emergencia (mediante e
 \end{lattention}
 
 \begin{tcolorbox}[title=Válvulas manuales, breakable]
-La planta cuenta con 6 válvulas manuales (ver \gls{pyid}).
-Se describirá la posición de cada una
-de ellas para un correcto funcionamiento de la planta.
- 
+
+La planta cuenta con 6 válvulas manuales (Ver \gls{pyid}).
+%Se describirá la posición de cada una
+%de ellas para un correcto funcionamiento de la planta.
+
  \begin{itemize}
   \item \textbf{Purgado de los tanques:} completamente cerradas.
   \item \textbf{Control de caudal del tanque de reserva \texttt{V1}:}
   la apertura de la válvula debe ser tal que el manómetro que está junto
-  a la misma marque $0.5\,{Kg}/{cm^2}$. Esto nos asegura que el sistema está
-  ecualizado.
+  a la misma marque $0.5\,{Kg}/{cm^2}$ y $0.4\,{Kg}/{cm^2}$ con tiempo muerto. 
   \item \textbf{Tiempo muerto \texttt{VDT}:} abierta, de tal manera que no
 tenga efecto sobre la  planta la manguera del tiempo muerto.
   \item \textbf{Perturbación bomba llenado \texttt{VP1}:} totalmente cerrada,
@@ -61,12 +61,12 @@ de ser necesario.
  \tcblower
   \textbf{Nota:} un filtro regulador, se utiliza de la siguiente manera:
  \begin{enumerate}
-    \item Tener precaución de desconectar la manguera de aire a la válvula.
+    \item Desconectar la manguera de aire a la válvula.
     \item Se conecta la línea de aire comprimido al regulador.
     \item Se visualiza el valor de presión en el manómetro
     \item Se desplaza hacia arriba la maneta de regulación y se gira hasta
       alcanzar el valor de presión deseado.
-    \item Se vuelve a su posición original la maneta de regulación.
+    \item Se vuelve la maneta de regulación a su posición original.
  \end{enumerate}
 \end {tcolorbox}
 %\todo{agregar filtro de aire}
@@ -85,8 +85,8 @@ de los motores y hacerlos girar manualmente.
 \end {tcolorbox}
 
 \begin{lattention}
-Luego de haber realizado todas las verificaciones debe enchufarse la planta a
-la red eléctrica ($220\,V$, corriente alterna).
+Solo conecte la planta a la red eléctrica ($220\,V$, corriente alterna) luego 
+de haber realizado todas las verificaciones antes mencionadas. 
 \end{lattention}
 
 \section{Activación Manual de los Motores}
