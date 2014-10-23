@@ -7,7 +7,7 @@ manera para la operación normal de la planta.
 
 Normalmente, si el programa que corre en el \gls{plc} no ha sido cambiado,
 usted debería ser capaz de retomar la operación de la planta mediante el 
-sistema \gls{scada} como se describe en el Anexo \ref{anexo:operacionSCADA}.
+sistema \gls{scada} (Sec. \ref{anexo:operacionSCADA} del Manual del Usuario).
 En caso contrario, o para asegurarse de que el programa que corre en el
 \gls{plc} es el correcto, realice los pasos que siguen a continuación.
 
@@ -32,7 +32,7 @@ En caso contrario, o para asegurarse de que el programa que corre en el
 %  \item Poner a correr el programa, imagen\ref{img:twidosoftrun}.
 %  \item Desconectarse del \gls{plc}, imagen \ref{img:twidosoftdesc}.
 % \end{enumerate}
-Usted puede leer el programa que se encuentra en la memoria del \gls{plc} o 
+Usted puede leer el programa que se encuentra en la memoria del \gls{plc}, o
 bien escribir en ella un nuevo programa.
 Para ambas tareas es necesario que el \gls{plc} se encuentre encendido y
 conectado a la computadora que lo programará.
@@ -237,8 +237,8 @@ carpeta AFCON P-CIM.
 
 \begin{lattention}
 En el caso de que no se haya logrado cargar el driver Modbus refiérase a la 
-Tab. \ref{tab:PropModbus} de la Sec. \ref{subsubsec:InforDriver} del informe
-de proyecto final.
+Tab. \ref{tab:PropModbus} de la Sec. \ref{subsubsec:InforDriver} del Informe
+de Proyecto Final.
 \end{lattention}
 
 \subsubsection{Operators Workspace}
@@ -260,11 +260,12 @@ Pueden diferenciarse los siguientes bloques principales
   \end{figure}
   
 \begin{enumerate}
-\item \textbf{Parada de Emergencia:} mediante este botón se para totalmente la
-planta y solo volverá a responder si se presiona \textbf{Rehabilitar Sistema}.
+\item \textbf{Parada de Emergencia:} mediante este botón se detiene totalmente
+la planta, y solo volverá a responder si se presiona \textbf{Rehabilitar
+Sistema}.
  \item \textbf{Control Automático:} desde estos controles se activa o detiene
 la planta cuando el controlador automático esta activo.
- \item \textbf{Control Manual:} Este modo debe ser usado solamente como un
+ \item \textbf{Control Manual:} este modo debe ser usado solamente como un
 medio para
 sacar a la planta de un estado de emergencia tras  haberse declarado una alarma
 por HHL o LLL.
@@ -272,17 +273,19 @@ Aquí podrá encender las bombas individualmente y controlar la apertura de la
 válvula.
  \item \textbf{Ganancias del Controlador:} en esta sección usted puede enviar al
 \gls{plc} de la planta las constantes del controlador $K_p$, $T_i$ y $T_d$. 
-Puede seleccionar los valores por Default o Manual. Pulse Aplicar para que los 
+Puede seleccionar los valores por Default o Manual. Pulse Aplicar para que los
 cambios sean efectivos.
  \item \textbf{Consigna de Nivel:} en esta sección usted puede enviar al
 \gls{plc} de la planta la consigna/setpoint de nivel del tanque controlado. 
-Puede seleccionar el valor por Default(50\%) o Manual. Pulse Aplicar para que 
+Puede seleccionar el valor por Default ($50\%$) o Manual. Pulse Aplicar para
+que
 los cambios sean efectivos.
  \item \textbf{Sistema:} en este apartado podemos ver el estado del actual del
 sistema. Es decir, se muestran los valores de consigna de nivel, nivel
 actual, caudal y apertura de la válvula. También se señalan el estado del 
 \gls{plc} y si el sistema se encuentra funcionando en estado normal.
-\item {Elementos Gráficos}: en ellos se pueden observar los valores actuales e
+\item \textbf{Elementos Gráficos}: en ellos se pueden observar los valores
+actuales e
 históricos de nivel de ambos tanques. También se señalan las alarmas de nivel y
 sus valores.
 \end{enumerate}
