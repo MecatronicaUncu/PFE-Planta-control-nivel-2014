@@ -9,7 +9,7 @@ especificaciones definidas en la Sec. \ref{subsec:especificaciones}.
 El funcionamiento de la planta es correcto, manteniendo el objetivo pedagógico
 para el que fue construida.
 
-Los elementos que se conforman la planta de nivel son los mismos que se
+Los elementos que conforman la planta de nivel son los mismos que se
 encuentran en la industria.
 Se realizó un estudio detallado de cada uno de ellos en el Cap.
 \ref{ch:DisenoEnsamblado}.
@@ -21,7 +21,7 @@ ejemplo para el \gls{plc}, de control de nivel.
 Además, se diseñó una interfaz hombre-máquina mediante software de tipo
 \gls{scada}.
 Se comprobó un correcto control regulatorio, llegando rápidamente a la consigna
-con pocas oscilaciones (ver \todo{en algun lado describimos rendimiento?}).
+con pocas oscilaciones (ver \ref{subsec:ZiegerNichols}).
 
 Todos los elementos de la planta fueron correctamente identificados en un
 \gls{pyid}.
@@ -41,19 +41,15 @@ En este informe nos hemos enfocado principalmente en los aspectos constructivos
 de la planta.
 No obstante, otras experiencias y trabajos pueden ser realizados. Podemos citar:
 \begin{itemize}
- \item Se obtiene un proceso diferente al operar la planta con o sin tiempo
-muerto (ver \ref{subsec:tiempoMuerto}).
-Las experiencias de este informe se realizaron principalmente sin tiempo
-muerto\todo{citar ganancias pid}.
-El control del proceso con tiempo muerto, por consiguiente, queda como tarea
-pendiente.
-\item Se instaló una placa orificio (ver \ref{subsec:PlacaOrificio}), utilizada
+\item Se instaló una placa orificio (ver Sec. \ref{subsec:PlacaOrificio}), 
+utilizada
 para medir el caudal en la curva efectiva de la válvula.
 No obstante, podría plantearse un esquema de control de nivel en cascada en
 donde el caudal sea controlado también.
-\item Debería modelarse la planta con precisión.
-A partir del modelado, podrían aplicarse esquemas de control más
-complejos.\todo{completar}
+\item La determinación de los parámetros del controlador se realizó por 
+el método de Ziegler–Nichols(ver Sec. \ref{subsec:ZiegerNichols}). Debería 
+modelarse la planta con precisión. A partir del modelado, podrían aplicarse 
+esquemas de control más complejos.
 \end{itemize}
 
 \section{Conclusión Personal}
@@ -65,7 +61,8 @@ Ingeniero en Mecatrónica, ya que permite realizar una síntesis de los
 conocimientos adquiridos durante la formación.
 Durante el proyecto se aplicaron conceptos de control de
 procesos, mecánica de fluidos y máquinas hidráulicas, electrotecnia,
-electrónica, autómatas programables, diseño de interfaces hombre-máquina, etc.
+electrónica, autómatas programables, diseño de interfaces hombre-máquina, por 
+poner algunos ejemplos.
 
 Pero además se nos permitió diseñar, construir y validar un proyecto completo,
 desde su origen hasta su fin.
@@ -73,7 +70,7 @@ Obtenemos de esta manera una visión integral del proceso de concepción de un
 sistema de control para un proceso determinado.
 Estos conceptos pueden ser aplicados en muchas industrias del medio, donde el
 control de procesos tiene un rol fundamental: petroleo y gas, vitivinícola y
-alimentaria en general, producción de energía, química, etc.
+alimentaria en general, producción de energía, química, entre otras disciplinas.
 
 Asimismo, consideramos muy importante haber participado en el desarrollo de un
 proyecto que será utilizado luego por otros estudiantes.
