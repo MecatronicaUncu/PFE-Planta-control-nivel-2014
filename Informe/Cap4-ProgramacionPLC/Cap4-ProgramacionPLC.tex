@@ -444,6 +444,12 @@ Se obtienen las constantes dibujando
 una recta tangente al  punto de inflexión de la curva de la respuesta del
 sistema, como muestra la Fig. \ref{fig:primermetodo}.
 Luego, se calculan las ganancias utilizando la Tab. \ref{tab:valorganancias}.
+\begin{figure}[ht]
+ \centering
+ \includegraphics[scale=0.5]{Cap4-ProgramacionPLC/images/primermetodo.png}
+ \caption{Respuesta del sistema a un escalón \cite{bib:Ogata}.}
+ \label{fig:primermetodo}
+\end{figure}
 
  \item \textbf{Segundo método:}
  este método comienza su análisis con un controlador puramente proporcional.
@@ -454,21 +460,13 @@ Fig. \ref{fig:segundometodo}.
 del controlador.
 Nuevamente, las ganancias pueden ser calculadas utilizando la Tab.
 \ref{tab:valorganancias}.
-\end{itemize}
-
-\begin{figure}[ht]
- \centering
- \includegraphics[scale=0.5]{Cap4-ProgramacionPLC/images/primermetodo.png}
- \caption{Respuesta del sistema a un escalón \cite{bib:Ogata}.}
- \label{fig:primermetodo}
-\end{figure}
-
 \begin{figure}[ht]
  \centering
  \includegraphics[scale=0.5]{Cap4-ProgramacionPLC/images/segundometodo.png}
  \caption{Oscilación permanente del sistema \cite{bib:Ogata}.}
  \label{fig:segundometodo}
 \end{figure}
+\end{itemize}
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.3}
@@ -497,12 +495,7 @@ cerrado.
 Se colocó a la planta en oscilación, como muestra la Fig.
 \ref{fig:oscilacionperm}.
 
-\begin{figure}[ht]
- \centering
- \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/oscperm.png}
- \caption{Nivel de la planta en oscilación, sin tiempo muerto.}
- \label{fig:oscilacionperm}
-\end{figure}
+
 
 Se obtuvieron los siguientes valores de $Kp_{cr} $ y $P_{cr}$.
 
@@ -525,10 +518,20 @@ En la Fig. \ref{fig:controlado} se puede apreciar el seguimiento de la
 consigna de nivel en la planta, funcionando con estos valores de ganancias.
 
 \begin{figure}[ht]
- \centering
- \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/controlado.png}
- \caption{Nivel de la planta controlada, sin tiempo muerto.}
- \label{fig:controlado}
+  \centering
+  \begin{subfigure}[b]{0.39\textwidth}
+    \includegraphics[width=\textwidth]
+    {Cap4-ProgramacionPLC/images/oscperm.jpeg}
+     \caption{Nivel de la planta en oscilación.}
+     \label{fig:oscilacionperm}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.39\textwidth}    
+      \includegraphics[width=\textwidth]
+      {Cap4-ProgramacionPLC/images/controlado.jpeg}
+      \caption{Nivel de la planta controlada.}
+      \label{fig:controlado}
+  \end{subfigure}
+  \caption{Gráficas de consigna y nivel, sin tiempo muerto.}
 \end{figure}
 
 
@@ -538,12 +541,12 @@ Nuevamente, se coloca la planta en oscilación como muestra la Fig.
 \ref{fig:oscilacionpermtd}.
 Se obtuvieron los siguientes valores de los parámetros.
 
-\begin{figure}[ht]
- \centering
- \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/oscpermtd.png}
- \caption{Nivel de la planta en oscilación, con tiempo muerto.}
- \label{fig:oscilacionpermtd}
-\end{figure}
+% \begin{figure}[ht]
+%  \centering
+%  \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/oscpermtd.png}
+%  \caption{Nivel de la planta en oscilación, con tiempo muerto.}
+%  \label{fig:oscilacionpermtd}
+% \end{figure}
 
 \begin{itemize}
  \item $Kp_{cr}$:
@@ -564,12 +567,31 @@ para la planta, trabajando con tiempo muerto:
 En la Fig. \ref{fig:controladotd} se puede apreciar el seguimiento de consigna
 de nivel, utilizando el circuito de tiempo muerto.
 
+% \begin{figure}[ht]
+%  \centering
+%  \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/controladotd.png}
+%  \caption{Nivel de la planta controlada, con tiempo muerto.}
+%  \label{fig:controladotd}
+% \end{figure}
+
 \begin{figure}[ht]
- \centering
- \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/controladotd.png}
- \caption{Nivel de la planta controlada, con tiempo muerto.}
- \label{fig:controladotd}
+\centering
+  \begin{subfigure}[b]{0.49\textwidth}    
+\includegraphics[width=\textwidth]
+{Cap4-ProgramacionPLC/images/oscpermtd.jpeg}
+    \caption{Nivel de la planta en oscilación.}
+    \label{fig:oscilacionpermtd}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.49\textwidth}
+\includegraphics[width=\textwidth,height=5.8cm]
+  {Cap4-ProgramacionPLC/images/controladotd.jpeg}
+     \caption{Nivel de la planta controlada.}
+     \label{fig:controladotd}
+  \end{subfigure}
+  \caption{Gráficas de consigna y nivel, con tiempo muerto.}
+  %\label{fig:controlshmi}
 \end{figure}
+
 
 Queda así validada la sintonía del bucle \gls{pid} en el controlador.
 
