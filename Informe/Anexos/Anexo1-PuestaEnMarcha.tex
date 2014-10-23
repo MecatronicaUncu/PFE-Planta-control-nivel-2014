@@ -35,17 +35,18 @@ La planta cuenta con 6 válvulas manuales (Ver \gls{pyid}).
 
  \begin{itemize}
   \item \textbf{Purgado de los tanques:} completamente cerradas.
-  \item \textbf{Control de caudal del tanque de reserva \texttt{V1}:}
-  la apertura de la válvula debe ser tal que el manómetro que está junto
-  a la misma marque $0.5\,{Kg}/{cm^2}$ y $0.4\,{Kg}/{cm^2}$ con tiempo muerto. 
-  \item \textbf{Tiempo muerto \texttt{VDT}:} abierta, de tal manera que no
-tenga efecto sobre la  planta la manguera del tiempo muerto.
-  \item \textbf{Perturbación bomba llenado \texttt{VP1}:} totalmente cerrada,
-para asegurar que el tanque controlado no se descargue más rápido de lo que se
-llena.
-  \item \textbf{Perturbación bomba vaciado \texttt{VP2}:} totalmente abierta.
-  La bomba de vaciado debe perder rendimiento para poder ecualizar la planta
-sin forzar una sobrepresión en la válvula \texttt{V1}.
+  \item \textbf{Ecualización de la planta:}
+  \begin{itemize}
+   \item Sin tiempo muerto: \verb|VM2| debe estar abierta $2$ vueltas, y
+   \verb|VM1| debe cerrarse hasta que el manómetro \verb|PI 1| indique
+   $0.4\,kg/cm^2$.
+   \item Con tiempo muerto: \verb|VM2| debe estar abierta $1.5$ vueltas, y
+   \verb|VM1| debe cerrarse hasta que el manómetro \verb|PI 1| indique
+   $0.5\,kg/cm^2$.
+  \end{itemize}
+  \item \textbf{Tiempo muerto \texttt{VDT}:} abierta si se desea trabajar con
+la planta sin tiempo muerto, cerrada si se desea trabajar con tiempo muerto.
+  \item \textbf{Perturbación \texttt{VMP}:} totalmente cerrada inicialmente.
  \end{itemize}
  \tcblower
  \textbf{Nota:} estas válvulas están presentes para modificar el sistema y

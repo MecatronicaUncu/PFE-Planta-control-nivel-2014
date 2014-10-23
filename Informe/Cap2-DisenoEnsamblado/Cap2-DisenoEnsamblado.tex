@@ -150,7 +150,7 @@ FT: Flow Transmitter
 \hline
 Tiempo muerto
 
-DT: Death Time
+DT: Dead Time
   &\begin{center}
     %\rule{0.4\textwidth}{0.3\textwidth}
     \includegraphics[scale=.5]
@@ -247,7 +247,7 @@ PLC: Simbolo de la sección del programador encargado
 de la gestión de alarmas
   &\begin{center}
     %\rule{0.4\textwidth}{0.3\textwidth}
-    \includegraphics[scale=.7]
+    \includegraphics[scale=.6]
 	{Cap2-DisenoEnsamblado/images/plc.png}
   \end{center}\\
 \hline
@@ -362,7 +362,7 @@ flexibles:
   esta conexión es la más larga y en ella van montados manómetros y
   válvulas manuales. Por ello, se prefirió la cañería rígida de polipropileno.
 
-  \item \textbf{Conexión de perturbación de las bombas:}
+  \item \textbf{Conexión by-pass de las bombas:}
   se utilizó manguera flexible, para evitar uniones dobles y
   niples que requieren de una gran precisión durante el montaje.
  \end{itemize}
@@ -432,12 +432,17 @@ A continuación vamos a destacar la función de cada una de ellas:
 cada tanque\footnote{Importante: estas válvulas no están dibujadas en el
 \gls{pyid}.}.
 
-  \item \textbf{Control de caudal del tanque de reserva \texttt{V1}:} se colocó
-en serie
-con la cañería de retorno (ver Fig.\ref{fig:valvTanque}). Se trata de una
+  \item \textbf{Ecualización de la planta \texttt{VM1} y \texttt{VM2}:} se
+colocó una válvula en serie con la cañería de retorno (ver
+Fig.\ref{fig:valvTanque}).
+Se trata de una
 válvula manual, tipo exclusa.
-  Esta válvula es importante ya que permite modificar el balance de masa y
-ecualizar la planta.
+Además, otra válvula manual de tipo exclusa se coloca entre la tubería de
+aspiración y
+la tubería de impulsión de la bomba \verb|B2| formando un \emph{by-pass} (ver
+Fig.\ref{fig:valvBomba}).
+Al abrir la válvula, el rendimiento de la bomba decrece.
+  Ambas válvulas permiten modificar el balance de masa y ecualizar la planta.
 
   \item \textbf{Tiempo muerto \texttt{VDT}:}
   tal como se describió en la Sec. \ref{subsec:tiempoMuerto}, esta válvula
@@ -451,13 +456,12 @@ mayor que el de la cañería de llenado.
   Por ello, se considera que al abrir la válvula  el fluido sólo circula
 por la cañería de llenado.
 
-  \item \textbf{Perturbación de las bombas \texttt{VP1} y \texttt{VP2}:}
-  una válvula manual de tipo exclusa se coloca entre la tubería de aspiración y
-la tubería de impulsión de las bombas (ver Fig.\ref{fig:valvBomba}).
-  La apertura de esta válvula permitirá simular perturbaciones en las
-bombas.
- Al abrir la válvula, el rendimiento de la bomba decrece.
- \end{itemize}
+  \item \textbf{Perturbación \texttt{VMP}:}
+  colocada de la misma manera que \verb|VM2|, pero sobre la bomba \verb|B1|.
+  La válvula \verb|VMP| permitirá simular perturbaciones en la planta,
+modificando el rendimiento de la bomba.
+
+\end{itemize}
 
 \begin{figure}[t]
         \centering
@@ -469,7 +473,7 @@ bombas.
 \hfill
         \begin{subfigure}[b]{0.40\textwidth}
 \includegraphics[height=8.5cm]{Cap2-DisenoEnsamblado/images/valvBomba.JPG}
-                \caption{Perturbación de las bombas.}
+                \caption{By-pass en bomba.}
                 \label{fig:valvBomba}
         \end{subfigure}
         \caption{Válvulas manuales.}
@@ -569,9 +573,12 @@ tanques disminuyendo las pérdidas en la cañería de aspiración.
 Se fijaron mediante tornillos a la base de madera.
 
 Durante la operación de la planta se observó un correcto funcionamiento de las
-bombas, salvo cuando la perturbación se encuentra abierta: al incrementar la
+bombas, salvo cuando el by-pass se encuentra abierto en exceso: al
+incrementar la
 velocidad en la tubería de aspiración, la presión desciende llegando hasta el
 punto de vapor.
+Para evitar problemas de cavitación, se especifica en el Anexo
+\ref{anexo:verificaciones} el valor de apertura preciso para cada válvula.
 
 \section{Válvula Electroneumática}
 \label{sec:ValvulaNeumatica}
@@ -585,14 +592,14 @@ las acciones de control.
 
 \begin{figure}[t]
         \centering
-        \begin{subfigure}[b]{0.36\textwidth}
+        \begin{subfigure}[b]{0.37\textwidth}
 \includegraphics[width=\textwidth]
 	{Cap2-DisenoEnsamblado/images/ActuadorValvNeum.pdf}
                 \caption{Actuador neumático inverso.}
                 \label{fig:actuadorValv}
         \end{subfigure}%
         ~
-        \begin{subfigure}[b]{0.36\textwidth}
+        \begin{subfigure}[b]{0.37\textwidth}
 \includegraphics[width=\textwidth]{Cap2-DisenoEnsamblado/images/ValvGlob.pdf}
                 \caption{Cuerpo de una válvula globo.}
                 \label{fig:cuerpoValv}
@@ -629,6 +636,7 @@ El convertidor toma en entrada una señal de corriente proveniente del
 controlador
 ($4$ - $20\,mA$) y lo transforma en un valor de presión para alimentar el
 diafragma \cite{bib:ApuntesPuglesiValvulas}.
+
 % \subsubsection{Rangeabilidad}
 % Se denomina rangeabilidad a la razón entre el caudal máximo y el mínimo que
 % puede controlar una válvula
@@ -879,8 +887,8 @@ experimentalmente:
  \item La planta se coloca en modo manual, encendiendo ambas bombas.
  \item Se coloca la válvula en una posición determinada enviando una consigna
 de apertura manual.
- \item Se ecualiza la planta mediante la válvula \verb|V1|. Se trata de fijar
-el nivel de los tanques al 50\%.
+ \item Se ecualiza la planta mediante las válvulas \verb|VM1| y \verb|VM2|. Se
+trata de fijar el nivel de los tanques al 50\%.
  \item Establecido el nivel de la planta (sin oscilaciones) se realiza la
 lectura en el DP cell del valor de la presión $h_p$,
 y se calcula el caudal correspondiente (ver Sec. \ref{subsec:DPCell}).
@@ -1150,16 +1158,8 @@ Luego, debe cerrarse para poder realizar la lectura diferencial de presión.
 \subsection{Placa Orificio}
 \label{subsec:PlacaOrificio}
 
-Para medir el caudal en la tubería de llenado, se decide
-utilizar una placa orificio.
-En la Fig. \ref{fig:placaOrificio} se muestra un
-corte longitudinal de la misma.
-Se observa que la placa orificio provoca una disminución del diámetro
-de la cañería, con la consiguiente aceleración del fluido.
-Escribiendo la ecuación de Bernoulli en 0 y 2, considerando que la velocidad en
-2 es aproximadamente igual a la velocidad en 1,
 
-\begin{figure}
+\begin{figure}[t]
  \centering
 \includegraphics[width=\textwidth]{Cap2-DisenoEnsamblado/images/placaOrif.png}
 \caption{Corte longitudinal de una placa orificio montada en una tubería
@@ -1167,6 +1167,15 @@ Escribiendo la ecuación de Bernoulli en 0 y 2, considerando que la velocidad en
  \label{fig:placaOrificio}
 \end{figure}
 
+Para medir el caudal en la tubería de llenado, se decide
+utilizar una placa orificio.
+En la Fig. \ref{fig:placaOrificio} se muestra un
+corte longitudinal de la misma.
+Se observa que la placa orificio provoca una disminución del diámetro
+de la cañería, con la consiguiente aceleración del fluido.
+
+Escribiendo la ecuación de Bernoulli en 0 y 2, considerando que la velocidad en
+2 es aproximadamente igual a la velocidad en 1,
 \begin{align}
  z_0 \, \gamma + \dfrac{\rho \,v_0^2}{2} + P_0 &= z_2 \, \gamma + \dfrac{\rho
 \,v_2^2}{2} + P_2
@@ -1176,7 +1185,6 @@ donde $z_i$ y $P_i$ es la altura y presión en el punto $i$ y $\rho$ es
 la densidad del fluido.
 Considerando que la altura en ambos puntos es la misma, la ecuación
 \eqref{eq:Bernoulli} puede reescribirse como
-
 \begin{align}
  v_2^2 - v_0^2 &= 2\,g\,h_p
  \label{eq:Bernoulli2}
@@ -1186,10 +1194,10 @@ altura de la columna fluida
 \begin{align}
  h_p &= \dfrac{P_0}{\gamma}-\dfrac{P_2}{\gamma}
 \end{align}
+
 La ecuación de continuidad, para fluidos incompresibles se escribe
 \begin{align}
  A_2\,v_2 &= A_0\,v_0 \\
- D_2^2\,v_2 &= D_0^2\,v_0 \\
  v_2 &= \dfrac{D_0^2}{D_2^2} v_0
  \label{eq:velRef}
 \end{align}
@@ -1206,6 +1214,7 @@ Además, se agrega un coeficiente $C_v$ debido al fenómeno de vena contracta:
  Q &= \dfrac{C_v \, A_2}{\sqrt{1-\beta^4}}\, \sqrt{2 \, g \, h_p}
  \label{eq:placaOrif1}
 \end{align}
+
 El coeficiente $C_v$ depende del número de Reynolds $Re$
 \cite{bib:Mataix, bib:ApuntesPuglesiPlacaOrif}
 \begin{align}

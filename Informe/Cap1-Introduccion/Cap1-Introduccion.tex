@@ -67,7 +67,7 @@ Las siguientes especificaciones deben respetarse para la nueva planta:
 movilidad. Además, deberán evitarse conexiones cableadas, siendo reemplazadas
 por enlaces inalámbricos de ser posible.
  \item En ella deberán poder representarse fenómenos que
-afectan los procesos industriales, tales como perturbaciones en bombas y
+afectan los procesos industriales, tales como perturbaciones y
 tiempos muertos en los procesos.
  \item Deberá verificarse su correcto funcionamiento escribiendo un programa de
 ejemplo en el \gls{plc}, con su \gls{scada} correspondiente.
@@ -184,9 +184,12 @@ los siguientes elementos a la planta:
 muerto.
 Se agregarán en paralelo de la cañería de llenado del tanque controlado.
 Se podrá habilitar el tiempo muerto mediante una válvula manual.
+
 \item Se realizará la conexión, mediante una válvula manual, de la salida de
-cada bomba con su entrada. Se simularán así perturbaciones
-del circuito hidráulico.
+cada bomba con su entrada. Mediante esta conexión se podrá modificar el
+rendimiento de las bombas para lograr el balance de masa en la planta, como así
+también simular perturbaciones en el circuito hidráulico.
+
 \end{itemize}
 
 Una explicación completa del diseño e implementación del circuito hidráulico
@@ -238,6 +241,7 @@ Se verifica que el precio es inferior a las soluciones llave en mano, para un
 producto con una calidad similar\footnote{Comparando con la firma inglesa,
 que propone una planta de calidad similar. Recordemos que, si bien la planta
 italiana es más costosa, estaba construida en acero inoxidable.}.
+
 Cabe destacar que en nuestro análisis no hemos tenido en cuenta el costo (en
 horas de trabajo) para realizar el proyecto.
 \begin{table}[!t]
