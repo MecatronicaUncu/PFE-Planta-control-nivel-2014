@@ -1030,17 +1030,21 @@ donde el mecanismo del manómetro se encuentra sumergido en un baño de glicerin
 Debido a la viscosidad del fluido, las vibraciones quedan amortiguadas
 y el manómetro refleja el valor medio de la presión.
 
-Las especificaciones de los manómetros se muestran en la Tab,
+Las especificaciones de los manómetros se muestran en la Tab.
 \ref{tab:EspManoms}.
 
 \begin{table}[ht]
 \renewcommand{\arraystretch}{1.3}
 \centering
-\begin{tabular}{|l|l|}
+\begin{tabular}{|l|l|l|}
 \hline
-Marca & Beyca\\
-Rango & $0$ - $1\,kgf/cm^2$ ($0$ - $14\,lb/pulg^2$)\\
-Escala & $0.02\,kgf/cm^2/div$ ($0.5\,lb/pulg^2/div$)\\
+Manómetro & \texttt{PI 1}& \texttt{PI 2}\\
+\hline
+Marca & Cane & Beyca \\
+Rango & $0$ - $7\,bar$ ($0$ - $100\,psi$) & $0$ - $1\,kgf/cm^2$ ($0$
+- $14\,psi$) \\
+Escala & $0.5\,bar/div$ ($2\,psi/div$) & $0.02\,kgf/cm^2/div$
+($0.5\,psi/div$)\\
 \hline
 \end{tabular}
 \caption{Especificaciones de los manómetros}
@@ -1055,13 +1059,14 @@ presentes en el proyecto.
         \begin{subfigure}[b]{0.48\textwidth}
 \includegraphics[width=\textwidth]
 	{Cap2-DisenoEnsamblado/images/manometro1.JPG}
-	\caption{Cañería de llenado.}
+	%  TODO, cambiar foto por el nuevo
+	\caption{Cañería de llenado, \texttt{PI 1}.}
         \end{subfigure}%
         \hfill
         \begin{subfigure}[b]{0.48\textwidth}
 \includegraphics[width=\textwidth]
 	{Cap2-DisenoEnsamblado/images/manometro2.JPG}
-	\caption{Cañería de vaciado.}
+	\caption{Cañería de vaciado, \texttt{PI 2}.}
         \end{subfigure}
         \caption{Manómetros.}
         \label{fig:manometro}
