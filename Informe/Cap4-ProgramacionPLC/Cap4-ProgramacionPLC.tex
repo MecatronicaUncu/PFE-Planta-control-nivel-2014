@@ -12,7 +12,7 @@ utilizado para el desarrollo y la implementación del programa en el \gls{plc}.
 
 \section{Algoritmo}
 \label{sec:Algoritmo}
-El primer en el desarrollo del programa del \gls{plc} es
+El primer paso para obtener el programa del \gls{plc} es
 confeccionar el algoritmo (Alg. en adelante) de trabajo.
 En él, se incluyen todas las tareas que el
 controlador debe cumplir, a saber: gestión de alarmas, adquisición de
@@ -113,136 +113,6 @@ encuentra un valor lógico activo en la entrada.
 numéricas, realizar bucles \gls{pid}, contadores, registros, etc.
   \end{itemize}
   
-\subsection{Descripción del programa grabado en el PLC}
-
-Cada una de las partes del programa se denomina \emph{RUNG} (escalón o
-peldaño).
-La ejecución de los peldaños es secuencial, comenzando por el \verb|RUNG 0|.
-En cada peldaño se describen paso a paso las acciones que deseamos que
-el controlador realice, de acuerdo al estado del sistema o las ordenes
-recibidas desde el \gls{scada}.
-
-La Fig. \ref{fig:ladder} muestra un diagrama de los diferentes peldaños de
-nuestro programa de aplicación.
-Se observa que la estructura secuencial del Alg. \ref{img:algoritmo} ha
-sido respetada en los peldaños.
-
-
-\begin{figure}
-\centering
-%\resizebox{0.8\textwidth}{0.9\textheight}{
-\tikzstyle{every node}=[draw=black,thick,anchor=west,inner sep=2pt,minimum
-size=1pt]
-\tikzstyle{selected}=[draw=cyan,fill=cyan!30]
-\begin{tikzpicture}[
-  grow via three points={one child at (0.5,-0.7) and
-  two children at (0.5,-0.7) and (0.5,-1.4)},   
-  edge from parent path={(\tikzparentnode.south) |- (\tikzchildnode.west)}]
-  \node (init) {Inicio del programa  }
-    child { node {Inicialización} }
-    child { node {Señal PLC run}    }
-    child { node {Verificación de parada de emergencia}    }
-    child { node {Adquisición de Nivel y Caudal}    }
-    child { node {Gestión de alarmas HHL y LLL}    }
-    child { node {Gestión de banderas de alarmas HHL y LLL}    }
-    child { node {Gestión de alarmas HL y LL}    }
-    child { node {Seteo de parámetros del controlador: Kp}    }
-    child { node {Seteo de parámetros del controlador: Ti}    }
-    child { node {Seteo de parámetros del controlador: Td}    }
-    child { node {Seteo de parámetros del controlador: Set Point}    }
-    child { node {Gestión de bandera de encendido y parada del sistema}    }
-    child { node {Gestión de bandera de modo manual y automático}    }
-    child { node {Gestión de motores si el sistema esta en modo automático}    }
-    child { node {Encendido del Motor 1: Control manual y automático}    }
-    child { node {Encendido del Motor 2: Control manual y automático}    }
-    child { node {Controlador: PID}    }
-    child { node {Valor de salida de la válvula}    }
-    child { node {Gestión de señal de estado: manual o automático}    }
-    child { node {Indicador del estado del Motor 1}    }
-    child { node {Indicador del estado del Motor 2}    }
-    child { node {Indicador de error en bombas}    }
-    child { node {Gestión de bandera del sistema trabajando en modo normal}    }
-    child { node {Limpieza de señal de parada de emergencia}    }
-    child { node {Limpieza de alarmas}    };
-\end{tikzpicture}
-%}
-\caption{Esquema de Rungs del programa Ladder de la planta de control de nivel}
-\label{fig:ladder}
-\end{figure}
-
-\begin{itemize}
- \item \textbf{Inicialización:} debido a una bandera se asegura el ingreso solo
-una vez a
- este peldaño del algoritmo. Se dan valores por defecto para las ganancias del 
- controlador y se fijan un Set Point al $50\%$.
- \item \textbf{Señal PLC run:} se escribe un valor de memoria para saber que
-esta
- corriendo el programa.
- \item \textbf{Verificación de parada de emergencia:}
-  como se explicara en el capitulo \ref{ch:scada} esta previsto un
- botón exclusivo para esta acción, que modifica la bandera de parada de
-emergencia. Se debe detener
- los motores, sin importar el modo de funcionamiento de la planta.
- Luego de solucionar el inconveniente,
- se debe enviar una señal  al \gls{plc} para limpiar la bandera de señal de
-emergencia: Rehabilitar al
-sistema para su funcionamiento normal.
-
-  \item \textbf{Adquisición de nivel y caudal:} se leen las entradas analógicas
-para conocer
-  el nivel del caudal y nivel.
-  \item \textbf{Gestión de alarmas:} en estos escalones del programa se lee
-  el valor de la palabra de memoria donde esta guardado el nivel del tanque,
-  se realizan comparaciones y se muestran banderas en el \gls{scada}. Si
-fuese necesario se levanta la bandera para detener el sistema.
-  \item \textbf{Seteo de parámetros:}
-  se establecen valores de parámetros del programa, de acuerdo
-a lo que se escriba en la palabra \verb|MW1|.
-Podemos cambiar los valores de ganancia del controlador y el Set Point.
-
-  \item \textbf{Gestión de banderas:} en estos escalones podrá ponerse a $1$ la
-bandera de encendido de la planta en modo automático, como así también cambiar
-el control de automático a manual.
-
-  \item \textbf{Señal de encendido de los motores, en modo automático:} a
-partir de la señal de encendido o apagado, recibida desde el \gls{scada}, se
-procede a activar una salida del lógica del  \gls{plc} (\verb|Q0.7|).
-  La salida lógica sirve de señal visual, mostrando que los motores se
-encuentran encendidos de modo automático.
-
-  \item \textbf{Encendido Motor 1/2:}
-  Realiza la activación de la bobina que corresponde a cada uno de los motores.
-  La bobina puede activarse por orden del usuario (modo manual) o por
-encontrarse \verb|Q0.7| activo (modo automático).
-
-  \item \textbf{Controlador \gls{pid}}: en este peldaño se encuentra el bloque
-del controlador, cuya salida es el valor de apertura de la
-válvula (en modo automático).
-  La configuración de este bloque nos permite además manejar la válvula
-manualmente, de acuerdo a una bandera.
-  \item \textbf{Valor de salida de la válvula:} se lee el valor de apertura de
-la válvula. Este dato se utilizará para mostrar información acerca de la
-apertura de la válvula en el \gls{scada}.
-  \item \textbf{Indicadores de estado del sistema:} en estos peldaños se envía
-al software \gls{scada}
-  el estado de los motores, y si el sistema esta en modo manual o automático.
-  \item \textbf{Error en bombas:} una de las entradas discretas del \gls{plc}
-son los enclavamientos recibidos del relé de los motores. La lectura de esta
-señal nos indica si el motor esta encendido.
-  Dado que el sistema relé/contactor tiene una latencia de encendido, debemos
-agregar un bloque timer para tener en cuenta esta latencia.
-  Se pondrá a 1 la bandera de falla en motores si hay una disparidad entre las
-salidas y las entradas discretas del \gls{plc}, por más de un segundo.
-  \item \textbf{Sistema funcionando en modo normal:}
-  Evalúa si no hay ninguna alarma HL o LL activa, escribiendo un bit en la
-palabra \verb|MW0|.
-  \item \textbf{Limpieza de alarmas:} en este escalón se limpian las banderas
-de alarmas si el operador lo requiere.
-  por el usuario.
-  
-\end{itemize}
-
-
 El \gls{plc} puede guardar información de diversa índole en memoria.
 Estos valores pueden ser utilizados para modificar las salidas, a
 modo de banderas.
@@ -393,6 +263,134 @@ Entrada & \verb|QW0.1.0|  & Señal analógica de salida de apertura de la válvu
 \caption{Entradas y salidas al PLC}
 \label{table:entradassalidas}
 \end{table}
+
+\subsection{Descripción del programa grabado en el PLC}
+
+Cada una de las partes del programa se denomina \emph{RUNG} (escalón o
+peldaño).
+La ejecución de los peldaños es secuencial, comenzando por el \verb|RUNG 0|.
+En cada peldaño se describen paso a paso las acciones que deseamos que
+el controlador realice, de acuerdo al estado del sistema o las ordenes
+recibidas desde el \gls{scada}.
+
+La Fig. \ref{fig:ladder} muestra un diagrama de los diferentes peldaños de
+nuestro programa de aplicación.
+Se observa que la estructura secuencial del Alg. \ref{img:algoritmo} ha
+sido respetada en los peldaños.
+
+
+\begin{figure}
+\centering
+%\resizebox{0.8\textwidth}{0.9\textheight}{
+\tikzstyle{every node}=[draw=black,thick,anchor=west,inner sep=2pt,minimum
+size=1pt]
+\tikzstyle{selected}=[draw=cyan,fill=cyan!30]
+\begin{tikzpicture}[
+  grow via three points={one child at (0.5,-0.7) and
+  two children at (0.5,-0.7) and (0.5,-1.4)},   
+  edge from parent path={(\tikzparentnode.south) |- (\tikzchildnode.west)}]
+  \node (init) {Inicio del programa  }
+    child { node {Inicialización} }
+    child { node {Señal PLC run}    }
+    child { node {Verificación de parada de emergencia}    }
+    child { node {Adquisición de Nivel y Caudal}    }
+    child { node {Gestión de alarmas HHL y LLL}    }
+    child { node {Gestión de banderas de alarmas HHL y LLL}    }
+    child { node {Gestión de alarmas HL y LL}    }
+    child { node {Seteo de parámetros del controlador: Kp}    }
+    child { node {Seteo de parámetros del controlador: Ti}    }
+    child { node {Seteo de parámetros del controlador: Td}    }
+    child { node {Seteo de parámetros del controlador: Set Point}    }
+    child { node {Gestión de bandera de encendido y parada del sistema}    }
+    child { node {Gestión de bandera de modo manual y automático}    }
+    child { node {Gestión de motores si el sistema esta en modo automático}    }
+    child { node {Encendido del Motor 1: Control manual y automático}    }
+    child { node {Encendido del Motor 2: Control manual y automático}    }
+    child { node {Controlador: PID}    }
+    child { node {Valor de salida de la válvula}    }
+    child { node {Gestión de señal de estado: manual o automático}    }
+    child { node {Indicador del estado del Motor 1}    }
+    child { node {Indicador del estado del Motor 2}    }
+    child { node {Indicador de error en bombas}    }
+    child { node {Gestión de bandera del sistema trabajando en modo normal}    }
+    child { node {Limpieza de señal de parada de emergencia}    }
+    child { node {Limpieza de alarmas}    };
+\end{tikzpicture}
+%}
+\caption{Esquema de Rungs del programa Ladder de la planta de control de nivel}
+\label{fig:ladder}
+\end{figure}
+
+\begin{itemize}
+ \item \textbf{Inicialización:} debido a una bandera se asegura el ingreso solo
+una vez a
+ este peldaño del algoritmo. Se dan valores por defecto para las ganancias del 
+ controlador y se fijan un Set Point al $50\%$.
+ \item \textbf{Señal PLC run:} se escribe un valor de memoria para saber que
+esta
+ corriendo el programa.
+ \item \textbf{Verificación de parada de emergencia:}
+  como se explicara en el capitulo \ref{ch:scada} esta previsto un
+ botón exclusivo para esta acción, que modifica la bandera de parada de
+emergencia. Se debe detener
+ los motores, sin importar el modo de funcionamiento de la planta.
+ Luego de solucionar el inconveniente,
+ se debe enviar una señal  al \gls{plc} para limpiar la bandera de señal de
+emergencia: Rehabilitar al
+sistema para su funcionamiento normal.
+
+  \item \textbf{Adquisición de nivel y caudal:} se leen las entradas analógicas
+para conocer
+  el nivel del caudal y nivel.
+  \item \textbf{Gestión de alarmas:} en estos escalones del programa se lee
+  el valor de la palabra de memoria donde esta guardado el nivel del tanque,
+  se realizan comparaciones y se muestran banderas en el \gls{scada}. Si
+fuese necesario se levanta la bandera para detener el sistema.
+  \item \textbf{Seteo de parámetros:}
+  se establecen valores de parámetros del programa, de acuerdo
+a lo que se escriba en la palabra \verb|MW1|.
+Podemos cambiar los valores de ganancia del controlador y el Set Point.
+
+  \item \textbf{Gestión de banderas:} en estos escalones podrá ponerse a $1$ la
+bandera de encendido de la planta en modo automático, como así también cambiar
+el control de automático a manual.
+
+  \item \textbf{Señal de encendido de los motores, en modo automático:} a
+partir de la señal de encendido o apagado, recibida desde el \gls{scada}, se
+procede a activar una salida del lógica del  \gls{plc} (\verb|Q0.7|).
+  La salida lógica sirve de señal visual, mostrando que los motores se
+encuentran encendidos de modo automático.
+
+  \item \textbf{Encendido Motor 1/2:}
+  Realiza la activación de la bobina que corresponde a cada uno de los motores.
+  La bobina puede activarse por orden del usuario (modo manual) o por
+encontrarse \verb|Q0.7| activo (modo automático).
+
+  \item \textbf{Controlador \gls{pid}}: en este peldaño se encuentra el bloque
+del controlador, cuya salida es el valor de apertura de la
+válvula (en modo automático).
+  La configuración de este bloque nos permite además manejar la válvula
+manualmente, de acuerdo a una bandera.
+  \item \textbf{Valor de salida de la válvula:} se lee el valor de apertura de
+la válvula. Este dato se utilizará para mostrar información acerca de la
+apertura de la válvula en el \gls{scada}.
+  \item \textbf{Indicadores de estado del sistema:} en estos peldaños se envía
+al software \gls{scada}
+  el estado de los motores, y si el sistema esta en modo manual o automático.
+  \item \textbf{Error en bombas:} una de las entradas discretas del \gls{plc}
+son los enclavamientos recibidos del relé de los motores. La lectura de esta
+señal nos indica si el motor esta encendido.
+  Dado que el sistema relé/contactor tiene una latencia de encendido, debemos
+agregar un bloque timer para tener en cuenta esta latencia.
+  Se pondrá a 1 la bandera de falla en motores si hay una disparidad entre las
+salidas y las entradas discretas del \gls{plc}, por más de un segundo.
+  \item \textbf{Sistema funcionando en modo normal:}
+  Evalúa si no hay ninguna alarma HL o LL activa, escribiendo un bit en la
+palabra \verb|MW0|.
+  \item \textbf{Limpieza de alarmas:} en este escalón se limpian las banderas
+de alarmas si el operador lo requiere.
+  por el usuario.
+\end{itemize}
 
 \section{Controlador PID}
 \label{sec:controladorpid}
