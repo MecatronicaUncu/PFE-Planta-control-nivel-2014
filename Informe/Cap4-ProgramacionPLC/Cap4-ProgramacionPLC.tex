@@ -17,8 +17,8 @@ confeccionar el algoritmo (Alg. en adelante) de trabajo.
 En él, se incluyen todas las tareas que el
 controlador debe cumplir, a saber: gestión de alarmas, adquisición de
 parámetros, control de la válvula, encendido y apagado de motores.
-Además, deben establecerse prioridades entre las distintas tareas,
-asignando una prioridad más elevada a aquellas tareas críticas.
+Además, deben establecerse prioridades,
+asignando una prioridad más elevada a las tareas críticas.
 
 El algoritmo \ref{img:algoritmo} muestra la solución propuesta.
 
@@ -113,6 +113,15 @@ encuentra un valor lógico activo en la entrada.
 numéricas, realizar bucles \gls{pid}, contadores, registros, etc.
   \end{itemize}
   
+Cada una de las partes del programa se denomina \emph{RUNG} (escalón o
+peldaño).
+La ejecución de los peldaños es secuencial, comenzando por el  \verb|RUNG 0|.
+En cada peldaño se describen paso a paso las acciones que deseamos que
+el controlador realice, de acuerdo al estado del sistema o las ordenes
+recibidas desde el \gls{scada}.
+
+\subsection{Gestión de la Memoria - Entradas/Salidas}
+
 El \gls{plc} puede guardar información de diversa índole en memoria.
 Estos valores pueden ser utilizados para modificar las salidas, a
 modo de banderas.
@@ -120,6 +129,14 @@ También pueden guardarse valores numéricos, útiles para consignas,
 ganancias o lecturas de sensores analógicos.
 Se diferencian dos tipos de celdas de memoria:
 
+\begin{itemize}
+ \item \textbf{\gls{memory}:} tienen el formato \verb|Mx|, donde \verb|x| es un
+número que comienza por $0$.
+Son capaces de guardar un único bit.
+Por esa razón, se utilizan como banderas internas del programa, que representan
+distintos estados de la planta.
+En la Tab. \ref{table:Banderasinternas} se pueden ver el nombre
+de las banderas utilizadas en nuestro programa y sus funciones.
 \begin{table}[ht]
 \renewcommand{\arraystretch}{1.3}
 \centering
@@ -132,21 +149,13 @@ Se diferencian dos tipos de celdas de memoria:
 \verb|M2|  & Sistema en modo Manual/Automático\\
 \verb|M3|  & Error de Nivel\\
 \verb|M4|  & Error de Motor\\
-\verb|M4|  & Parada de emergencia\\
+\verb|M5|  & Parada de emergencia\\
 \hline
 \end{tabular}
 \caption{Banderas internas.}
 \label{table:Banderasinternas}
 \end{table}
 
-\begin{itemize}
- \item \textbf{\gls{memory}:} tienen el formato \verb|Mx|, donde \verb|x| es un
-número que comienza por $0$.
-Son capaces de guardar un único bit.
-Por esa razón, se utilizan como banderas internas del programa, que representan
-distintos estados de la planta.
-En la Tab. \ref{table:Banderasinternas} se pueden ver el nombre
-de las banderas utilizadas en nuestro programa y sus funciones.
  \item \textbf{\gls{memoryWord}:} conocidas también como palabras, tienen el
 formato \verb|MWx|, donde \verb|x| es un número que comienza por $0$.
 Representan valores de $16$ bits de resolución. En ellos puede guardarse
@@ -154,7 +163,7 @@ información numérica en el rango $0$ a $65535$
 (constantes, valores de lectura o escritura), o pueden utilizarse para guardar
 hasta 16 banderas (bits).
 Cabe destacar que las \gls{memoryWord} pueden ser leídas mediante el bus MODBUS
-(ver \ref{sec:Comunicacion}).
+(ver Sec. \ref{sec:Comunicacion}).
 En la Tab. \ref{table:mwBanderas} se muestran las \gls{memoryWord}
 utilizadas como banderas, en tanto que en la Tab.
 \ref{table:mwNumericos}
@@ -226,22 +235,15 @@ Esc & \verb|MW13| & Valor de escritura Td \\
 \label{table:mwNumericos}
 \end{table}
 
-Finalmente, se detallan a continuación las entradas y salidas al \gls{plc} de 
-la planta.
+Finalmente, en la Tab. \ref{table:entradassalidas} se muestran las entradas y
+salidas del \gls{plc}.
 Descriptas en la Sec. \ref{subsec:plc}, permiten al
-controlador relevar variables de la planta y aplicar acciones de control. 
-En la Tab. \ref{table:entradassalidas} se muestran las
-entradas/salidas tanto analógicas como discretas.
+controlador relevar variables de la planta y aplicar acciones de control.
 Cabe destacar que la salida \verb|Q0.7| se utilizó para obtener un indicador
-visual del estado de la planta en el \gls{plc}.
-Esta salida no está conectada.
-
-En el anexo \ref{anexo:programaLadder} se puede
-observar el programa en
-lenguaje Ladder completo, escrito utilizando el software Twido Soft.
+visual del estado en el \gls{plc}.
+Por consiguiente, esta salida no está conectada.
 
 \begin{table}[!t]
-
 \renewcommand{\arraystretch}{1.3}
 \centering
 \begin{tabular}{c||c||c}
@@ -266,20 +268,13 @@ Entrada & \verb|QW0.1.0|  & Señal analógica de salida de apertura de la válvu
 
 \subsection{Descripción del programa grabado en el PLC}
 
-Cada una de las partes del programa se denomina \emph{RUNG} (escalón o
-peldaño).
-La ejecución de los peldaños es secuencial, comenzando por el \verb|RUNG 0|.
-En cada peldaño se describen paso a paso las acciones que deseamos que
-el controlador realice, de acuerdo al estado del sistema o las ordenes
-recibidas desde el \gls{scada}.
-
 La Fig. \ref{fig:ladder} muestra un diagrama de los diferentes peldaños de
 nuestro programa de aplicación.
 Se observa que la estructura secuencial del Alg. \ref{img:algoritmo} ha
 sido respetada en los peldaños.
+Distinguimos los siguientes escalones:
 
-
-\begin{figure}
+\begin{figure}[!ht]
 \centering
 %\resizebox{0.8\textwidth}{0.9\textheight}{
 \tikzstyle{every node}=[draw=black,thick,anchor=west,inner sep=2pt,minimum
@@ -322,75 +317,92 @@ size=1pt]
 \end{figure}
 
 \begin{itemize}
- \item \textbf{Inicialización:} debido a una bandera se asegura el ingreso solo
-una vez a
- este peldaño del algoritmo. Se dan valores por defecto para las ganancias del 
- controlador y se fijan un Set Point al $50\%$.
- \item \textbf{Señal PLC run:} se escribe un valor de memoria para saber que
-esta
- corriendo el programa.
- \item \textbf{Verificación de parada de emergencia:}
-  como se explicara en el capitulo \ref{ch:scada} esta previsto un
- botón exclusivo para esta acción, que modifica la bandera de parada de
-emergencia. Se debe detener
- los motores, sin importar el modo de funcionamiento de la planta.
- Luego de solucionar el inconveniente,
- se debe enviar una señal  al \gls{plc} para limpiar la bandera de señal de
-emergencia: Rehabilitar al
-sistema para su funcionamiento normal.
+ \item \textbf{Inicialización:} una bandera (\verb|M0|) asegura el ingreso solo
+una vez a este peldaño. Aquí, se dan valores por defecto para las
+ganancias del controlador y se fija el Set Point al $50\%$.
 
-  \item \textbf{Adquisición de nivel y caudal:} se leen las entradas analógicas
-para conocer
-  el nivel del caudal y nivel.
-  \item \textbf{Gestión de alarmas:} en estos escalones del programa se lee
-  el valor de la palabra de memoria donde esta guardado el nivel del tanque,
-  se realizan comparaciones y se muestran banderas en el \gls{scada}. Si
-fuese necesario se levanta la bandera para detener el sistema.
+ \item \textbf{Señal PLC run:} se pone a $1$ \verb|MW0:X0| para notificar al
+ \gls{scada} que el programa se encuentra en ejecución.
+
+ \item \textbf{Verificación de parada de emergencia:}
+  como se explicará en el capitulo \ref{ch:scada}, está previsto un
+ botón exclusivo de parada de emergencia en el \gls{scada}.
+ En este peldaño, se modifica \verb|M5| según el valor de \verb|MW1:X8|.
+ Luego de solucionar el inconveniente,
+ se debe ``Rehabilitar al sistema'' para su funcionamiento normal, poniendo a
+ $0$ \verb|MW1:X8|.
+
+ \item \textbf{Adquisición de nivel y caudal:} se leen las entradas analógicas
+ a las \gls{memoryWord} correspondientes de caudal y nivel.
+
+ \item \textbf{Gestión de alarmas:} en estos escalones del programa se compara
+el nivel del tanque con valores máximos y mínimos predeterminados, y se
+modifican las banderas correspondientes en \verb|MW0|. Si fuese necesario se
+pone a $1$ la bandera \verb|M3| para detener el sistema.
+
   \item \textbf{Seteo de parámetros:}
   se establecen valores de parámetros del programa, de acuerdo
-a lo que se escriba en la palabra \verb|MW1|.
-Podemos cambiar los valores de ganancia del controlador y el Set Point.
+a los valores de \verb|MW1|.
+Pueden cambiarse las ganancias del controlador y el Set Point.
 
-  \item \textbf{Gestión de banderas:} en estos escalones podrá ponerse a $1$ la
-bandera de encendido de la planta en modo automático, como así también cambiar
-el control de automático a manual.
+  \item \textbf{Gestión de banderas de encendido y modo manual:} en estos
+  escalones podrá ponerse a $1$ la
+  bandera de encendido de la planta en modo automático \verb|M1|, modificando
+el valor de \verb|MW1:X0|.
+  De la misma manera, podrá cambiarse el
+  el control de automático a manual modificando \verb|M2| a través de
+  \verb|MW1:X1|.
 
   \item \textbf{Señal de encendido de los motores, en modo automático:} a
-partir de la señal de encendido o apagado, recibida desde el \gls{scada}, se
-procede a activar una salida del lógica del  \gls{plc} (\verb|Q0.7|).
+  partir de la señal de encendido \verb|M1|, y si no hay banderas activas para 
+detener el sistema, se
+  procede a activar la salida lógica del  \gls{plc} (\verb|Q0.7|).
   La salida lógica sirve de señal visual, mostrando que los motores se
-encuentran encendidos de modo automático.
+encuentran encendidos y en modo automático.
 
   \item \textbf{Encendido Motor 1/2:}
-  Realiza la activación de la bobina que corresponde a cada uno de los motores.
-  La bobina puede activarse por orden del usuario (modo manual) o por
+  realiza la activación de la bobina que corresponde a cada uno de los motores.
+  La bobina puede activarse por orden del usuario (modo manual, mediante
+\verb|MW1:X5| y \verb|MW1:X6|) o por
 encontrarse \verb|Q0.7| activo (modo automático).
+ No obstante, al activarse la bandera \verb|M5| (parada de emergencia) deben
+detenerse
+ los motores, sin importar el modo de funcionamiento de la planta.
 
   \item \textbf{Controlador \gls{pid}}: en este peldaño se encuentra el bloque
-del controlador, cuya salida es el valor de apertura de la
+del controlador \gls{pid}, cuya salida es el valor de apertura de la
 válvula (en modo automático).
   La configuración de este bloque nos permite además manejar la válvula
-manualmente, de acuerdo a una bandera.
-  \item \textbf{Valor de salida de la válvula:} se lee el valor de apertura de
-la válvula. Este dato se utilizará para mostrar información acerca de la
-apertura de la válvula en el \gls{scada}.
+manualmente, en caso que \verb|M1| se encuentre activa.
+
+  \item \textbf{Valor de apertura de la válvula:} se lee el valor de apertura de
+la válvula en \verb|MW8|. Esta realimentación es útil para mostrar
+la apertura de la válvula en el \gls{scada}.
+
   \item \textbf{Indicadores de estado del sistema:} en estos peldaños se envía
-al software \gls{scada}
-  el estado de los motores, y si el sistema esta en modo manual o automático.
+al software \gls{scada}, por medio de las banderas \verb|MW0:X6-X9|,
+  el estado de los motores y el modo de trabajo (manual o automático).
+
   \item \textbf{Error en bombas:} una de las entradas discretas del \gls{plc}
 son los enclavamientos recibidos del relé de los motores. La lectura de esta
-señal nos indica si el motor esta encendido.
-  Dado que el sistema relé/contactor tiene una latencia de encendido, debemos
-agregar un bloque timer para tener en cuenta esta latencia.
-  Se pondrá a 1 la bandera de falla en motores si hay una disparidad entre las
+señal nos indica si el motor está realmente encendido.
+  Dado que el sistema relé/contactor tiene una latencia de arranque, debemos
+agregar un bloque timer.
+Se pondrá a 1 la bandera de falla en motores \verb|M4| si hay
+una disparidad entre las
 salidas y las entradas discretas del \gls{plc}, por más de un segundo.
+
   \item \textbf{Sistema funcionando en modo normal:}
-  Evalúa si no hay ninguna alarma HL o LL activa, escribiendo un bit en la
-palabra \verb|MW0|.
+  Evalúa si no hay ninguna alarma HL o LL activa, escribiendo un bit en
+\verb|MW0:X10|.
+
   \item \textbf{Limpieza de alarmas:} en este escalón se limpian las banderas
 de alarmas si el operador lo requiere.
-  por el usuario.
 \end{itemize}
+
+En el anexo \ref{anexo:programaLadder} se puede
+observar el programa en
+lenguaje Ladder completo, escrito utilizando el software Twido Soft.
 
 \section{Controlador PID}
 \label{sec:controladorpid}
