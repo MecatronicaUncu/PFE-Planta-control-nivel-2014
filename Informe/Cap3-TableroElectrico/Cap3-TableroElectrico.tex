@@ -8,11 +8,11 @@ tablero eléctrico.
 Es decir, se realizó la instalación y el cableado de los elementos eléctricos y
 electrónicos.
 Para comprender este capítulo es imprescindible utilizar los diagramas
-del tablero, que pueden encontrarse en el anexo \ref{anexo:diag}.
+del tablero, que pueden encontrarse en el Anexo \ref{anexo:diag}.
 Por simplicidad, se dividirá el análisis del tablero en dos secciones:
 \begin{itemize}
  \item \textbf{Potencia:} corresponde a la instalación y el cableado
- de los elementos eléctricos de la planta, destinados a alimentar los motores de 
+ de los elementos eléctricos de la planta, destinados a alimentar los motores de
  las bombas y los circuitos lógicos.
  \item \textbf{Señal:} corresponde a la instalación y el cableado
  de los elementos electrónicos cuyo objetivo es controlar la planta.
@@ -26,7 +26,7 @@ Tal como se describió previamente, los elementos de potencia deben
 \textbf{alimentar} los motores y elementos lógicos de la planta.
 Se optó por trabajar con corriente alterna monofásica ($220\,V\,-\,50\,Hz$),
 dado que es la alimentación de las bombas.
-En el anexo \ref{anexo:diag}, se muestran los conductores de fase y neutro en
+En el Anexo \ref{anexo:diag}, se muestran los conductores de fase y neutro en
 colores marrón y azul respectivamente.
 Los elementos de potencia se describen a continuación.
 
@@ -49,7 +49,7 @@ planta.
 \subsection{Alimentación de los Motores de las Bombas}
 \label{subsec:alimentacionMotores}
 Puede verse el esquema de alimentación de los motores en los folios 1 y 2 del
-anexo \ref{anexo:diag}.
+Anexo \ref{anexo:diag}.
 Para cada una de las bombas, se utilizarán los siguientes elementos de
 protección y comando:
 \begin{itemize}
@@ -96,6 +96,7 @@ circuitos lógicos.
 Las características técnicas de la fuente se muestran en la Tab.
 \ref{tab:fuenteAlim}.
 \begin{table}[h]
+\renewcommand{\arraystretch}{1.3}
 \centering
 \begin{tabular}{|l|l|}
 \hline
@@ -136,7 +137,7 @@ Para automatizar nuestra planta se optó por utilizar un \gls{plc} Twido
 \verb|TWD LMDA 40 DTK| de Schneider.
 Se trata de un sistema electrónico digital de automatización y control, pensado
 para aplicaciones industriales, seguro frente a condiciones adversas,
-vibraciones, ruido electromagnético, etc \cite{bib:ApuntesJGabriel}.
+vibraciones y ruido electromagnético \cite{bib:ApuntesJGabriel}.
 El autómata se adapta al proceso a controlar mediante un
 \textit{software} o programa de aplicación específico, que contiene la secuencia
 de operaciones a realizar.
@@ -189,12 +190,12 @@ El \gls{plc} utilizado cuenta con un puerto de comunicaciones \verb|RS 485|.
 Se presentan dos opciones para la conexión con la computadora de control:
 \begin{itemize}
  \item Mediante una conexión cableada:
- Conectamos el puerto \verb|RS 485| a un puerto \verb|RS 232| de la computadora
+ conectamos el puerto \verb|RS 485| a un puerto \verb|RS 232| de la computadora
 mediante un adaptador específico, fabricado durante el desarrollo del
 proyecto\footnote{En nuestro caso, dado que la computadora no contaba con un
 puerto serie, se utilizó un adaptador
 \texttt{USB} a \texttt{RS 232}.}.
-Se muestra en el anexo \ref{anexo:circuitos}, folio 1, el circuito esquemático
+Se muestra en el Anexo \ref{anexo:circuitos}, folio 1, el circuito esquemático
 utilizado.
 Además, se incluyen los diseños de PCB para replicar el circuito.
 
@@ -223,7 +224,8 @@ Se muestran las características técnicas relevantes en la Tab.
  \label{fig:fotoModuloIn}
 \end{figure}
 
-\begin{table}[h]
+\begin{table}[ht]
+\renewcommand{\arraystretch}{1.3}
 \centering
 \begin{tabular}{|l|l|}
 \hline
@@ -245,7 +247,7 @@ diagrama de tablero (folio 5), estipulando una velocidad de transferencia de
 Además, dado que el módulo inalámbrico debe alimentarse con una tensión de
 $5\,V$ de corriente continua, se desarrolló una fuente conversora de $24\,V$ a
 $5\,V$ basada en el integrado \verb|LM7805|.
-El circuito esquemático de la fuente puede encontrarse en el folio 2 del anexo
+El circuito esquemático de la fuente puede encontrarse en el folio 2 del Anexo
 \ref{anexo:circuitos}.
 Además, se incluye el diseño del PCB para poder replicar el circuito.
 
@@ -274,8 +276,7 @@ del estado de la planta y enviar consignas mediante el \gls{scada}.
         \label{fig:fotoTablero}
 \end{figure}
 
-En la Fig. \ref{fig:fotoTablero} se muestra
-una fotografía del tablero finalizado, con y sin acrílico de protección.
+En la Fig. \ref{fig:fotoTablero} se muestran fotografías del tablero finalizado.
 Pueden observarse tres niveles diferenciados:
 \begin{itemize}
  \item En el nivel superior se encuentra el interruptor termomagnético de corte
