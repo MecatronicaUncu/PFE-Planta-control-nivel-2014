@@ -1,96 +1,151 @@
-\section{Contexto}
-\frame{
-	\frametitle{Outline}
-	\tableofcontents
-	}
-
-\subsection*{Introducción}
+\section{Introducción}
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+  
+\subsection*{Contexto}
 % Una subsection* crea un nuevo "grupo de puntos"
 
 \frame{
 	\frametitle{Descripción del problema}
 
+	\textbf{Objetivo}
+	\vspace{0.25cm}
 	\begin{center}
-		\textbf{Definición}
-
-		\vspace{0.25cm}
-
-		\missingfigure[figwidth=6cm]{Figura completa}
+		“Diseñar, ensamblar y programar una planta móvil de control de 
+		  nivel, utilizando sensores, controladores y actuadores 
+		  industriales disponibles en el mercado”
 	\end{center}
-
-	\begin{columns}
-		\begin{column}{0.5\textwidth}
-			\begin{itemize}
-				\item {\color{newcolor} Texto en columna 1}:
-				\begin{itemize}
-					\item item 1
-					\item item 2
-				\end{itemize}
-				\item {\color{newcolor} Más texto}
-			\end{itemize}
-		\end{column}
-
-		\begin{column}{0.5\textwidth}
-			\begin{itemize}
-				\item {\color{softBlue!70!Black} Texto:}
-					en otra columna
-				\item {\color{softOrange!70!Black} Más texto:}
-					en otra columna
-			\end{itemize}
-
-		\end{column}
-	\end{columns}
+	\textbf{Es decir, algo así}...
+	\begin{center}
+	  \vspace{0.25cm}
+	  \begin{figure}[h!]
+	  \centering
+\includegraphics[width=.4\textwidth]
+{Sections/1-Introduccion/images/p&id.pdf}
+	  \end{figure}
+	\end{center}
 }
 
 \frame{
-	\frametitle{Especificaciones - Solución Propuesta}
+	\frametitle{Especificaciones Vs Solución Propuesta}
+	
+	\textbf{Solución Propuesta}...
+	\hspace{1cm}
+	\textbf{Especificaciones}...
+	
+	
 	\begin{columns}
 		\begin{column}{0.4\textwidth}
+		  \begin{center}
+		    \begin{figure}[h!]
+		      \centering
+			\includegraphics[width=\textwidth]
+			 {Sections/1-Introduccion/images/IMG_5123.jpeg}
+			\end{figure}
+		   \end{center}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+		La planta debe:
 			\begin{enumerate}
-				\item Una
+				\item Representar un ambiente industrial.
 				\begin{itemize}
-					\item \textbf{Larga}
-					\item larga
+				 \item Procesos
+				 \item Materiales
 				\end{itemize}
-				\item Lista
+				\item Cumplir un objetivo pedagógico.
+				 \begin{itemize}
+				  \item Verificar el funcionamiento 
+del conjunto.
+				  \item Documentar: Manual del usuario de la 
+planta.
+				 \end{itemize}
+				\item Tener un costo inferior a una solución 
+llave en mano.
 			\end{enumerate}
-
-			\begin{align*}
-				\mathrm{una} \,e( \textbf{cuacion})
-			\end{align*}
 		\end{column}
-
-		\begin{column}{0.6\textwidth}
-			\begin{center}
-				\missingfigure[figwidth=4.5cm]{}
-			\end{center}
-
-			\begin{center}
-				\footnotesize
-				\textbf{\textit{Cita bibliográfica}}
-
-				[Escrita por alguien \textit{et al.} 2008]
-			\end{center}
-		\end{column}
-
 	\end{columns}
 }
 
 \frame{
 	\frametitle{Análisis Económico}
-	\textbf{Idea:} ...
-	\vspace{0.25cm}
+	
+	\begin{columns}
+	  \centering
+	 \begin{column}{0.3\textwidth}
+	    \centering
+	    \textbf{Cual es el costo?}
+	 \end{column}
+	 
+	 \begin{column}{0.3\textwidth}
+	    \textbf{Plantas Similares:}
+	    \begin{itemize}
+	     \item Llave en mano.
+	     \item Puerto de Bs.As.
+	    \end{itemize}
+	 \end{column}
+
+	 \begin{column}{0.3\textwidth}
+	    \begin{ukblock}
+		\centering
+		\textbf{16225\$} 
+	    \end{ukblock}
+	    \begin{itblock}
+		\centering
+		\textbf{\EUR{28403}}
+	    \end{itblock}
+	 \end{column}
+	\end{columns}
+
+	
+%	\vspace{0.25cm}
 	\begin{center}
+%	 Las partes constitutivas de ambas plantas son elementos industriales
+	 \end{center}
+	\textbf{Donaciones:}
+	%\vspace{0.2cm}
+	\begin{columns}[T]
+	
+	 \begin{column}{0.3\textwidth}
+	    \begin{techintblock}
+		\centering
+		\textbf{\$5050}
+	    \end{techintblock}
+	    \begin{itemize}
+	     \item Electrobombas.
+	     \item PLC+PS+Mod. Analógico
+	     \item DPCell
+	     \item Válvula de control
+	    \end{itemize}
+	 \end{column}
+	 
+	 \begin{column}{0.3\textwidth}
+	    \begin{fingblock}
+		\centering
+		\textbf{\$2122}
+	    \end{fingblock}
+	     \begin{itemize}
+	      \item Estructura
+	      \item Tuberías y Acc.
+	      \item Material Eléctrico
+	      \item Manómetros.
+	     \end{itemize}
+	 \end{column}
 
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		Donec viverra cursus pellentesque. In et mattis augue.
-		Dorbi ut velit a ante ultrices ornare in id nisl.
+	 \begin{column}{0.3\textwidth}
+	    \begin{puglesiblock}
+		\centering
+		\textbf{\$50} 
+	    \end{puglesiblock}
+	    \begin{itemize}
+	     \item Placa Orificio
+	    \end{itemize}
 
-		\vspace{0.5cm}
+	 \end{column}
 
-		Pellentesque sollicitudin bibendum leo lobortis sagittis.
-		Fusce eu purus vel mauris vestibulum mattis.
-	\end{center}
+	\end{columns}
+	
 }
 
 \frame{

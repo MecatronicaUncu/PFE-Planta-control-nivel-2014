@@ -61,7 +61,41 @@
 %   \end{frame}
 % }
 
+%Simbolo del euro
+\usepackage{eurosym}
 
+%Cajitas bonitas
+\usepackage[most]{tcolorbox}
+\newtcolorbox{ukblock}{
+beamer,
+enhanced,
+overlay={\node at (frame.north west) 
+{\includegraphics[width=10mm]{Sections/1-Introduccion/images/uk.png}};}
+}
+\newtcolorbox{itblock}{
+beamer,
+enhanced,
+overlay={\node at (frame.north west) 
+{\includegraphics[width=10mm]{Sections/1-Introduccion/images/it.png}};}
+}
+\newtcolorbox{techintblock}{
+beamer,
+enhanced,
+overlay={\node at (frame.north west) 
+{\includegraphics[height=8mm]{Sections/1-Introduccion/images/techint.png}};}
+}
+\newtcolorbox{fingblock}{
+beamer,
+enhanced,
+overlay={\node at (frame.north west) 
+{\includegraphics[width=8mm]{Sections/1-Introduccion/images/fing.pdf}};}
+}
+\newtcolorbox{puglesiblock}{
+beamer,
+enhanced,
+overlay={\node at (frame.north west) 
+{\includegraphics[height=8mm]{Sections/1-Introduccion/images/Puglesi.png}};}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{frontPage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
