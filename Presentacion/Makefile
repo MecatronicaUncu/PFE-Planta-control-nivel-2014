@@ -22,3 +22,6 @@ clean	:
 	-rm -f $(SRC:%.tex=%.toc) $(SRC:%.tex=%.xdy) $(SRC:%.tex=%.acn) $(SRC:%.tex=%.backup) $(SRC:%.tex=%.pdf)
 	-rm -f $(SRC:%.tex=%.acr) $(SRC:%.tex=%.alg) $(SRC:%.tex=%.bbl) $(SRC:%.tex=%.blg) $(SRC:%.tex=%.pdf)
 	-rm -f $(SRC:%.tex=%.nav) $(SRC:%.tex=%.snm)
+	-rm -f Sections/2-DisenoEnsamblado/2-DisenoEnsamblado.aux
+	-rm -f Sections/1-Introduccion/1-Introduccion.aux
+	
