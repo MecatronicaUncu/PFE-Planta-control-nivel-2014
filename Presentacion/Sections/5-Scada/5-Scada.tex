@@ -5,210 +5,179 @@
 	}
 
 \subsection*{Intro Scada}
-% Una subsection* crea un nuevo "grupo de puntos"
 
 \frame{
-	\frametitle{Introducción Scada}
-
-	\begin{center}
-		\textbf{Definición}
-
-		\vspace{0.25cm}
-
-		\missingfigure[figwidth=6cm]{Figura completa}
-	\end{center}
-
+	\frametitle{Introducción SCADA}
+	\textbf{PLC}:Realiza automáticamente las tareas de control 
+	    pre-programado sobre un proceso.\\
+	\textbf{Problema}:No presenta una manera sencilla de
 	\begin{columns}
-		\begin{column}{0.5\textwidth}
-			\begin{itemize}
-				\item {\color{newcolor} Texto en columna 1}:
-				\begin{itemize}
-					\item item 1
-					\item item 2
-				\end{itemize}
-				\item {\color{newcolor} Más texto}
-			\end{itemize}
-		\end{column}
-
-		\begin{column}{0.5\textwidth}
-			\begin{itemize}
-				\item {\color{softBlue!70!Black} Texto:}
-					en otra columna
-				\item {\color{softOrange!70!Black} Más texto:}
-					en otra columna
-			\end{itemize}
-
-		\end{column}
+	 \begin{column}{0.3\textwidth}
+	 \begin{itemize}
+	   \item Supervisar
+	   \item Adaptar
+	 \end{itemize}
+	 \end{column}
+	 \begin{column}{0.7\textwidth}
+	  El comportamiento del sistema.
+	 \end{column}
+	\end{columns}
+	
+	\begin{columns}
+	\begin{column}{0.5\textwidth}
+	  \textbf{Solución}:\\
+	  \textbf{SCADA}: Supervisory Control And Data Adquisition
+	 \end{column}
+	 \begin{column}{0.5\textwidth}
+	  \begin{figure}[ht!]
+	    \centering
+	    \includegraphics[width=\textwidth]
+	    {../Informe/Cap5-SCADA/images/perspectiva.jpeg}
+	\end{figure}
+	 \end{column}
 	\end{columns}
 }
 
 \subsection*{Estructura PCIM}
 \frame{
-	\frametitle{Estructura PCIM}
-	\begin{columns}
-		\begin{column}{0.4\textwidth}
-			\begin{enumerate}
-				\item Una
-				\begin{itemize}
-					\item \textbf{Larga}
-					\item larga
-				\end{itemize}
-				\item Lista
-			\end{enumerate}
-
-			\begin{align*}
-				\mathrm{una} \,e( \textbf{cuacion})
-			\end{align*}
-		\end{column}
-
-		\begin{column}{0.6\textwidth}
-			\begin{center}
-				\missingfigure[figwidth=4.5cm]{}
-			\end{center}
-
-			\begin{center}
-				\footnotesize
-				\textbf{\textit{Cita bibliográfica}}
-
-				[Escrita por alguien \textit{et al.} 2008]
-			\end{center}
-		\end{column}
+	\frametitle{P-CIM - AFCON}
+	\begin{columns}[T]
+	  \begin{column}{0.3\textwidth}
+	    \begin{figure}
+	      \centering
+	      \includegraphics[width=\textwidth]
+	      {Sections/5-Scada/images/afcon.pdf}
+	    \end{figure}
+	      \footnotesize
+	      Entorno de desarrollo y ejecución de aplicaciones SCADA.
+	  \end{column}	 
+	  \begin{column}{0.6\textwidth}
+	    Su estructura se compone de 3 capas:
+	    \begin{itemize}
+	     \item Comunicación:
+	     \item Procesamiento de Datos:
+	     \item Aplicaciones: 
+	    \end{itemize}
+	  \begin{figure}[ht!]
+	  \centering
+		  \includegraphics[width=\textwidth]
+		  {../Informe/Cap5-SCADA/images/estructura.jpeg}
+	  \end{figure}
+	  \end{column}
 
 	\end{columns}
 }
 
 \frame{
-	\frametitle{Capa 1 de 3}
+	\frametitle{Capa de Comunicación}
 	\begin{columns}
-		\begin{column}{0.4\textwidth}
-			\begin{enumerate}
-				\item Una
-				\begin{itemize}
-					\item \textbf{Larga}
-					\item larga
-				\end{itemize}
-				\item Lista
-			\end{enumerate}
+	 \begin{column}{0.4\textwidth}
+	    \textbf{Modbus}:\begin{itemize}
+	                       \item Protocolo de Facto en la industria.
+	                       \item Gran disponibilidad.
+	                       \item Libre desde 2004.
+	                      \end{itemize}
 
-			\begin{align*}
-				\mathrm{una} \,e( \textbf{cuacion})
-			\end{align*}
-		\end{column}
+	  \end{column}
+	  \begin{column}{0.6\textwidth}
+	    \begin{figure}
+	     \includegraphics[width=\textwidth]
+	      {Sections/5-Scada/images/modbus_logo.png}
+	    \end{figure}
+	  \end{column}
+	\end{columns}
 
-		\begin{column}{0.6\textwidth}
-			\begin{center}
-				\missingfigure[figwidth=4.5cm]{}
-			\end{center}
-
-			\begin{center}
-				\footnotesize
-				\textbf{\textit{Cita bibliográfica}}
-
-				[Escrita por alguien \textit{et al.} 2008]
-			\end{center}
-		\end{column}
-
+	\vspace{1cm}
+	Para la implementación de la capa de comunicación en P-CIM:
+	\begin{columns}[T]
+	  \begin{column}{0.3\textwidth}
+	    \textbf{Instalación}
+	    \begin{figure}
+	     \includegraphics[width=\textwidth]
+	      {../Informe/Cap5-SCADA/images/installDriver.jpeg}
+	    \end{figure}
+	  \end{column}
+	  \begin{column}{0.3\textwidth}
+	   \textbf{Configuración}
+	   \begin{figure}
+	    \includegraphics[width=\textwidth]
+	      {../Informe/Cap5-SCADA/images/commSetup.jpeg}
+	   \end{figure}
+	  \end{column}
+	  \begin{column}{0.3\textwidth}
+	   \textbf{Obtener Información}
+	  \begin{figure}
+	   \includegraphics[width=0.8\textwidth]
+	    {../Informe/Cap5-SCADA/images/dataScope.jpeg}
+	  \end{figure}
+	 \end{column}
 	\end{columns}
 }
 
 \frame{
-	\frametitle{Capa 2 de 3}
-	\begin{columns}
-		\begin{column}{0.4\textwidth}
-			\begin{enumerate}
-				\item Una
-				\begin{itemize}
-					\item \textbf{Larga}
-					\item larga
-				\end{itemize}
-				\item Lista
-			\end{enumerate}
-
-			\begin{align*}
-				\mathrm{una} \,e( \textbf{cuacion})
-			\end{align*}
-		\end{column}
-
-		\begin{column}{0.6\textwidth}
-			\begin{center}
-				\missingfigure[figwidth=4.5cm]{}
-			\end{center}
-
-			\begin{center}
-				\footnotesize
-				\textbf{\textit{Cita bibliográfica}}
-
-				[Escrita por alguien \textit{et al.} 2008]
-			\end{center}
-		\end{column}
-
-	\end{columns}
+	\frametitle{Capa de Procesamiento}
+	\textbf{Base de Datos}: Encargada de recuperar, almacenar y procesar la 
+información de tiempo real que recibe desde la capa de comunicación
+	\input{Sections/5-Scada/Diagrama.tex}
 }
 
 \frame{
-	\frametitle{Capa 3 de 3}
+	\frametitle{Capa de Aplicación}
+	Es la última capa del SCADA, antes de que la información llegue al 
+operario. 
+
 	\begin{columns}
-		\begin{column}{0.4\textwidth}
-			\begin{enumerate}
-				\item Una
-				\begin{itemize}
-					\item \textbf{Larga}
-					\item larga
-				\end{itemize}
-				\item Lista
-			\end{enumerate}
+	\begin{column}{0.4\textwidth}
+	\textbf{Requerimientos:}
+	\begin{itemize}
+	\item Reducir la complejidad de la supervisión del sistema. 
+	\item Actuar de manera remota sobre la planta y su controlador.
+	\end{itemize}
+	\end{column}
 
-			\begin{align*}
-				\mathrm{una} \,e( \textbf{cuacion})
-			\end{align*}
-		\end{column}
+	\begin{column}{0.6\textwidth}
+	\textbf{Diseño:}
+	\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=\textwidth]
+	{../Informe/Cap5-SCADA/images/hmiScada.jpeg}
+	\end{figure}
 
-		\begin{column}{0.6\textwidth}
-			\begin{center}
-				\missingfigure[figwidth=4.5cm]{}
-			\end{center}
-
-			\begin{center}
-				\footnotesize
-				\textbf{\textit{Cita bibliográfica}}
-
-				[Escrita por alguien \textit{et al.} 2008]
-			\end{center}
-		\end{column}
+	\end{column}
 
 	\end{columns}
 }
 
-\frame{
-	\frametitle{Slide de gracia}
-	\begin{columns}
-		\begin{column}{0.4\textwidth}
-			\begin{enumerate}
-				\item Una
-				\begin{itemize}
-					\item \textbf{Larga}
-					\item larga
-				\end{itemize}
-				\item Lista
-			\end{enumerate}
-
-			\begin{align*}
-				\mathrm{una} \,e( \textbf{cuacion})
-			\end{align*}
-		\end{column}
-
-		\begin{column}{0.6\textwidth}
-			\begin{center}
-				\missingfigure[figwidth=4.5cm]{}
-			\end{center}
-
-			\begin{center}
-				\footnotesize
-				\textbf{\textit{Cita bibliográfica}}
-
-				[Escrita por alguien \textit{et al.} 2008]
-			\end{center}
-		\end{column}
-
-	\end{columns}
-}
+% \frame{
+% 	\frametitle{Slide de gracia}
+% 	\begin{columns}
+% 		\begin{column}{0.4\textwidth}
+% 			\begin{enumerate}
+% 				\item Una
+% 				\begin{itemize}
+% 					\item \textbf{Larga}
+% 					\item larga
+% 				\end{itemize}
+% 				\item Lista
+% 			\end{enumerate}
+% 
+% 			\begin{align*}
+% 				\mathrm{una} \,e( \textbf{cuacion})
+% 			\end{align*}
+% 		\end{column}
+% 
+% 		\begin{column}{0.6\textwidth}
+% 			\begin{center}
+% 				\missingfigure[figwidth=4.5cm]{}
+% 			\end{center}
+% 
+% 			\begin{center}
+% 				\footnotesize
+% 				\textbf{\textit{Cita bibliográfica}}
+% 
+% 				[Escrita por alguien \textit{et al.} 2008]
+% 			\end{center}
+% 		\end{column}
+% 
+% 	\end{columns}
+% }
