@@ -208,7 +208,13 @@ $15\,psi$)
 		
 		Idem, a $\Delta p$ variable
 		
-		\begin{figure}[ht]
+		\begin{align*}
+	 q_e &= \dfrac{1}{\sqrt{1-r+\dfrac{r}{{q_i}^2}}}
+	\end{align*}
+	
+			\vspace{-.6cm}
+	
+	\begin{figure}[ht]
   \centering
   \resizebox {\columnwidth} {!} {
   \begin{tikzpicture}[scale=.07,domain=0:110]
@@ -233,10 +239,8 @@ $15\,psi$)
 % 	 \item Linealidad en la zona de trabajo
 % 	 \item Efecto del flujo estrangulado
 % 	\end{itemize}
-	\vspace{-.5cm}
-	\begin{align*}
-	 q_e &= \dfrac{1}{\sqrt{1-r+\dfrac{r}{{q_i}^2}}}
-	\end{align*}
+
+	
 
 
 	\end{column}
@@ -252,6 +256,8 @@ $15\,psi$)
 	
 	{\color{newcolor} Problema:} en convertidor I/P no hay \textbf{real 
 comparación} entre la consigna y la posición del vástago
+
+	\vspace{.5cm}
 
 	\begin{columns}
 	 \begin{column}{.35\textwidth}
@@ -271,34 +277,124 @@ comparación} entre la consigna y la posición del vástago
 }
 
 \subsection*{Instrumentación}
-\frame{
-	\frametitle{Placa Orificio}
-	\begin{columns}
-		\begin{column}{0.4\textwidth}
-			\begin{enumerate}
-				\item Una
-				\begin{itemize}
-					\item \textbf{Larga}
-					\item larga
-				\end{itemize}
-				\item Lista
-			\end{enumerate}
+\frame{ 
+	\frametitle{Instrumentación}
+	
+	Conocer \textbf{variables de interés} de la 
+planta:
+	
+	\begin{itemize}
+	 \item Nivel de los tanques $\Rightarrow$ DP cell
+	 \item Caudal en la tubería de llenado $\Rightarrow$ Placa orificio
+	 \item Presión en las tuberías $\Rightarrow$ Manómetros
+	\end{itemize}
+	
+	\vspace{1cm}
 
-			\begin{align*}
-				\mathrm{una} \,e( \textbf{cuacion})
-			\end{align*}
+	\begin{columns}
+	 \begin{column}{.33\textwidth}
+		\centering
+	  	  \includegraphics[height=.7\textwidth]
+{Sections/2-DisenoEnsamblado/Images/FE-FTpyid.pdf}
+
+	\footnotesize
+	Placa orificio
+	
+	 \end{column}
+	 \begin{column}{.33\textwidth}
+		\centering
+	  	  \includegraphics[height=.6\textwidth]
+{Sections/2-DisenoEnsamblado/Images/PIpyid.pdf}
+	
+	\footnotesize
+	Manómetros
+	 \end{column}
+	 \begin{column}{.33\textwidth}
+	 \centering
+	 \includegraphics[height=.7\textwidth]
+{Sections/2-DisenoEnsamblado/Images/DPpyid.pdf}
+
+	\footnotesize
+	DP cells
+	 \end{column}
+	\end{columns}
+
+}
+
+\frame{
+	\frametitle{Manómetros}
+	
+	\textbf{Manómetro de tubo de Bourdón}
+	
+		\begin{itemize}
+	  \item Valor de presión {\color{newcolor} instantánea}
+	  \item Baja precisión
+	  \item Permiten ecualizar la planta
+	 \end{itemize}
+	 \vspace{-.25cm}
+	\begin{columns}[b]
+	 \begin{column}{.5\textwidth}
+	 \begin{center}
+	  \includegraphics[height=.66\textwidth]
+{Sections/2-DisenoEnsamblado/Images/manometro2.JPG}
+
+\footnotesize
+
+	Manómetro tubería de vaciado
+
+	 \end{center}
+	 \end{column}
+	 \begin{column}{.5\textwidth}
+	 
+	 \begin{center}
+	  
+\includegraphics[height=.66\textwidth]
+{Sections/2-DisenoEnsamblado/Images/manomBourdon.png}
+
+\footnotesize
+
+	Esquema de funcionamiento
+	 \end{center}
+
+	 \end{column}
+	\end{columns}
+
+}
+
+\frame{
+	\frametitle{DP Cell - celda de presión diferencial}
+	
+	Mide la \textbf{diferencia de presión} entre dos puntos
+	
+	\begin{columns}[t]
+		\begin{column}{0.6\textwidth}
+		\begin{center}
+			 \includegraphics[width=\textwidth]
+{Sections/2-DisenoEnsamblado/Images/dpcell2.JPG}
+
+		\footnotesize
+
+				Detalle tomas
+			\end{center}
+			\vspace{-.25cm}
+			\begin{itemize}
+			 \item Rango $0$ - $10000\,mmCa$
+			 \item Output $4$ -$20\,mA$
+			\end{itemize}
+			
+			
 		\end{column}
 
-		\begin{column}{0.6\textwidth}
+		\begin{column}{0.4\textwidth}
 			\begin{center}
-				\missingfigure[figwidth=4.5cm]{}
+				\includegraphics[width=.8\textwidth]
+{Sections/2-DisenoEnsamblado/Images/dpcell1.JPG}
 			\end{center}
 
 			\begin{center}
 				\footnotesize
-				\textbf{\textit{Cita bibliográfica}}
 
-				[Escrita por alguien \textit{et al.} 2008]
+				DP Cell de caudal
 			\end{center}
 		\end{column}
 
@@ -306,34 +402,29 @@ comparación} entre la consigna y la posición del vástago
 }
 
 \frame{
-	\frametitle{DP Cells}
-	\textbf{Idea:} ...
-	\vspace{0.25cm}
+	\frametitle{Placa orificio}
+	
 	\begin{center}
+	  \includegraphics[width=.7\textwidth]
+{Sections/2-DisenoEnsamblado/Images/placaOrif.png}
 
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		Donec viverra cursus pellentesque. In et mattis augue.
-		Dorbi ut velit a ante ultrices ornare in id nisl.
-
-		\vspace{0.5cm}
-
-		Pellentesque sollicitudin bibendum leo lobortis sagittis.
-		Fusce eu purus vel mauris vestibulum mattis.
+	\footnotesize
+		Corte longitudinal placa orificio - tubería
 	\end{center}
-}
-\frame{
-	\frametitle{Manómetros}
-	\textbf{Idea:} ...
-	\vspace{0.25cm}
+
+	
+	Planteando Bernoulli...
+	\vspace{-.5cm}
 	\begin{center}
+	  \begin{align*}
+	  v_2^2 - v_0^2 &= 2\,g\,h_p 
+	  \\
+	    Q = \dfrac{C_v \, A_2}{\sqrt{1-\beta^4}}\, \sqrt{2 \, g \, 
+h_p} \quad &\Rightarrow \quad Q \approx K\,\sqrt{h_p}
+	  \end{align*}
+	  \end{center}
+	  
+	  La constante $K$ se encuentra \textbf{experimentalmente}
+	  
 
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		Donec viverra cursus pellentesque. In et mattis augue.
-		Dorbi ut velit a ante ultrices ornare in id nisl.
-
-		\vspace{0.5cm}
-
-		Pellentesque sollicitudin bibendum leo lobortis sagittis.
-		Fusce eu purus vel mauris vestibulum mattis.
-	\end{center}
 }
