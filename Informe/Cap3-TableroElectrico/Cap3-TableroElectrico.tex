@@ -17,7 +17,7 @@ Por simplicidad, se dividirá el análisis del tablero en dos secciones:
  \item \textbf{Señal:} corresponde a la instalación y el cableado
  de los elementos electrónicos cuyo objetivo es controlar la planta.
  Podemos citar: \gls{plc}, módulos inalámbricos,
- sensores de presión y caudal, actuadores (válvula electroneumática).
+ transmisores de señal de presión y caudal, actuadores (válvula electroneumática).
 \end{itemize}
 
 \section{Potencia}
@@ -89,7 +89,7 @@ si el relevo térmico no acusa sobrecorriente.
 
 \subsection{Fuente de alimentación}
 \label{subsec:fuenteAlim}
-Los circuitos lógicos de la planta (\gls{plc}, sensores) funcionan con una
+Los circuitos lógicos de la planta (\gls{plc}, transmisores de señal) funcionan con una
 tensión de $24\,V$ de corriente continua.
 Se optó por utilizar una fuente de alimentación industrial para energizar estos
 circuitos lógicos.
@@ -147,8 +147,9 @@ estado de las salidas \cite{bib:libroAutomat1}.
 
 Un \gls{plc} está conformado por los siguientes elementos:
 \begin{itemize}
- \item \textbf{Procesador:} en función de las señales de los sensores
-(entradas) y de la información almacenada, genera señales hacia los actuadores
+ \item \textbf{Procesador:} en función de los valores de los transmisores de
+señal (entradas) y de la información almacenada, genera señales hacia los
+actuadores
 (salidas).
 El procesador sigue un algoritmo, denominado programa de aplicación,
 que indica la secuencia de operaciones a realizar.
@@ -170,7 +171,7 @@ Además, se muestra el esquema de conexionado del \gls{plc} en el folio
 \item \textbf{I/O analógicas:} mediante una entrada
 analógica, se pueden leer
 señales de corriente ($4-20\,mA$) o tensión ($0-10\,V$) provenientes de los
-sensores.
+transmisores de señal.
 De la misma manera, las salidas analógicas permiten enviar consignas
 de tensión o corriente a los actuadores.
 En nuestro proyecto, las entradas analógicas \verb|IW0.1.0| e \verb|IW0.1.1|

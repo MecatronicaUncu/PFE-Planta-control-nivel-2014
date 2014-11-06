@@ -196,14 +196,14 @@ PI: Pressure Indicator
 \subsubsection{Alarmas} 
 \label{subsec:alarmas}
 
-La gestión de alarmas se realiza a través del sensor de nivel presente en la
+La gestión de alarmas se realiza a través del transmisor de señal de nivel presente en la
 planta,
 tomando la información del mismo para detener el sistema en caso de pasar
 los límites normales de trabajo.
-Este proceso debería realizarse utilizando sensores separados (redundancia).
-No obstante, debido al costo de incluir sensores suplementarios,
+Este proceso debería realizarse utilizando transmisores de señal separados (redundancia).
+No obstante, debido al costo de incluir transmisores de señal suplementarios,
 se decidió utilizar
-directamente el sensor de nivel presente.
+directamente el transmisor de señal de nivel presente.
 
 En la Tab. \ref{tab:alarmas} se presenta la descripción de cada símbolo de
 alarma.
@@ -401,7 +401,7 @@ Mediante la válvula manual \verb|VDT| puede habilitarse el tiempo muerto.
 
 El objetivo del tiempo muerto es alejar la acción de control del tanque
 controlado.
-El sensor de nivel tardará un tiempo adicional $t_d$ en observar los cambios
+El transmisor de señal de nivel tardará un tiempo adicional $t_d$ en observar los cambios
 que se producen en la válvula electroneumática \cite{bib:ApuntesPuglesiTema2}.
 La función de transferencia de la planta cambiará notablemente:
 \begin{itemize}
@@ -1070,7 +1070,7 @@ presentes en el proyecto.
 \subsection{DP Cell}
 \label{subsec:DPCell}
 
-Se denomina \textit{DP Cell}, o celda de presión diferencial, a un sensor
+Se denomina \textit{DP Cell}, o celda de presión diferencial, a un transmisor de señal
 que mide la diferencia de presión entre dos puntos.
 En nuestro caso, la celda entrega una corriente proporcional a la diferencia de
 presión medida, en el rango de $4-20\,mA$.
