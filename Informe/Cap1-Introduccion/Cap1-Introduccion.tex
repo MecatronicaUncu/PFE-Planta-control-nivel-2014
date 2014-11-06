@@ -89,10 +89,10 @@ disponibles en el Laboratorio de Control Automático:
   ruedas. En él se colocarán todos los elementos de la planta.
   Ver Sec. \ref{sec:EstructuraSoporte}.
 
-  \item \textbf{Cañerías y accesorios}: serán utilizados para realizar el
+  \item \textbf{Tuberías y accesorios}: serán utilizados para realizar el
   circuito hidráulico de la planta. Ver Sec. \ref{sec:Canerias}.
 
-  \item \textbf{Tanques:} se trata de dos caños cloacales sellados en sus
+  \item \textbf{Tanques:} se trata de dos tubos cloacales sellados en sus
   extremos, de $200\,mm$ de diámetro. Ver Sec. \ref{sec:Tanques}.
 
   \item \textbf{Electrobombas monofásicas (2):} impulsarán el fluido
@@ -110,7 +110,7 @@ disponibles en el Laboratorio de Control Automático:
 
   \item \textbf{Placa orificio:} permite medir el
   caudal en una tubería midiendo la diferencia de presión generada por una 
-  reducción del diámetro de la cañería. Ver Sec. \ref{subsec:PlacaOrificio}.
+  reducción del diámetro de la tubería. Ver Sec. \ref{subsec:PlacaOrificio}.
 
   \item \textbf{DP cells (2):} sensores de presión
   diferencial Yokogawa, modelo \verb|EJA 110 A|.
@@ -161,18 +161,18 @@ modelo de planta de control de nivel:
  Cada bomba extraerá agua de un tanque y lo enviará al otro.
  \item En uno de ellos, el \textbf{tanque controlado}, se medirá el nivel
  mediante un DP cell.
- \item Sobre la \textbf{cañería de llenado} del tanque controlado, se
+ \item Sobre la \textbf{tubería de llenado} del tanque controlado, se
  colocará la válvula electroneumática y la placa orificio (junto
 con su correspondiente DP cell)\footnote{Si bien no es  requisito contar con
 una placa orificio para hacer  control de nivel,  poder medir el caudal en la
-cañería de llenado resulta  de  interés para  futuros trabajos  utilizando
+tubería de llenado resulta  de  interés para  futuros trabajos  utilizando
 Teoría de Cascadas.}.
  Por ende, puede controlarse con precisión el caudal de agua de llenado del
  tanque controlado (de ahí su nombre).
  \item En el segundo tanque, el \textbf{tanque de reserva} no se medirá
  el  nivel, sino que será estimado indirectamente mediante el nivel del tanque
  controlado.
- \item En la \textbf{cañería de vaciado} del tanque controlado se colocará una
+ \item En la \textbf{tubería de vaciado} del tanque controlado se colocará una
 válvula manual, que permitirá modificar el caudal de vaciado.
 \end{itemize}
 
@@ -180,9 +180,9 @@ válvula manual, que permitirá modificar el caudal de vaciado.
 Para poder recrear fenómenos que afectan los procesos industriales se agregarán
 los siguientes elementos a la planta:
 \begin{itemize}
-\item 20 metros de cañería adicional, que sirven como tiempo
+\item 20 metros de tubería adicional, que sirven como tiempo
 muerto.
-Se agregarán en paralelo de la cañería de llenado del tanque controlado.
+Se agregarán en paralelo de la tubería de llenado del tanque controlado.
 Se podrá habilitar el tiempo muerto mediante una válvula manual.
 
 \item Se realizará la conexión, mediante una válvula manual, de la salida de
@@ -217,12 +217,12 @@ Distinguimos tres donantes:
 las celdas de presión diferencial, las electrobombas y la válvula de control.
 Esta donación está especificada en detalle en la Tab.
 \ref{tab:donacionTechint}.
- \item \textbf{La Facultad de Ingeniería:} donó la estructura, la cañería, los
+ \item \textbf{La Facultad de Ingeniería:} donó la estructura, la tubería, los
 accesorios, las válvulas manuales, los manómetros, los elementos de ferretería,
 los elementos de electricidad (contactores, relés) y el módulo inalámbrico.
 El detalle de la donación puede observarse en la Tab. \ref{tab:donacionFing}.
 \item \textbf{El director de proyecto, Ing. Puglesi:} donó la placa orificio,
-necesaria para poder medir el caudal en la cañería de llenado.
+necesaria para poder medir el caudal en la tubería de llenado.
 El detalle de la donación puede observarse en la Tab.
 \ref{tab:donacionPuglesi}.
 \end{itemize}
@@ -313,7 +313,7 @@ puntos:
   \begin{enumerate}
    \item Preparación de la estructura
    \item Montaje de los elementos de la planta
-   \item Cañerías
+   \item Tuberías
    \item Cableado eléctrico de potencia
    \item Cableado de señal: PLC, válvula, DP cells, módulo inalámbrico.
    \item Pruebas de funcionamiento sencillas
