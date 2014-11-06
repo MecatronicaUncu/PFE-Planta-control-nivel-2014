@@ -3,8 +3,7 @@
 echo "Script para sustituir palabras en archivos .tex"
 echo -e "Escribir en el array sust las sustituciones correspondientes\n"
 
-sust=(caño tubo Caño Tubo cañería tubería Cañería Tubería cañerías tuberías Cañerías Tuberías cañeria Tubería
-Cañeria Tubería cañerias tuberías Cañerias Tuberías)
+sust=("computadora de control" "computadora supervisora")
 
 files=(Abstract/abstract.tex Agradecimientos/Agradecimientos.tex Anexos/Anexo1-PuestaEnMarcha.tex 
 Anexos/Anexo2-Operacion.tex Bibliografia/bibliografia.bib Cap1-Introduccion/Cap1-Introduccion.tex 

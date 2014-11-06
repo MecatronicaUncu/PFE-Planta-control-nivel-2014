@@ -125,7 +125,7 @@ señales de control a la válvula electroneumática.
 \item Activar los relés descriptos en la Sec.
 \ref{subsec:alimentacionMotores} para encender o apagar los motores de las
 bombas.
-\item Conectar la planta a una computadora de control (\gls{scada}), para poder
+\item Conectar la planta a una computadora supervisora (\gls{scada}), para poder
 monitorear su estado como así también recibir señales de control.
 \end{itemize}
 
@@ -187,7 +187,7 @@ Se pueden ver estas señales de control en el folio 4 del diagrama de tablero.
 controlador, como así también enviar comandos y recibir información de
 la planta durante la ejecución con el \gls{scada}.
 El \gls{plc} utilizado cuenta con un puerto de comunicaciones \verb|RS 485|.
-Se presentan dos opciones para la conexión con la computadora de control:
+Se presentan dos opciones para la conexión con la computadora supervisora:
 \begin{itemize}
  \item Mediante una conexión cableada:
  conectamos el puerto \verb|RS 485| a un puerto \verb|RS 232| de la computadora
@@ -200,7 +200,7 @@ utilizado.
 Además, se incluyen los diseños de PCB para replicar el circuito.
 
 No obstante, utilizar una conexión cableada impone un vínculo físico entre
-el \gls{plc} y la computadora de control (impidiendo que la planta sea móvil).
+el \gls{plc} y la computadora supervisora (impidiendo que la planta sea móvil).
 \item Mediante un módulo de comunicación inalámbrica:
 descripto en la Sec. \ref{subsec:inalambrico}.
 \end{itemize}
@@ -209,7 +209,7 @@ descripto en la Sec. \ref{subsec:inalambrico}.
 \subsection{Módulos inalámbricos}
 \label{subsec:inalambrico}
 
-Para comunicar la planta con la computadora de control, sin necesidad de
+Para comunicar la planta con la computadora supervisora, sin necesidad de
 utilizar un cable de par trenzado, se decidió utilizar un módulo inalámbrico
 \verb|ADC-200| de CTM Electrónica (ver Fig. \ref{fig:fotoModuloIn}).
 Se trata de un equipo de comunicaciones para realizar enlaces inalámbricos que
