@@ -20,7 +20,7 @@ pueden observarse todos los elementos que componen el proceso.
 Estos diagramas emplean símbolos para representar cada elemento y sus
 conexiones.
 Los símbolos están regidos por la norma
-\emph{Standard S5.1 Instrumentation Symbol Specification}.
+\emph{ISA 5.1}.
 
 El diagrama permite una rápida comprensión del proceso, y se denomina
 corrientemente \gls{pyid}.
@@ -31,7 +31,7 @@ denominación que utiliza la siguiente codificación:
 
 \begin{itemize}  
  \item \textbf{Primer letra:}
- designa la variable medida. Puede ser :
+ designa la variable medida o de interés. Puede ser, entre muchas otras:
  \begin{itemize}
   \item Presión
   \item Nivel
@@ -44,7 +44,7 @@ denominación que utiliza la siguiente codificación:
  Puede ser:
  \begin{itemize}
   \item Indicador
-  \item Almacenaje de datos
+  \item Registro de datos
   \item Controlador
   \item Transmisor
   \item Alarma
@@ -58,11 +58,13 @@ indica su ubicación:
 \begin{itemize}
  \item \textbf{Sin línea:} en el campo.
  \item \textbf{Continua:} en la sala de control.
- \item \textbf{Trazos:} fuera del alcance del operario.
+ \item \textbf{Trazos:} fuera del alcance del operario, por ejemplo, en tablero
+secundario o auxiliar.
 \end{itemize}
 
 Como su nombre lo indica, también están presente en el diagrama la descripción
-de las tuberías que forman el sistema (material y diámetros).
+de las tuberías que forman el sistema (material, diámetros y condiciones de
+operación, en términos de temperatura y presión).
 Cabe destacar que en esta instancia no es necesario especificar las
 longitudes y accesorios.
 Esta información forma parte de un diagrama que se debe realizar
@@ -75,7 +77,7 @@ También se diferencian en el diagrama la naturaleza de cada señal:
  \item \textbf{Señal hidráulica:} línea continua intersectada con líneas
 perpendiculares en forma de L.
  \item \textbf{Señal neumática:} linea continua intersectada por pequeñas
-líneas paralelas.
+líneas paralelas e inclinadas.
  \item \textbf{Señal eléctrica:} línea de trazos.
 \end{itemize}
 
@@ -196,14 +198,16 @@ PI: Pressure Indicator
 \subsubsection{Alarmas} 
 \label{subsec:alarmas}
 
-La gestión de alarmas se realiza a través del transmisor de señal de nivel presente en la
-planta,
+La gestión de alarmas se realiza a través del transmisor LT presente
+en la planta,
 tomando la información del mismo para detener el sistema en caso de pasar
 los límites normales de trabajo.
-Este proceso debería realizarse utilizando transmisores de señal separados (redundancia).
+Este proceso debería realizarse utilizando transmisores de señal
+discretos, tipo level switch, separados.
 No obstante, debido al costo de incluir transmisores de señal suplementarios,
 se decidió utilizar
-directamente el transmisor de señal de nivel presente.
+directamente el transmisor analógico de nivel y extraer de él
+los valores de disparo, ya sean de alarmas como de paros.
 
 En la Tab. \ref{tab:alarmas} se presenta la descripción de cada símbolo de
 alarma.
@@ -215,7 +219,7 @@ alarma.
 
 \begin{tabular}{*{2}{m{0.435\textwidth}}}
 \hline
-LAHH: Level Alarm High High
+LAHH: Level Alarm High High (paro por alto nivel)
   &\begin{center}
     %\rule{0.4\textwidth}{0.3\textwidth}
     \includegraphics[scale=.7]
@@ -228,19 +232,19 @@ LAH: Level Alarm High
     \includegraphics[scale=.7]
 	{Cap2-DisenoEnsamblado/images/lah.png}
   \end{center}\\
-\hline
-LALL: Level Alarm Low Low
-  &\begin{center}
-    %\rule{0.4\textwidth}{0.3\textwidth}
-    \includegraphics[scale=.7]
-	{Cap2-DisenoEnsamblado/images/lall.png}
-  \end{center}\\
-\hline
+  \hline
 LAL: Level Alarm Low
   &\begin{center}
     %\rule{0.4\textwidth}{0.3\textwidth}
     \includegraphics[scale=.7]
 	{Cap2-DisenoEnsamblado/images/lal.png}
+  \end{center}\\
+\hline
+LALL: Level Alarm Low Low (paro por bajo nivel)
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[scale=.7]
+	{Cap2-DisenoEnsamblado/images/lall.png}
   \end{center}\\
 \hline
 PLC: Simbolo de la sección del programador encargado
@@ -261,7 +265,7 @@ de la gestión de alarmas
 
 Dado que el objetivo principal del proyecto es que la planta sirva para fines
 educativos, se opta por utilizar una estructura móvil.
-De esta manera, la posición de la planta puede modificarse según se requiera.
+De esta manera, la ubicación de la planta puede modificarse según se requiera.
 
 La estructura, de caño estructural, está dotada de cuatro ruedas con frenos de
 seguridad, que permiten fijar la
@@ -287,7 +291,7 @@ Sobre ellas se colocaron los tanques.
 Además, sobre las barras se fijó una base de madera, donde se coloca la
 válvula electroneumática, las celdas de presión diferencial
 y las bombas.
-La manguera que corresponde al tiempo muerto se colocó bajo
+La tubería flexible que corresponde al tiempo muerto se colocó bajo
 las barras de refuerzo.
 En la parte superior de la planta se instaló una pequeña base de
 madera donde irá montado el receptor inalámbrico.
@@ -316,20 +320,21 @@ No obstante, el grupo de trabajo tuvo que barnizar las maderas.
 \section{Tuberías}
 \label{sec:Canerias}
 
-\subsection{Mangueras y Tubos}
+\subsection{Tuberías flexibles y rígidas}
 Luego de analizar el esquema \gls{pyid}, se observa que las tuberías deben
 formar un circuito cerrado (\emph{loop}), diferenciando
 claramente las tuberías de vaciado y llenado.
 Las conexiones fueron realizadas en su mayoría utilizando tubo de polipropileno
 de 3/4
 pulgadas (presión de servicio: $11.7\,kgf/cm^2$ a $20^\circ C$).
-En otros puntos del circuito, se optó por utilizar manguera de alta presión
-telada de 3/4 pulgadas (presión de servicio: $10\,kgf/cm^2$ a $20^\circ C$).
+En otros puntos del circuito, se optó por utilizar tubo flexible de alta presión
+telado de 3/4 pulgadas (presión de servicio: $10\,kgf/cm^2$ a $20^\circ C$).
 Las tuberías utilizadas son suficientes para las presiones de trabajo del
 proyecto, del orden de $1.2\,kgf/cm^2$.
 
-Habiendo montado los elementos sobre la planta (bombas, tanques, válvula
-electroneumática) se decidió la manera de realizar el conexionado.
+Habiendo montado los elementos sobre la planta (bombas, tanques, válvula globo
+con servoactuador de diafragma - resorte y electroposionador neumático) se
+decidió la manera de realizar el conexionado.
 El tubo rígido presenta la dificultad de no tener tolerancia, al momento de
 realizar uniones.
 Además, para realizar tuberías complejas con muchas curvas, es necesario
@@ -394,16 +399,18 @@ comprensión del circuito hidráulico (ver Fig. \ref{fig:canerias}).
 \subsection{Tiempo Muerto}
 \label{subsec:tiempoMuerto}
 Se colocó en la planta un circuito de tiempo muerto, que consta de 20 metros de
-manguera negra de 1/2 pulgada.
+tubo semi rígido de 1/2 pulgada.
 El tiempo muerto se coloca en paralelo de la tubería de llenado (ver
 \gls{pyid}).
 Mediante la válvula manual \verb|VDT| puede habilitarse el tiempo muerto.
 
 El objetivo del tiempo muerto es alejar la acción de control del tanque
 controlado.
-El transmisor de señal de nivel tardará un tiempo adicional $t_d$ en observar los cambios
-que se producen en la válvula electroneumática \cite{bib:ApuntesPuglesiTema2}.
-La función de transferencia de la planta cambiará notablemente:
+El transmisor de nivel tardará un tiempo adicional $t_d$ en observar los cambios
+que se producen en el actuador (válvula globo, con servoactuador de
+diafragma - resorte y electroposionador
+neumático) \cite{bib:ApuntesPuglesiTema2}.
+La función de transferencia de la planta cambia notablemente:
 \begin{itemize}
  \item Por un lado, el retraso en la respuesta debe ser tenido en cuenta
  \begin{align}
@@ -417,7 +424,8 @@ La función de transferencia de la planta cambiará notablemente:
 \end{itemize}
 En conclusión, el proceso a controlar es diferente comparado con proceso sin
 tiempo muerto.
-La inclusión de esta tubería adicional permite disponer de dos escenarios
+La inclusión de este tubo semi rígido adicional permite disponer de dos
+escenarios
 diferentes para realizar prácticas, con la necesidad de contar con
 controladores específicos para cada caso \cite{bib:ApuntesPuglesiTema2}.
 
@@ -437,7 +445,7 @@ colocó una válvula en serie con la tubería de retorno (ver
 Fig.\ref{fig:valvTanque}).
 Se trata de una
 válvula manual, tipo exclusa.
-Además, otra válvula manual de tipo exclusa se coloca entre la tubería de
+Además, otra válvula manual del mismo tipo se coloca entre la tubería de
 aspiración y
 la tubería de impulsión de la bomba \verb|B2| formando un \emph{by-pass} (ver
 Fig.\ref{fig:valvBomba}).
@@ -448,13 +456,12 @@ Al abrir la válvula, el rendimiento de la bomba decrece.
   tal como se describió en la Sec. \ref{subsec:tiempoMuerto}, esta válvula
 esférica plástica permite activar la tubería de tiempo muerto.
   Notar en el \gls{pyid} que la válvula está sobre la tubería de llenado.
-  Al cerrar la válvula, se fuerza el uso del tiempo muerto.
-  Al abrirla, nada impide que el fluido circule por las dos tuberías al mismo
-tiempo.
+  Cerrando la válvula se fuerza el uso del tiempo muerto. Pero al
+abrirla, nada impide que el fluido circule por las dos tuberías en paralelo.
   No obstante, la pérdida de carga del tiempo muerto es significativamente
 mayor que el de la tubería de llenado.
-  Por ello, se considera que al abrir la válvula  el fluido sólo circula
-por la tubería de llenado.
+  Por ello, se considera que el fluido circula únicamente por esta última, al
+abrir la válvula.
 
   \item \textbf{Perturbación \texttt{VMP}:}
   colocada de la misma manera que \verb|VM2|, pero sobre la bomba \verb|B1|.
@@ -498,12 +505,13 @@ sencillo.
 
 Además, en la base del tanque se colocó una segunda conexión de tanque de 3/4
 pulgada, que se utilizará para medir el nivel.
-Se conectan a esta tubería la celda de presión diferencial y una manguera
+Se conectan a esta tubería la celda de presión diferencial y un tubo
 flexible transparente.
-La manguera flexible, colocada en el lateral del tanque, permite obtener una
+El tubo flexible, colocado en el lateral del tanque, permite obtener una
 lectura visual directa del nivel.
 Por otro lado, la celda de presión diferencial es un elemento de adquisición
-que permite transformar un valor de presión (altura de la columna de agua) en
+que permite transformar un valor de presión (o su equivalente, altura de la
+columna de agua a peso específico constante) en
 una señal $4$-$20\,mA$.
 Se discutirá sobre estos elementos en la Sec. \ref{subsec:DPCell}.
 
@@ -580,10 +588,11 @@ punto de vapor.
 Para evitar problemas de cavitación, se especifica en el Anexo
 \ref{anexo:verificaciones} el valor de apertura preciso para cada válvula.
 
-\section{Válvula Electroneumática}
+\section{Válvula globo, con servoactuador de diafragma - resorte y
+electroposionador neumático}
 \label{sec:ValvulaNeumatica}
 
-En esta sección se hará énfasis en la válvula electroneumática.
+En esta sección se hará énfasis en la válvula de control.
 Es un elemento central en nuestra planta, ya que es la encargada de efectuar
 las acciones de control.
 
@@ -1070,7 +1079,8 @@ presentes en el proyecto.
 \subsection{DP Cell}
 \label{subsec:DPCell}
 
-Se denomina \textit{DP Cell}, o celda de presión diferencial, a un transmisor de señal
+Se denomina \textit{DP Cell}, o celda de presión diferencial, a un transductor
+asociado a un transmisor de señal
 que mide la diferencia de presión entre dos puntos.
 En nuestro caso, la celda entrega una corriente proporcional a la diferencia de
 presión medida, en el rango de $4-20\,mA$.
@@ -1097,7 +1107,7 @@ Rango de calibración & $0$ a $10000\,mmCa$\\
 \label{tab:caractDPcell}
 \end{table}
 
-Dos celdas serán utilizadas:
+Dos celdas son utilizadas:
 \begin{itemize}
  \item \textbf{Medición del nivel del tanque:} la entrada de alta presión de la
 celda
