@@ -619,7 +619,8 @@ las acciones de control.
 
 Una válvula permite variar el caudal en una tubería, dependiendo de la consigna
 que se le envíe.
-En las válvulas neumáticas, la consigna es un valor de presión de aire.
+En las válvulas neumáticas, la consigna es un valor de presión de aire sobre el
+servoactuador.
 En la Fig. \ref{fig:elementosValv} se muestra un ejemplo de válvula de control
 tipo globo, con actuador a diafragma inverso (aire para
 abrir)\footnote{Figuras extraídas de \cite{bib:controlValveHandbook}.}.
@@ -637,14 +638,14 @@ Como se observa en la Fig. \ref{fig:actuadorValv}, el actuador en una válvula
 neumática es el conjunto diafragma-muelle.
 
 Puede concluirse, a través del análisis de la válvula, que el caudal depende de
-la presión de aire en el diafragma.
+la presión de aire sobre el servoactuador.
 Generalmente, la presión oscila entre $3$ a $15\,psi$.
 Esta presión de aire generalmente se obtiene mediante un convertidor
 corriente-presión (I/P).
 El convertidor toma en entrada una señal de corriente proveniente del
 controlador
 ($4$ - $20\,mA$) y lo transforma en un valor de presión para alimentar el
-diafragma \cite{bib:ApuntesPuglesiValvulas}.
+servoactuador \cite{bib:ApuntesPuglesiValvulas}.
 
 % \subsubsection{Rangeabilidad}
 % Se denomina rangeabilidad a la razón entre el caudal máximo y el mínimo que
@@ -851,7 +852,7 @@ importantes de la válvula, consignada en su chapa de identificación.
 \end{table}
 
 \subsubsection{Electroposicionador}
-Se especificó que la presión de aire en el diafragma varía entre $3\,psi$
+Se especificó que la presión de aire en el servoactuador varía entre $3\,psi$
 (válvula cerrada) y $15\,psi$ (válvula abierta).
 No obstante, en un convertidor I/P no hay comparación entre
 la posición real del vástago y la señal de corriente.
