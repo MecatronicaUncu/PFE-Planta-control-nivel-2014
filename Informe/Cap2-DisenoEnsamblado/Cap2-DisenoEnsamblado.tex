@@ -731,7 +731,7 @@ válvulas quedan afectadas por el proceso en el que se utilizan.
 
 \begin{figure}[t]
  \centering
- \includegraphics[scale=1.5]{Cap2-DisenoEnsamblado/images/Inherente.png}
+ \includegraphics[scale=1.43]{Cap2-DisenoEnsamblado/images/Inherente.png}
  \caption{Características inherentes según el tipo de obturador.}
  \label{fig:caractInherente}
 \end{figure}
@@ -792,10 +792,12 @@ se observa que al disminuir $r$ (pérdida de carga elevada) una válvula
 isoporcentual tiende a comportarse como una lineal,
 y una válvula lineal se comporta como de apertura rápida.
 
+
 Dado que las válvulas de apertura rápida no son utilizadas en el control
 regulatorio, se escoge entre una válvula isoporcentual o lineal dependiendo de
 la pérdida de carga de la planta, con el objetivo de tener una característica
 efectiva ``lo más lineal posible''.
+
 
 \subsection{Válvula utilizada en el proyecto}
 
@@ -943,7 +945,7 @@ en la zona de trabajo.
 
 \begin{figure}[ht]
   \centering
-  \begin{tikzpicture}[scale= 0.08, domain=0:110]
+  \begin{tikzpicture}[scale= 0.087, domain=0:110]
     
     \draw[ultra thin,color=gray,step=10cm] (100,40) grid (0.1,0.1);
     \draw[thick,->] (-0.2,0) -- (110,0) node[right,draw=none] {$l\,[\%]$};
@@ -965,7 +967,7 @@ en la zona de trabajo.
 
 \begin{figure}[ht]
   \centering
-  \begin{tikzpicture}[scale= 0.08, domain=0:110]
+  \begin{tikzpicture}[scale= 0.087, domain=0:110]
     
     \draw[ultra thin,color=gray,step=10cm] (100,40) grid (0.1,0.1);
     \draw[thick,->] (-0.2,0) -- (110,0) node[right,draw=none] {$l\,[\%]$};
@@ -1035,8 +1037,26 @@ medir y controlar estas variables de interés.
 \label{subsec:Manometros}
 
 \begin{figure}[t]
+        \centering
+        \begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]
+	{Cap2-DisenoEnsamblado/images/manometro1.JPG}
+	%  TODO, cambiar foto por el nuevo
+	\caption{Tubería de llenado, \texttt{PI 1}.}
+        \end{subfigure}%
+        \hfill
+        \begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]
+	{Cap2-DisenoEnsamblado/images/manometro2.JPG}
+	\caption{Tubería de vaciado, \texttt{PI 2}.}
+        \end{subfigure}
+        \caption{Manómetros.}
+        \label{fig:manometro}
+\end{figure}
+
+\begin{figure}[t]
  \centering
-\includegraphics[width=.55\textwidth]
+\includegraphics[width=.59\textwidth]
 {Cap2-DisenoEnsamblado/images/manomBourdon.png}
  \caption{Manómetro de Bourdon, extraído de \cite{bib:ApuntesPuglesiPlacaOrif}}
  \label{fig:manometroBourdon}
@@ -1051,6 +1071,8 @@ del \emph{tubo de Bourdon}, reflejado en la aguja indicadora.
 El manómetro de Bourdon permite obtener una medición visual de la
 presión relativa, del punto donde se encuentra instalado.
 
+
+
 Durante el montaje, se observó que el manómetro de la tubería de vaciado
 no entregaba una medición definida, sino que oscilaba alrededor de un
 valor medio (imposibilitando la lectura directa).
@@ -1062,7 +1084,7 @@ y el manómetro refleja el valor medio de la presión.
 Las especificaciones de los manómetros se muestran en la Tab.
 \ref{tab:EspManoms}.
 
-\begin{table}[ht]
+\begin{table}[h]
 \renewcommand{\arraystretch}{1.3}
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1083,23 +1105,7 @@ Escala & $0.5\,bar/div$ ($2\,psi/div$) & $0.02\,kgf/cm^2/div$
 En la Fig. \ref{fig:manometro} se observan los dos manómetros
 presentes en el proyecto.
 
-\begin{figure}[t]
-        \centering
-        \begin{subfigure}[b]{0.48\textwidth}
-\includegraphics[width=\textwidth]
-	{Cap2-DisenoEnsamblado/images/manometro1.JPG}
-	%  TODO, cambiar foto por el nuevo
-	\caption{Tubería de llenado, \texttt{PI 1}.}
-        \end{subfigure}%
-        \hfill
-        \begin{subfigure}[b]{0.48\textwidth}
-\includegraphics[width=\textwidth]
-	{Cap2-DisenoEnsamblado/images/manometro2.JPG}
-	\caption{Tubería de vaciado, \texttt{PI 2}.}
-        \end{subfigure}
-        \caption{Manómetros.}
-        \label{fig:manometro}
-\end{figure}
+
 
 \subsection{DP Cell}
 \label{subsec:DPCell}
@@ -1207,7 +1213,12 @@ utilizar una placa orificio.
 En la Fig. \ref{fig:placaOrificio} se muestra un
 corte longitudinal de la misma.
 Se observa que la placa orificio provoca una disminución del diámetro
-de la tubería, con la consiguiente aceleración del fluido.
+de la tubería, con la consiguiente aceleración del fluido y disminución de la
+presión.
+Puede medirse una diferencia de presión entre un punto aguas arriba y un punto
+próximo a la placa orificio, aguas abajo.
+Se describe a continuación la expresión para obtener el caudal que circula en
+la tubería, a partir de la medición de la presión diferencial.
 
 Escribiendo la ecuación de Bernoulli en 0 y 2, considerando que la velocidad en
 2 es aproximadamente igual a la velocidad en 1,
@@ -1233,6 +1244,7 @@ altura de la columna fluida
 La ecuación de continuidad, para fluidos incompresibles se escribe
 \begin{align}
  A_2\,v_2 &= A_0\,v_0 \\
+% D_2^2\,v_2 &= D_0^2\,v_0\\
  v_2 &= \dfrac{D_0^2}{D_2^2} v_0
  \label{eq:velRef}
 \end{align}
@@ -1322,7 +1334,7 @@ Se marcó en el tanque controlado una altura $l=0.5\,m$, teniendo $D=0.2\,m$.
 Luego, se procedió a medir el tiempo de llenado, consignando los resultados en
 la Tab. \ref{tab:tiempoK}.
 
-\begin{table}[h]
+\begin{table}[ht]
 \renewcommand{\arraystretch}{1.3}
   \centering
   \bgroup
@@ -1364,9 +1376,9 @@ Pueden observarse claramente la estructura, la distribución de los elementos,
 las tuberías de llenado y vaciado, las mangueras de conexión, el tiempo muerto y
 los tanques.
 
-\begin{figure}[h!]
+\begin{figure}[ht]
 	\centering
-\includegraphics[width=.85\textwidth]{Cap2-DisenoEnsamblado/images/IMG_5123.JPG}
+\includegraphics[width=.94\textwidth]{Cap2-DisenoEnsamblado/images/IMG_5123.JPG}
 	\caption{Planta ensamblada.}
 	\label{fig:PlantaEnsamblada}
 \end{figure}
