@@ -671,6 +671,20 @@ Podemos distinguir tres tipos:
   donde $q$ es el caudal a pérdida de carga constante, $k$ es una constante y
 $l$ es la carrera del vástago.
 
+Se denomina rangeabilidad a la relación entre el caudal máximo y el caudal
+mínimo que una válvula puede controlar ($q_{max}$ y $q_{min}$
+respectivamente):
+\begin{align}
+ R &= \dfrac{q_{max}}{q_{min}}
+ \label{eq:rangeabilidad}
+\end{align}
+La rangabilidad no es infinita:
+aunque matemáticamente $q_{min}$ puede ser cero, según
+\eqref{eq:inherenteLineal}, en la práctica la curva de caudal inherente no está
+definida para valores de carrera próximos a cero.
+Para una válvula lineal, $15 \leq R \leq 30$, debido a las dificultades
+de fabricación \cite{bib:ApuntesPuglesiValvulas}.
+
   \item \textbf{Obturador Isoporcentual:}
   un incremento de carrera produce un cambio de caudal proporcional al caudal
 que circulaba antes de la variación.
@@ -688,10 +702,21 @@ que circulaba antes de la variación.
         l &= 0 \Rightarrow q = q_{min} = b\\
         l &= 1 \Rightarrow q = q_{max} = q_{min} \:e^a
     \end{align}
-    podemos escribir la expresión \eqref{eq:InherenteIsoporcentual1} como
+    podemos escribir
     \begin{align}
       \dfrac{q_{max}}{q_{min}} = e^a
     \end{align}
+    Podemos reescribir la expresión
+\eqref{eq:InherenteIsoporcentual1} como
+\begin{align}
+ q &= q_{min}  \left( {\dfrac{q_{max}}{q_{min}}} \right)^{l}
+\end{align}
+    y finalmente, basándonos en la expresión de rangeabilidad
+\eqref{eq:rangeabilidad}, podemos expresar
+    \begin{align}
+     q &= \dfrac{1}{R}\, R^l \, q_{max}
+    \end{align}
+Para las válvulas isoporcentuales, $30 \leq R \leq 50$.
   \item \textbf{Obturador de apertura rápida:} permiten una brusca variación de
 caudal con carreras pequeñas.
   No son utilizadas en el control regulatorio.
