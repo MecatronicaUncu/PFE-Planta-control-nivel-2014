@@ -290,7 +290,7 @@ La estructura presenta en su sección media barras de refuerzo.
 Sobre ellas se colocaron los tanques.
 Además, sobre las barras se fijó una base de madera, donde se coloca la
 válvula electroneumática, las celdas de presión diferencial
-y las bombas.
+y las electrobombas.
 La tubería flexible que corresponde al tiempo muerto se colocó bajo
 las barras de refuerzo.
 En la parte superior de la planta se instaló una pequeña base de
@@ -332,7 +332,8 @@ telado de 3/4 pulgadas (presión de servicio: $10\,kgf/cm^2$ a $20^\circ C$).
 Las tuberías utilizadas son suficientes para las presiones de trabajo del
 proyecto, del orden de $1.2\,kgf/cm^2$.
 
-Habiendo montado los elementos sobre la planta (bombas, tanques, válvula globo
+Habiendo montado los elementos sobre la planta (electrobombas, tanques, válvula
+globo
 con servoactuador de diafragma - resorte y electroposionador neumático) se
 decidió la manera de realizar el conexionado.
 El tubo rígido presenta la dificultad de no tener tolerancia, al momento de
@@ -524,11 +525,11 @@ perturbaciones en la medición de presión.
 Cabe destacar que la inclusión del niple limita el nivel mínimo de la planta a
 un 15\% del nivel total, aproximadamente.
 
-\section{Bombas}
+\section{Electrobombas}
 \label{sec:Bombas}
 
-Se utilizaron en el proyecto dos bombas centrífugas (\verb|B1| y \verb|B2| en
-el \gls{pyid}), cuya función es
+Se utilizaron en el proyecto dos electrobombas centrífugas (\verb|B1| y
+\verb|B2| en el \gls{pyid}), cuya función es
 mantener en movimiento el agua en el sistema.
 No se realiza ninguna acción de control sobre las
 mismas, por lo que funcionarán de manera continua durante la operación de la
@@ -541,7 +542,7 @@ medio de la fuerza centrífuga que imparten los álabes del rodete de la bomba.
 Este tipo de bomba se caracteriza por entregar una presión elevada y un caudal
 relativamente bajo \cite{bib:Mataix}.
 
-Las especificaciones de las bombas utilizadas se presentan en la Tab.
+Las especificaciones de las electrobombas utilizadas se presentan en la Tab.
 \ref{tab:caractBombas}.
 
 \begin{table}[ht]
@@ -1189,8 +1190,8 @@ presión malladas, de $6\,mm$. Se muestran en la Fig. \ref{fig:dpcelfig}.
 Debemos destacar que, para el caso de la celda de caudal, ambas
 entradas se conectaron entre si mediante una válvula manual.
 Esta válvula se utiliza solamente durante el primer arranque de la planta:
-cuando la tubería está vacía y la bomba \verb|B1| se activa, tenemos por una
-pequeña
+cuando la tubería está vacía y la electrobomba \verb|B1| se activa, tenemos por
+una pequeña
 fracción de tiempo una presión diferencial de $12\,mCa$ que puede dañar la
 celda.
 Para evitar este fenómeno, la válvula manual que conecta ambas entradas
@@ -1310,7 +1311,7 @@ Considerando $C_q$ constante,
 \end{align}
 es constante también, y puede ser determinado experimentalmente.
 Para ello, se midió sobre el tanque controlado una distancia $l$.
-Luego, se encendió la bomba \verb|B1| con la válvula electroneumática en
+Luego, se encendió la electrobomba \verb|B1| con la válvula electroneumática en
 posición
 abierta (caudal máximo), y se midió el tiempo $t$ necesario para que el nivel
 alcanzara la altura $l$.

@@ -306,7 +306,7 @@ size=1pt]
     child { node {Gestión de señal de estado: manual o automático}    }
     child { node {Indicador del estado del Motor 1}    }
     child { node {Indicador del estado del Motor 2}    }
-    child { node {Indicador de error en bombas}    }
+    child { node {Indicador de error en electrobombas}    }
     child { node {Gestión de bandera del sistema trabajando en modo normal}    }
     child { node {Limpieza de señal de parada de emergencia}    }
     child { node {Limpieza de alarmas}    };
@@ -383,7 +383,8 @@ la apertura de la válvula en el \gls{scada}.
 al software \gls{scada}, por medio de las banderas \verb|MW0:X6-X9|,
   el estado de los motores y el modo de trabajo (manual o automático).
 
-  \item \textbf{Error en bombas:} una de las entradas discretas del \gls{plc}
+  \item \textbf{Error en electrobombas:} una de las entradas discretas del
+\gls{plc}
 son los enclavamientos recibidos del relé de los motores. La lectura de esta
 señal nos indica si el motor está realmente encendido.
   Dado que el sistema relé/contactor tiene una latencia de arranque, debemos
@@ -648,7 +649,7 @@ y de ganancias del controlador).
  \item \textbf{Palabras de escritura:} pueden ser escritas por la computadora
 de control. Aquí se agrupan valores numéricos que pueden ser cambiados (set
 point, ganancias) y banderas para modificar el estado de la planta (encenderla,
-seteo en modo manual, encendido de las bombas).
+seteo en modo manual, encendido de las electrobombas).
 \end{itemize}
 
 Destacamos que en algunos casos (por ejemplo, Set Point) tenemos tanto palabras

@@ -13,7 +13,7 @@ Por simplicidad, se dividirá el análisis del tablero en dos secciones:
 \begin{itemize}
  \item \textbf{Potencia:} corresponde a la instalación y el cableado
  de los elementos eléctricos de la planta, destinados a alimentar los motores de
- las bombas y los circuitos lógicos.
+ las electrobombas y los circuitos lógicos.
  \item \textbf{Señal:} corresponde a la instalación y el cableado
  de los elementos electrónicos cuyo objetivo es controlar la planta.
  Podemos citar: \gls{plc}, módulos inalámbricos,
@@ -25,7 +25,7 @@ Por simplicidad, se dividirá el análisis del tablero en dos secciones:
 Tal como se describió previamente, los elementos de potencia deben
 \textbf{alimentar} los motores y elementos lógicos de la planta.
 Se optó por trabajar con corriente alterna monofásica ($220\,V\,-\,50\,Hz$),
-dado que es la alimentación de las bombas.
+dado que es la alimentación de las electrobombas.
 En el Anexo \ref{anexo:diag}, se muestran los conductores de fase y neutro en
 colores marrón y azul respectivamente.
 Los elementos de potencia se describen a continuación.
@@ -46,11 +46,11 @@ sobrecargas (mediante la interrupción del circuito térmico) y cortocircuitos
 Además, es utilizado como llave de corte general para encender o apagar la
 planta.
 
-\subsection{Alimentación de los Motores de las Bombas}
+\subsection{Alimentación de los Motores de las Electrobombas}
 \label{subsec:alimentacionMotores}
 Puede verse el esquema de alimentación de los motores en los folios 1 y 2 del
 Anexo \ref{anexo:diag}.
-Para cada una de las bombas, se utilizarán los siguientes elementos de
+Para cada una de las electrobombas, se utilizarán los siguientes elementos de
 protección y comando:
 \begin{itemize}
  \item \textbf{Relés:}
@@ -124,7 +124,7 @@ El circuito de señal tiene como objetivos:
 señales de control a la válvula electroneumática.
 \item Activar los relés descriptos en la Sec.
 \ref{subsec:alimentacionMotores} para encender o apagar los motores de las
-bombas.
+electrobombas.
 \item Conectar la planta a una computadora supervisora (\gls{scada}), para poder
 monitorear su estado como así también recibir señales de control.
 \end{itemize}
@@ -284,7 +284,7 @@ Pueden observarse tres niveles diferenciados:
 general descripto en la Sec. \ref{subsec:alimentacionMotores}.
 Este interruptor debe ser accionado para encender la planta.
 \item En el nivel medio se encuentran los relés, contactores y relevos térmicos
-para accionar los motores de las bombas (Sec.
+para accionar los motores de las electrobombas (Sec.
 \ref{subsec:alimentacionMotores}).
 \item En el nivel inferior está el
 \gls{plc}, con su módulo de E/S analógicas (Sec. \ref{subsec:plc}), y la fuente
