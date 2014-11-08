@@ -1,0 +1,155 @@
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=4em, text centered, node distance=3cm,rounded corners, minimum 
+height=4em]
+\tikzstyle{line} = [draw, -latex']
+
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+    minimum height=2em]
+    
+\begin{figure}[t]
+\resizebox{0.745\textwidth}{!}{
+
+\begin{tikzpicture}[node distance = 1.5cm, auto]
+    % Place nodes
+    \node [cloud] (init) {Tablero energizado};
+    \node [block, below of=init] (init_param) {Inic. Parámetros};
+    \node [block, below of=init_param] (run) {PLC run};
+    \node [decision, right of=run](emer){Emerg?};
+    \node [block, above of=emer] (set_emer) {Bandera Emergencia};
+    \node [, right of=emer](null){};
+    \node [block, right of=null,node distance = 1.5cm] (adq) {Adq. Nivel y 
+Caudal};
+    \node [decision, right of=adq](hhll){HHL LLL?};
+    \node [block, above of=hhll] (set_hhll) {Error Nivel};
+    \node [, right of=hhll](null_hhll){};
+    \node [decision, right of=null_hhll,node distance = 1.5cm](hl){HL LL?};
+    \node [block, above of=hl] (set_hl) {Alarma};
+     \node [, right of=hl](null_hl){};
+    \node [decision, right of=null_hl,node distance = 
+1.5cm](set_param){Parám.?};
+    \node [block, above of=set_param](param){Seteo de parámetros};
+     \node [, right of=set_param](null_param){};
+    
+    \node [decision, below of=set_param](set_auto){Auto?};
+    \node [decision, left of=set_auto](verif_band){Verifica Banderas?};
+    \node [, below of=set_auto,node distance =3cm](null_auto){};
+    \node [decision, below of=null_auto](band_emer){Ban emer?};
+    \node [, below of=band_emer,node distance =4cm](null_band_emer){};
+
+    
+    \node  [block, below of=verif_band] (no_mot) {Parar Motores};
+    \node  [block, left of=verif_band] (motores) {Motores};
+    \node  [block, left of=motores] (pid) {Válv. PID};
+    \node [, left of=pid](null_pid){};
+    
+    \node [decision, left of=band_emer](bomb1){Bomba 1?};
+    \node [, left of=bomb1](null_bomb1){};
+    \node [decision, left of=null_bomb1,node distance=1.5cm](bomb2){Bomba 2?};
+    \node [, left of=bomb2](null_bomb2){};
+    \node  [block, below of=bomb1] (set_bomb1) {Set Bomba 1};
+    \node  [block, below of=bomb2] (set_bomb2) {Set Bomba 2};
+    \node  [block, left of=null_bomb2,node distance = 1.5cm] (valv_manual) 
+{Válv. Manual};
+    
+    \node [decision, left of=pid](enclav){Enclav?};
+    \node [block, below of=enclav, node distance=4.5cm] (alarm_enclav) {Alarma 
+Enclavamiento};
+    
+    
+    
+%     \node [block, below of=run] (var) {Adq. Nivel y Caudal};
+%     \node [decision, below of=var](hhl){Nivel?};
+%     \node [block, below of=hhl](stop){Detener la planta};
+%     \node [decision, right of=hhl](hl){Nivel?};
+%     \node [block, below of=hl](alarm){Señal de alarma};
+%     \node [decision, right of=hl](set){Parám.?};
+%     \node [block, below of=set](param){Seteo de parámetros};
+%     \node [decision, right of=set](manual){Manual?};
+%     \node [block, below of=manual](control){Control manual};
+%     \node [block, right of=manual](on){Motores ON};
+%     \node [block, right of=on](state){Estado};
+%     \node [, below left of=stop](null){};
+%     %\node (null){};
+% %     % Draw edges
+
+    \path [line,dashed] (init) -- (init_param);
+    \path [line] (init_param) -- (run);
+    \path [line] (run) -- (emer);
+    \path [line] (emer) -- (set_emer);
+    \path [line] (set_emer) -| (null);
+    \path [line] (emer) -- (adq);
+    \path [line] (adq) -- (hhll);
+    \path [line] (hhll) -- (set_hhll);
+    \path [line] (set_hhll) -| (null_hhll);
+    \path [line] (hhll) -- (hl);
+    \path [line] (hl) -- (set_hl);
+    \path [line] (set_hl) -| (null_hl);
+    \path [line] (hl) -- (set_param);
+    \path [line] (set_param) -- (param);
+    \path [line] (param) -| (null_param);
+    \path [line] (set_param) -- (null_param);
+    \path [line] (null_param) |- (set_auto);
+    
+    \path [line] (set_auto) -- (verif_band);
+    \path [line] (set_auto) -- (band_emer);
+ 
+    \path [line] (verif_band) -- (motores);
+    \path [line] (verif_band) -- (no_mot);
+    \path [line] (no_mot) -| (run);
+    \path [line] (motores) -- (pid);
+    
+    \path [line] (band_emer) -- (bomb1);
+    %\path [line] (band_emer) |- (set_bomb1);
+    \path [line] (set_bomb1) -| (null_bomb1);
+    \path [line] (bomb1) -- (set_bomb1);
+    \path [line] (bomb1) -- (bomb2);
+    \path [line] (set_bomb2) -| (null_bomb2);
+    \path [line] (bomb2) -- (valv_manual);
+    \path [line] (bomb2) -- (set_bomb2);
+    
+    \path [line] (pid) -- (enclav);
+    \path [line] (valv_manual) -| (null_pid);
+    \path [line] (enclav) -- (alarm_enclav);
+    \path [line] (enclav) -| (run);
+    \path [line] (alarm_enclav) -| (run);
+    
+    \path [line] (band_emer) -- (null_band_emer);
+    \path [line] (null_band_emer) -| (run);
+%     \path [line] (verif_band) -- (motores);
+%     \path [line] (verif_band) -- (no_mot);
+%     \path [line] (no_mot) -| (run);
+%     \path [line] (motores) -- (pid);
+
+%     \path [line] (set_param) -- (null_param);
+%     \path [line] (set_param) -- (null_param);
+%     \path [line] (set_param) -- (var);
+%     \path [line] (run) -- (var);
+%     \path [line] (run) -- (var);
+    
+
+
+%     \path [line,dashed] (init) -- (run);
+%     \path [line] (run) -- (var);
+%     \path [line] (var) -- (hhl);
+%     \path [line] (hhl) -- node {si} (stop) ;
+%     \path [line] (stop) |- (null);
+%     \path [line] (null) |- (run);%--++  (-3,0) |- (run);
+%     \path [line] (hhl) -- (hl);
+%     \path [line] (hl) -- node {si} (alarm);
+%     \path [line] (hl) -- (set);
+%     \path [line] (set) -- node {si} (param);
+%     \path [line] (set) -- (manual);
+%     \path [line] (manual) -- node {si} (control);
+%     \path [line] (manual) -- (on);
+%     \path [line] (on) -- (state);
+%     \path [line] (state) |- (null);
+%     \path [line] (alarm) |- (null);
+%     \path [line] (param) |- (null);
+%     \path [line] (control) |- (null);
+
+\end{tikzpicture}
+ }
+\end{figure}
