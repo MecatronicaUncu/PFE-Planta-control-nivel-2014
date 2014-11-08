@@ -4,7 +4,12 @@
 % Una subsection* crea un nuevo "grupo de puntos"
 
 \frame{
-	\frametitle{Descripción del problema}
+	\ifdebug
+	\frametitle{Descripción del problema\hfill{\color{red} \emph{A}}}
+
+	\else
+		\frametitle{Descripción del problema}
+	\fi
 
 	\textbf{Objetivo}
 	\vspace{0.25cm}
@@ -25,8 +30,13 @@
 }
 
 \frame{
-	\frametitle{Especificaciones Vs Solución Propuesta}
-	
+	\ifdebug
+	\frametitle{Especificaciones vs Solución Propuesta\hfill{\color{red}
+\emph{A}}}
+	\else
+	\frametitle{Especificaciones vs Solución Propuesta}
+	\fi
+
 	\textbf{Solución Propuesta}...
 	\hspace{1cm}
 	\textbf{Especificaciones}...
@@ -65,8 +75,12 @@ llave en mano.
 }
 
 \frame{
+	\ifdebug
+	\frametitle{Análisis Económico\hfill{\color{red} \emph{A}}}
+	\else
 	\frametitle{Análisis Económico}
-	
+	\fi
+
 	\begin{columns}
 	  \centering
 	 \begin{column}{0.3\textwidth}
@@ -148,7 +162,12 @@ llave en mano.
 }
 
 \frame{
+	\ifdebug
+	\frametitle{División del trabajo\hfill{\color{red} \emph{A}}}
+	\else
 	\frametitle{División del trabajo}
+	\fi
+
 	\textbf{Idea:} ...
 	\vspace{0.25cm}
 	\begin{center}
@@ -165,6 +184,11 @@ llave en mano.
 }
 
 \begin{frame}
-    \frametitle{Outline}
+	\ifdebug
+	\frametitle{Outline\hfill{\color{red} \emph{A}}}
+	\else
+	\frametitle{Outline}
+	\fi
+
     \tableofcontents
 \end{frame}

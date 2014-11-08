@@ -1,6 +1,10 @@
 \section{PLC}
 \frame{
+	\ifdebug
+	\frametitle{Outline\hfill{\color{red} \emph{M}}}
+	\else
 	\frametitle{Outline}
+	\fi
 	\tableofcontents[currentsection]
 }
 
@@ -8,14 +12,22 @@
 % Una subsection* crea un nuevo "grupo de puntos"
 
 \frame{
+	\ifdebug
+	\frametitle{Algoritmo\hfill{\color{red} \emph{M}}}
+	\else
 	\frametitle{Algoritmo}
+	\fi
 	\input{Sections/4-PLC/Algoritmo.tex}
 
 }
 
 \subsection*{Programacion}
 \frame{
+	\ifdebug
+	\frametitle{Programación\hfill{\color{red} \emph{M}}}
+	\else
 	\frametitle{Programación}
+	\fi
 	\textbf{Lenguaje de Programación}
 
 	\begin{itemize}
@@ -50,7 +62,11 @@ Esc & MW13  & Valor de escritura Td \\
 
 }
 \frame{
+	\ifdebug
+	\frametitle{Programación\hfill{\color{red} \emph{M}}}
+	\else
 	\frametitle{Programación}
+	\fi
 
 	\begin{itemize}
 	 \item {\color{newcolor} \textbf{Banderas} en memoria}
@@ -94,7 +110,12 @@ Esc & & X9& Limpiar señal de parada de emergencia\\
 
 \subsection*{PID}
 \frame{
+	\ifdebug
+	\frametitle{Controlador PID\hfill{\color{red} \emph{M}}}
+	\else
 	\frametitle{Controlador PID}
+	\fi
+
 	\textbf{Acción del controlador:}
 	%{\color{newcolor} Acción de controlador}
 	\begin{itemize}
@@ -120,7 +141,8 @@ Esc & & X9& Limpiar señal de parada de emergencia\\
 			\hline
 			\bfseries Kp  & \bfseries Ti & \bfseries Td\\
 			\hline \hline
-			 $0.6 \,Kp_{cr}  $ & $ 0.5 \, P_{cr}$ & $0.125 \, P_{cr} $\\
+			 $0.6 \,Kp_{cr}  $ & $ 0.5 \, P_{cr}$ & $0.125 \, P_{cr} 
+$\\
 			\hline
 			\end{tabular}
 			\end{table}
@@ -130,7 +152,11 @@ Esc & & X9& Limpiar señal de parada de emergencia\\
 }
 
 \frame{
+	\ifdebug
+	\frametitle{Sintonización PID\hfill{\color{red} \emph{M}}}
+	\else
 	\frametitle{Sintonización PID}
+	\fi
 	\textbf{Ganancias del controlador}
 	%{\color{newcolor} Ganancias del controlador}
 
@@ -157,7 +183,11 @@ Esc & & X9& Limpiar señal de parada de emergencia\\
 }
 
 \frame{
+	\ifdebug
+	\frametitle{Sintonización PID\hfill{\color{red} \emph{M}}}
+	\else
 	\frametitle{Sintonización PID}
+	\fi
 	\textbf{Ganancias del controlador}
 
 	\vspace{0.25cm}
@@ -179,6 +209,5 @@ Esc & & X9& Limpiar señal de parada de emergencia\\
 			    \end{itemize}
 			\end{itemize}
 		\end{column}
-
 	\end{columns}
 }

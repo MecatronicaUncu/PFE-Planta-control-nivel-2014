@@ -1,6 +1,10 @@
 \section{Diseño y Ensamblado}
 \frame{
+	\ifdebug
+	\frametitle{Outline\hfill{\color{red} \emph{M}}}
+	\else
 	\frametitle{Outline}
+	\fi
 	\tableofcontents[currentsection]
 	}
 
@@ -8,7 +12,12 @@
 % Una subsection* crea un nuevo "grupo de puntos"
 
 \frame{
+	\ifdebug
+	\frametitle{P\&ID\hfill{\color{red} \emph{M}}}
+	\else
 	\frametitle{P\&ID}
+	\fi
+
 	\begin{center}
 		\textbf{Diagrama de Tuberías e Instrumentación}
 		\vspace{0.25cm}
@@ -31,13 +40,18 @@
 
 \subsection*{Circuito hidráulico}
 \frame{
+	\ifdebug
+	\frametitle{Tuberías y Tanques\hfill{\color{red} \emph{M}}}
+	\else
 	\frametitle{Tuberías y Tanques}
+	\fi
+
 
 	\begin{columns}[t]
 		\begin{column}{0.63\textwidth}
 			\begin{center}
 				\includegraphics[height=4.5cm]
-				{Sections/2-DisenoEnsamblado/Images/caneria1.JPG}
+{Sections/2-DisenoEnsamblado/Images/caneria1.JPG}
 			\end{center}
 			\begin{itemize}
 				\item {\color{newcolor} Tuberías}:
@@ -51,7 +65,7 @@
 		\begin{column}{0.37\textwidth}
 			\begin{center}
 				\includegraphics[height=4.5cm]
-				{Sections/2-DisenoEnsamblado/Images/caneria2.JPG}
+{Sections/2-DisenoEnsamblado/Images/caneria2.JPG}
 			\end{center}
 			\begin{itemize}
 				%\vspace{0.25cm}
@@ -59,7 +73,6 @@
 				\begin{itemize}
 					\item Reservorio
 					\item Controlado
-					
 				\end{itemize}
 			\end{itemize}
 		\end{column}
@@ -67,7 +80,12 @@
 }
 
 \frame{
+	\ifdebug
+	\frametitle{Flujo de Agua\hfill{\color{red} \emph{M}}}
+	\else
 	\frametitle{Flujo de Agua}
+	\fi
+
 	\textbf{Bombas}
 	
 	\vspace{.25cm}
@@ -94,7 +112,12 @@
 }
 \subsection*{Válvula globo, con servoactuador de diafragma - resorte}
 \frame{
+	\ifdebug
+	\frametitle{Válvula globo con servoactuador de diafragma - 
+resorte\hfill{\color{red} \emph{F}}}
+	\else
 	\frametitle{Válvula globo con servoactuador de diafragma - resorte}
+	\fi
 
 	\textbf{Generalidades}
 	\vspace{0.25cm}
@@ -135,7 +158,12 @@ efectuar las acciones de control
 }
 
 \frame{
+	\ifdebug
+	\frametitle{Válvula globo con servoactuador de diafragma - 
+resorte\hfill{\color{red} \emph{F}}}
+	\else
 	\frametitle{Válvula globo con servoactuador de diafragma - resorte}
+	\fi
 
 	\textbf{Principio de Funcionamiento}
 	\begin{columns}[t]
@@ -172,7 +200,12 @@ $15\,psi$)
 	\end{columns}
 }
 \frame{
+	\ifdebug
+	\frametitle{Válvula globo con servoactuador de diafragma - 
+resorte\hfill{\color{red} \emph{F}}}
+	\else
 	\frametitle{Válvula globo con servoactuador de diafragma - resorte}
+	\fi
 	\begin{center}
 	 	\textbf{Curvas características}
 	\end{center}
@@ -243,7 +276,12 @@ $15\,psi$)
 }
 
 \frame{
+	\ifdebug
+	\frametitle{Válvula globo con servoactuador de diafragma - 
+resorte\hfill{\color{red} \emph{F}}}
+	\else
 	\frametitle{Válvula globo con servoactuador de diafragma - resorte}
+	\fi
 	\textbf{Electroposicionador}
 	
 	\vspace{.25cm}
@@ -272,7 +310,12 @@ comparación} entre la consigna y la posición del vástago
 
 \subsection*{Instrumentación}
 \frame{ 
+	\ifdebug
+	\frametitle{Instrumentación\hfill{\color{red} \emph{F}}}
+	\else
 	\frametitle{Instrumentación}
+	\fi
+
 	
 	Conocer \textbf{variables de interés} de la 
 planta:
@@ -316,7 +359,12 @@ planta:
 }
 
 \frame{
+	\ifdebug
+	\frametitle{Manómetros\hfill{\color{red} \emph{F}}}
+	\else
 	\frametitle{Manómetros}
+	\fi
+
 	
 	\textbf{Manómetro de tubo de Bourdón}
 	
@@ -356,7 +404,12 @@ planta:
 }
 
 \frame{
+	\ifdebug
+	\frametitle{DP Cell - celda de presión diferencial\hfill{\color{red} 
+\emph{F}}}
+	\else
 	\frametitle{DP Cell - celda de presión diferencial}
+	\fi
 	
 	Mide la \textbf{diferencia de presión} entre dos puntos
 	
@@ -396,7 +449,12 @@ planta:
 }
 
 \frame{
+	\ifdebug
+	\frametitle{Placa orificio\hfill{\color{red} \emph{F}}}
+	\else
 	\frametitle{Placa orificio}
+	\fi
+
 	
 	\begin{center}
 	  \includegraphics[width=.7\textwidth]
@@ -419,6 +477,4 @@ h_p} \quad &\Rightarrow \quad Q \approx K\,\sqrt{h_p}
 	  \end{center}
 	  
 	  La constante $K$ se encuentra \textbf{experimentalmente}
-	  
-
 }

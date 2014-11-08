@@ -1,13 +1,21 @@
 \section{SCADA}
 \frame{
+	\ifdebug
+	\frametitle{Outline\hfill{\color{red} \emph{A}}}
+	\else
 	\frametitle{Outline}
+	\fi
 	\tableofcontents[currentsection]
 	}
 
 \subsection*{Intro Scada}
 
 \frame{
+	\ifdebug
+	\frametitle{Introducción SCADA\hfill{\color{red} \emph{A}}}
+	\else
 	\frametitle{Introducción SCADA}
+	\fi
 	\textbf{PLC:} realiza automáticamente las tareas de control 
 	    pre-programado sobre un proceso.
 	   
@@ -41,7 +49,11 @@
 
 \subsection*{Estructura PCIM}
 \frame{
+	\ifdebug
+	\frametitle{P-CIM - AFCON\hfill{\color{red} \emph{A}}}
+	\else
 	\frametitle{P-CIM - AFCON}
+	\fi
 	\begin{columns}[T]
 	  \begin{column}{0.3\textwidth}
 	    \begin{figure}
@@ -70,7 +82,11 @@
 }
 
 \frame{
+	\ifdebug
+	\frametitle{Capa de Comunicación\hfill{\color{red} \emph{A}}}
+	\else
 	\frametitle{Capa de Comunicación}
+	\fi
 	\begin{columns}
 	 \begin{column}{0.4\textwidth}
 	    \textbf{Modbus}:\begin{itemize}
@@ -116,14 +132,22 @@
 }
 
 \frame{
+	\ifdebug
+	\frametitle{Capa de Procesamiento\hfill{\color{red} \emph{A}}}
+	\else
 	\frametitle{Capa de Procesamiento}
+	\fi
 	\textbf{Base de Datos}: Encargada de recuperar, almacenar y procesar la 
 información de tiempo real que recibe desde la capa de comunicación
 	\input{Sections/5-Scada/Diagrama.tex}
 }
 
 \frame{
+	\ifdebug
+	\frametitle{Capa de Aplicación\hfill{\color{red} \emph{A}}}
+	\else
 	\frametitle{Capa de Aplicación}
+	\fi
 	Es la última capa del SCADA, antes de que la información llegue al 
 operario. 
 

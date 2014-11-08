@@ -1,6 +1,10 @@
 \section{Tablero y Conexionado}
 \frame{
+	\ifdebug
+	\frametitle{Outline\hfill{\color{red} \emph{F}}}
+	\else
 	\frametitle{Outline}
+	\fi
 	\tableofcontents[currentsection]
 	}
 
@@ -8,7 +12,11 @@
 % Una subsection* crea un nuevo "grupo de puntos"
 
 \frame{
+	\ifdebug
+	\frametitle{Generalidades\hfill{\color{red} \emph{F}}}
+	\else
 	\frametitle{Generalidades}
+	\fi
 
 	\begin{columns}
 		\begin{column}{0.55\textwidth}
@@ -39,7 +47,12 @@
 
 \subsection*{Cableado de potencia}
 \frame{
+	\ifdebug
+	\frametitle{Cableado de potencia\hfill{\color{red} \emph{F}}}
+	\else
 	\frametitle{Cableado de potencia}
+	\fi
+
 	
 	Elementos eléctricos, destinados a \textbf{alimentar} los motores de 
 las bombas y los circuitos lógicos
@@ -71,7 +84,12 @@ las bombas y los circuitos lógicos
 
 \subsection*{Cableado de señal}
 \frame{
+	\ifdebug
+	\frametitle{Cableado de señal: PLC\hfill{\color{red} \emph{F}}}
+	\else
 	\frametitle{Cableado de señal: PLC}
+	\fi
+
 	\textbf{Controlador Lógico Programable}
 	
 	\vspace{.25cm}
@@ -117,8 +135,13 @@ las bombas y los circuitos lógicos
 	\end{columns}
 }
 
-\frame{ 
+\frame{
+	\ifdebug
+	\frametitle{Cableado de señal: Comunicación\hfill{\color{red}\emph{F}}}
+	\else
 	\frametitle{Cableado de señal: Comunicación}
+	\fi
+
 	
 	PLC $\Rightarrow$ \texttt{RS485}
 	
@@ -164,8 +187,5 @@ las bombas y los circuitos lógicos
 {Sections/3-Tablero/Images/IMG_5038.JPG}
 	  
 	 \end{column}
-
 	\end{columns}
-
-	
 }

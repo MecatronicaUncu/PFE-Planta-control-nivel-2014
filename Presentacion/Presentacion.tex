@@ -33,8 +33,6 @@
 %\usepackage{pdfpages}
 \usepackage{array}
 
-%% Compilation conditionnelle
-\usepackage{ifthen}
 \newboolean{showcaptions}
 \setboolean{showcaptions}{false}
 
@@ -60,6 +58,10 @@
 %     \tableofcontents[currentsection,currentsubsection]
 %   \end{frame}
 % }
+
+% Poner notas DEBUG en la presentación
+\newif\ifdebug
+\debugtrue
 
 %Simbolo del euro
 \usepackage{eurosym}
