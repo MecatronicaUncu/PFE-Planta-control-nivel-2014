@@ -2,7 +2,7 @@
 \frame{
 	\frametitle{Outline}
 	\tableofcontents[currentsection]
-	}
+}
 
 \subsection*{Algoritmo}
 % Una subsection* crea un nuevo "grupo de puntos"
@@ -13,14 +13,16 @@
 
 }
 
+\subsection*{Programacion}
 \frame{
 	\frametitle{Programación}
 	\textbf{Lenguaje de Programación}
+
 	\begin{itemize}
-	 \item {\color{newcolor} Ladder:} Lenguaje gráfico de programación.
-	 \item {\color{newcolor} Palabras de Memorias}
+	 \item {\color{newcolor} Ladder:} lenguaje gráfico de programación.
+	 \item {\color{newcolor} \textbf{Palabras} en memoria (\texttt{MW})}
 	\end{itemize}
-	
+
 \begin{table}[!t]
 \tiny
 \renewcommand{\arraystretch}{1.3}
@@ -49,6 +51,10 @@ Esc & MW13  & Valor de escritura Td \\
 }
 \frame{
 	\frametitle{Programación}
+
+	\begin{itemize}
+	 \item {\color{newcolor} Banderas en memoria (\texttt{M})}
+	\end{itemize}
 	\begin{table}[!t]
 	\tiny
 \renewcommand{\arraystretch}{1.3}
@@ -86,27 +92,27 @@ Esc & & X9& Limpiar señal de parada de emergencia\\
 
 }
 
-
+\subsection*{PID}
 \frame{
 	\frametitle{Controlador PID}
 	\textbf{Acción del controlador:}
 	%{\color{newcolor} Acción de controlador}
 	\begin{itemize}
-	  \item Proporcional al error.
-	  \item Proporcional a la integral del error respecto del tiempo.
-	  \item Proporcional a la derivada del error respecto del tiempo.
+	  \item Proporcional al error
+	  \item Proporcional a la integral del error respecto del tiempo
+	  \item Proporcional a la derivada del error respecto del tiempo
 	 \end{itemize}
-	 \vspace{0.25cm}
+
+	 \vspace{0.5cm}
+	{\color{newcolor} Método de Ziegler–Nichols - Sintonización}
 	\begin{columns}
-		\begin{column}{0.5\textwidth}
-		{\color{newcolor} Método de Ziegler–Nichols}
+		\begin{column}{0.55\textwidth}
 			\begin{center}
-				\vspace{0.25cm}
-				\includegraphics[width=5.4cm]{Sections/4-PLC/Images/segundometodo.png}
+\includegraphics[width=\textwidth]{Sections/4-PLC/Images/segundometodo.png}
 			\end{center}
 		\end{column}
-
-		\begin{column}{0.5\textwidth}
+		\begin{column}{0.45\textwidth}
+			\small
 			\begin{table}[!t]
 			\renewcommand{\arraystretch}{1.3}
 			\centering
@@ -124,19 +130,20 @@ Esc & & X9& Limpiar señal de parada de emergencia\\
 }
 
 \frame{
-	\frametitle{PID tunning}
+	\frametitle{Sintonización PID}
 	\textbf{Ganancias del controlador}
 	%{\color{newcolor} Ganancias del controlador}
+
+	\vspace{0.25cm}
+
 	\begin{columns}
 		\begin{column}{0.6\textwidth}
 			\begin{center}
-			\vspace{0.25cm}
-				\includegraphics[width=5.5cm]{Sections/4-PLC/Images/oscperm.png}
+\includegraphics[width=\textwidth]{Sections/4-PLC/Images/oscperm.png}
 			\end{center}
 		\end{column}
 		\begin{column}{0.4\textwidth}
 			\begin{itemize}
-
 			 \item {\color{newcolor2} Sin tiempo muerto:}
 			    \begin{itemize}
 			      \item $K_p $: $36$
@@ -150,14 +157,16 @@ Esc & & X9& Limpiar señal de parada de emergencia\\
 }
 
 \frame{
-	\frametitle{PID tunning}
+	\frametitle{Sintonización PID}
 	\textbf{Ganancias del controlador}
+
+	\vspace{0.25cm}
+
 	%{\color{newcolor} Ganancias del controlador}
 	\begin{columns}
 		\begin{column}{0.6\textwidth}
 			\begin{center}
-			\vspace{0.25cm}
-				\includegraphics[width=5.5cm]{Sections/4-PLC/Images/oscpermtd.png}
+\includegraphics[width=\textwidth]{Sections/4-PLC/Images/oscpermtd.png}
 			\end{center}
 		\end{column}
 		\begin{column}{0.4\textwidth}
