@@ -9,16 +9,12 @@
 
 \frame{
 	\frametitle{PyID}
-
 	\begin{center}
 		\textbf{Diagrama de Tuberías e Instrumentación}
-
 		\vspace{0.25cm}
-
-		\missingfigure[figwidth=6cm]{Figura completa}
+		
+\includegraphics[width=6cm]{Sections/2-DisenoEnsamblado/Images/pyid60-1.pdf}
 	\end{center}
-
-
 	\begin{itemize}
 		\item {\color{newcolor} Codificación}:
 		\begin{itemize}
@@ -27,58 +23,65 @@
 			componente.
 		\end{itemize}
 	\end{itemize}
+	
 }
+
 
 \subsection*{Circuito hidráulico}
 \frame{
-	\frametitle{Cañerías y Tanques}
+	\frametitle{Tuberías y Tanques}
+
 	\begin{columns}
 		\begin{column}{0.4\textwidth}
-			\begin{enumerate}
-				\item Una
+			\begin{center}
+				\includegraphics[width=5cm]
+				{Sections/2-DisenoEnsamblado/Images/caneria1.JPG}
+			\end{center}
+			\begin{itemize}
+				\item {\color{newcolor} Tuberías}:
 				\begin{itemize}
-					\item \textbf{Larga}
-					\item larga
+					\item Rígidas
+					\item Semi rígidas
+					\item Flexibles
 				\end{itemize}
-				\item Lista
-			\end{enumerate}
-
-			\begin{align*}
-				\mathrm{una} \,e( \textbf{cuacion})
-			\end{align*}
+			\end{itemize}
 		\end{column}
-
-		\begin{column}{0.6\textwidth}
+		\begin{column}{0.4\textwidth}
 			\begin{center}
-				\missingfigure[figwidth=4.5cm]{}
+				\includegraphics[width=2.5cm]
+				{Sections/2-DisenoEnsamblado/Images/caneria2.JPG}
 			\end{center}
-
-			\begin{center}
-				\footnotesize
-				\textbf{\textit{Cita bibliográfica}}
-
-				[Escrita por alguien \textit{et al.} 2008]
-			\end{center}
+			\begin{itemize}
+				%\vspace{0.25cm}
+				\item {\color{newcolor} Tanques}:
+				\begin{itemize}
+					\item Reservorio
+					\item Controlado
+					
+				\end{itemize}
+			\end{itemize}
 		\end{column}
-
 	\end{columns}
 }
 
 \frame{
-	\frametitle{Bombas}
-	\textbf{Idea:} ...
-	\vspace{0.25cm}
-	\begin{center}
+	\frametitle{Flujo de Agua}
+	\textbf{Bombas}
+	
+	\vspace{.25cm}
+	
+	{\color{newcolor} Necesidad:} Generar un flujo de agua ininterrumpido entre 
+	el reservorio y el tanque controlado.
 
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-		Donec viverra cursus pellentesque. In et mattis augue.
-		Dorbi ut velit a ante ultrices ornare in id nisl.
-
-		\vspace{0.5cm}
-
-		Pellentesque sollicitudin bibendum leo lobortis sagittis.
-		Fusce eu purus vel mauris vestibulum mattis.
-	\end{center}
+	\begin{columns}
+	 \begin{column}{.35\textwidth}
+	 Bombas centrífugas funcionando constantemente.
+	 \end{column}
+	 \begin{column}{.65\textwidth}
+	  \includegraphics[width=\textwidth]
+	  {Sections/2-DisenoEnsamblado/Images/bomba.JPG}
+	 \end{column}
+	\end{columns}
 }
 \subsection*{Válvula globo, con servoactuador de diafragma - resorte}
 \frame{

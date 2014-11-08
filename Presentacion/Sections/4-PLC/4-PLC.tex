@@ -9,102 +9,115 @@
 
 \frame{
 	\frametitle{Algoritmo}
+	\input{Sections/4-PLC/Algoritmo.tex}
 
-	\begin{center}
-		\textbf{Definición}
-
-		\vspace{0.25cm}
-
-		\missingfigure[figwidth=6cm]{Figura completa}
-	\end{center}
-
-	\begin{columns}
-		\begin{column}{0.5\textwidth}
-			\begin{itemize}
-				\item {\color{newcolor} Texto en columna 1}:
-				\begin{itemize}
-					\item item 1
-					\item item 2
-				\end{itemize}
-				\item {\color{newcolor} Más texto}
-			\end{itemize}
-		\end{column}
-
-		\begin{column}{0.5\textwidth}
-			\begin{itemize}
-				\item {\color{softBlue!70!Black} Texto:}
-					en otra columna
-				\item {\color{softOrange!70!Black} Más texto:}
-					en otra columna
-			\end{itemize}
-
-		\end{column}
-	\end{columns}
 }
 
 \frame{
-	\frametitle{Ladder + MWords}
-	\begin{columns}
-		\begin{column}{0.4\textwidth}
-			\begin{enumerate}
-				\item Una
-				\begin{itemize}
-					\item \textbf{Larga}
-					\item larga
-				\end{itemize}
-				\item Lista
-			\end{enumerate}
+	\frametitle{Programación}
+	\textbf{Lenguaje de Programación}
+	\begin{itemize}
+	 \item {\color{newcolor} Ladder:} Lenguaje gráfico de programación.
+	 \item {\color{newcolor} Palabras de Memorias}
+	\end{itemize}
+	
+\begin{table}[!t]
+\tiny
+\renewcommand{\arraystretch}{1.3}
+\centering
+\begin{tabular}{c||c||c}
+\hline
+\bfseries Tipo & \bfseries Word  & \bfseries Descripción\\
+\hline \hline
+Lect & MW2  & Lectura DP cell nivel \\
+Lect & MW3  & Lectura DP cell caudal\\
+Lect & MW4  & Valor Kp\\
+Lect & MW5  & Valor Ti\\
+Lect & MW6  & Valor Td\\
+Lect & MW7  & Valor de lectura del SP \\
+Lect & MW8  & Valor de lectura de la válvula \\
+\hline
+Esc & MW9 & Valor de escritura de la válvula (manual)\\
+Esc & MW10  & Valor de escritura del SP \\
+Esc & MW11  & Valor de escritura Kp \\
+Esc & MW12  & Valor de escritura Ti \\
+Esc & MW13  & Valor de escritura Td \\
+\hline
+\end{tabular}
+\end{table}
 
-			\begin{align*}
-				\mathrm{una} \,e( \textbf{cuacion})
-			\end{align*}
-		\end{column}
+}
+\frame{
+	\frametitle{Programación}
+	\begin{table}[!t]
+	\tiny
+\renewcommand{\arraystretch}{1.3}
+\centering
+\begin{tabular}{c||c||c||c}
+\hline
+\bfseries Tipo & \bfseries Word & \bfseries Bit & \bfseries Descripción\\
+\hline \hline
+Lect & MW0 & X0 & Señal Run PLC\\
+Lect & & X1 & Alarma HHL\\
+Lect & & X2& Alarma LLL\\
+Lect & & X3& Alarma HL\\
+Lect & & X4& Alarma LL\\
+Lect & & X5& Error en motores\\
+Lect & & X6& Motor 1 encendido\\
+Lect & & X7& Motor 2 encendido\\
+Lect & & X8& Modo manual activado\\
+Lect & & X9& Modo automático activado y funcionando\\
+Lect & & X10& Planta funcionando sin errores\\
+\hline
+Esc & MW1 & X0& Switch Encender(1)/Apagar(0)\\
+Esc & & X1& Manual(1)/Automático(0)\\
+Esc & & X2& Cambiar parámetros PID\\
+Esc & & X3& Cambiar Set Point\\
+Esc & & X4& Manual(0)/Default(1)\\
+Esc & & X5& Encender M1 (manual)\\
+Esc & & X6& Encender M2 (manual)\\
+Esc & & X7& Limpiar errores\\
+Esc & & X8& Parada de emergencia\\
+Esc & & X9& Limpiar señal de parada de emergencia\\
+\hline
+\end{tabular}
 
-		\begin{column}{0.6\textwidth}
-			\begin{center}
-				\missingfigure[figwidth=4.5cm]{}
-			\end{center}
+\end{table}
 
-			\begin{center}
-				\footnotesize
-				\textbf{\textit{Cita bibliográfica}}
-
-				[Escrita por alguien \textit{et al.} 2008]
-			\end{center}
-		\end{column}
-
-	\end{columns}
 }
 
-\frame{
-	\frametitle{PID}
-	\begin{columns}
-		\begin{column}{0.4\textwidth}
-			\begin{enumerate}
-				\item Una
-				\begin{itemize}
-					\item \textbf{Larga}
-					\item larga
-				\end{itemize}
-				\item Lista
-			\end{enumerate}
 
-			\begin{align*}
-				\mathrm{una} \,e( \textbf{cuacion})
-			\end{align*}
+\frame{
+	\frametitle{Controlador PID}
+	\textbf{Acción del controlador:}
+	%{\color{newcolor} Acción de controlador}
+	\begin{itemize}
+	  \item Proporcional al error.
+	  \item Proporcional a la integral del error respecto del tiempo.
+	  \item Proporcional a la derivada del error respecto del tiempo.
+	 \end{itemize}
+	 \vspace{0.25cm}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+		{\color{newcolor} Método de Ziegler–Nichols}
+			\begin{center}
+				\vspace{0.25cm}
+				\includegraphics[width=5.4cm]{Sections/4-PLC/Images/segundometodo.png}
+			\end{center}
 		\end{column}
 
-		\begin{column}{0.6\textwidth}
-			\begin{center}
-				\missingfigure[figwidth=4.5cm]{}
-			\end{center}
-
-			\begin{center}
-				\footnotesize
-				\textbf{\textit{Cita bibliográfica}}
-
-				[Escrita por alguien \textit{et al.} 2008]
-			\end{center}
+		\begin{column}{0.5\textwidth}
+			\begin{table}[!t]
+			\renewcommand{\arraystretch}{1.3}
+			\centering
+			\begin{tabular}{c||c||c}
+			\hline
+			\bfseries Kp  & \bfseries Ti & \bfseries Td\\
+			\hline \hline
+			 $0.6 \,Kp_{cr}  $ & $ 0.5 \, P_{cr}$ & $0.125 \, P_{cr} $\\
+			\hline
+			\end{tabular}
+			\end{table}
 		\end{column}
 
 	\end{columns}
@@ -112,33 +125,50 @@
 
 \frame{
 	\frametitle{PID tunning}
+	\textbf{Ganancias del controlador}
+	%{\color{newcolor} Ganancias del controlador}
 	\begin{columns}
-		\begin{column}{0.4\textwidth}
-			\begin{enumerate}
-				\item Una
-				\begin{itemize}
-					\item \textbf{Larga}
-					\item larga
-				\end{itemize}
-				\item Lista
-			\end{enumerate}
-
-			\begin{align*}
-				\mathrm{una} \,e( \textbf{cuacion})
-			\end{align*}
-		\end{column}
-
 		\begin{column}{0.6\textwidth}
 			\begin{center}
-				\missingfigure[figwidth=4.5cm]{}
+			\vspace{0.25cm}
+				\includegraphics[width=5.5cm]{Sections/4-PLC/Images/oscperm.png}
 			\end{center}
+		\end{column}
+		\begin{column}{0.4\textwidth}
+			\begin{itemize}
 
+			 \item {\color{newcolor2} Sin tiempo muerto:}
+			    \begin{itemize}
+			      \item $K_p $: $36$
+			      \item $T_i $: $4$
+			      \item $T_d $: $1$ 
+			    \end{itemize}
+			\end{itemize}
+		\end{column}
+
+	\end{columns}
+}
+
+\frame{
+	\frametitle{PID tunning}
+	\textbf{Ganancias del controlador}
+	%{\color{newcolor} Ganancias del controlador}
+	\begin{columns}
+		\begin{column}{0.6\textwidth}
 			\begin{center}
-				\footnotesize
-				\textbf{\textit{Cita bibliográfica}}
-
-				[Escrita por alguien \textit{et al.} 2008]
+			\vspace{0.25cm}
+				\includegraphics[width=5.5cm]{Sections/4-PLC/Images/oscpermtd.png}
 			\end{center}
+		\end{column}
+		\begin{column}{0.4\textwidth}
+			\begin{itemize}
+			 \item {\color{newcolor2} Con tiempo muerto:}
+			    \begin{itemize}
+			      \item $K_p $: $72$
+			      \item $T_i $: $5$
+			      \item $T_d $: $1.25$ 
+			    \end{itemize}
+			\end{itemize}
 		\end{column}
 
 	\end{columns}
