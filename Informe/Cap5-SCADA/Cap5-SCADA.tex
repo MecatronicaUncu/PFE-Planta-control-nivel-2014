@@ -45,7 +45,7 @@ organización esquemática de un sistema Planta-PLC-SCADA.
 Un sistema \gls{scada} recopila constantemente información de la planta en 
 tiempo real. Luego mediante una base de datos se almacenan y evalúan los datos, 
 generándose alarmas en los casos correspondientes. Finalmente, mediante
-la \gls{hmi} se brinda la información al operario y este a su vez puede enviar 
+la \gls{hmi} se brinda la información al operario y éste a su vez puede enviar
 instrucciones a los \gls{plc} en la planta. También se pueden incluir datos de 
 diagnóstico y manejo de la información así como un cronograma de procedimientos 
 de mantenimiento, información logística, esquemas detallados para un transmisor de señal o 
@@ -342,7 +342,7 @@ Tab. \ref{tab:ConfigModbus}.
       {Cap5-SCADA/images/modbusDriver.jpeg}
   \end{center}\\
 \hline
-  Defina la tabla de Polling mediante el botón Polling Configuration. En esta 
+  Defina la tabla de Polling mediante el botón Polling Configuration. En ésta
   se debe definir Start Address en 40001 segun se explica en la 
   Sec. \ref{subsubsec:InforDriver}.
   &\begin{center}
@@ -375,7 +375,7 @@ los drivers de comunicación.
 
 El formato en el cual las direcciones externas son especificadas en las
 aplicaciones de P-CIM (Database, Animation Editor, y Operator
-Workstation) es driver-dependiente. Estas son referenciadas especificando:
+Workstation) es driver-dependiente. Éstas son referenciadas especificando:
 \begin{itemize}
  \item \textbf{Server:} el nombre del servidor es DBSR.
  \item \textbf{Topic:} el nombre del tópico es PCIM.
@@ -440,7 +440,8 @@ dentro del subdirectorio Tools.
 
 \subsection{Capa de procesamiento}
 \label{subsec:CapaProcesamiento}
-Una vez que se ha verificado el establecimiento de la comunicación 
+
+Una vez que se ha verificado el establecimiento de la comunicación
 con el \gls{plc}, se continúa con la base de datos de P-CIM. Esta se encarga
 de recuperar, almacenar y procesar la información de tiempo real e histórica de 
 los controladores, dispositivos periféricos y variables internas en el sistema. 
@@ -573,7 +574,7 @@ de la base de datos en la Tab. \ref{tab:confBlockDB}.
   \end{center}\\
 \hline
     Dentro del Editor de la Base de Datos se desplegara la ventana de Block 
-    Directory. En esta última se muestran los bloques que han sido creados y
+    Directory. En ésta última se muestran los bloques que han sido creados y
     están clasificados en las pestañas según su tipo.  Oprima la tecla Add, se 
     despliega la ventana de especificaciones de Valor Analógico.
     &\begin{center}
@@ -615,8 +616,8 @@ desarrollo del sistema \gls{scada}.
 \subsection{Capa de aplicación}
 \label{subsec:CapaAplicacion}
 
-La tercer y última capa del sistema \gls{scada} es la capa de aplicación. Esta 
-será utilizada en este \gls{pfe} únicamente como \gls{hmi}. Para el
+La tercer y última capa del sistema \gls{scada} es la capa de aplicación. Ésta
+será utilizada en este \gls{pfe} unicamente como \gls{hmi}. Para el
 desarrollo de la interfaz gráfica definimos un documento gráfico creado con el 
 Editor de Animaciones (Animation Editor). Finalmente, mediante el Servidor de 
 Pantallas (Operator Workstation) se pone en marcha el sistema. A continuación se 
