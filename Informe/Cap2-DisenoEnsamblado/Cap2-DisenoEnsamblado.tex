@@ -289,7 +289,7 @@ Profundidad &  $0.52\,m$\\
 La estructura presenta en su sección media barras de refuerzo.
 Sobre ellas se colocaron los tanques.
 Además, sobre las barras se fijó una base de madera, donde se coloca la
-válvula electroneumática, las celdas de presión diferencial
+válvula de control, las celdas de presión diferencial
 y las electrobombas.
 La tubería flexible que corresponde al tiempo muerto se colocó bajo
 las barras de refuerzo.
@@ -333,8 +333,7 @@ Las tuberías utilizadas son suficientes para las presiones de trabajo del
 proyecto, del orden de $1.2\,kgf/cm^2$.
 
 Habiendo montado los elementos sobre la planta (electrobombas, tanques, válvula
-globo
-con servoactuador de diafragma - resorte y electroposionador neumático) se
+de control) se
 decidió la manera de realizar el conexionado.
 El tubo rígido presenta la dificultad de no tener tolerancia, al momento de
 realizar uniones.
@@ -408,9 +407,8 @@ Mediante la válvula manual \verb|VDT| puede habilitarse el tiempo muerto.
 El objetivo del tiempo muerto es alejar la acción de control del tanque
 controlado.
 El transmisor de nivel tardará un tiempo adicional $t_d$ en observar los cambios
-que se producen en el actuador (válvula globo, con servoactuador de
-diafragma - resorte y electroposionador
-neumático) \cite{bib:ApuntesPuglesiTema2}.
+que se producen en el actuador (válvula de control)
+\cite{bib:ApuntesPuglesiTema2}.
 La función de transferencia de la planta cambia notablemente:
 \begin{itemize}
  \item Por un lado, el retraso en la respuesta debe ser tenido en cuenta
@@ -848,7 +846,7 @@ importantes de la válvula, consignada en su chapa de identificación.
  Carrera & $19\,mm$ \\
   \hline
  \end{tabular}
- \caption{Especificaciones de la válvula electroneumática.}
+ \caption{Especificaciones de la válvula de control.}
  \label{tab:especifValvs}
 \end{table}
 
@@ -1309,7 +1307,7 @@ Considerando $C_q$ constante,
 \end{align}
 es constante también, y puede ser determinado experimentalmente.
 Para ello, se midió sobre el tanque controlado una distancia $l$.
-Luego, se encendió la electrobomba \verb|B1| con la válvula electroneumática en
+Luego, se encendió la electrobomba \verb|B1| con la válvula de control en
 posición
 abierta (caudal máximo), y se midió el tiempo $t$ necesario para que el nivel
 alcanzara la altura $l$.
