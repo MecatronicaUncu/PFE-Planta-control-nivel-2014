@@ -133,7 +133,7 @@ supervisar su estado como así también recibir señales de control.
 \label{subsec:plc}
 
 \glsreset{plc}
-Para automatizar nuestra planta se optó por utilizar un \gls{plc} Twido
+Para automatizar la planta se optó por utilizar un \gls{plc} Twido
 \verb|TWD LMDA 40 DTK| de Schneider.
 Se trata de un sistema electrónico digital de automatización y control, pensado
 para aplicaciones industriales, seguro frente a condiciones adversas,
@@ -160,7 +160,7 @@ podemos citar: Ladder, Texto Estructurado, Lista de Instrucciones y GRAFCET
  \item \textbf{I/O discretas:} las entradas y salidas discretas se
 utilizan para acciones de control discretas, tal como encender motores
 o leer sensores discretos (fines de carrera, pulsadores, señales binarias).
-En nuestro proyecto, se utilizan las salidas discretas \verb|Q0.0| y \verb|Q0.1|
+En este proyecto, se utilizan las salidas discretas \verb|Q0.0| y \verb|Q0.1|
 para activar los relés de los motores.
 Además \verb|I0.0| e \verb|I0.1| se
 utilizan como señales de enclavamiento: conectadas a los contactores, verifican
@@ -175,11 +175,11 @@ señales de corriente ($4-20\,mA$) o tensión ($0-10\,V$) provenientes de los
 transmisores de señal.
 De la misma manera, las salidas analógicas permiten enviar consignas
 de tensión o corriente a los actuadores.
-En nuestro proyecto, las entradas analógicas \verb|IW0.1.0| e \verb|IW0.1.1|
+En este proyecto, las entradas analógicas \verb|IW0.1.0| e \verb|IW0.1.1|
 permiten leer los valores de los DP cell de nivel y caudal, respectivamente.
 Se emplea la salida analógica \verb|QW0.1.0| para controlar el
 electroposicionador.
-Cabe destacar que nuestro \gls{plc} no posee I/O analógicas.
+Cabe destacar que el \gls{plc} no posee I/O analógicas.
 Por ello, debió anexarse un módulo \verb|TWD AMM 6HT|.
 La resolución de lectura máxima de las entradas analógicas es de $12\,bits$,
 con un tiempo de muestreo de $16\,ms$.
@@ -194,7 +194,7 @@ Se presentan dos opciones para la conexión con la computadora supervisora:
  \item Mediante una conexión cableada:
  se conecta el puerto \verb|RS-485| a un puerto \verb|RS-232C| de la computadora
 mediante un adaptador específico, fabricado durante el desarrollo del
-proyecto\footnote{En nuestro caso, dado que la computadora no contaba con un
+proyecto\footnote{En este caso, dado que la computadora no contaba con un
 puerto serie, se utilizó un adaptador
 \texttt{USB} a \texttt{RS-232C}.}.
 Se muestra en el anexo \ref{anexo:circuitos}, folio 1, el circuito esquemático

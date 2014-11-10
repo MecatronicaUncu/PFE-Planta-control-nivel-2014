@@ -81,7 +81,7 @@ líneas paralelas e inclinadas.
  \item \textbf{Señal eléctrica:} línea de trazos.
 \end{itemize}
 
-\subsection{P\&ID de nuestra planta}
+\subsection{P\&ID de la planta}
 De acuerdo a los componentes detallados en la Sec.
 \ref{sec:MaterialesDisponibles} se realizó el esquema \gls{pyid} de la planta
 de control de nivel.
@@ -420,7 +420,7 @@ La función de transferencia de la planta cambia notablemente:
  donde $G(s)$ corresponde a la función de transferencia de una planta sin
  tiempo muerto, y $G_{td}(s)$ es la misma planta con tiempo muerto.
   \item Por otro lado, se agregan pérdidas por rozamiento del
-  fluido cambiando la función de transferencia original $G(s)$ de nuestra
+  fluido cambiando la función de transferencia original $G(s)$ de la
   planta.
 \end{itemize}
 En conclusión, el proceso a controlar es diferente comparado con proceso sin
@@ -594,7 +594,7 @@ electroposionador neumático}
 \label{sec:ValvulaNeumatica}
 
 En esta sección se hará énfasis en la válvula de control.
-Es un elemento central en nuestra planta, ya que es la encargada de efectuar
+Es un elemento central en la planta, ya que es la encargada de efectuar
 las acciones de control.
 
 \subsection{Principio de funcionamiento}
@@ -896,7 +896,7 @@ también poder calibrarlo\footnote{Explicación obtenida del manual del
 electroposicionador.}.
 
 La Tab. \ref{tab:especifElectroP} muestra las características más importantes
-del electroposicionador presente en nuestra planta.
+del electroposicionador presente en la planta.
 
 \begin{table}[ht]
 \renewcommand{\arraystretch}{1.3}
@@ -1107,15 +1107,13 @@ Escala & $0.5\,bar/div$ ($2\,psi/div$) & $0.02\,kgf/cm^2/div$
 En la Fig. \ref{fig:manometro} se observan los dos manómetros
 presentes en el proyecto.
 
-
-
 \subsection{DP Cell}
 \label{subsec:DPCell}
 
 Se denomina \textit{DP Cell}, o celda de presión diferencial, a un transductor
 asociado a un transmisor de señal
 que mide la diferencia de presión entre dos puntos.
-En nuestro caso, la celda entrega una corriente proporcional a la diferencia de
+En este caso, la celda entrega una corriente proporcional a la diferencia de
 presión medida, en el rango de $4-20\,mA$.
 Este valor de corriente será leído por el controlador de la planta.
 
@@ -1270,8 +1268,8 @@ El coeficiente $C_v$ depende del número de Reynolds $Re$
 Re &= \dfrac{D\,v}{\nu}
 \end{align}
 donde $v$ es la velocidad en la placa orificio, $D$ es el diámetro y ${\nu}$
-es la viscosidad cinemática del fluido\footnote{Para el agua, nuestro fluido de
-trabajo $\nu = 1,003\,10^{-6} \frac{m^2}{s}$.}.
+es la viscosidad cinemática del fluido\footnote{Para el agua, el fluido de
+trabajo utilizado $\nu = 1,003\,10^{-6} \frac{m^2}{s}$.}.
 
 La ecuación \eqref{eq:placaOrif1} puede ser reescrita de una forma más sencilla
 mediante una nueva variable adimensional $C_q$

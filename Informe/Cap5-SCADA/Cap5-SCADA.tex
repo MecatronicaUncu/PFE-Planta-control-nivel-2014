@@ -132,7 +132,7 @@ El primer paso para el desarrollo de un sistema \gls{scada} es la
 implementación de la capa de comunicación, es decir, lograr la 
 comunicación con el \gls{plc} que controla la planta. Esta tarea se realiza
 utilizando alguno de los múltiples buses de comunicación que existen en el
-mercado. En nuestro caso, se utilizó el protocolo de comunicaciones Modbus.
+mercado. En este caso, se utilizó el protocolo de comunicaciones Modbus.
 
 \subsubsection{Modbus}
 Modbus es un protocolo de comunicaciones diseñado en 1979 por Modicon para su 
@@ -171,7 +171,8 @@ seguirse los pasos que se muestran en la Tab. \ref{tab:installModbus}.
 %  \item Aparecerá en la pantalla la ventana de $Setup~de~P-CIM$. Elija $Install~P-CIM~Driver$.
 %  \item La ventana de diálogo de instalación del Driver de P-CIM, le pedirá que indique el directorio del driver.
 %        Oprima Browse.
-%  \item Seleccione el directorio de origen del driver para Modbus. En nuestro caso $C:/P-CIM32.BAK/DRIVERS/MODBUS.689$.
+%  \item Seleccione el directorio de origen del driver para Modbus. En este
+%  caso $C:/P-CIM32.BAK/DRIVERS/MODBUS.689$.
 %  Oprima OK y luego Next.
 %  \item El Setup de P-CIM despliega la ventana de diálogo de Bienvenida. Para continuar, oprima Next. 
 %  \item El Setup de P-CIM despliega la ventana de diálogo de Propiedades del Driver de P-CIM 
@@ -607,13 +608,13 @@ siguiente manera:
   \item Se debe poder observar en ambos el mismo valor leído (en caso de
   registros de lectura) o el mismo valor al escribir en uno u otro de los items.
 \end{enumerate}
-Si esta prueba da los resultados esperados se puede estar seguros que 
+Si esta prueba da los resultados esperados se puede estar seguros que
 los bloques se encuentran bien configurados, y se puede proseguir con el
 desarrollo del sistema \gls{scada}.
 
-
 \subsection{Capa de aplicación}
 \label{subsec:CapaAplicacion}
+
 La tercer y última capa del sistema \gls{scada} es la capa de aplicación. Esta 
 será utilizada en este \gls{pfe} únicamente como \gls{hmi}. Para el
 desarrollo de la interfaz gráfica definimos un documento gráfico creado con el 
@@ -721,7 +722,8 @@ Para la realización de dicha interfaz se procedió como muestra la Tab.
 %       el destino de los datos escritos por el objeto de control.
 %       
 %  \item Probar los resultados en el Operator Workstation.\\
-%       Para poder probar el funcionamiento de nuestra \gls{hmi} procedemos de la siguiente manera:
+%       Para poder probar el funcionamiento de la \gls{hmi} procedemos de la
+%	siguiente manera:
 %       \begin{enumerate}
 %        \item 
 %       \end{enumerate}
@@ -852,9 +854,9 @@ Tendencia o ``Medidores de Desviación''.
 \section{Ejecución}
 \label{sec:Ejecucion}
 Durante el desarrollo de la interfaz gráfica se puede previsualizar 
-el resultado. Para esto, en la misma pantalla del Animation Editor, 
+el resultado. Para esto, en la misma pantalla del Animation Editor,
 se selecciona File, Preview. Una vez que han sido configuradas cada una de las 
-partes y se ha completado el desarrollo del sistema establecemos 
+partes y se ha completado el desarrollo del sistema establecemos
 la auto-ejecución de la interfaz gráfica en el Operator Workstation. De esta 
 manera al realizar el Startup de P-CIM, la pantalla se presenta inmediatamente 
 tras la inicialización. Debemos tildar AutoStart en el panel del Animation 
