@@ -17,7 +17,7 @@ Por simplicidad, se dividirá el análisis del tablero en dos secciones:
  \item \textbf{Señal:} corresponde a la instalación y el cableado
  de los elementos electrónicos cuyo objetivo es controlar la planta.
  Podemos citar: \gls{plc}, módulos inalámbricos,
- transmisores de señal de presión y caudal, actuadores (válvula electroneumática).
+ transmisores de señal de presión y caudal, actuadores (válvula de control).
 \end{itemize}
 
 \section{Potencia}
@@ -50,17 +50,17 @@ planta.
 \label{subsec:alimentacionMotores}
 Puede verse el esquema de alimentación de los motores en los folios 1 y 2 del
 Anexo \ref{anexo:diag}.
-Para cada una de las electrobombas, se utilizarán los siguientes elementos de
+Para cada una de las electrobombas, se utilizaron los siguientes elementos de
 protección y comando:
 \begin{itemize}
  \item \textbf{Relés:}
- Los relés reciben una señal de activación de $24\,V$, de parte del PLC.
+ los relés reciben una señal de activación de $24\,V$, de parte del PLC.
  Al activarse, el relé entrega en el borne \verb|11 (7)| una señal de $220\,V$
 de corriente alterna.
 Esta señal alimentará la bobina de los los contactores de los motores, previo 
 paso por el relevo térmico. Se utilizaron relés \verb|LZX:PT 370| de Siemens.
  \item \textbf{Relevo Térmico:}
- Tiene como objetivo evitar la sobrecorriente en los motores.
+ tiene como objetivo evitar la sobrecorriente en los motores.
  Para el proyecto, se configuró el relevo térmico con una corriente
  de $1.6\,A$.
  En caso de superar este valor, interrumpe tensión en la bobina
@@ -68,7 +68,7 @@ paso por el relevo térmico. Se utilizaron relés \verb|LZX:PT 370| de Siemens.
  Se utilizaron relevos térmicos \verb|LRD 06| de Telemecanique, conectados
 inmediatamente después del relé.
  \item \textbf{Contactores:}
- Encienden los motores, a partir de una señal de activación de $220\,V$ de
+ encienden los motores, a partir de una señal de activación de $220\,V$ de
 corriente alterna.
 Se utilizaron contactores \verb|LC1-D09| de Schneider Electric.
 Debido a que los contactores son trifásicos, debió realizarse un bucle con dos
@@ -120,13 +120,13 @@ La fuente de alimentación se muestra en el folio 1.
 
 El circuito de señal tiene como objetivos:
 \begin{itemize}
- \item Relevar variables de la planta (caudal, presión), procesarlas y entregar
-señales de control a la válvula electroneumática.
+ \item Captar variables de la planta (caudal, presión), procesarlas y entregar
+consignas a la válvula de control.
 \item Activar los relés descriptos en la Sec.
 \ref{subsec:alimentacionMotores} para encender o apagar los motores de las
 electrobombas.
 \item Conectar la planta a una computadora supervisora (\gls{scada}), para poder
-monitorear su estado como así también recibir señales de control.
+supervisar su estado como así también recibir señales de control.
 \end{itemize}
 
 \subsection{PLC}
@@ -137,7 +137,7 @@ Para automatizar nuestra planta se optó por utilizar un \gls{plc} Twido
 \verb|TWD LMDA 40 DTK| de Schneider.
 Se trata de un sistema electrónico digital de automatización y control, pensado
 para aplicaciones industriales, seguro frente a condiciones adversas,
-vibraciones y ruido electromagnético \cite{bib:ApuntesJGabriel}.
+vibraciones e interferencias radioeléctricas \cite{bib:ApuntesJGabriel}.
 El autómata se adapta al proceso a controlar mediante un
 \textit{software} o programa de aplicación específico, que contiene la secuencia
 de operaciones a realizar.
@@ -147,8 +147,9 @@ estado de las salidas \cite{bib:libroAutomat1}.
 
 Un \gls{plc} está conformado por los siguientes elementos:
 \begin{itemize}
- \item \textbf{Procesador:} en función de los valores de los transmisores de
-señal (entradas) y de la información almacenada, genera señales hacia los
+ \item \textbf{Procesador:} en función de los valores de los sensores discretos
+y transmisores continuos (entradas) y de la información almacenada,
+genera señales hacia los
 actuadores
 (salidas).
 El procesador sigue un algoritmo, denominado programa de aplicación,
@@ -191,12 +192,12 @@ El \gls{plc} utilizado cuenta con un puerto de comunicaciones \verb|RS 485|.
 Se presentan dos opciones para la conexión con la computadora supervisora:
 \begin{itemize}
  \item Mediante una conexión cableada:
- conectamos el puerto \verb|RS 485| a un puerto \verb|RS 232| de la computadora
+ se conecta el puerto \verb|RS 485| a un puerto \verb|RS 232| de la computadora
 mediante un adaptador específico, fabricado durante el desarrollo del
 proyecto\footnote{En nuestro caso, dado que la computadora no contaba con un
 puerto serie, se utilizó un adaptador
 \texttt{USB} a \texttt{RS 232}.}.
-Se muestra en el Anexo \ref{anexo:circuitos}, folio 1, el circuito esquemático
+Se muestra en el anexo \ref{anexo:circuitos}, folio 1, el circuito esquemático
 utilizado.
 Además, se incluyen los diseños de PCB para replicar el circuito.
 
