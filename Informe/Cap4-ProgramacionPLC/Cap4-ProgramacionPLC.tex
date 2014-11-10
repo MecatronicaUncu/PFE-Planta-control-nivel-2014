@@ -346,10 +346,10 @@ a los valores de \verb|MW1|.
 Pueden cambiarse las ganancias del controlador y el Set Point.
 
   \item \textbf{Gestión de banderas de encendido y modo manual:} en estos
-  escalones podrá ponerse a $1$ la
+  escalones puede ponerse a $1$ la
   bandera de encendido de la planta en modo automático \verb|M1|, modificando
 el valor de \verb|MW1:X0|.
-  De la misma manera, podrá cambiarse el
+  De la misma manera, puede cambiarse el
   el control de automático a manual modificando \verb|M2| a través de
   \verb|MW1:X1|.
 
@@ -389,7 +389,7 @@ son los enclavamientos recibidos del relé de los motores. La lectura de esta
 señal nos indica si el motor está realmente encendido.
   Dado que el sistema relé/contactor tiene una latencia de arranque, debemos
 agregar un bloque timer.
-Se pondrá a 1 la bandera de falla en motores \verb|M4| si hay
+Se activa la bandera de falla en motores \verb|M4| si hay
 una disparidad entre las
 salidas y las entradas discretas del \gls{plc}, por más de un segundo.
 

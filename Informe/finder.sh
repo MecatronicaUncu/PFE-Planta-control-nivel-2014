@@ -1,9 +1,10 @@
+
 #!/bin/bash
 
 echo "Script para buscar ocurrencias de palabras o expresiones"
 echo -e "Escribir en el array exprs las expresiones a buscar\n"
 
-expres=("[sS]eñal.de")
+expres=('rá[[:space:].]' 'rán[[:space:].]')
 
 files=(Abstract/abstract.tex Agradecimientos/Agradecimientos.tex Anexos/Anexo1-PuestaEnMarcha.tex 
 Anexos/Anexo2-Operacion.tex Bibliografia/bibliografia.bib Cap1-Introduccion/Cap1-Introduccion.tex 

@@ -24,7 +24,7 @@ se disponen con equipos similares al descripto.
 No obstante, el proyecto planteado tiene la característica de ser 
 \textbf{móvil}: se encuentra montado en una estructura que 
 permite su libre desplazamiento, y el enlace a la
-computadora supervisora se realizará de manera inalámbrica.
+computadora supervisora se realiza de manera inalámbrica.
 Además, se utiliza una válvula globo, con servoactuador de diafragma - resorte
 y electroposionador neumático, la primera de su tipo en el laboratorio.
 
@@ -88,18 +88,18 @@ sido adquiridos por el director de proyecto y se encontraban
 disponibles en el Laboratorio de Control Automático:
 \begin{itemize}
   \item \textbf{Estructura:} un marco de caño estructural montado sobre
-  ruedas. En él se colocarán todos los elementos de la planta.
+  ruedas. En él se colocaron todos los elementos de la planta.
   Ver Sec. \ref{sec:EstructuraSoporte}.
 
-  \item \textbf{Tuberías y accesorios}: serán utilizados para realizar el
+  \item \textbf{Tuberías y accesorios}: se utilizaron para realizar el
   circuito hidráulico de la planta. Ver Sec. \ref{sec:Canerias}.
 
   \item \textbf{Tanques:} se trata de dos tubos cloacales sellados en sus
   extremos, de $200\,mm$ de diámetro. Ver Sec. \ref{sec:Tanques}.
 
-  \item \textbf{Electrobombas monofásicas (2):} impulsarán el fluido
+  \item \textbf{Electrobombas monofásicas (2):} impulsan el fluido
   en el circuito hidráulico.
-  La velocidad de las bombas (frecuencia) no será controlada.
+  La velocidad de las bombas (frecuencia) no se controla.
   Ver Sec. \ref{sec:Bombas}.
 
   \item \textbf{Válvula globo, con servoactuador de diafragma - resorte y
@@ -107,7 +107,7 @@ electroposionador neumático:} marca Foxboro, modelo
   Stabilflo (serie V1), para controlar el caudal.
   Se trata de una válvula isoporcentual, con un electroposicionador
   Power Genex.
-  La apertura de la válvula será la variable manipulada en
+  La apertura de la válvula es la variable manipulada en
   el sistema.
   Ver Sec. \ref{sec:ValvulaNeumatica}.
 
@@ -117,11 +117,12 @@ electroposionador neumático:} marca Foxboro, modelo
 
   \item \textbf{DP cells (2):} transmisores de presión
   diferencial Yokogawa, modelo \verb|EJA 110 A|.
-  Uno de los transmisores de señal será utilizado para medir el nivel del tanque controlado,
-  en tanto que el segundo medirá caudal con la ayuda de la placa orificio.
+  Uno de los transmisores se utilizó para medir el nivel del tanque
+  controlado, en tanto que el segundo mide caudal con ayuda de la placa
+  orificio.
   Ver Sec. \ref{subsec:DPCell}.
 
-  \item \textbf{Manómetros (2):} A colocar en
+  \item \textbf{Manómetros (2):} colocados en
   puntos específicos de la planta, para medir los valores instantáneos de
   presión.
   Ver Sec. \ref{subsec:Manometros}.
@@ -140,7 +141,7 @@ electroposionador neumático:} marca Foxboro, modelo
 
   \item{\textbf{\gls{plc}}}: Twido \verb|40 DTK| (Schneider) con un módulo
   analógico \verb|TWD AMM 6HT|.
-  Permitirá controlar las electrobombas (encendido/apagado),
+  Permite controlar las electrobombas (encendido/apagado),
   leer valores de presión de las DP Cell y modificar la apertura de la 
   válvula. Ver Sec. \ref{subsec:plc}.
 
@@ -161,36 +162,35 @@ Habiendo analizado la lista de materiales disponibles, se propone el siguiente
 modelo de planta de control de nivel:
 \begin{itemize}
  \item Dos tanques son alimentados por dos bombas centrífugas.
- Cada bomba extraerá agua de un tanque y lo enviará al otro.
- \item En uno de ellos, el \textbf{tanque controlado}, se medirá el nivel
+ Cada bomba extrae agua de un tanque y lo envía al otro.
+ \item En uno de ellos, el \textbf{tanque controlado}, se mide el nivel
  mediante un DP cell.
  \item Sobre la \textbf{tubería de llenado} del tanque controlado, se
- colocará la válvula de control y la placa orificio (junto
+ colocaron la válvula de control y la placa orificio (junto
 con su correspondiente DP cell)\footnote{Si bien no es  requisito contar con
 una placa orificio para hacer  control de nivel,  poder medir el caudal en la
 tubería de llenado resulta  de  interés para  futuros trabajos  utilizando
 Teoría de Cascadas.}.
  Por ende, puede controlarse con precisión el caudal de agua de llenado del
  tanque controlado.
- \item En el segundo tanque, el \textbf{tanque de reserva} no se medirá
- el  nivel, sino que será calculado indirectamente mediante el nivel del tanque
+ \item En el segundo tanque, el \textbf{tanque de reserva} no se mide
+ el  nivel, sino que se calcula indirectamente mediante el nivel del tanque
  controlado.
- \item En la \textbf{tubería de vaciado} del tanque controlado se colocará una
-válvula manual, que permitirá modificar el caudal de vaciado.
+ \item En la \textbf{tubería de vaciado} del tanque controlado se colocó una
+válvula manual, que permite modificar el caudal de vaciado.
 \end{itemize}
-
 
 Para poder recrear fenómenos que afectan los procesos industriales se agregarán
 los siguientes elementos a la planta:
 \begin{itemize}
 \item 20 metros de tubería adicional, que sirven como tiempo
 muerto.
-Se agregarán en paralelo de la tubería de llenado del tanque controlado.
-Se podrá habilitar el tiempo muerto mediante una válvula manual.
+Se agregaron en paralelo de la tubería de llenado del tanque controlado.
+Se puede habilitar el tiempo muerto mediante una válvula manual.
 
-\item Se realizará una conexión tipo by-pass, mediante una válvula manual, de
+\item Se realizó una conexión tipo by-pass, mediante una válvula manual, de
 la salida de
-cada bomba con su entrada. Mediante esta conexión se podrá modificar el
+cada bomba con su entrada. Mediante esta conexión se puede modificar el
 rendimiento de las bombas para lograr el balance de masa en la planta, como así
 también simular perturbaciones en el circuito hidráulico.
 
@@ -208,8 +208,8 @@ electrobombas y los transmisores de presión
 deben ser correctamente conectados en el tablero de control.
 El cableado se analiza en el Cap. \ref{ch:tablero}.
 
-En el Cap. \ref{ch:progPLC} se programará el autómata que controlará la
-planta. Finalmente, en el Cap. \ref{ch:scada} se desarrollará el software
+En el Cap. \ref{ch:progPLC} se programa el autómata que controlará la
+planta. Finalmente, en el Cap. \ref{ch:scada} se desarrolla el software
 de control \gls{scada}, que se ejecuta en la computadora supervisora.
 
 \section{Análisis económico}
