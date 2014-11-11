@@ -43,16 +43,22 @@ No obstante, otras experiencias y trabajos se pueden realizar. Se puede citar:
 \begin{itemize}
 \item Se instaló una placa orificio (ver Sec. \ref{subsec:PlacaOrificio}), 
 utilizada
-para medir el caudal en la curva efectiva de la válvula.
-No obstante, podría plantearse un esquema de control de nivel en cascada en
-donde el caudal sea controlado también.
+para medir el caudal de ingreso al tanque cuyo nivel se pretende controlar. Por 
+lo que podría plantearse un esquema de control avanzado tipo maestro-esclavo, 
+utilizando otro lazo PID del PLC, siendo éste esclavo del maestro de nivel. 
+% en la curva efectiva de la válvula.
+% No obstante, podría plantearse un esquema de control de nivel en cascada en
+% donde el caudal sea controlado también.
 \item La determinación de los parámetros del controlador se realizó por 
-el método de Ziegler–Nichols(ver Sec. \ref{subsec:ZiegerNichols}). Debería 
-modelarse la planta con precisión. A partir del modelado, podrían aplicarse 
-esquemas de control más complejos.
+el método de Ziegler–Nichols(ver Sec. \ref{subsec:ZiegerNichols}) a lazo 
+cerrado, podría hacerse a lazo abierto y cotejar los parámetros del lazo de 
+nivel con ambos métodos.
+% Debería 
+% modelarse la planta con precisión. A partir del modelado, podrían aplicarse 
+% esquemas de control más complejos.
 \end{itemize}
 
-\section{Conclusión Personal}
+\section{Conclusiones Personales}
 \label{sec:ConclusionPersonal}
 
 
