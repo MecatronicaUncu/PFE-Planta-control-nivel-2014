@@ -422,8 +422,8 @@ saber:
 La constante de proporcionalidad para cada caso se conocen como ganancias del
 controlador ($K_p$, $T_i$ y $T_d$).
 
-El \gls{plc} utilizado ofrece hasta 14 bloques \gls{pid}, del cual se utilizó
-sólo uno.
+El \gls{plc} utilizado ofrece hasta 14 bloques \gls{pid}, de los cuales se
+utilizó sólo uno.
 Se muestran en la Tab. \ref{table:controladorpid} los valores utilizados para
 la configuración del controlador PID.
 Cada bloque \gls{pid} tiene dos modos de trabajo.
@@ -431,7 +431,7 @@ Cada bloque \gls{pid} tiene dos modos de trabajo.
  \item \textbf{Modo automático:} conociendo los valores de las ganancias, el
 Set Point y la variable controlada, el bloque realiza el algoritmo de \gls{pid} y entrega
 un valor de la variable manipulada en salida.
-En este, la variable manipulada es la apertura de la válvula.
+En este caso, la variable manipulada es la apertura de la válvula.
 La variable controlada y el Set Point corresponden a los valores de nivel
 presente en el tanque y deseado, respectivamente.
  \item \textbf{Modo manual:} permite anular el controlador, enviando un valor
@@ -524,7 +524,7 @@ Segundo &  $0.6 \,Kp_{cr}  $ & $ 0.5 \, P_{cr}$ & $0.125 \, P_{cr} $\\
 
 \subsubsection{Cálculo de ganancias para esta planta}
 
-Para éste trabajo se optó por el segundo método de los presentados
+Para este trabajo se optó por el segundo método de los presentados
 anteriormente, es decir, poniendo al sistema en oscilación permanente en bucle
 cerrado.
 
