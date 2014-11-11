@@ -136,7 +136,7 @@ Son capaces de guardar un único bit.
 Por esa razón, se utilizan como banderas internas del programa, que representan
 distintos estados de la planta.
 En la Tab. \ref{table:Banderasinternas} se pueden ver el nombre
-de las banderas utilizadas en nuestro programa y sus funciones.
+de las banderas utilizadas en el programa y sus funciones.
 \begin{table}[ht]
 \renewcommand{\arraystretch}{1.3}
 \centering
@@ -238,7 +238,7 @@ Esc & \verb|MW13| & Valor de escritura Td \\
 Finalmente, en la Tab. \ref{table:entradassalidas} se muestran las entradas y
 salidas del \gls{plc}.
 Descriptas en la Sec. \ref{subsec:plc}, permiten al
-controlador relevar variables de la planta y aplicar acciones de control.
+controlador captar variables de la planta y aplicar acciones de control.
 Cabe destacar que la salida \verb|Q0.7| se utilizó para obtener un indicador
 visual del estado en el \gls{plc}.
 Por consiguiente, esta salida no está conectada.
@@ -268,11 +268,11 @@ Entrada & \verb|QW0.1.0|  & Señal analógica de salida de apertura de la válvu
 
 \subsection{Descripción del programa grabado en el PLC}
 
-La Fig. \ref{fig:ladder} muestra un diagrama de los diferentes peldaños de
-nuestro programa de aplicación.
+La Fig. \ref{fig:ladder} muestra un diagrama de los diferentes peldaños del
+programa de aplicación.
 Se observa que la estructura secuencial del Alg. \ref{img:algoritmo} ha
 sido respetada en los peldaños.
-Distinguimos los siguientes escalones:
+Se distinguen los siguientes escalones:
 
 \begin{figure}[!ht]
 \centering
@@ -372,7 +372,7 @@ detenerse
   \item \textbf{Controlador \gls{pid}}: en este peldaño se encuentra el bloque
 del controlador \gls{pid}, cuya salida es el valor de apertura de la
 válvula (en modo automático).
-  La configuración de este bloque nos permite además manejar la válvula
+  La configuración de este bloque permite además manejar la válvula
 manualmente, en caso que \verb|M1| se encuentre activa.
 
   \item \textbf{Valor de apertura de la válvula:} se lee el valor de apertura de
@@ -422,21 +422,21 @@ saber:
 La constante de proporcionalidad para cada caso se conocen como ganancias del
 controlador ($K_p$, $T_i$ y $T_d$).
 
-El \gls{plc} utilizado ofrece hasta 14 bloques \gls{pid}, del cual utilizamos
+El \gls{plc} utilizado ofrece hasta 14 bloques \gls{pid}, del cual se utilizó
 sólo uno.
 Se muestran en la Tab. \ref{table:controladorpid} los valores utilizados para
 la configuración del controlador PID.
 Cada bloque \gls{pid} tiene dos modos de trabajo.
 \begin{itemize}
  \item \textbf{Modo automático:} conociendo los valores de las ganancias, el
-Set Point y la variable controlada, realiza el algoritmo de \gls{pid} y entrega
+Set Point y la variable controlada, el bloque realiza el algoritmo de \gls{pid} y entrega
 un valor de la variable manipulada en salida.
-En nuestro caso, la variable manipulada es la apertura de la válvula.
+En este, la variable manipulada es la apertura de la válvula.
 La variable controlada y el Set Point corresponden a los valores de nivel
 presente en el tanque y deseado, respectivamente.
  \item \textbf{Modo manual:} permite anular el controlador, enviando un valor
 manual a la variable controlada.
-Podemos así controlar la apertura a la válvula cuando se
+Se puede así controlar la apertura a la válvula cuando se
 trabaja en modo manual desde el \gls{scada}.
 
 \end{itemize}
@@ -468,7 +468,8 @@ Para poder determinar las ganancias del controlador se decidió seguir el métod
 de Ziegler–Nichols.
 Se trata de una serie de reglas basadas en la respuesta experimental
 del sistema.
-Estas reglas son aplicables a sistemas de primer orden, donde no se conoce con
+Estas reglas son aplicables a sistemas de primer orden o segundo orden aproximado 
+a uno de primero, donde no se conoce con
 precisión el modelo matemático del sistema \cite{bib:Ogata}.
 
 Se presentan dos métodos:
@@ -521,9 +522,9 @@ Segundo &  $0.6 \,Kp_{cr}  $ & $ 0.5 \, P_{cr}$ & $0.125 \, P_{cr} $\\
 \label{tab:valorganancias}
 \end{table}
 
-\subsubsection{Cálculo de ganancias en nuestra planta}
+\subsubsection{Cálculo de ganancias para esta planta}
 
-Para nuestro trabajo se optó por el segundo método de los presentados
+Para éste trabajo se optó por el segundo método de los presentados
 anteriormente, es decir, poniendo al sistema en oscilación permanente en bucle
 cerrado.
 
@@ -642,7 +643,7 @@ Por simplicidad, se optó por utilizar dos grupos de palabras bien
 diferenciadas:
 \begin{itemize}
  \item \textbf{Palabras de lectura:} pueden ser leídas por la computadora de
-control mediante MODBUS. En las palabras de lectura agruparemos aquellas
+control mediante MODBUS. En las palabras de lectura se agruparon aquellas
 banderas de estado (motores encendidos, alarmas) y las palabras con valores
 numéricos de lectura (mediciones de nivel, caudal, valor presente de Set Point
 y de ganancias del controlador).
@@ -652,7 +653,7 @@ point, ganancias) y banderas para modificar el estado de la planta (encenderla,
 seteo en modo manual, encendido de las electrobombas).
 \end{itemize}
 
-Destacamos que en algunos casos (por ejemplo, Set Point) tenemos tanto palabras
+Se destaca que en algunos casos (por ejemplo, Set Point) existen tanto palabras
 de lectura o escritura.
 Esto se debe a que estas variables, importantes para el funcionamiento de la
 planta, deben ser modificadas solamente bajo solicitud expresa del usuario, es
@@ -699,7 +700,7 @@ Podemos citar:
 	\centering
 	\includegraphics[width=.8\textwidth]
 	{Cap4-ProgramacionPLC/images/twidosoftdebug.png}
-	\caption{Esquema de la división del tiempo}
+	\caption{Tabla de animación}
 	\label{img:twidosoftdebug}
 \end{figure}
 
