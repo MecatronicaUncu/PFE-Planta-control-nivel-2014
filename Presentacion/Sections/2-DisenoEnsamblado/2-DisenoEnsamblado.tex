@@ -195,6 +195,39 @@ $15\,psi$)
 
 	\end{columns}
 }
+
+\frame{
+	\ifdebug
+	\frametitle{Válvula de control\hfill{\color{red} \emph{F}}}
+	\else
+	\frametitle{Válvula de control}
+	\fi
+	\textbf{Electroposicionador}
+
+	\vspace{.25cm}
+
+	{\color{newcolor} Problema:} en convertidor I/P no hay \textbf{real
+comparación} entre la consigna y la posición del vástago
+
+	\vspace{.5cm}
+
+	\begin{columns}
+	 \begin{column}{.35\textwidth}
+	  {\color{newcolor2} Soluciona:}
+	  \begin{itemize}
+	   \item Fricciones en vástago
+	   \item Fuerzas dinámicas
+	   \item Perturbaciones
+	  \end{itemize}
+
+	 \end{column}
+	 \begin{column}{.65\textwidth}
+	  \includegraphics[width=\textwidth]
+{Sections/2-DisenoEnsamblado/Images/PG-EPL.pdf}
+	 \end{column}
+	\end{columns}
+}
+
 \frame{
 	\ifdebug
 	\frametitle{Válvula de control\hfill{\color{red} \emph{F}}}
@@ -208,12 +241,11 @@ $15\,psi$)
 	\begin{columns}[t]
 		\begin{column}{0.5\textwidth}
 		\textbf{Caract. caudal inherente}
-		
+
 		Relaciona carrera-caudal, a $\Delta p$ cte.
 		\begin{center}
 		 \includegraphics[width=.9\textwidth]
 {Sections/2-DisenoEnsamblado/Images/Inherente.png}
- \footnotesize
 		\end{center}
 % 		\begin{itemize}
 % 		 \item Lineal
@@ -267,38 +299,6 @@ $15\,psi$)
 % 	 \item Efecto del flujo estrangulado
 % 	\end{itemize}
 	\end{column}
-	\end{columns}
-}
-
-\frame{
-	\ifdebug
-	\frametitle{Válvula de control\hfill{\color{red} \emph{F}}}
-	\else
-	\frametitle{Válvula de control}
-	\fi
-	\textbf{Electroposicionador}
-	
-	\vspace{.25cm}
-	
-	{\color{newcolor} Problema:} en convertidor I/P no hay \textbf{real 
-comparación} entre la consigna y la posición del vástago
-
-	\vspace{.5cm}
-
-	\begin{columns}
-	 \begin{column}{.35\textwidth}
-	  {\color{newcolor2} Soluciona:}
-	  \begin{itemize}
-	   \item Fricciones en vástago
-	   \item Fuerzas dinámicas
-	   \item Perturbaciones
-	  \end{itemize}
-
-	 \end{column}
-	 \begin{column}{.65\textwidth}
-	  \includegraphics[width=\textwidth]
-{Sections/2-DisenoEnsamblado/Images/PG-EPL.pdf}
-	 \end{column}
 	\end{columns}
 }
 
