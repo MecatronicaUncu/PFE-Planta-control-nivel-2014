@@ -184,7 +184,20 @@ $\\
 
 	\end{columns}
 }
+\frame{
+	\ifdebug
+	\frametitle{Sintonización PID\hfill{\color{red} \emph{M}}}
+	\else
+	\frametitle{Sintonización PID}
+	\fi
+	\textbf{Resultados del controlador: sin tiempo muerto}
 
+	\vspace{0.25cm}
+			\begin{center}
+\includegraphics[width=7cm]{Sections/4-PLC/Images/controlado.png}
+			\end{center}
+
+}
 \frame{
 	\ifdebug
 	\frametitle{Sintonización PID\hfill{\color{red} \emph{M}}}
@@ -213,4 +226,19 @@ $\\
 			\end{itemize}
 		\end{column}
 	\end{columns}
+}
+
+\frame{
+	\ifdebug
+	\frametitle{Sintonización PID\hfill{\color{red} \emph{M}}}
+	\else
+	\frametitle{Sintonización PID}
+	\fi
+	\textbf{Resultados del controlador: con tiempo muerto}
+
+	\vspace{0.25cm}
+			\begin{center}
+\includegraphics[width=7cm]{Sections/4-PLC/Images/controladotd.png}
+			\end{center}
+
 }
