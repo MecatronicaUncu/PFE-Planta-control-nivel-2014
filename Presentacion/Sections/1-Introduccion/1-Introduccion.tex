@@ -156,53 +156,50 @@
 	    \end{itemize}
 
 	 \end{column}
-
 	\end{columns}
-	
 }
 
 \begin{frame}
 	\ifdebug
-	\frametitle{Tareas Realizadas\hfill{\color{red} \emph{A}}}
+	\frametitle{Tareas realizadas\hfill{\color{red} \emph{A}}}
 	\else
-	\frametitle{Tareas Realizadas}
+	\frametitle{Tareas realizadas}
 	\fi
 	
 	 \centering
 	  La construcción de la planta implica una serie de etapas que deben 
 realizarse de manera ordenada
 	 
-	 \begin{columns}
+	 \begin{columns}[t]
 	  \begin{column}{0.5\textwidth}
 	   \begin{enumerate}
 	    \item Planificación y diseño preliminar
 	    \item Construcción de la planta
 	    \item Programación del PLC
 	   \end{enumerate}
-	    \begin{figure}[h!]
-	  \centering
-\includegraphics[width=.8\textwidth]
-{Sections/2-DisenoEnsamblado/Images/pyid60-1.pdf}
-	  \end{figure}
 	  \end{column}
-	  
 	  \begin{column}{0.5\textwidth}
 	  \begin{enumerate}
+	    \setcounter{enumi}{3}
 	    \item Programación SCADA
 	    \item Pruebas de funcionamiento
 	    \item Documentación
 	   \end{enumerate}
-	\begin{figure}[!ht]
-	\centering
-\includegraphics[width=0.8\textwidth]
-{../Informe/Cap5-SCADA/images/hmiScada.jpeg}
-	\end{figure}	  
 	  \end{column}
 	 \end{columns}
-
-	 
-
-
+	 \vspace{.5cm}
+	 \begin{columns}
+	  \begin{column}{.5\textwidth}
+	  \centering
+	  \includegraphics[height=.7\textwidth]
+{Sections/2-DisenoEnsamblado/Images/pyid60-1.pdf}
+	  \end{column}
+	  \begin{column}{.5\textwidth}
+	  \centering
+	  \includegraphics[height=.65\textwidth]
+{../Informe/Cap5-SCADA/images/hmiScada.jpeg}
+	  \end{column}
+	  \end{columns}
 \end{frame}
 
 \begin{frame}
