@@ -3,7 +3,7 @@
 echo "Script para buscar ocurrencias de palabras o expresiones"
 echo -e "Escribir en el array exprs las expresiones a buscar\n"
 
-expres=("sensor" "Sensor")
+expres=("232" "485")
 
 files=(Sections/1-Introduccion/1-Introduccion.tex Sections/4-PLC/4-PLC.tex
 Sections/5-Scada/5-Scada.tex Sections/2-DisenoEnsamblado/2-DisenoEnsamblado.tex
