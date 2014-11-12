@@ -6,6 +6,12 @@
 height=4em]
 \tikzstyle{line} = [draw, -latex']
 
+\tikzstyle{block_alarm} = [rectangle, draw, fill=green!20, 
+    text width=4em, text centered, node distance=3cm,rounded corners, minimum 
+height=4em]
+\tikzstyle{decision_alarm} = [diamond, draw, fill=green!20, 
+    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+
 \tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
     minimum height=2em]
     
@@ -18,12 +24,12 @@ height=4em]
     \node [block, below of=init] (init_param) {Inic. Parámetros};
     \node [block, below of=init_param] (run) {PLC run};
     \node [decision, right of=run](emer){Emerg?};
-    \node [block, above of=emer] (set_emer) {Bandera Emergencia};
+    \node [block_alarm, above of=emer] (set_emer) {Emerg.};
     \node [, right of=emer](null){};
     \node [block, right of=null,node distance = 1.5cm] (adq) {Adq. Nivel y 
 Caudal};
     \node [decision, right of=adq](hhll){HHL LLL?};
-    \node [block, above of=hhll] (set_hhll) {Error Nivel};
+    \node [block_alarm, above of=hhll] (set_hhll) {Error Nivel};
     \node [, right of=hhll](null_hhll){};
     \node [decision, right of=null_hhll,node distance = 1.5cm](hl){HL LL?};
     \node [block, above of=hl] (set_hl) {Alarma};
@@ -34,9 +40,9 @@ Caudal};
      \node [, right of=set_param](null_param){};
     
     \node [decision, below of=set_param](set_auto){Auto?};
-    \node [decision, left of=set_auto](verif_band){Verifica Banderas?};
+    \node [decision_alarm, left of=set_auto](verif_band){Verifica Banderas?};
     \node [, below of=set_auto,node distance =3cm](null_auto){};
-    \node [decision, below of=null_auto](band_emer){Ban emer?};
+    \node [decision_alarm, below of=null_auto](band_emer){Ban emer?};
     \node [, below of=band_emer,node distance =4cm](null_band_emer){};
 
     
@@ -55,7 +61,7 @@ Caudal};
 {Válv. Manual};
     
     \node [decision, left of=pid](enclav){Enclav?};
-    \node [block, below of=enclav, node distance=4.5cm] (alarm_enclav) {Alarma 
+    \node [block_alarm, below of=enclav, node distance=4.5cm] (alarm_enclav) {Alarma 
 Enclavamiento};
     
     
@@ -78,25 +84,25 @@ Enclavamiento};
     \path [line,dashed] (init) -- (init_param);
     \path [line] (init_param) -- (run);
     \path [line] (run) -- (emer);
-    \path [line] (emer) -- (set_emer);
+    \path [line] (emer) -- node {si} (set_emer);
     \path [line] (set_emer) -| (null);
     \path [line] (emer) -- (adq);
     \path [line] (adq) -- (hhll);
-    \path [line] (hhll) -- (set_hhll);
+    \path [line] (hhll) -- node {si} (set_hhll);
     \path [line] (set_hhll) -| (null_hhll);
     \path [line] (hhll) -- (hl);
-    \path [line] (hl) -- (set_hl);
+    \path [line] (hl) -- node {si} (set_hl);
     \path [line] (set_hl) -| (null_hl);
     \path [line] (hl) -- (set_param);
-    \path [line] (set_param) -- (param);
+    \path [line] (set_param) -- node {si} (param);
     \path [line] (param) -| (null_param);
     \path [line] (set_param) -- (null_param);
     \path [line] (null_param) |- (set_auto);
     
-    \path [line] (set_auto) -- (verif_band);
+    \path [line] (set_auto) -- node {si} (verif_band);
     \path [line] (set_auto) -- (band_emer);
  
-    \path [line] (verif_band) -- (motores);
+    \path [line] (verif_band) -- node {si} (motores);
     \path [line] (verif_band) -- (no_mot);
     \path [line] (no_mot) -| (run);
     \path [line] (motores) -- (pid);
@@ -104,19 +110,19 @@ Enclavamiento};
     \path [line] (band_emer) -- (bomb1);
     %\path [line] (band_emer) |- (set_bomb1);
     \path [line] (set_bomb1) -| (null_bomb1);
-    \path [line] (bomb1) -- (set_bomb1);
+    \path [line] (bomb1) -- node {si} (set_bomb1);
     \path [line] (bomb1) -- (bomb2);
     \path [line] (set_bomb2) -| (null_bomb2);
     \path [line] (bomb2) -- (valv_manual);
-    \path [line] (bomb2) -- (set_bomb2);
+    \path [line] (bomb2) -- node {si} (set_bomb2);
     
     \path [line] (pid) -- (enclav);
     \path [line] (valv_manual) -| (null_pid);
-    \path [line] (enclav) -- (alarm_enclav);
+    \path [line] (enclav) -- node {no} (alarm_enclav);
     \path [line] (enclav) -| (run);
     \path [line] (alarm_enclav) -| (run);
     
-    \path [line] (band_emer) -- (null_band_emer);
+    \path [line] (band_emer) -- node {si} (null_band_emer);
     \path [line] (null_band_emer) -| (run);
 %     \path [line] (verif_band) -- (motores);
 %     \path [line] (verif_band) -- (no_mot);
