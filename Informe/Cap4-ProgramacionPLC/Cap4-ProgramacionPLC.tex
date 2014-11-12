@@ -99,7 +99,7 @@ acciones de salida.
 
 Las acciones de salida se representan como bobinas.
 Las bobinas pueden estar aplicadas tanto a salidas físicas de la planta, como a
-valores en memoria. Encontramos los siguientes tipos:
+valores en memoria. Se distinguen los siguientes tipos:
 
   \begin{itemize}
    \item \textbf{Bobina directa:} toma el valor lógico de la entrada.
@@ -116,7 +116,7 @@ numéricas, realizar bucles \gls{pid}, contadores, registros, etc.
 Cada una de las partes del programa se denomina \emph{RUNG} (escalón o
 peldaño).
 La ejecución de los peldaños es secuencial, comenzando por el  \verb|RUNG 0|.
-En cada peldaño se describen paso a paso las acciones que deseamos que
+En cada peldaño se describen paso a paso las acciones que se desea que
 el controlador realice, de acuerdo al estado del sistema o las ordenes
 recibidas desde el \gls{scada}.
 
@@ -387,7 +387,7 @@ al software \gls{scada}, por medio de las banderas \verb|MW0:X6-X9|,
 \gls{plc}
 son los enclavamientos recibidos del relé de los motores. La lectura de esta
 señal nos indica si el motor está realmente encendido.
-  Dado que el sistema relé/contactor tiene una latencia de arranque, debemos
+  Dado que el sistema relé/contactor tiene una latencia de arranque, se debe
 agregar un bloque timer.
 Se activa la bandera de falla en motores \verb|M4| si hay
 una disparidad entre las
@@ -685,16 +685,17 @@ en tiempo de ejecución, observando el estado de las diferentes variables
 de la planta.
 La animación colorea las bobinas y contactores que están activos, permitiendo
 identificar problemas lógicos en el programa.
-Además, podemos observar el valor de las entradas y salidas, detectando así
+Además, se observa el valor de las entradas y salidas, detectando así
 errores en la instrumentación y/o en los actuadores.
 
 En la Fig. \ref{img:twidosoftdebug} se observa el módulo \emph{Tablas
 de Animación} de Twido Soft.
 Mediante este módulo, se puede forzar el estado de algunas bobinas y cambiar el
 valor de las palabras en memoria.
-Podemos así generar situaciones características que encontraremos durante la
+De esta manera, pueden generarse situaciones características que
+encontraremos durante la
 operación de la planta.
-Podemos citar:
+Por ejemplo:
 
 \begin{figure}[ht]
 	\centering

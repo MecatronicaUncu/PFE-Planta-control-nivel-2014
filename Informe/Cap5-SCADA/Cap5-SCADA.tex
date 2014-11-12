@@ -161,7 +161,7 @@ maestro/esclavo o cliente/servidor.
 
 
 \subsubsection{Instalación Driver Modbus}
-Se procede ahora a detallar el  proceso de configuración y puesta en marcha 
+Se procede ahora a detallar el proceso de configuración y puesta en marcha
 del bus de comunicaciones\footnote{Para descargar el driver Modbus para P-CIM:
 \url{http://www.afcon-inc.com/afcon/Templates/showpage.asp?TMID=402&FID=832}}.
 Para realizar la instalación de este driver de comunicaciones en P-CIM deben
@@ -234,8 +234,8 @@ seguirse los pasos que se muestran en la Tab. \ref{tab:installModbus}.
 \end{table}
 
 \subsubsection{Configuración del Driver Modbus}
-Una vez que el driver de Modbus para PCIM se ha instalado correctamente
-procedemos a realizar su configuración para lograr la comunicación entre el PLC 
+Una vez que el driver de Modbus para PCIM se ha instalado correctamente,
+se procede a realizar su configuración para lograr la comunicación entre el PLC
 y la computadora supervisora. Esta tarea se divide en dos partes: asociar el
 driver con un puerto P-CIM y establecer los parámetros operativos de dicho 
 puerto:
@@ -291,7 +291,7 @@ Tab. \ref{tab:ConfigModbus}.
     y decimal en el cuadro Bit numbering system.
     La notación usada para referenciar el bit menos significativo es 1 en 
     la lista de Lowest bit number.
-%     No utilizaremos el driver en modo emulador, deseleccione la casilla 
+%     No se utiliza el driver en modo emulador, deseleccione la casilla
 %     de Emulation Mode.
     &\begin{center}
       %\rule{0.4\textwidth}{0.3\textwidth}
@@ -401,9 +401,9 @@ en el PLC 1 que está conectado al Puerto 1.
 \end{itemize}
 
 \subsubsection{Verificación de la comunicación}
-En este punto podemos verificar que la comunicación entre el PLC y la
+En este punto se puede verificar que la comunicación entre el PLC y la
 computadora supervisora se encuentre operativa. Para supervisar el estado
-de la comunicación podemos utilizar las siguientes herramientas:
+de la comunicación se pueden utilizar las siguientes herramientas:
 \begin{itemize}
  \item \textbf{Sumario de Alarmas(Alarm Summary):} despliega mensajes del
 Sistema de Arranque, uno de los cuales es: ``MODBUS
@@ -506,13 +506,14 @@ Ahora, teniendo en cuenta las variables establecidas en el \gls{plc}
 para la comunicación con el \gls{scada} (ver 
 Tabs. \ref{table:mwBanderas} y
 \ref{table:mwNumericos}) se pueden definir los bloques de la base
-de datos que fueron necesarios. Estos bloques los dividimos en tres
+de datos que fueron necesarios. Estos bloques se dividen en tres
 grandes grupos con configuraciones similares:
  
 \begin{itemize}
  \item \textbf{Analog Input/Output:} bloque analógico con información 
 desde/hacia el 
-  \gls{plc} a la base de datos. Debemos definir entradas a la base de datos con 
+  \gls{plc} a la base de datos. Se deben definir entradas a la base de datos
+con
   la dirección del espacio de memoria en el \gls{plc}, para poder acceder en
   Lectura/Escritura en estos registros.
  \item \textbf{Calculation:}  conversiones en unidades de ingeniería o
@@ -618,7 +619,7 @@ desarrollo del sistema \gls{scada}.
 
 La tercer y última capa del sistema \gls{scada} es la capa de aplicación. Ésta
 fue utilizada unicamente como \gls{hmi}. Para el
-desarrollo de la interfaz gráfica definimos un documento gráfico creado con el 
+desarrollo de la interfaz gráfica se define un documento gráfico creado con el
 Editor de Animaciones (Animation Editor). Finalmente, mediante el Servidor de 
 Pantallas (Operator Workstation) se pone en marcha el sistema. A continuación se 
 presentan el desarrollo y descripción de la pantalla realizada mediante las 
@@ -630,8 +631,8 @@ herramientas gráficas provistas por P-CIM.
 
 
 \subsubsection{Requerimientos de pantalla}
-El primer paso en el diseño de un pantalla es la definición de requerimientos 
-con los que debemos cumplir. Estos se resumen en:
+El primer paso en el diseño de un pantalla es la definición de requerimientos
+que deben cumplirse. Estos se resumen en:
 \begin{itemize}
  \item Botones de parada de emergencia y rehabilitación del sistema.
  \item Botones de encendido y parada del controlador de la planta.
@@ -723,7 +724,7 @@ Para la realización de dicha interfaz se procedió como muestra la Tab.
 %       el destino de los datos escritos por el objeto de control.
 %       
 %  \item Probar los resultados en el Operator Workstation.\\
-%       Para poder probar el funcionamiento de la \gls{hmi} procedemos de la
+%       Para poder probar el funcionamiento de la \gls{hmi} se procede de la
 %	siguiente manera:
 %       \begin{enumerate}
 %        \item 
@@ -857,10 +858,10 @@ Tendencia o ``Medidores de Desviación''.
 Durante el desarrollo de la interfaz gráfica se puede previsualizar 
 el resultado. Para esto, en la misma pantalla del Animation Editor,
 se selecciona File, Preview. Una vez que han sido configuradas cada una de las 
-partes y se ha completado el desarrollo del sistema establecemos
+partes y se ha completado el desarrollo del sistema se establece
 la auto-ejecución de la interfaz gráfica en el Operator Workstation. De esta 
 manera al realizar el Startup de P-CIM, la pantalla se presenta inmediatamente 
-tras la inicialización. Debemos tildar AutoStart en el panel del Animation 
+tras la inicialización. Debe tildarse AutoStart en el panel del Animation
 Editor la opción Operator Workstation, Options, AutoStart.
 
 Para mas información acerca de la operación del sistema mediante el \gls{hmi} 
