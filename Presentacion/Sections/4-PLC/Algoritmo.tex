@@ -2,7 +2,8 @@
 \tikzstyle{decision} = [diamond, draw, fill=blue!20, 
     text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
 \tikzstyle{block} = [rectangle, draw, fill=blue!20, 
-    text width=4em, text centered, rounded corners, minimum height=4em]
+    text width=4em, text centered, node distance=3cm,rounded corners, minimum 
+height=4em]
 \tikzstyle{line} = [draw, -latex']
 
 \tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
@@ -11,41 +12,50 @@
 \begin{figure}[t]
 \resizebox{0.9\textwidth}{!}{
 
-\begin{tikzpicture}[node distance = 2cm, auto]
+\begin{tikzpicture}[node distance = 1.5cm, auto]
     % Place nodes
     \node [cloud] (init) {Tablero energizado};
-    \node [block, below of=init] (run) {PLC run};
-    \node [block, below of=run] (var) {Adq. Nivel y Caudal};
+    
+    \node [block, below of=init] (var) {Adq. Nivel y Caudal};
+    
     \node [decision, below of=var](hhl){Nivel?};
     \node [block, below of=hhl](stop){Detener la planta};
+    
     \node [decision, right of=hhl](hl){Nivel?};
     \node [block, below of=hl](alarm){Señal de alarma};
+    \node [,right of=hl](null_hl){};
+    
     \node [decision, right of=hl](set){Parám.?};
     \node [block, below of=set](param){Seteo de parámetros};
+    \node [,right of=set](null_set){};
+    
     \node [decision, right of=set](manual){Manual?};
     \node [block, below of=manual](control){Control manual};
-    \node [block, right of=manual](on){Motores ON};
-    \node [block, right of=on](state){Estado};
+    \node [block, right of=manual](on){Control automático};
+   
     \node [, below left of=stop](null){};
-    %\node (null){};
-%     % Draw edges
-    \path [line,dashed] (init) -- (run);
-    \path [line] (run) -- (var);
+    
+    % Draw edges
+    
+    \path [line,dashed] (init) -- (var);
+    
     \path [line] (var) -- (hhl);
     \path [line] (hhl) -- node {si} (stop) ;
-    \path [line] (stop) |- (null);
-    \path [line] (null) |- (run);%--++  (-3,0) |- (run);
+%     %\path [line] (stop) |- (null);
+    \path [line] (null) |- (var);
+    
     \path [line] (hhl) -- (hl);
     \path [line] (hl) -- node {si} (alarm);
+    \path [line] (alarm) -| (null_hl);
+    
     \path [line] (hl) -- (set);
     \path [line] (set) -- node {si} (param);
+    \path [line] (param) -| (null_set);
     \path [line] (set) -- (manual);
+    
     \path [line] (manual) -- node {si} (control);
     \path [line] (manual) -- (on);
-    \path [line] (on) -- (state);
-    \path [line] (state) |- (null);
-    \path [line] (alarm) |- (null);
-    \path [line] (param) |- (null);
+    \path [line] (on) |- (null);
     \path [line] (control) |- (null);
 
 \end{tikzpicture}
