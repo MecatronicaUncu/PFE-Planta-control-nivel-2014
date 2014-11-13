@@ -72,7 +72,7 @@ Dentro de sus características se encuentran:
  \item Compatible con todas las plataformas MS-Windows actuales.
  \item Soporta un gran número de diferentes \gls{plc} y otros dispositivos 
   periféricos.
- \item Posee drivers para diversos buses de comunicación, por ejemplo MODBUS.
+ \item Posee drivers para diversos buses de comunicación, por ejemplo Modbus.
  \item Provee herramientas para el desarrollo de \gls{hmi} inteligentes.
  \item Permite el seguimiento de los procesos de la planta y de las actividades
   de los operadores. Ademas permite supervisar alarmas y eventos en toda la
@@ -143,7 +143,9 @@ encarga desde entonces del desarrollo y actualización del protocolo Modbus.
 Para la conexión entre una computadora corriendo un software \gls{scada} y uno
 o varios \gls{plc}, el protocolo Modbus es un estándar de facto en la industria.
 Por esta razón, también goza de una gran disponibilidad para la conexión de
-dispositivos electrónicos industriales. A nivel diseño, se encuentra situado en 
+dispositivos electrónicos industriales.
+
+A nivel diseño, se encuentra situado en
 la capa de aplicación según el modelo \gls{osi} y presenta una arquitectura 
 maestro/esclavo o cliente/servidor.
 
@@ -156,31 +158,40 @@ maestro/esclavo o cliente/servidor.
 %  \item Maneja bloques de datos sin suponer restricciones a los vendedores.
 %  \item Permite la comunicación entre múltiples dispositivos en la misma red. 
 %   Aprox. 240
-%  \item De código abierto y libre de regalías.%openly published and royalty-free
+%  \item De código abierto y libre de regalías.%openly published and 
+%royalty-free
 % \end{itemize}
 
 
 \subsubsection{Instalación Driver Modbus}
-Se procede ahora a detallar el proceso de configuración y puesta en marcha
+Se procede a detallar el proceso de configuración y puesta en marcha
 del bus de comunicaciones\footnote{Para descargar el driver Modbus para P-CIM:
 \url{http://www.afcon-inc.com/afcon/Templates/showpage.asp?TMID=402&FID=832}}.
 Para realizar la instalación de este driver de comunicaciones en P-CIM deben
 seguirse los pasos que se muestran en la Tab. \ref{tab:installModbus}.
 % \begin{enumerate}
-%  \item Elija $Setup~de~P-CIM$ del grupo de aplicaciones que se encuentran la carpeta $AFCON~P-CIM[7.70SP4]$.
-%  \item Aparecerá en la pantalla la ventana de $Setup~de~P-CIM$. Elija $Install~P-CIM~Driver$.
-%  \item La ventana de diálogo de instalación del Driver de P-CIM, le pedirá que indique el directorio del driver.
+%  \item Elija $Setup~de~P-CIM$ del grupo de aplicaciones que se encuentran la 
+%carpeta $AFCON~P-CIM[7.70SP4]$.
+%  \item Aparecerá en la pantalla la ventana de $Setup~de~P-CIM$. Elija 
+%$Install~P-CIM~Driver$.
+%  \item La ventana de diálogo de instalación del Driver de P-CIM, le pedirá que 
+%indique el directorio del driver.
 %        Oprima Browse.
 %  \item Seleccione el directorio de origen del driver para Modbus. En este
-%  caso $C:/P-CIM32.BAK/DRIVERS/MODBUS.689$.
+%  caso $C:/P-CIM32.BAK/DRIVERS/Modbus.689$.
 %  Oprima OK y luego Next.
-%  \item El Setup de P-CIM despliega la ventana de diálogo de Bienvenida. Para continuar, oprima Next. 
-%  \item El Setup de P-CIM despliega la ventana de diálogo de Propiedades del Driver de P-CIM 
+%  \item El Setup de P-CIM despliega la ventana de diálogo de Bienvenida. Para 
+%continuar, oprima Next. 
+%  \item El Setup de P-CIM despliega la ventana de diálogo de Propiedades del 
+%Driver de P-CIM 
 %   para Windows 32, indicando los detalles del driver a ser instalado.
-%  \item Elija el/los proyecto(s) en los que Ud. desea instalar el driver o bien seleccione
+%  \item Elija el/los proyecto(s) en los que Ud. desea instalar el driver o bien 
+%seleccione
 %   All (todos) y oprima Next.
-%   \item El Setup de P-CIM procede a efectuar la instalación y finalmente muestra este mensaje: 
-%   “La instalación del driver se ha completado”. Oprima OK para que desaparezca el cuadro de diálogo.
+%   \item El Setup de P-CIM procede a efectuar la instalación y finalmente 
+%muestra este mensaje: 
+%   “La instalación del driver se ha completado”. Oprima OK para que desaparezca 
+%el cuadro de diálogo.
 % \end{enumerate}
 \begin{table}[H]
 \small
@@ -248,7 +259,8 @@ Tab. \ref{tab:ConfigModbus}.
 %   \item  Elija el Setup de Comunicación de P-CIM (ALT+M). El Setup de P-CIM
 %   despliega la ventana de diálogo “Project Communication Setup” de P-CIM.
 %   \item Para agregar una nueva asociación driver-puerto, elija New.
-%   \item Para editar una asociación existente, marque la línea correspondiente y
+%   \item Para editar una asociación existente, marque la línea correspondiente 
+%y
 %   elija Edit.
 %   \item El Setup de P-CIM despliega la ventana de diálogo “Port properties” 
 %   (propiedades de puerto).
@@ -258,7 +270,8 @@ Tab. \ref{tab:ConfigModbus}.
 % contiene nombres de drivers instalados en el proyecto en curso).
 %   \item En el cuadro elija la notación numérica del bit – octal, decimal o 
 %    hexadecimal – de la lista de Bit numbering system.
-%   \item Elija la notación usada para referenciar el bit menos significativo – 0 
+%   \item Elija la notación usada para referenciar el bit menos significativo – 
+%0 
 %    ó 1 – de la lista de Lowest bit number (Numeración del Menor Bit).
 %   \item Para utilizar el driver en modo emulador, selecciones la casilla de 
 %   Emulación.
@@ -287,7 +300,7 @@ Tab. \ref{tab:ConfigModbus}.
     \end{center}\\
   \hline
     Ingrese el número de puerto entre 1 y 255 en la lista de Port Name.
-    Elija Modbus de la lista de Driver Name.
+    Elija MODBUS de la lista de Driver Name.
     y decimal en el cuadro Bit numbering system.
     La notación usada para referenciar el bit menos significativo es 1 en 
     la lista de Lowest bit number.
@@ -312,17 +325,21 @@ Tab. \ref{tab:ConfigModbus}.
 %   \item Elegir el Setup de P-CIM del grupo P-CIM para Windows 32.
 %   \item Elegir el Setup de Comunicación de P-CIM (ALT+M). El Setup de P-CIM
 %   despliega la ventana de diálogo Project Communication Setup.
-%   \item Marque la línea correspondiente en el cuadro de Puertos Asignados y elija
+%   \item Marque la línea correspondiente en el cuadro de Puertos Asignados y 
+%elija
 %   Properties.
 %   \item El Setup de P-CIM despliega la ventana de diálogo driver específico. 
-%   Para el caso de Modbus se despliega la ventana P-CIM Configurator for MODBUS 
+%   Para el caso de Modbus se despliega la ventana P-CIM Configurator for 
+%Modbus 
 %   Driver
 %   \item Elija el numero del puerto de P-CIM de la lista P-CIM Port
 %   \item Defina la tabla de Polling mediante el botón Polling Configuration
 %   \item Establezca el tipo de interfaz mediante la lista de Network Type en 
 %   RS-232.
-%   \item Transport Parameter despliega una ventana en la que se debe configurar 
-% el puerto serial con  el mismo nombre con el que aparece en el Administrador de 
+%   \item Transport Parameter despliega una ventana en la que se debe 
+%configurar 
+% el puerto serial con  el mismo nombre con el que aparece en el Administrador 
+%de 
 % Dispositivos de Windows.
 %  \end{enumerate} 
 \end{itemize}
@@ -405,7 +422,7 @@ En este punto se puede verificar que la comunicación entre el PLC y la
 computadora supervisora se encuentre operativa. Para supervisar el estado
 de la comunicación se pueden utilizar las siguientes herramientas:
 \begin{itemize}
- \item \textbf{Sumario de Alarmas(Alarm Summary):} despliega mensajes del
+ \item \textbf{Resumen de Alarmas (Alarm Summary):} despliega mensajes del
 Sistema de Arranque, uno de los cuales es: ``MODBUS
   Driver successfully loaded'' indicando que el driver halló la tabla de
   comunicación y fue exitosamente cargado. Ver Fig. \ref{fig:alarmsummary}.
@@ -424,7 +441,7 @@ dentro del subdirectorio Tools.
   dirección que insertó,
   indicando que la comunicación está funcionando, o bien recibirá un cero, y
   después de un momento se desplegará un mensaje en la ventana de Resumen
-  de Alarma, indicando que la comunicación falló. Véase la 
+  de Alarmas, indicando que la comunicación falló. Véase la
   Sec. \ref{subsubsec:InforDriver} para mas información acerca de las
   direcciones del PLC y la base de datos. Ver 
   Fig. \ref{fig:dataScope}.
@@ -518,7 +535,7 @@ con
   Lectura/Escritura en estos registros.
  \item \textbf{Calculation:}  conversiones en unidades de ingeniería o
 porcentual
-  según sea necesario. Las variables leídas del \gls{plc} estan definidas en 
+  según sea necesario. Las variables leídas del \gls{plc} están definidas en
   una escala de $0$ a $4095$, por esta razón deben ser convertidas para
 adaptarse tanto al \gls{plc} como al \gls{hmi} del \gls{scada}.
  \item \textbf{Analog Emulation:} bloque analógico con información hacia/desde
@@ -538,7 +555,7 @@ que para:
   \item \textbf{Analog Input/Output:} Address debe tener el valor de MODBUS
   Address correspondiente. El Target está dado por la punta de la flecha que se
   origina en ese bloque.
-  \item \textbf{Calculation:} Parameter es el bloque entretante y Target es el
+  \item \textbf{Calculation:} Parameter es el bloque entrante y Target es el
   bloque saliente en el esquema.
   \item \textbf{Analog Emulation:} Address toma el valor de Emulation Address y
   el Target es el bloque al que apunta la flecha. 
@@ -608,7 +625,7 @@ siguiente manera:
   \item Escriba el nombre de alguno de los bloques antes definidos  y en otro 
   item su dirección.
   \item Se debe poder observar en ambos el mismo valor leído (en caso de
-  registros de lectura) o el mismo valor al escribir en uno u otro de los items.
+  registros de lectura) o el mismo valor al escribir en uno u otro de los ítems.
 \end{enumerate}
 Si esta prueba da los resultados esperados se puede estar seguros que
 los bloques se encuentran bien configurados, y se puede proseguir con el
