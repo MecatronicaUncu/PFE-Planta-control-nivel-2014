@@ -250,15 +250,19 @@ Por consiguiente, esta salida no está conectada.
 \hline
 \bfseries Tipo & \bfseries Memoria & \bfseries Descripción\\
 \hline \hline
-Salida & \verb|Q0.0|  & Encendido motor 1\\
-Salida & \verb|Q0.1|  & Encendido motor 2\\
-Salida & \verb|Q0.7|  & Señal de encendido de la planta en modo automático\\
-Salida & \verb|I0.0|  & Retroalimentación desde el relevo térmico motor 1\\
+E. disc. & \verb|I0.0|  & Retroalimentación desde el relevo térmico motor
+1\\
+E. disc.& \verb|I0.1|  & Retroalimentación desde el relevo térmico motor
+2\\
+S. disc.& \verb|Q0.0|  & Encendido motor 1\\
+S. disc.& \verb|Q0.1|  & Encendido motor 2\\
+S. disc.& \verb|Q0.7|  & Señal de encendido de la planta en modo
+automático\\
 \hline
-Entrada & \verb|I0.1|  & Retroalimentación desde el relevo térmico motor 2\\
-Entrada & \verb|IW0.1.0|  & Señal analógica de nivel\\
-Entrada & \verb|IW0.1.1|  & Señal analógica de caudal \\
-Entrada & \verb|QW0.1.0|  & Señal analógica de salida de apertura de la válvula
+E. analog.& \verb|IW0.1.0|  & Señal analógica de nivel\\
+E. analog.& \verb|IW0.1.1|  & Señal analógica de caudal \\
+S. analog. & \verb|QW0.1.0|  & Señal analógica de salida de apertura de la
+válvula
 \\
 \hline
 \end{tabular}
@@ -330,7 +334,7 @@ ganancias del controlador y se fija el Set Point al $50\%$.
  En este peldaño, se modifica \verb|M5| según el valor de \verb|MW1:X8|.
  Luego de solucionar el inconveniente,
  se debe ``Rehabilitar al sistema'' para su funcionamiento normal, poniendo a
- $0$ \verb|MW1:X8|.
+ $1$ \verb|MW1:X9|.
 
  \item \textbf{Adquisición de nivel y caudal:} se leen las entradas analógicas
  a las \gls{memoryWord} correspondientes de caudal y nivel.
@@ -394,8 +398,8 @@ una disparidad entre las
 salidas y las entradas discretas del \gls{plc}, por más de un segundo.
 
   \item \textbf{Sistema funcionando en modo normal:}
-  Evalúa si no hay ninguna alarma HL o LL activa, escribiendo un bit en
-\verb|MW0:X10|.
+  Evalúa si no hay ninguna bandera de error o alarma HL o LL activa,
+escribiendo un bit en \verb|MW0:X10|.
 
   \item \textbf{Limpieza de alarmas:} en este escalón se limpian las banderas
 de alarmas si el operador lo requiere.
