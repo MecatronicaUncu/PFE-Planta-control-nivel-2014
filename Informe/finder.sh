@@ -3,7 +3,7 @@
 echo "Script para buscar ocurrencias de palabras o expresiones"
 echo -e "Escribir en el array exprs las expresiones a buscar\n"
 
-expres=('anexo' 'manualUsuario' 'verificaciones' 'motoresManual' 'anexo:operacion' 'anexo:operacionPLC' 'anexo:operacionSCADA')
+expres=("manual[[:space:]]del[[:space:]]usuario")
 
 files=(Abstract/abstract.tex Agradecimientos/Agradecimientos.tex Anexos/Anexo1-PuestaEnMarcha.tex 
 Anexos/Anexo2-Operacion.tex Bibliografia/bibliografia.bib Cap1-Introduccion/Cap1-Introduccion.tex 
