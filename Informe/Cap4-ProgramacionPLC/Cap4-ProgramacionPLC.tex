@@ -63,7 +63,7 @@ El algoritmo \ref{img:algoritmo} muestra la solución propuesta.
     }
   }
 }
- \caption{Tareas a cumplir por el controlador de manera secuencial.}
+ \caption{Tareas a cumplir por el controlador de manera secuencial}
  \label{img:algoritmo}
 \end{algorithm}
 
@@ -152,7 +152,7 @@ de las banderas utilizadas en el programa y sus funciones.
 \verb|M5|  & Parada de emergencia\\
 \hline
 \end{tabular}
-\caption{Banderas internas.}
+\caption{Banderas internas}
 \label{table:Banderasinternas}
 \end{table}
 
@@ -203,7 +203,7 @@ Esc & & \verb|X8|& Parada de emergencia\\
 Esc & & \verb|X9|& Limpiar señal de parada de emergencia\\
 \hline
 \end{tabular}
-\caption{Memory Words utilizadas como banderas.}
+\caption{Memory Words utilizadas como banderas}
 \label{table:mwBanderas}
 \end{table}
 
@@ -231,7 +231,7 @@ Esc & \verb|MW12|  & Valor de escritura Ti \\
 Esc & \verb|MW13| & Valor de escritura Td \\
 \hline
 \end{tabular}
-\caption{Memory Words utilizadas para almacenar valores numéricos.}
+\caption{Memory Words utilizadas para almacenar valores numéricos}
 \label{table:mwNumericos}
 \end{table}
 
@@ -312,7 +312,7 @@ size=1pt]
     child { node {Limpieza de alarmas}    };
 \end{tikzpicture}
 %}
-\caption{Esquema de Rungs del programa Ladder de la planta de control de nivel}
+\caption{Rungs del programa Ladder en la planta de control de nivel}
 \label{fig:ladder}
 \end{figure}
 
@@ -458,7 +458,7 @@ Bandera & \verb|M2|  & 1: Modo manual, 0: Modo automático \\
 Valor manual & \verb|MW15|  & Apertura de la válvula (manual)\\
 \hline
 \end{tabular}
-\caption{Configuración del PID.}
+\caption{Configuración del PID}
 \label{table:controladorpid}
 \end{table}
 
@@ -485,7 +485,8 @@ Luego, se calculan las ganancias utilizando la Tab. \ref{tab:valorganancias}.
 \begin{figure}[ht]
  \centering
  \includegraphics[scale=0.5]{Cap4-ProgramacionPLC/images/primermetodo.png}
- \caption{Respuesta del sistema a un escalón \cite{bib:Ogata}.}
+ \caption{Sintonización mediante la respuesta del sistema a un escalón
+\cite{bib:Ogata}}
  \label{fig:primermetodo}
 \end{figure}
 
@@ -501,7 +502,8 @@ Nuevamente, las ganancias pueden ser calculadas utilizando la Tab.
 \begin{figure}[ht]
  \centering
  \includegraphics[scale=0.5]{Cap4-ProgramacionPLC/images/segundometodo.png}
- \caption{Oscilación permanente del sistema \cite{bib:Ogata}.}
+ \caption{Sintonización mediante oscilación permanente del sistema
+\cite{bib:Ogata}}
  \label{fig:segundometodo}
 \end{figure}
 \end{itemize}
@@ -518,7 +520,7 @@ Primero &  $ 1.2 \, {T}/{L}$ & $2 \, L $ & $ 0.5 \, L $\\
 Segundo &  $0.6 \,Kp_{cr}  $ & $ 0.5 \, P_{cr}$ & $0.125 \, P_{cr} $\\
 \hline
 \end{tabular}
-\caption{Valor de las ganacias según el método Ziegler–Nichols.}
+\caption{Valores de las ganancias según el método Ziegler–Nichols}
 \label{tab:valorganancias}
 \end{table}
 
@@ -557,17 +559,17 @@ consigna de nivel en la planta, funcionando con estos valores de ganancias.
   \begin{subfigure}[b]{0.49\textwidth}
     \includegraphics[width=\textwidth]
     {Cap4-ProgramacionPLC/images/oscperm.jpeg}
-     \caption{Nivel de la planta en oscilación.}
+     \caption{Nivel de la planta en oscilación}
      \label{fig:oscilacionperm}
   \end{subfigure}%
   \hfill
   \begin{subfigure}[b]{0.49\textwidth}    
       \includegraphics[width=\textwidth]
       {Cap4-ProgramacionPLC/images/controlado.jpeg}
-      \caption{Nivel de la planta controlada.}
+      \caption{Nivel de la planta controlada}
       \label{fig:controlado}
   \end{subfigure}
-  \caption{Gráficas de consigna y nivel, sin tiempo muerto.}
+  \caption{Gráficas de consigna y nivel, sin tiempo muerto}
 \end{figure}
 
 
@@ -580,7 +582,7 @@ Se obtuvieron los siguientes valores de los parámetros.
 % \begin{figure}[ht]
 %  \centering
 %  \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/oscpermtd.png}
-%  \caption{Nivel de la planta en oscilación, con tiempo muerto.}
+%  \caption{Nivel de la planta en oscilación, con tiempo muerto}
 %  \label{fig:oscilacionpermtd}
 % \end{figure}
 
@@ -606,7 +608,7 @@ de nivel, utilizando el circuito de tiempo muerto.
 % \begin{figure}[ht]
 %  \centering
 %  \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/controladotd.png}
-%  \caption{Nivel de la planta controlada, con tiempo muerto.}
+%  \caption{Nivel de la planta controlada, con tiempo muerto}
 %  \label{fig:controladotd}
 % \end{figure}
 
@@ -615,17 +617,17 @@ de nivel, utilizando el circuito de tiempo muerto.
   \begin{subfigure}[b]{0.49\textwidth}    
 \includegraphics[width=\textwidth, height=5.8cm]
 {Cap4-ProgramacionPLC/images/oscpermtd.jpeg}
-    \caption{Nivel de la planta en oscilación.}
+    \caption{Nivel de la planta en oscilación}
     \label{fig:oscilacionpermtd}
   \end{subfigure}%
   \hfill
   \begin{subfigure}[b]{0.49\textwidth}
 \includegraphics[width=\textwidth,height=5.8cm]
   {Cap4-ProgramacionPLC/images/controladotd.jpeg}
-     \caption{Nivel de la planta controlada.}
+     \caption{Nivel de la planta controlada}
      \label{fig:controladotd}
   \end{subfigure}
-  \caption{Gráficas de consigna y nivel, con tiempo muerto.}
+  \caption{Gráficas de consigna y nivel, con tiempo muerto}
   %\label{fig:controlshmi}
 \end{figure}
 
@@ -673,7 +675,7 @@ presentan las variables del sistema), mientras que en la
 segunda parte muestra las palabras de escritura (reservadas al cambio
 de los parámetros del sistema).
 
-\section{Depuración (Debug)}
+\section{Depuración (debug)}
 \label{sec:Debug}
 
 Una vez finalizada la programación y antes de vincular el \gls{plc}
