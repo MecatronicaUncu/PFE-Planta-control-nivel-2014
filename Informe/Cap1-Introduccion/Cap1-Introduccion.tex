@@ -11,8 +11,8 @@ alumnos, permitiendo aplicar los conceptos de
 control de procesos, programación de \gls{plc}, \gls{scada},
 ajuste de lazos PID, teoría de cascadas, etc.
 Además, el alumno se familiarizará con elementos de control que
-se encuentran en la industria, tales como sensores diferenciales de presión
-(\textit{DP cell}), placas orificio y válvulas electroneumáticas.
+se encuentran en la industria, tales como transmisores diferenciales de presión
+(\textit{DP cell}), placas orificio y válvulas de control.
 El proyecto está destinado a ser utilizado por las cátedras de
 Automatismos Industriales y Autómatas y Control Discreto de
 Ingeniería en Mecatrónica,
@@ -24,18 +24,19 @@ se disponen con equipos similares al descripto.
 No obstante, el proyecto planteado tiene la característica de ser 
 \textbf{móvil}: se encuentra montado en una estructura que 
 permite su libre desplazamiento, y el enlace a la
-computadora de control se realizará de manera inalámbrica.
-Además, se utilizará una válvula electroneumática que cuenta con un
-electroposicionador, la primera de su tipo en el laboratorio.
+computadora supervisora se realiza de manera inalámbrica.
+Además, se utiliza una válvula globo, con servoactuador de diafragma - resorte
+y electroposionador neumático, la primera de su tipo en el laboratorio.
 
 Pueden adquirirse en el mercado plantas educativas de control de nivel, llave
 en mano.
 Dos firmas del medio fueron consultadas, para conocer 
 el precio de un desarrollo similar:
 \begin{itemize}
- \item \textbf{Reino Unido}: Una planta con características similares
+ \item \textbf{Reino Unido}: una planta con características similares
  a la descripta tiene un precio de $16225\,USD$ en puerto de Buenos Aires.
- \item \textbf{Italia}: Con un precio de $28403\,EUR$ en puerto. 
+ \item \textbf{Italia}: con un precio de $28403\,EUR$ en puerto de Buenos
+Aires.
  El modelo propuesto por la firma italiana
  posee un precio superior debido a que está construido en acero inoxidable.
 \end{itemize}
@@ -43,39 +44,40 @@ el precio de un desarrollo similar:
 Se observa que el costo llave en mano de un producto de estas características
 es muy elevado.
 Además, se advierte que muchos de los elementos constitutivos de estas plantas
-(sensores, actuadores y autómatas) pueden adquirirse en el mercado, con fines
+(transmisores de señal, actuadores y autómatas) pueden adquirirse en el mercado, con fines
 industriales.
 Se plantea entonces el objetivo del proyecto:
 
 \textbf{``Diseñar, ensamblar y programar una planta móvil de control de nivel,
-utilizando sensores, controladores y actuadores industriales disponibles en el
+utilizando transmisores de señal, controladores y actuadores industriales disponibles en el
 mercado''.}
 
 \subsection{Especificaciones}
 \label{subsec:especificaciones}
 
-Las siguientes especificaciones deben respetarse para la nueva planta:
+Las siguientes especificaciones se respetaron para la nueva planta:
 
 \begin{itemize}
 \item Debe cumplir su objetivo pedagógico, permitiendo
  a los alumnos comprender los principios del control automático.
  Por consiguiente, la planta no debe ser excesivamente compleja.
- \item Su costo debe ser inferior a una solución llave en mano.
- \item Deberán utilizarse actuadores, elementos de adquisición
+ \item Su costo tiene que ser inferior a una solución llave en mano.
+ \item Deben utilizarse actuadores, elementos de adquisición
  y controladores que se encuentren en plantas industriales.
- \item Tendrá que estar montada sobre una estructura que facilite su
-movilidad. Además, deberán evitarse conexiones cableadas, siendo reemplazadas
+ \item Tiene que estar montada sobre una estructura que facilite su
+movilidad. Además, deben evitarse conexiones cableadas, siendo reemplazadas
 por enlaces inalámbricos de ser posible.
- \item En ella deberán poder representarse fenómenos que
+ \item En ella pueden representarse fenómenos que
 afectan los procesos industriales, tales como perturbaciones y
 tiempos muertos en los procesos.
- \item Deberá verificarse su correcto funcionamiento escribiendo un programa de
+ \item Debe verificarse su correcto funcionamiento mediante un programa de
 ejemplo en el \gls{plc}, con su \gls{scada} correspondiente.
-El programa deberá estar correctamente documentado, para que pueda ser
+El programa está correctamente documentado, para que pueda ser
 utilizado como ejemplo durante las prácticas.
- \item Un manual de uso sencillo tendrá que ser confeccionado.
- El manual detallará como poner en funcionamiento la planta, especificando las
-soluciones a los problemas más comunes que enfrentará el usuario.
+ \item Un manual de uso sencillo tiene que ser confeccionado.
+ En el manual se detalla como poner en funcionamiento la planta,
+especificando las soluciones a los problemas más comunes que enfrentará el
+usuario.
 \end{itemize}
 
 \section{Materiales disponibles}
@@ -86,39 +88,41 @@ sido adquiridos por el director de proyecto y se encontraban
 disponibles en el Laboratorio de Control Automático:
 \begin{itemize}
   \item \textbf{Estructura:} un marco de caño estructural montado sobre
-  ruedas. En él se colocarán todos los elementos de la planta.
+  ruedas. En él se colocaron todos los elementos de la planta.
   Ver Sec. \ref{sec:EstructuraSoporte}.
 
-  \item \textbf{Cañerías y accesorios}: serán utilizados para realizar el
+  \item \textbf{Tuberías y accesorios}: se utilizaron para realizar el
   circuito hidráulico de la planta. Ver Sec. \ref{sec:Canerias}.
 
-  \item \textbf{Tanques:} se trata de dos caños cloacales sellados en sus
+  \item \textbf{Tanques:} se trata de dos tubos cloacales sellados en sus
   extremos, de $200\,mm$ de diámetro. Ver Sec. \ref{sec:Tanques}.
 
-  \item \textbf{Electrobombas monofásicas (2):} impulsarán el fluido
+  \item \textbf{Electrobombas monofásicas (2):} impulsan el fluido
   en el circuito hidráulico.
-  La velocidad de las bombas (frecuencia) no será controlada.
+  La velocidad de las bombas (frecuencia) no se controla.
   Ver Sec. \ref{sec:Bombas}.
 
-  \item \textbf{Válvula electroneumática:} marca Foxboro, modelo
+  \item \textbf{Válvula globo, con servoactuador de diafragma - resorte y
+electroposionador neumático:} marca Foxboro, modelo
   Stabilflo (serie V1), para controlar el caudal.
   Se trata de una válvula isoporcentual, con un electroposicionador
   Power Genex.
-  La apertura de la válvula será nuestra variable manipulada en
+  La apertura de la válvula es la variable manipulada en
   el sistema.
   Ver Sec. \ref{sec:ValvulaNeumatica}.
 
   \item \textbf{Placa orificio:} permite medir el
-  caudal en una tubería midiendo la diferencia de presión generada por una 
-  reducción del diámetro de la cañería. Ver Sec. \ref{subsec:PlacaOrificio}.
+  caudal en una tubería por medio la diferencia de presión generada por una
+  reducción del diámetro de la misma. Ver Sec. \ref{subsec:PlacaOrificio}.
 
-  \item \textbf{DP cells (2):} sensores de presión
-  diferencial Yokogawa, modelo \verb|EJA 110 A|.
-  Uno de los sensores será utilizado para medir el nivel del tanque controlado,
-  en tanto que el segundo medirá caudal con la ayuda de la placa orificio.
+  \item \textbf{DP cells (2):} transmisores de presión
+  diferencial Yokogawa, modelo \verb|EJA 110A|.
+  Uno de los transmisores se utilizó para medir el nivel del tanque
+  controlado, en tanto que el segundo mide caudal con ayuda de la placa
+  orificio.
   Ver Sec. \ref{subsec:DPCell}.
 
-  \item \textbf{Manómetros (2):} A colocar en
+  \item \textbf{Manómetros (2):} colocados en
   puntos específicos de la planta, para medir los valores instantáneos de
   presión.
   Ver Sec. \ref{subsec:Manometros}.
@@ -126,7 +130,7 @@ disponibles en el Laboratorio de Control Automático:
   \item \textbf{Instrumentos de protección y comando:}
   se dispone de un interruptor magnetotérmico de corte general,
   Sec. \ref{subsec:corteGeneral}.
-  Para las bombas, podemos citar: contactores, relés y los relevos térmicos.
+  Para las bombas, pueden citarse: contactores, relés y los relevos térmicos.
   Ver Sec. \ref{subsec:alimentacionMotores}.
 
   \item \textbf{Fuente de alimentación:}
@@ -137,13 +141,13 @@ disponibles en el Laboratorio de Control Automático:
 
   \item{\textbf{\gls{plc}}}: Twido \verb|40 DTK| (Schneider) con un módulo
   analógico \verb|TWD AMM 6HT|.
-  Permitirá controlar las bombas (encendido/apagado), 
+  Permite controlar las electrobombas (encendido/apagado),
   leer valores de presión de las DP Cell y modificar la apertura de la 
   válvula. Ver Sec. \ref{subsec:plc}.
 
   \item \textbf{Módulos inalámbricos:} marca CTM Electrónica,
   modelo \verb|AD-200|.
-  Permite enlazar la interfaz \verb|RS 485| a la computadora de control
+  Permite enlazar la interfaz \verb|RS-485| a la computadora supervisora
   de manera inalámbrica. Ver Sec. \ref{subsec:inalambrico}.
 \end{itemize}
 
@@ -158,35 +162,35 @@ Habiendo analizado la lista de materiales disponibles, se propone el siguiente
 modelo de planta de control de nivel:
 \begin{itemize}
  \item Dos tanques son alimentados por dos bombas centrífugas.
- Cada bomba extraerá agua de un tanque y lo enviará al otro.
- \item En uno de ellos, el \textbf{tanque controlado}, se medirá el nivel
+ Cada bomba extrae agua de un tanque y lo envía al otro.
+ \item En uno de ellos, el \textbf{tanque controlado}, se mide el nivel
  mediante un DP cell.
- \item Sobre la \textbf{cañería de llenado} del tanque controlado, se
- colocará la válvula electroneumática y la placa orificio (junto
+ \item Sobre la \textbf{tubería de llenado} del tanque controlado, se
+ colocaron la válvula de control y la placa orificio (junto
 con su correspondiente DP cell)\footnote{Si bien no es  requisito contar con
 una placa orificio para hacer  control de nivel,  poder medir el caudal en la
-cañería de llenado resulta  de  interés para  futuros trabajos  utilizando
+tubería de llenado resulta  de  interés para  futuros trabajos  utilizando
 Teoría de Cascadas.}.
  Por ende, puede controlarse con precisión el caudal de agua de llenado del
- tanque controlado (de ahí su nombre).
- \item En el segundo tanque, el \textbf{tanque de reserva} no se medirá
- el  nivel, sino que será estimado indirectamente mediante el nivel del tanque
+ tanque controlado.
+ \item En el segundo tanque, el \textbf{tanque de reserva} no se mide
+ el  nivel, sino que se calcula indirectamente mediante el nivel del tanque
  controlado.
- \item En la \textbf{cañería de vaciado} del tanque controlado se colocará una
-válvula manual, que permitirá modificar el caudal de vaciado.
+ \item En la \textbf{tubería de vaciado} del tanque controlado se colocó una
+válvula manual, que permite modificar el caudal de vaciado.
 \end{itemize}
-
 
 Para poder recrear fenómenos que afectan los procesos industriales se agregarán
 los siguientes elementos a la planta:
 \begin{itemize}
-\item 20 metros de cañería adicional, que sirven como tiempo
+\item 20 metros de tubería adicional, que sirven como tiempo
 muerto.
-Se agregarán en paralelo de la cañería de llenado del tanque controlado.
-Se podrá habilitar el tiempo muerto mediante una válvula manual.
+Se agregaron en paralelo de la tubería de llenado del tanque controlado.
+Se puede habilitar el tiempo muerto mediante una válvula manual.
 
-\item Se realizará la conexión, mediante una válvula manual, de la salida de
-cada bomba con su entrada. Mediante esta conexión se podrá modificar el
+\item Se realizó una conexión tipo by-pass, mediante una válvula manual, de
+la salida de
+cada bomba con su entrada. Mediante esta conexión se puede modificar el
 rendimiento de las bombas para lograr el balance de masa en la planta, como así
 también simular perturbaciones en el circuito hidráulico.
 
@@ -199,39 +203,42 @@ Luego de la instalación del circuito hidráulico, deben cablearse los elementos
 de protección y comando de los motores.
 Además, se propone controlar la planta utilizando un autómata
 programable (\gls{plc}).
-La válvula electroneumática, el comando de las bombas y los sensores de presión
+El electroposionador neumático de la válvula de control, el comando de las
+electrobombas y los transmisores de presión
 deben ser correctamente conectados en el tablero de control.
 El cableado se analiza en el Cap. \ref{ch:tablero}.
 
-En el Cap. \ref{ch:progPLC} se programará el autómata que controlará la
-planta. Finalmente, en el Cap. \ref{ch:scada} se desarrollará el software
-de control \gls{scada}, que se ejecuta en la computadora de control.
+En el Cap. \ref{ch:progPLC} se programa el autómata que controlará la
+planta. Finalmente, en el Cap. \ref{ch:scada} se desarrolla el software
+de control \gls{scada}, que se ejecuta en la computadora supervisora.
 
 \section{Análisis económico}
 \label{sec:AnalisisEconomico}
 Los elementos descriptos en la Sec. \ref{sec:MaterialesDisponibles} fueron
 obtenidos mediante donaciones para el proyecto.
-Distinguimos tres donantes:
+Se distinguen tres donantes:
 \begin{itemize}
  \item \textbf{Techint:} donó el \gls{plc} (con su módulo analógico y fuente),
 las celdas de presión diferencial, las electrobombas y la válvula de control.
 Esta donación está especificada en detalle en la Tab.
 \ref{tab:donacionTechint}.
- \item \textbf{La Facultad de Ingeniería:} donó la estructura, la cañería, los
+ \item \textbf{La Facultad de Ingeniería a través del Programa de Mejoras en la
+Enseñanza de la Ingenierías, en su fase II (PROMEI II):} donó la estructura,
+la tubería, los
 accesorios, las válvulas manuales, los manómetros, los elementos de ferretería,
 los elementos de electricidad (contactores, relés) y el módulo inalámbrico.
 El detalle de la donación puede observarse en la Tab. \ref{tab:donacionFing}.
 \item \textbf{El director de proyecto, Ing. Puglesi:} donó la placa orificio,
-necesaria para poder medir el caudal en la cañería de llenado.
+necesaria para poder medir el caudal en la tubería de llenado.
 El detalle de la donación puede observarse en la Tab.
 \ref{tab:donacionPuglesi}.
 \end{itemize}
 
-Aunque los elementos fueron donados, se realizará el análisis de costos de la
+Aunque los elementos fueron donados, se realizó el análisis de costos de la
 planta para compararlo con las soluciones llave en mano descriptas en
 \ref{sec:DescripcionProblema}.
-El precio de cada uno de los elementos fue calculado en dólares estadounidenses
-(USD) para evitar posibles fluctuaciones de precio en la moneda local (ARS).
+A esos efectos el costo de cada elemento se convirtió a dólares
+estadounidenses (USD).
 
 El costo total de la planta es de
 \begin{align}
@@ -239,13 +246,13 @@ El costo total de la planta es de
 \end{align}
 Se verifica que el precio es inferior a las soluciones llave en mano, para un
 producto con una calidad similar\footnote{Comparando con la firma inglesa,
-que propone una planta de calidad similar. Recordemos que, si bien la planta
-italiana es más costosa, estaba construida en acero inoxidable.}.
+que propone una planta de calidad similar. Se recuerda que, si bien la planta
+italiana es más costosa, está construida en acero inoxidable.}.
 
-Cabe destacar que en nuestro análisis no hemos tenido en cuenta el costo (en
+Cabe destacar que en este análisis no se ha tenido en cuenta el costo (en
 horas de trabajo) para realizar el proyecto.
 \begin{table}[!t]
-\renewcommand{\arraystretch}{1.3}
+\renewcommand{\arraystretch}{1.4}
 \centering
 \begin{tabularx}{\textwidth}{l||X||l}
 \hline
@@ -256,7 +263,7 @@ horas de trabajo) para realizar el proyecto.
 1& \gls{plc} Twido \texttt{40 DTK} &  \\
 1& Módulo 4E-2S analógicas \texttt{TWD AMM 6HT}& \\
 2& Celdas de presión diferencial Yokogawa \texttt{E 110 A}& \\
-1& Válvula electroneumática de control & \\
+1& Válvula de control & \\
 1& Fuente de poder $220\,V$ AC a $24\,V$ CC& \\
 \hline
 \end{tabularx}
@@ -265,7 +272,7 @@ horas de trabajo) para realizar el proyecto.
 \end{table}
 
 \begin{table}[!t]
-\renewcommand{\arraystretch}{1.3}
+\renewcommand{\arraystretch}{1.4}
 \centering
 \begin{tabularx}{\textwidth}{l||X||l}
 \hline
@@ -288,7 +295,7 @@ horas de trabajo) para realizar el proyecto.
 \end{table}
 
 \begin{table}[!t]
-\renewcommand{\arraystretch}{1.3}
+\renewcommand{\arraystretch}{1.4}
 \centering
 \begin{tabularx}{\textwidth}{l||X||l}
 \hline
@@ -313,9 +320,10 @@ puntos:
   \begin{enumerate}
    \item Preparación de la estructura
    \item Montaje de los elementos de la planta
-   \item Cañerías
+   \item Tuberías
    \item Cableado eléctrico de potencia
-   \item Cableado de señal: PLC, válvula, DP cells, módulo inalámbrico.
+   \item Cableado de señal: PLC, válvula de control, DP cells, módulo
+inalámbrico
    \item Pruebas de funcionamiento sencillas
    \item Pintura y acabados
   \end{enumerate}
@@ -326,7 +334,8 @@ puntos:
 \end{enumerate}
 
 \subsection{Planning}
-Se optó por dividir el tiempo disponible en cada una de las tareas, tal como lo
+Se optó por dividir el tiempo disponible para cada una de las tareas, tal como
+lo
 explicita el planning propuesto en la Fig. \ref{fig:EDT}.
 Se observa que la mayor parte de las actividades de construcción de la planta
 debieron realizarse de manera seriada, en tanto que la programación del
@@ -335,8 +344,9 @@ debieron realizarse de manera seriada, en tanto que la programación del
 	\centering
 	\includegraphics[angle=90,
 		width=0.501\textwidth]{Cap1-Introduccion/images/EDT.pdf}
-	\caption{Esquema de la división del tiempo por semanas.}
+	\caption{Esquema de la división del tiempo por semanas}
 	\label{fig:EDT}
 \end{figure}
 
 % REVISIÓN 1 - fclad
+% CORRECCION 1 Puglesi - fclad

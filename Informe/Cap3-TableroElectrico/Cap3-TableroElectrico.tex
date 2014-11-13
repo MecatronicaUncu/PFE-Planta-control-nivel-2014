@@ -1,4 +1,4 @@
-\chapter{Tablero Eléctrico y Conexionado}
+\chapter{Tablero eléctrico y conexionado}
 \label{ch:tablero}
 
 Luego del diseño y ensamblado de los componentes de la planta, descripto en el
@@ -8,16 +8,16 @@ tablero eléctrico.
 Es decir, se realizó la instalación y el cableado de los elementos eléctricos y
 electrónicos.
 Para comprender este capítulo es imprescindible utilizar los diagramas
-del tablero, que pueden encontrarse en el Anexo \ref{anexo:diag}.
+del tablero, que pueden encontrarse en el anexo \ref{anexo:diag}.
 Por simplicidad, se dividirá el análisis del tablero en dos secciones:
 \begin{itemize}
  \item \textbf{Potencia:} corresponde a la instalación y el cableado
  de los elementos eléctricos de la planta, destinados a alimentar los motores de
- las bombas y los circuitos lógicos.
+ las electrobombas y los circuitos lógicos.
  \item \textbf{Señal:} corresponde a la instalación y el cableado
  de los elementos electrónicos cuyo objetivo es controlar la planta.
- Podemos citar: \gls{plc}, módulos inalámbricos,
- sensores de presión y caudal, actuadores (válvula electroneumática).
+ Pueden citarse: \gls{plc}, módulos inalámbricos,
+ transmisores de presión y caudal, actuadores (válvula de control).
 \end{itemize}
 
 \section{Potencia}
@@ -25,14 +25,14 @@ Por simplicidad, se dividirá el análisis del tablero en dos secciones:
 Tal como se describió previamente, los elementos de potencia deben
 \textbf{alimentar} los motores y elementos lógicos de la planta.
 Se optó por trabajar con corriente alterna monofásica ($220\,V\,-\,50\,Hz$),
-dado que es la alimentación de las bombas.
-En el Anexo \ref{anexo:diag}, se muestran los conductores de fase y neutro en
+dado que es la alimentación de las electrobombas.
+En el anexo \ref{anexo:diag}, se muestran los conductores de fase y neutro en
 colores marrón y azul respectivamente.
 Los elementos de potencia se describen a continuación.
 
-\subsection{Corte General}
+\subsection{Corte general}
 \label{subsec:corteGeneral}
-El primer elemento que encontramos en el tablero es el interruptor
+El primer elemento que se encuentra en el tablero es el interruptor
 termomagnético de corte general (ver folio 1 del diagrama de tablero).
 El interruptor es bipolar (neutro y fase), modelo \verb|C60 N|, número de
 referencia \verb|24335| y marca Merlin Gerin (Schneider).
@@ -46,21 +46,21 @@ sobrecargas (mediante la interrupción del circuito térmico) y cortocircuitos
 Además, es utilizado como llave de corte general para encender o apagar la
 planta.
 
-\subsection{Alimentación de los Motores de las Bombas}
+\subsection{Alimentación de los motores de las electrobombas}
 \label{subsec:alimentacionMotores}
 Puede verse el esquema de alimentación de los motores en los folios 1 y 2 del
-Anexo \ref{anexo:diag}.
-Para cada una de las bombas, se utilizarán los siguientes elementos de
+anexo \ref{anexo:diag}.
+Para cada una de las electrobombas, se utilizaron los siguientes elementos de
 protección y comando:
 \begin{itemize}
  \item \textbf{Relés:}
- Los relés reciben una señal de activación de $24\,V$, de parte del PLC.
+ los relés reciben una señal de activación de $24\,V$, de parte del PLC.
  Al activarse, el relé entrega en el borne \verb|11 (7)| una señal de $220\,V$
 de corriente alterna.
-Esta señal alimentará la bobina de los los contactores de los motores, previo 
+Esta señal alimenta la bobina de los los contactores de los motores, previo
 paso por el relevo térmico. Se utilizaron relés \verb|LZX:PT 370| de Siemens.
  \item \textbf{Relevo Térmico:}
- Tiene como objetivo evitar la sobrecorriente en los motores.
+ tiene como objetivo evitar la sobrecorriente en los motores.
  Para el proyecto, se configuró el relevo térmico con una corriente
  de $1.6\,A$.
  En caso de superar este valor, interrumpe tensión en la bobina
@@ -68,28 +68,29 @@ paso por el relevo térmico. Se utilizaron relés \verb|LZX:PT 370| de Siemens.
  Se utilizaron relevos térmicos \verb|LRD 06| de Telemecanique, conectados
 inmediatamente después del relé.
  \item \textbf{Contactores:}
- Encienden los motores, a partir de una señal de activación de $220\,V$ de
+ encienden los motores, a partir de una señal de activación de $220\,V$ de
 corriente alterna.
 Se utilizaron contactores \verb|LC1-D09| de Schneider Electric.
 Debido a que los contactores son trifásicos, debió realizarse un bucle con dos
 de las fases (ver diagrama del tablero).
 \end{itemize}
 
-En la Fig. \ref{fig:diagramaLadderContactor} se muestra el diagrama ladder
+En la Fig. \ref{fig:diagramaLadderContactor} se muestra el diagrama Ladder
 del conexionado de los motores.
-Se observa que  el motor estará encendido si la bobina del relé esta activada y
+Se observa que  el motor se enciende si y solo si la bobina del relé esta
+activada y
 si el relevo térmico no acusa sobrecorriente.
 
 \begin{figure}
  \centering
  \includegraphics[scale=1.1]{Cap3-TableroElectrico/Images/ladderConexion.pdf}
- \caption{Esquema Ladder del conexionado de los motores.}
+ \caption{Esquema Ladder del conexionado de los motores}
  \label{fig:diagramaLadderContactor}
 \end{figure}
 
 \subsection{Fuente de alimentación}
 \label{subsec:fuenteAlim}
-Los circuitos lógicos de la planta (\gls{plc}, sensores) funcionan con una
+Los circuitos lógicos de la planta (\gls{plc}, transmisores de señal) funcionan con una
 tensión de $24\,V$ de corriente continua.
 Se optó por utilizar una fuente de alimentación industrial para energizar estos
 circuitos lógicos.
@@ -101,13 +102,13 @@ Las características técnicas de la fuente se muestran en la Tab.
 \begin{tabular}{|l|l|}
 \hline
 Marca & ReignPower\\
-Tensión Entrada& $100-120$ / $200-240\,V$\\
-Tensión Salida& $24\,V$\\
+Tensión Entrada& $100-120$ / $200-240\,V$ $AC$\\
+Tensión Salida& $24\,V$ $DC$\\
 Corriente Salida Máxima& $4.2\,A$\\
 Potencia & $100\,W$\\
 \hline
 \end{tabular}
-\caption{Características de la fuente de alimentación.}
+\caption{Características de la fuente de alimentación}
 \label{tab:fuenteAlim}
 \end{table}
 
@@ -120,24 +121,24 @@ La fuente de alimentación se muestra en el folio 1.
 
 El circuito de señal tiene como objetivos:
 \begin{itemize}
- \item Relevar variables de la planta (caudal, presión), procesarlas y entregar
-señales de control a la válvula electroneumática.
+ \item Captar variables de la planta (caudal, presión), procesarlas y entregar
+consignas a la válvula de control.
 \item Activar los relés descriptos en la Sec.
 \ref{subsec:alimentacionMotores} para encender o apagar los motores de las
-bombas.
-\item Conectar la planta a una computadora de control (\gls{scada}), para poder
-monitorear su estado como así también recibir señales de control.
+electrobombas.
+\item Conectar la planta a una computadora supervisora (\gls{scada}), para poder
+supervisar su estado como así también recibir señales de control.
 \end{itemize}
 
 \subsection{PLC}
 \label{subsec:plc}
 
 \glsreset{plc}
-Para automatizar nuestra planta se optó por utilizar un \gls{plc} Twido
+Para automatizar la planta se optó por utilizar un \gls{plc} Twido
 \verb|TWD LMDA 40 DTK| de Schneider.
 Se trata de un sistema electrónico digital de automatización y control, pensado
 para aplicaciones industriales, seguro frente a condiciones adversas,
-vibraciones y ruido electromagnético \cite{bib:ApuntesJGabriel}.
+vibraciones e interferencias radioeléctricas \cite{bib:ApuntesJGabriel}.
 El autómata se adapta al proceso a controlar mediante un
 \textit{software} o programa de aplicación específico, que contiene la secuencia
 de operaciones a realizar.
@@ -147,18 +148,20 @@ estado de las salidas \cite{bib:libroAutomat1}.
 
 Un \gls{plc} está conformado por los siguientes elementos:
 \begin{itemize}
- \item \textbf{Procesador:} en función de las señales de los sensores
-(entradas) y de la información almacenada, genera señales hacia los actuadores
+ \item \textbf{Procesador:} en función de los valores de los sensores discretos
+y transmisores continuos (entradas) y de la información almacenada,
+genera señales hacia los
+actuadores
 (salidas).
 El procesador sigue un algoritmo, denominado programa de aplicación,
 que indica la secuencia de operaciones a realizar.
 Entre los lenguajes de programación definidos en la norma \verb|IEC 61131|
-podemos citar: Ladder, Texto Estructurado, Lista de Instrucciones y GRAFCET
+pueden citarse: Ladder, Texto Estructurado, Lista de Instrucciones y GRAFCET
 (SFC).
  \item \textbf{I/O discretas:} las entradas y salidas discretas se
 utilizan para acciones de control discretas, tal como encender motores
 o leer sensores discretos (fines de carrera, pulsadores, señales binarias).
-En nuestro proyecto, se utilizan las salidas discretas \verb|Q0.0| y \verb|Q0.1|
+En este proyecto, se utilizan las salidas discretas \verb|Q0.0| y \verb|Q0.1|
 para activar los relés de los motores.
 Además \verb|I0.0| e \verb|I0.1| se
 utilizan como señales de enclavamiento: conectadas a los contactores, verifican
@@ -170,14 +173,14 @@ Además, se muestra el esquema de conexionado del \gls{plc} en el folio
 \item \textbf{I/O analógicas:} mediante una entrada
 analógica, se pueden leer
 señales de corriente ($4-20\,mA$) o tensión ($0-10\,V$) provenientes de los
-sensores.
+transmisores de señal.
 De la misma manera, las salidas analógicas permiten enviar consignas
 de tensión o corriente a los actuadores.
-En nuestro proyecto, las entradas analógicas \verb|IW0.1.0| e \verb|IW0.1.1|
+En este proyecto, las entradas analógicas \verb|IW0.1.0| e \verb|IW0.1.1|
 permiten leer los valores de los DP cell de nivel y caudal, respectivamente.
 Se emplea la salida analógica \verb|QW0.1.0| para controlar el
 electroposicionador.
-Cabe destacar que nuestro \gls{plc} no posee I/O analógicas.
+Cabe destacar que el \gls{plc} no posee I/O analógicas.
 Por ello, debió anexarse un módulo \verb|TWD AMM 6HT|.
 La resolución de lectura máxima de las entradas analógicas es de $12\,bits$,
 con un tiempo de muestreo de $16\,ms$.
@@ -186,21 +189,21 @@ Se pueden ver estas señales de control en el folio 4 del diagrama de tablero.
 \item \textbf{Comunicación:} El puerto de comunicaciones permite programar el 
 controlador, como así también enviar comandos y recibir información de
 la planta durante la ejecución con el \gls{scada}.
-El \gls{plc} utilizado cuenta con un puerto de comunicaciones \verb|RS 485|.
-Se presentan dos opciones para la conexión con la computadora de control:
+El \gls{plc} utilizado cuenta con un puerto de comunicaciones \verb|RS-485|.
+Se presentan dos opciones para la conexión con la computadora supervisora:
 \begin{itemize}
  \item Mediante una conexión cableada:
- conectamos el puerto \verb|RS 485| a un puerto \verb|RS 232| de la computadora
+ se conecta el puerto \verb|RS-485| a un puerto \verb|RS-232C| de la computadora
 mediante un adaptador específico, fabricado durante el desarrollo del
-proyecto\footnote{En nuestro caso, dado que la computadora no contaba con un
+proyecto\footnote{En este caso, dado que la computadora no contaba con un
 puerto serie, se utilizó un adaptador
-\texttt{USB} a \texttt{RS 232}.}.
-Se muestra en el Anexo \ref{anexo:circuitos}, folio 1, el circuito esquemático
+\texttt{USB} a \texttt{RS-232C}.}.
+Se muestra en el anexo \ref{anexo:circuitos}, folio 1, el circuito esquemático
 utilizado.
 Además, se incluyen los diseños de PCB para replicar el circuito.
 
 No obstante, utilizar una conexión cableada impone un vínculo físico entre
-el \gls{plc} y la computadora de control (impidiendo que la planta sea móvil).
+el \gls{plc} y la computadora supervisora (impidiendo que la planta sea móvil).
 \item Mediante un módulo de comunicación inalámbrica:
 descripto en la Sec. \ref{subsec:inalambrico}.
 \end{itemize}
@@ -209,18 +212,18 @@ descripto en la Sec. \ref{subsec:inalambrico}.
 \subsection{Módulos inalámbricos}
 \label{subsec:inalambrico}
 
-Para comunicar la planta con la computadora de control, sin necesidad de
+Para comunicar la planta con la computadora supervisora, sin necesidad de
 utilizar un cable de par trenzado, se decidió utilizar un módulo inalámbrico
 \verb|ADC-200| de CTM Electrónica (ver Fig. \ref{fig:fotoModuloIn}).
 Se trata de un equipo de comunicaciones para realizar enlaces inalámbricos que
-utilicen la interfaz \verb|RS 232| o \verb|RS 485|.
+utilicen la interfaz \verb|RS-232C| o \verb|RS-485|.
 Se muestran las características técnicas relevantes en la Tab.
 \ref{tab:caractMod}.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=.6\textwidth]{Cap3-TableroElectrico/Images/IMG_5038.JPG}
- \caption{Módulo inalámbrico montado sobre la estructura.}
+ \caption{Módulo inalámbrico montado sobre la estructura}
  \label{fig:fotoModuloIn}
 \end{figure}
 
@@ -236,7 +239,7 @@ Baud Rate &2400 a 19200 bps \\
 Frecuencia& 431 a 470 Mhz en más de 100 canales\\
 \hline
 \end{tabular}
-\caption{Características de los módulos inalámbricos.}
+\caption{Características de los módulos inalámbricos}
 \label{tab:caractMod}
 \end{table}
 
@@ -247,7 +250,7 @@ diagrama de tablero (folio 5), estipulando una velocidad de transferencia de
 Además, dado que el módulo inalámbrico debe alimentarse con una tensión de
 $5\,V$ de corriente continua, se desarrolló una fuente conversora de $24\,V$ a
 $5\,V$ basada en el integrado \verb|LM7805|.
-El circuito esquemático de la fuente puede encontrarse en el folio 2 del Anexo
+El circuito esquemático de la fuente puede encontrarse en el folio 2 del anexo
 \ref{anexo:circuitos}.
 Además, se incluye el diseño del PCB para poder replicar el circuito.
 
@@ -257,22 +260,22 @@ error de timeout.
 No obstante, su funcionamiento es correcto para recibir información
 del estado de la planta y enviar consignas mediante el \gls{scada}.
 
-\section{Imagen del tablero}
+\section{Tablero finalizado}
 
 \begin{figure}[t]
         \centering
         \begin{subfigure}[b]{0.48\textwidth}
 \includegraphics[width=\textwidth]{Cap3-TableroElectrico/Images/IMG_5074.JPG}
- \caption{Con acrílico de protección.}
+ \caption{Con acrílico de protección}
  \label{fig:fotoTableroAcr}
         \end{subfigure}%
 \hfill
 \begin{subfigure}[b]{0.48\textwidth}
 \includegraphics[width=\textwidth]{Cap3-TableroElectrico/Images/IMG_5097.JPG}
- \caption{Sin acrílico de protección.}
+ \caption{Sin acrílico de protección}
  \label{fig:fotoTableroSAcr}
         \end{subfigure}
-        \caption{Fotografía del tablero finalizado.}
+        \caption{Fotografía del tablero finalizado}
         \label{fig:fotoTablero}
 \end{figure}
 
@@ -283,7 +286,7 @@ Pueden observarse tres niveles diferenciados:
 general descripto en la Sec. \ref{subsec:alimentacionMotores}.
 Este interruptor debe ser accionado para encender la planta.
 \item En el nivel medio se encuentran los relés, contactores y relevos térmicos
-para accionar los motores de las bombas (Sec.
+para accionar los motores de las electrobombas (Sec.
 \ref{subsec:alimentacionMotores}).
 \item En el nivel inferior está el
 \gls{plc}, con su módulo de E/S analógicas (Sec. \ref{subsec:plc}), y la fuente

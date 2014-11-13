@@ -1,37 +1,37 @@
-\chapter{Diseño y Ensamblado}
+\chapter{Diseño y ensamblado}
 \label{ch:DisenoEnsamblado}
 
 En esta sección se describirán los pasos necesarios para la concreción física
 del proyecto.
-Se comenzará con la confección e interpretación del diagrama de cañerías e
+Se comienza con la confección e interpretación del diagrama de tuberías e
 instrumentación, con el objetivo de detallar la solución propuesta en
 la Sec. \ref{sec:SolucionPropuesta}.
 Luego se hará énfasis en la construcción de la planta a partir de los elementos
 disponibles.
-Se describirá en detalle cada uno de ellos y se hará mención de
+Se describirá en detalle cada uno de ellos y se explicitarán
 las decisiones constructivas tomadas durante el ensamblado.
 
-\section{Diagrama de cañerías e instrumentación - P\&ID}
+\section{Diagrama de tuberías e instrumentación - P\&ID}
 \label{sec:p&id}
 
 \subsection{Generalidades}
-Un diagrama de cañerías e instrumentación es un esquema de la planta en donde
+Un diagrama de tuberías e instrumentación es un esquema de la planta en donde
 pueden observarse todos los elementos que componen el proceso.
 Estos diagramas emplean símbolos para representar cada elemento y sus
 conexiones.
 Los símbolos están regidos por la norma
-\emph{Standard S5.1 Instrumentation Symbol Specification}.
+\emph{ISA 5.1}.
 
 El diagrama permite una rápida comprensión del proceso, y se denomina
 corrientemente \gls{pyid}.
 
-En los diagramas \gls{pyid} encontramos graficados los diferentes elementos
+En los diagramas \gls{pyid} se encuentran graficados los diferentes elementos
 como círculos o símbolos representativos, cada uno de ellos acompañado de una
 denominación que utiliza la siguiente codificación:
 
 \begin{itemize}  
  \item \textbf{Primer letra:}
- designa la variable medida. Puede ser :
+ designa la variable medida o de interés. Puede ser, entre muchas otras:
  \begin{itemize}
   \item Presión
   \item Nivel
@@ -44,7 +44,7 @@ denominación que utiliza la siguiente codificación:
  Puede ser:
  \begin{itemize}
   \item Indicador
-  \item Almacenaje de datos
+  \item Registro de datos
   \item Controlador
   \item Transmisor
   \item Alarma
@@ -58,11 +58,13 @@ indica su ubicación:
 \begin{itemize}
  \item \textbf{Sin línea:} en el campo.
  \item \textbf{Continua:} en la sala de control.
- \item \textbf{Trazos:} fuera del alcance del operario.
+ \item \textbf{Trazos:} fuera del alcance del operario, por ejemplo, en tablero
+secundario o auxiliar.
 \end{itemize}
 
 Como su nombre lo indica, también están presente en el diagrama la descripción
-de las cañerías que forman el sistema (material y diámetros).
+de las tuberías que forman el sistema (material, diámetros y condiciones de
+operación, en términos de temperatura y presión).
 Cabe destacar que en esta instancia no es necesario especificar las
 longitudes y accesorios.
 Esta información forma parte de un diagrama que se debe realizar
@@ -75,11 +77,11 @@ También se diferencian en el diagrama la naturaleza de cada señal:
  \item \textbf{Señal hidráulica:} línea continua intersectada con líneas
 perpendiculares en forma de L.
  \item \textbf{Señal neumática:} linea continua intersectada por pequeñas
-líneas paralelas.
+líneas paralelas e inclinadas.
  \item \textbf{Señal eléctrica:} línea de trazos.
 \end{itemize}
 
-\subsection{P\&ID de nuestra planta}
+\subsection{P\&ID de la planta}
 De acuerdo a los componentes detallados en la Sec.
 \ref{sec:MaterialesDisponibles} se realizó el esquema \gls{pyid} de la planta
 de control de nivel.
@@ -88,7 +90,7 @@ esquema, que puede observarse en la Fig. \ref{img:pyid}.
 
 \begin{figure}
 	\centering
-\includegraphics[width=\textwidth]{Cap2-DisenoEnsamblado/images/p&id.pdf}
+\includegraphics[width=\textwidth]{Cap2-DisenoEnsamblado/images/pyid60-1.pdf}
 	\caption{Diagrama P\&ID del proyecto}
 	\label{img:pyid}
 \end{figure}
@@ -135,8 +137,8 @@ Bomba centrífuga
 Válvula neumática
   &\begin{center}
     %\rule{0.4\textwidth}{0.3\textwidth}
-    \includegraphics[scale=.5]
-	{Cap2-DisenoEnsamblado/images/valvula.png}
+    \includegraphics[scale=.45]
+	{Cap2-DisenoEnsamblado/images/ValvPyID.pdf}
   \end{center}\\
 \hline
 Placa orificio y DP Cell.
@@ -196,14 +198,16 @@ PI: Pressure Indicator
 \subsubsection{Alarmas} 
 \label{subsec:alarmas}
 
-La gestión de alarmas se realiza a través del sensor de nivel presente en la
-planta,
-tomando la información del mismo para detener el sistema en caso de pasar
+La gestión de alarmas se realiza a través del transmisor LT presente
+en la planta,
+tomando la información del mismo para detener el sistema en caso de superar
 los límites normales de trabajo.
-Este proceso debería realizarse utilizando sensores separados (redundancia).
+Este proceso debería realizarse utilizando sensores
+discretos, tipo level switch, separados.
 No obstante, debido al costo de incluir sensores suplementarios,
 se decidió utilizar
-directamente el sensor de nivel presente.
+directamente el transmisor analógico de nivel y extraer de él
+los valores de disparo, ya sean de alarmas como de paros.
 
 En la Tab. \ref{tab:alarmas} se presenta la descripción de cada símbolo de
 alarma.
@@ -215,7 +219,7 @@ alarma.
 
 \begin{tabular}{*{2}{m{0.435\textwidth}}}
 \hline
-LAHH: Level Alarm High High
+LAHH: Level Alarm High High (paro por alto nivel)
   &\begin{center}
     %\rule{0.4\textwidth}{0.3\textwidth}
     \includegraphics[scale=.7]
@@ -228,14 +232,7 @@ LAH: Level Alarm High
     \includegraphics[scale=.7]
 	{Cap2-DisenoEnsamblado/images/lah.png}
   \end{center}\\
-\hline
-LALL: Level Alarm Low Low
-  &\begin{center}
-    %\rule{0.4\textwidth}{0.3\textwidth}
-    \includegraphics[scale=.7]
-	{Cap2-DisenoEnsamblado/images/lall.png}
-  \end{center}\\
-\hline
+  \hline
 LAL: Level Alarm Low
   &\begin{center}
     %\rule{0.4\textwidth}{0.3\textwidth}
@@ -243,7 +240,14 @@ LAL: Level Alarm Low
 	{Cap2-DisenoEnsamblado/images/lal.png}
   \end{center}\\
 \hline
-PLC: Simbolo de la sección del programador encargado
+LALL: Level Alarm Low Low (paro por bajo nivel)
+  &\begin{center}
+    %\rule{0.4\textwidth}{0.3\textwidth}
+    \includegraphics[scale=.7]
+	{Cap2-DisenoEnsamblado/images/lall.png}
+  \end{center}\\
+\hline
+PLC: símbolo de la sección del programador encargado
 de la gestión de alarmas
   &\begin{center}
     %\rule{0.4\textwidth}{0.3\textwidth}
@@ -256,12 +260,12 @@ de la gestión de alarmas
 \label{tab:alarmas}
 \end{table}
 
-\section{Estructura de Soporte}
+\section{Estructura de soporte}
 \label{sec:EstructuraSoporte}
 
 Dado que el objetivo principal del proyecto es que la planta sirva para fines
 educativos, se opta por utilizar una estructura móvil.
-De esta manera, la posición de la planta puede modificarse según se requiera.
+De esta manera, la ubicación de la planta puede modificarse según se requiera.
 
 La estructura, de caño estructural, está dotada de cuatro ruedas con frenos de
 seguridad, que permiten fijar la
@@ -284,15 +288,15 @@ Profundidad &  $0.52\,m$\\
  
 La estructura presenta en su sección media barras de refuerzo.
 Sobre ellas se colocaron los tanques.
-Además, sobre las barras se fijó una base de madera, donde se coloca la
-válvula electroneumática, las celdas de presión diferencial
-y las bombas.
-La manguera que corresponde al tiempo muerto se colocó bajo
+Además, sobre las barras se fijó una base de madera, donde se colocaron la
+válvula de control, las celdas de presión diferencial
+y las electrobombas.
+La tubería flexible que corresponde al tiempo muerto se colocó bajo
 las barras de refuerzo.
 En la parte superior de la planta se instaló una pequeña base de
-madera donde irá montado el receptor inalámbrico.
+madera donde se montó el receptor inalámbrico.
 Ya está incluida en la estructura el tablero, donde se
-montarán los elementos eléctricos y electrónicos.
+montaron los elementos eléctricos y electrónicos.
 Sus dimensiones se observan en la Tab. \ref{tab:dimensionesTablero}.
 
 \begin{table}[h]
@@ -305,7 +309,7 @@ Ancho &  $30\,cm$\\
 Profundidad &  $20\,cm$\\
 \hline
 \end{tabular}
-\caption{Dimensiones del tablero.}
+\caption{Dimensiones del tablero}
 \label{tab:dimensionesTablero}
 \end{table}
 
@@ -313,61 +317,62 @@ Al comienzo del proyecto la estructura de caño estaba ya soldada y pintada, con
 las ruedas colocadas.
 No obstante, el grupo de trabajo tuvo que barnizar las maderas.
 
-\section{Cañerías}
+\section{Tuberías}
 \label{sec:Canerias}
 
-\subsection{Mangueras y Caños}
-Luego de analizar el esquema \gls{pyid}, se observa que las cañerías deben
+\subsection{Tuberías flexibles y rígidas}
+Luego de analizar el esquema \gls{pyid}, se observa que las tuberías deben
 formar un circuito cerrado (\emph{loop}), diferenciando
-claramente las cañerías de vaciado y llenado.
-Las conexiones fueron realizadas en su mayoría utilizando caño de polipropileno
+claramente las tuberías de vaciado y llenado.
+Las conexiones fueron realizadas en su mayoría utilizando tubo de polipropileno
 de 3/4
 pulgadas (presión de servicio: $11.7\,kgf/cm^2$ a $20^\circ C$).
-En otros puntos del circuito, se optó por utilizar manguera de alta presión
-telada de 3/4 pulgadas (presión de servicio: $10\,kgf/cm^2$ a $20^\circ C$).
-Las cañerías utilizadas son suficientes para las presiones de trabajo del
+En otros puntos del circuito, se optó por utilizar tubo flexible de alta presión
+telado de 3/4 pulgadas (presión de servicio: $10\,kgf/cm^2$ a $20^\circ C$).
+Las tuberías utilizadas son suficientes para las presiones de trabajo del
 proyecto, del orden de $1.2\,kgf/cm^2$.
 
-Habiendo montado los elementos sobre la planta (bombas, tanques, válvula
-electroneumática) se decidió la manera de realizar el conexionado.
-El caño rígido presenta la dificultad de no tener tolerancia, al momento de
+Habiendo montado los elementos sobre la planta (electrobombas, tanques, válvula
+de control) se
+decidió la manera de realizar el conexionado.
+El tubo rígido presenta la dificultad de no tener tolerancia, al momento de
 realizar uniones.
-Además, para realizar tuberías complejas con muchas curvas, es necesario
+Además, para realizar tuberías rígidas complejas con muchas curvas, es necesario
 colocar un gran número de componentes suplementarios (uniones dobles,
 niples).
-La cañería se torna compleja, dificultando la comprensión del circuito
+La planta se torna compleja, dificultando la comprensión del circuito
 hidráulico por parte del alumno.
-Es por ello que se optó por usar en diferentes partes de la planta mangueras
-flexibles:
+Es por ello que se optó por usar en diferentes secciones tuberías flexibles:
 
 \begin{itemize}
   \item \textbf{Salida del tanque de reserva - entrada a la bomba B1}:
-  se utilizo manguera flexible dado que la estructura no permitía colocar caños
+  se utilizo tubería flexible, dado que la estructura no permitía colocar tubos
   rígidos: los elementos de polipropileno necesarios eran más grandes que el
   espacio disponible.
 
   \item \textbf{Salida de la bomba B1 - entrada a la válvula:}
-  se utilizo manguera, para evitar una unión doble en un trayecto muy pequeño.
+  se utilizo tubería flexible, para evitar una unión doble en un trayecto muy
+  pequeño.
   
   \item \textbf{Salida de la válvula - entrada al tanque controlado:}
-  debido a la longitud del tramo se optó usar caños rígidos.
-  Además, se montaron elementos de medición sobre la cañería (manómetro y
+  debido a la longitud del tramo se optó usar tubos rígidos.
+  Además, se montaron elementos de medición sobre la tubería (manómetro y
   placa orificio).
   
   \item \textbf{Salida del tanque controlado - entrada a la bomba B2:}
-  debido al mismo problema de falta de espacio, se optó por el uso de manguera
+  debido al mismo problema de falta de espacio, se optó por el uso de tubería
   flexible.
   
   \item \textbf{Salida de la bomba - entrada al tanque de reserva:}
   esta conexión es la más larga y en ella van montados manómetros y
-  válvulas manuales. Por ello, se prefirió la cañería rígida de polipropileno.
+  válvulas manuales. Por ello, se prefirió la tubería rígida de polipropileno.
 
   \item \textbf{Conexión by-pass de las bombas:}
-  se utilizó manguera flexible, para evitar uniones dobles y
+  se utilizó tubería flexible, para evitar uniones dobles y
   niples que requieren de una gran precisión durante el montaje.
  \end{itemize}
 
-Por ultimo se procedió a pintar los caños mediante un código de colores.
+Por último se procedió a pintar los tubos mediante un código de colores.
  \begin{itemize}
   \item {\color{Cerulean} \textbf{Celeste:}} llenado del tanque controlado.
   \item {\color{YellowOrange} \textbf{Amarillo:}} vaciado del tanque controlado.
@@ -380,30 +385,31 @@ comprensión del circuito hidráulico (ver Fig. \ref{fig:canerias}).
         \begin{subfigure}[b]{0.40\textwidth}
 \includegraphics[width=\textwidth]
 	{Cap2-DisenoEnsamblado/images/caneria1.JPG}
-	\caption{Cañería de llenado.}
+	\caption{Tubería de llenado}
         \end{subfigure}%
         \hfill
         \begin{subfigure}[b]{0.40\textwidth}
 \includegraphics[width=\textwidth]{Cap2-DisenoEnsamblado/images/caneria2.JPG}
-	\caption{Cañería de vaciado.}
+	\caption{Tubería de vaciado}
         \end{subfigure}
-        \caption{Código de colores de las cañerías.}
+        \caption{Código de colores de las tuberías}
         \label{fig:canerias}
 \end{figure}
 
-\subsection{Tiempo Muerto}
+\subsection{Tiempo muerto}
 \label{subsec:tiempoMuerto}
 Se colocó en la planta un circuito de tiempo muerto, que consta de 20 metros de
-manguera negra de 1/2 pulgada.
-El tiempo muerto se coloca en paralelo de la cañería de llenado (ver
+tubo semi rígido de 1/2 pulgada.
+El tiempo muerto se coloca en paralelo de la tubería de llenado (ver
 \gls{pyid}).
-Mediante la válvula manual \verb|VDT| puede habilitarse el tiempo muerto.
+Mediante la válvula manual \verb|VDT| puede habilitarse.
 
 El objetivo del tiempo muerto es alejar la acción de control del tanque
 controlado.
-El sensor de nivel tardará un tiempo adicional $t_d$ en observar los cambios
-que se producen en la válvula electroneumática \cite{bib:ApuntesPuglesiTema2}.
-La función de transferencia de la planta cambiará notablemente:
+El transmisor de nivel tardará un tiempo adicional $t_d$ en observar los cambios
+que se producen en el actuador (válvula de control)
+\cite{bib:ApuntesPuglesiTema2}.
+La función de transferencia de la planta cambia notablemente:
 \begin{itemize}
  \item Por un lado, el retraso en la respuesta debe ser tenido en cuenta
  \begin{align}
@@ -412,19 +418,20 @@ La función de transferencia de la planta cambiará notablemente:
  donde $G(s)$ corresponde a la función de transferencia de una planta sin
  tiempo muerto, y $G_{td}(s)$ es la misma planta con tiempo muerto.
   \item Por otro lado, se agregan pérdidas por rozamiento del
-  fluido cambiando la función de transferencia original $G(s)$ de nuestra
+  fluido cambiando la función de transferencia original $G(s)$ de la
   planta.
 \end{itemize}
 En conclusión, el proceso a controlar es diferente comparado con proceso sin
 tiempo muerto.
-La inclusión de esta cañería adicional permite disponer de dos escenarios
+La inclusión de este tubo semi rígido adicional permite disponer de dos
+escenarios
 diferentes para realizar prácticas, con la necesidad de contar con
 controladores específicos para cada caso \cite{bib:ApuntesPuglesiTema2}.
 
 \subsection{Válvulas manuales}
 
-Diferentes válvulas manuales pueden encontrarse en las cañerías de la planta.
-A continuación vamos a destacar la función de cada una de ellas:
+Diferentes válvulas manuales pueden encontrarse en las tuberías de la planta.
+A continuación, se destacará la función de cada una de ellas:
 
 \begin{itemize}
   \item \textbf{Desagote de los tanques:}
@@ -433,11 +440,11 @@ cada tanque\footnote{Importante: estas válvulas no están dibujadas en el
 \gls{pyid}.}.
 
   \item \textbf{Ecualización de la planta \texttt{VM1} y \texttt{VM2}:} se
-colocó una válvula en serie con la cañería de retorno (ver
+colocó una válvula en serie con la tubería de retorno (ver
 Fig.\ref{fig:valvTanque}).
 Se trata de una
 válvula manual, tipo exclusa.
-Además, otra válvula manual de tipo exclusa se coloca entre la tubería de
+Además, otra válvula manual del mismo tipo se coloca entre la tubería de
 aspiración y
 la tubería de impulsión de la bomba \verb|B2| formando un \emph{by-pass} (ver
 Fig.\ref{fig:valvBomba}).
@@ -446,19 +453,18 @@ Al abrir la válvula, el rendimiento de la bomba decrece.
 
   \item \textbf{Tiempo muerto \texttt{VDT}:}
   tal como se describió en la Sec. \ref{subsec:tiempoMuerto}, esta válvula
-esférica plástica permite activar la cañería de tiempo muerto.
-  Notar en el \gls{pyid} que la válvula está sobre la cañería de llenado.
-  Al cerrar la válvula, se fuerza el uso del tiempo muerto.
-  Al abrirla, nada impide que el fluido circule por las dos cañerías al mismo
-tiempo.
+esférica plástica permite activar la tubería de tiempo muerto.
+  Notar en el \gls{pyid} que la válvula está sobre la tubería de llenado.
+  Cerrándola se fuerza el uso del tiempo muerto. Pero al
+abrirla, nada impide que el fluido circule por las dos tuberías en paralelo.
   No obstante, la pérdida de carga del tiempo muerto es significativamente
-mayor que el de la cañería de llenado.
-  Por ello, se considera que al abrir la válvula  el fluido sólo circula
-por la cañería de llenado.
+mayor que el de la tubería de llenado.
+  Por ello, se considera que el fluido circula únicamente por esta última, al
+abrir la válvula.
 
   \item \textbf{Perturbación \texttt{VMP}:}
   colocada de la misma manera que \verb|VM2|, pero sobre la bomba \verb|B1|.
-  La válvula \verb|VMP| permitirá simular perturbaciones en la planta,
+  La válvula \verb|VMP| permite simular perturbaciones en la planta,
 modificando el rendimiento de la bomba.
 
 \end{itemize}
@@ -467,16 +473,16 @@ modificando el rendimiento de la bomba.
         \centering
         \begin{subfigure}[b]{0.40\textwidth}
 \includegraphics[height=8.5cm]{Cap2-DisenoEnsamblado/images/valvTanque.JPG}
-                \caption{Control de caudal de vaciado.}
+                \caption{Control del caudal de vaciado}
                 \label{fig:valvTanque}
         \end{subfigure}%
 \hfill
         \begin{subfigure}[b]{0.40\textwidth}
 \includegraphics[height=8.5cm]{Cap2-DisenoEnsamblado/images/valvBomba.JPG}
-                \caption{By-pass en bomba.}
+                \caption{By-pass en bomba}
                 \label{fig:valvBomba}
         \end{subfigure}
-        \caption{Válvulas manuales.}
+        \caption{Válvulas manuales en la planta}
         \label{fig:valvManuales}
 \end{figure} 
  
@@ -489,7 +495,7 @@ Se ubicaron en los extremos de la estructura, sobre las barras de
 refuerzo, fijándose a las barras laterales de la misma mediante
 abrazaderas.
 
-Son dos caños cloacales de $200\,mm$ de diámetro y un metro de altura, que
+Son dos tubos cloacales de $200\,mm$ de diámetro y un metro de altura, que
 fueron sellados en los extremos utilizando tapas.
 La salida de agua hacia la tubería de aspiración de la bomba se realiza
 mediante una conexión de tanque de 3/4 pulgada colocada en la base del tanque.
@@ -497,34 +503,35 @@ La entrada de agua se realiza por la parte superior, mediante un orificio
 sencillo.
 
 Además, en la base del tanque se colocó una segunda conexión de tanque de 3/4
-pulgada, que se utilizará para medir el nivel.
-Se conectan a esta cañería la celda de presión diferencial y una manguera
+pulgada, que se utiliza para medir el nivel.
+Se conectan a esta tubería la celda de presión diferencial y un tubo
 flexible transparente.
-La manguera flexible, colocada en el lateral del tanque, permite obtener una
+El tubo flexible, colocado en el lateral del tanque, permite obtener una
 lectura visual directa del nivel.
 Por otro lado, la celda de presión diferencial es un elemento de adquisición
-que permite transformar un valor de presión (altura de la columna de agua) en
+que permite transformar un valor de presión (o su equivalente, altura de la
+columna de agua a peso específico constante) en
 una señal $4$-$20\,mA$.
 Se discutirá sobre estos elementos en la Sec. \ref{subsec:DPCell}.
 
-La cañería de aspiración de la bomba puede provocar
+La tubería de aspiración de la bomba puede provocar
 perturbaciones en la medición de la celda de presión diferencial.
 Para evitar este problema, se optó por
 colocar un niple en la conexión de aspiración, en el interior del tanque.
-De esta manera, se separan físicamente ambas cañerías, reduciendo las
+De esta manera, se separan físicamente ambas tuberías, reduciendo las
 perturbaciones en la medición de presión.
 Cabe destacar que la inclusión del niple limita el nivel mínimo de la planta a
 un 15\% del nivel total, aproximadamente.
 
-\section{Bombas}
+\section{Electrobombas}
 \label{sec:Bombas}
 
-Se utilizaron en el proyecto dos bombas centrífugas (\verb|B1| y \verb|B2| en
-el \gls{pyid}), cuya función es
+Se utilizaron en el proyecto dos electrobombas centrífugas (\verb|B1| y
+\verb|B2| en el \gls{pyid}), cuya función es
 mantener en movimiento el agua en el sistema.
 No se realiza ninguna acción de control sobre las
-mismas, por lo que funcionarán de manera continua durante la operación de la
-planta.
+mismas, por lo que las bombas funcionan de manera continua durante la operación
+de la planta.
 
 Las bombas centrífugas son máquinas hidráulicas, que absorben energía mecánica
 de un motor y la restituyen en forma de energía hidráulica al fluido.
@@ -533,7 +540,7 @@ medio de la fuerza centrífuga que imparten los álabes del rodete de la bomba.
 Este tipo de bomba se caracteriza por entregar una presión elevada y un caudal
 relativamente bajo \cite{bib:Mataix}.
 
-Las especificaciones de las bombas utilizadas se presentan en la Tab.
+Las especificaciones de las electrobombas utilizadas se presentan en la Tab.
 \ref{tab:caractBombas}.
 
 \begin{table}[ht]
@@ -569,7 +576,7 @@ Para evitar la formación de burbujas de vapor, se opta por mantener la presión
 en la tubería de aspiración lo más elevada posible.
 Es por ello que las bombas se instalan en una posición baja.
 Además, las bombas se colocaron lo más cerca posible de los respectivos
-tanques disminuyendo las pérdidas en la cañería de aspiración.
+tanques disminuyendo las pérdidas en la tubería de aspiración.
 Se fijaron mediante tornillos a la base de madera.
 
 Durante la operación de la planta se observó un correcto funcionamiento de las
@@ -577,14 +584,15 @@ bombas, salvo cuando el by-pass se encuentra abierto en exceso: al
 incrementar la
 velocidad en la tubería de aspiración, la presión desciende llegando hasta el
 punto de vapor.
-Para evitar problemas de cavitación, se especifica en el Anexo
+Para evitar problemas de cavitación, se especifica en el Manual del Usuario
 \ref{anexo:verificaciones} el valor de apertura preciso para cada válvula.
 
-\section{Válvula Electroneumática}
+\section{Válvula globo con servoactuador de diafragma - resorte y
+electroposionador neumático}
 \label{sec:ValvulaNeumatica}
 
-En esta sección se hará énfasis en la válvula electroneumática.
-Es un elemento central en nuestra planta, ya que es la encargada de efectuar
+En esta sección se hará énfasis en la válvula de control.
+Es un elemento central en la planta, ya que es la encargada de efectuar
 las acciones de control.
 
 \subsection{Principio de funcionamiento}
@@ -592,25 +600,26 @@ las acciones de control.
 
 \begin{figure}[t]
         \centering
-        \begin{subfigure}[b]{0.37\textwidth}
+        \begin{subfigure}[b]{0.38\textwidth}
 \includegraphics[width=\textwidth]
-	{Cap2-DisenoEnsamblado/images/ActuadorValvNeum.pdf}
-                \caption{Actuador neumático inverso.}
+	{Cap2-DisenoEnsamblado/images/ActuadorValvNeum.png}
+                \caption{Actuador neumático inverso}
                 \label{fig:actuadorValv}
         \end{subfigure}%
-        ~
-        \begin{subfigure}[b]{0.37\textwidth}
-\includegraphics[width=\textwidth]{Cap2-DisenoEnsamblado/images/ValvGlob.pdf}
-                \caption{Cuerpo de una válvula globo.}
+        \quad
+        \begin{subfigure}[b]{0.38\textwidth}
+\includegraphics[width=\textwidth]{Cap2-DisenoEnsamblado/images/ValvGlob.png}
+                \caption{Cuerpo de una válvula globo}
                 \label{fig:cuerpoValv}
         \end{subfigure}
-        \caption{Elementos constitutivos de una válvula neumática.}
+        \caption{Elementos constitutivos de una válvula neumática}
         \label{fig:elementosValv}
 \end{figure}
 
-Una válvula permite variar el caudal en una cañería, dependiendo de la consigna
+Una válvula permite variar el caudal en una tubería, dependiendo de la consigna
 que se le envíe.
-En las válvulas neumáticas, la consigna es un valor de presión de aire.
+En las válvulas neumáticas, la consigna es un valor de presión de aire sobre el
+servoactuador.
 En la Fig. \ref{fig:elementosValv} se muestra un ejemplo de válvula de control
 tipo globo, con actuador a diafragma inverso (aire para
 abrir)\footnote{Figuras extraídas de \cite{bib:controlValveHandbook}.}.
@@ -622,20 +631,22 @@ El obturador en el cuerpo de la válvula (Fig. \ref{fig:cuerpoValv}) apoya
 sobre un asiento.
 La variación del caudal se produce gracias al orificio de paso variable
 que forman al variar su posición relativa el conjunto asiento-obturador.
+
 Sobre el vástago, encargado de modificar la posición del obturador,
 actúan las fuerzas del actuador.
 Como se observa en la Fig. \ref{fig:actuadorValv}, el actuador en una válvula
 neumática es el conjunto diafragma-muelle.
 
 Puede concluirse, a través del análisis de la válvula, que el caudal depende de
-la presión de aire en el diafragma.
-Generalmente, la presión oscila entre $3$ a $15\,psi$.
-Esta presión de aire generalmente se obtiene mediante un convertidor
+la presión de aire sobre el servoactuador.
+Generalmente, la presión oscila entre $3$ a $15\,psi$ (válvulas sin
+electroposicionador) y $3$ a $30\,psi$ (válvulas con electroposicionador).
+Esta presión de aire se obtiene mediante un convertidor
 corriente-presión (I/P).
 El convertidor toma en entrada una señal de corriente proveniente del
 controlador
 ($4$ - $20\,mA$) y lo transforma en un valor de presión para alimentar el
-diafragma \cite{bib:ApuntesPuglesiValvulas}.
+servoactuador \cite{bib:ApuntesPuglesiValvulas}.
 
 % \subsubsection{Rangeabilidad}
 % Se denomina rangeabilidad a la razón entre el caudal máximo y el mínimo que
@@ -650,9 +661,9 @@ abscisas la carrera del obturador y en ordenadas el porcentaje de caudal máximo
 
 El conjunto asiento-obturador es la parte más importante de la válvula, ya que
 es el elemento final que controla el caudal.
-Dependiendo del tipo de conjunto asiento-obturador, se obtendrán distintas
+Dependiendo del tipo de conjunto asiento-obturador, se obtienen distintas
 características de caudal inherente.
-Podemos distinguir tres tipos:
+Se distinguen tres tipos:
 \begin{itemize}
   \item \textbf{Obturador Lineal:} el caudal es proporcional a la carrera
   \begin{align}
@@ -662,27 +673,52 @@ Podemos distinguir tres tipos:
   donde $q$ es el caudal a pérdida de carga constante, $k$ es una constante y
 $l$ es la carrera del vástago.
 
+Se denomina rangeabilidad a la relación entre el caudal máximo y el caudal
+mínimo que una válvula puede controlar ($q_{max}$ y $q_{min}$
+respectivamente):
+\begin{align}
+ R &= \dfrac{q_{max}}{q_{min}}
+ \label{eq:rangeabilidad}
+\end{align}
+La rangabilidad no es infinita:
+aunque matemáticamente $q_{min}$ puede ser cero, según
+\eqref{eq:inherenteLineal}, en la práctica la curva de caudal inherente no está
+definida para valores de carrera próximos a cero.
+Para una válvula lineal, $15 \leq R \leq 30$, debido a las dificultades
+de fabricación \cite{bib:ApuntesPuglesiValvulas}.
+
   \item \textbf{Obturador Isoporcentual:}
   un incremento de carrera produce un cambio de caudal proporcional al caudal
 que circulaba antes de la variación.
   \begin{align}
     \dfrac{dq}{dl} = a \, q
   \end{align}
-  Operando, podemos reescribir esta expresión mediante una función exponencial
+  Operando, se puede reescribir esta expresión mediante una función exponencial
 \begin{align}
  q = b\,e^{a\,l}
  \label{eq:InherenteIsoporcentual1}
 \end{align}
   donde $a$ y $b$ son constantes para una válvula dada.
-  Si consideramos que
+  Si se considera que
     \begin{align}
         l &= 0 \Rightarrow q = q_{min} = b\\
         l &= 1 \Rightarrow q = q_{max} = q_{min} \:e^a
     \end{align}
-    podemos escribir la expresión \eqref{eq:InherenteIsoporcentual1} como
+    puede escribirse
     \begin{align}
       \dfrac{q_{max}}{q_{min}} = e^a
     \end{align}
+    Se puede reescribir la expresión
+\eqref{eq:InherenteIsoporcentual1} como
+\begin{align}
+ q &= q_{min}  \left( {\dfrac{q_{max}}{q_{min}}} \right)^{l}
+\end{align}
+    y finalmente, basándonos en la expresión de rangeabilidad
+\eqref{eq:rangeabilidad}, puede expresarse
+    \begin{align}
+     q &= \dfrac{1}{R}\, R^l \, q_{max}
+    \end{align}
+Para las válvulas isoporcentuales, $30 \leq R \leq 50$.
   \item \textbf{Obturador de apertura rápida:} permiten una brusca variación de
 caudal con carreras pequeñas.
   No son utilizadas en el control regulatorio.
@@ -697,8 +733,8 @@ válvulas quedan afectadas por el proceso en el que se utilizan.
 
 \begin{figure}[t]
  \centering
- \includegraphics[scale=1.5]{Cap2-DisenoEnsamblado/images/Inherente.png}
- \caption{Características inherentes según el tipo de obturador.}
+ \includegraphics[scale=1.43]{Cap2-DisenoEnsamblado/images/Inherente.png}
+ \caption{Características inherentes según el tipo de obturador}
  \label{fig:caractInherente}
 \end{figure}
 
@@ -714,13 +750,13 @@ variaciones para diferentes caudales.
 Se denomina característica de caudal efectiva a la variación del
 caudal que atraviesa la válvula en función de su carrera, cuando la
 válvula está inserta en un proceso real.
-Dado que diferentes procesos proporcionarán distintos valores de  $\Delta
+Dado que diferentes procesos proporcionan distintos valores de  $\Delta
 \,p$, la característica de caudal efectiva depende del proceso.
-Evidentemente, esta curva se apartará de la característica de caudal inherente,
+Evidentemente, esta curva se aparta de la característica de caudal inherente,
 como se demostrará a continuación.
 
 En un circuito hidráulico, la presión que es entregada por la bomba $H$ se 
-utiliza para vencer las pérdidas de carga en la cañería, contrapresiones y 
+utiliza para vencer las pérdidas de carga en la tubería, contrapresiones y 
 alturas (reagrupadas en $H_2$) y en la válvula.
 Denotando $\Delta \,p = H_1$
 \begin{align}
@@ -731,7 +767,7 @@ $H_2$ varía cuadráticamente con el caudal según la ley de \emph{Darcy-Weisbac
 \begin{align}
  H_2  &= f \dfrac{L}{D^5}\dfrac{16\,Q^2}{2\,g\,\pi^2} + H_c
 \end{align}
-donde $L$ es la longitud equivalente de la cañería, $D$ es el diámetro y $H_c$
+donde $L$ es la longitud equivalente de la tubería, $D$ es el diámetro y $H_c$
 representa la altura piezométrica (contrapresiones y alturas).
 $H$ varía siguiendo la curva característica caudal-presión de la bomba.
 
@@ -740,7 +776,7 @@ $H_1$ comparado con la pérdida de carga total del sistema.
 \begin{align}
  r &= \dfrac{H_1}{H_1+H_2} = \dfrac{H_1}{H}
 \end{align}
-Evidentemente, $r = 1$ cuando la cañería no tiene pérdida de carga,
+Evidentemente, $r = 1$ cuando la tubería no tiene pérdida de carga,
 aproximándose la característica efectiva a la inherente.
 Puede demostrarse \cite{bib:Creus} que
 \begin{align}
@@ -758,10 +794,12 @@ se observa que al disminuir $r$ (pérdida de carga elevada) una válvula
 isoporcentual tiende a comportarse como una lineal,
 y una válvula lineal se comporta como de apertura rápida.
 
+
 Dado que las válvulas de apertura rápida no son utilizadas en el control
 regulatorio, se escoge entre una válvula isoporcentual o lineal dependiendo de
 la pérdida de carga de la planta, con el objetivo de tener una característica
 efectiva ``lo más lineal posible''.
+
 
 \subsection{Válvula utilizada en el proyecto}
 
@@ -770,21 +808,21 @@ efectiva ``lo más lineal posible''.
         \begin{subfigure}[b]{0.31\textwidth}
 		\centering
 \includegraphics[height=6.3cm]{Cap2-DisenoEnsamblado/images/IMG_5129.JPG}
-		\caption{Vista general de la válvula.}
+		\caption{Vista general de la válvula}
 		\label{fig:fotoValvCompl}
         \end{subfigure}%
 	\hfill
 	\begin{subfigure}[b]{0.69\textwidth}
 		\centering
 \includegraphics[height=6.3cm]{Cap2-DisenoEnsamblado/images/IMG_5030.JPG}
-	\caption{Varilla de feedback e indicador de posición del vástago.}
+	\caption{Varilla de feedback e indicador de posición del vástago}
 		\label{fig:fotoValvDetalle}
 	\end{subfigure}%
-	\caption{Válvula utilizada en el proyecto.}
+	\caption{Válvula utilizada en el proyecto}
 	\label{fig:fotoValv}
 \end{figure}
 
-En esta sección se describirá las características específicas de la válvula
+En esta sección se describirán las características específicas de la válvula
 utilizada en el proyecto (Fig. \ref{fig:fotoValv}), comparándolas con los
 principios de funcionamiento
 descriptos en la Sec. \ref{subsec:principioFuncionamiento}.
@@ -810,13 +848,13 @@ importantes de la válvula, consignada en su chapa de identificación.
  Carrera & $19\,mm$ \\
   \hline
  \end{tabular}
- \caption{Especificaciones de la válvula electroneumática.}
+ \caption{Especificaciones de la válvula de control}
  \label{tab:especifValvs}
 \end{table}
 
 \subsubsection{Electroposicionador}
-Se especificó que la presión de aire en el diafragma varía entre $3\,psi$
-(válvula cerrada) y $15\,psi$ (válvula abierta).
+Se especificó que la presión de aire en el servoactuador varía entre $3\,psi$
+(válvula cerrada) y $15\,-\,30\,psi$ (válvula abierta).
 No obstante, en un convertidor I/P no hay comparación entre
 la posición real del vástago y la señal de corriente.
 Ciertos fenómenos como la fricción en el vástago, perturbaciones del fluido,
@@ -832,7 +870,7 @@ asegurar la posición del vástago.
 \begin{figure}[t]
  \centering
  \includegraphics[scale=1.1]{Cap2-DisenoEnsamblado/images/PG-EPL.pdf}
- \caption{Esquema de funcionamiento, posicionador electroneumático.}
+ \caption{Esquema de funcionamiento del electroposicionador}
  \label{fig:elp-funcionamiento}
 \end{figure}
 
@@ -858,7 +896,7 @@ también poder calibrarlo\footnote{Explicación obtenida del manual del
 electroposicionador.}.
 
 La Tab. \ref{tab:especifElectroP} muestra las características más importantes
-del electroposicionador presente en nuestra planta.
+del electroposicionador presente en la planta.
 
 \begin{table}[ht]
 \renewcommand{\arraystretch}{1.3}
@@ -873,7 +911,7 @@ del electroposicionador presente en nuestra planta.
   Seguridad & Ex dmb IIB+H2 T6 IP66\\
   \hline
  \end{tabular}
- \caption{Especificaciones del electroposicionador.}
+ \caption{Especificaciones del electroposicionador}
  \label{tab:especifElectroP}
 \end{table}
 
@@ -925,7 +963,7 @@ en la zona de trabajo.
     -- (70,32.95) -- (80,33.55) -- (90,33.8) -- (100,33.82);
    
 \end{tikzpicture}
-\caption{Característica efectiva de la válvula sin tiempo muerto.}
+\caption{Característica efectiva de la válvula sin tiempo muerto}
 \label{fig:valvulaStiempoMuerto}
 \end{figure}
 
@@ -947,7 +985,7 @@ en la zona de trabajo.
     -- (80,18.12) -- (90,18.15) -- (100,18.16);
    
 \end{tikzpicture}
-\caption{Característica efectiva de la válvula con tiempo muerto.}
+\caption{Característica efectiva de la válvula con tiempo muerto}
 \label{fig:valvulaCtiempoMuerto}
 \end{figure}
 
@@ -985,7 +1023,7 @@ Se prestó especial atención al nivelado de la válvula.
 Finalmente, se fijó mediante ménsulas a la base de madera y a la estructura
 de caño.
 
-\section{Instrumentos de Medición}
+\section{Instrumentación}
 \label{sec:InstrumentosMedicion}
 Para conocer el estado de la planta, es necesario tener conocimiento de varias
 variables de la planta, a saber:
@@ -994,21 +1032,39 @@ variables de la planta, a saber:
  \item \textbf{Caudal en las tuberías}
  \item \textbf{Presión en las tuberías}
 \end{itemize}
-Debemos entonces instalar elementos de instrumentación, para poder
+Se deben instalar elementos de instrumentación, para poder
 medir y controlar estas variables de interés.
 
 \subsection{Manómetros}
 \label{subsec:Manometros}
 
 \begin{figure}[t]
+        \centering
+        \begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]
+	{Cap2-DisenoEnsamblado/images/manometro1.JPG}
+	%  TODO, cambiar foto por el nuevo
+	\caption{Tubería de llenado, \texttt{PI 1}}
+        \end{subfigure}%
+        \hfill
+        \begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]
+	{Cap2-DisenoEnsamblado/images/manometro2.JPG}
+	\caption{Tubería de vaciado, \texttt{PI 2}}
+        \end{subfigure}
+        \caption{Manómetros en la planta}
+        \label{fig:manometro}
+\end{figure}
+
+\begin{figure}[t]
  \centering
-\includegraphics[width=.55\textwidth]
+\includegraphics[width=.59\textwidth]
 {Cap2-DisenoEnsamblado/images/manomBourdon.png}
  \caption{Manómetro de Bourdon, extraído de \cite{bib:ApuntesPuglesiPlacaOrif}}
  \label{fig:manometroBourdon}
 \end{figure}
 
-Para conocer los valores de presión en ambas cañerías
+Para conocer los valores de presión en ambas tuberías
 (referirse al \gls{pyid}, Sec. \ref{sec:p&id}),
 se instalaron manómetros comunes, de tipo Bourdon.
 Un ejemplo de estos manómetros se muestra en la Fig. \ref{fig:manometroBourdon}.
@@ -1017,7 +1073,9 @@ del \emph{tubo de Bourdon}, reflejado en la aguja indicadora.
 El manómetro de Bourdon permite obtener una medición visual de la
 presión relativa, del punto donde se encuentra instalado.
 
-Durante el montaje, se observó que el manómetro de la cañería de vaciado
+
+
+Durante el montaje, se observó que el manómetro de la tubería de vaciado
 no entregaba una medición definida, sino que oscilaba alrededor de un
 valor medio (imposibilitando la lectura directa).
 Este problema fue solucionado instalando un \textbf{manómetro con glicerina},
@@ -1028,7 +1086,7 @@ y el manómetro refleja el valor medio de la presión.
 Las especificaciones de los manómetros se muestran en la Tab.
 \ref{tab:EspManoms}.
 
-\begin{table}[ht]
+\begin{table}[h]
 \renewcommand{\arraystretch}{1.3}
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1049,32 +1107,15 @@ Escala & $0.5\,bar/div$ ($2\,psi/div$) & $0.02\,kgf/cm^2/div$
 En la Fig. \ref{fig:manometro} se observan los dos manómetros
 presentes en el proyecto.
 
-\begin{figure}[t]
-        \centering
-        \begin{subfigure}[b]{0.48\textwidth}
-\includegraphics[width=\textwidth]
-	{Cap2-DisenoEnsamblado/images/manometro1.JPG}
-	%  TODO, cambiar foto por el nuevo
-	\caption{Cañería de llenado, \texttt{PI 1}.}
-        \end{subfigure}%
-        \hfill
-        \begin{subfigure}[b]{0.48\textwidth}
-\includegraphics[width=\textwidth]
-	{Cap2-DisenoEnsamblado/images/manometro2.JPG}
-	\caption{Cañería de vaciado, \texttt{PI 2}.}
-        \end{subfigure}
-        \caption{Manómetros.}
-        \label{fig:manometro}
-\end{figure}
-
 \subsection{DP Cell}
 \label{subsec:DPCell}
 
-Se denomina \textit{DP Cell}, o celda de presión diferencial, a un sensor
+Se denomina \textit{DP Cell}, o celda de presión diferencial, a un transductor
+asociado a un transmisor de señal
 que mide la diferencia de presión entre dos puntos.
-En nuestro caso, la celda entrega una corriente proporcional a la diferencia de
+En este caso, la celda entrega una corriente proporcional a la diferencia de
 presión medida, en el rango de $4-20\,mA$.
-Este valor de corriente será leído por el controlador de la planta.
+Este valor de corriente es leído por el controlador de la planta.
 
 Las DP cell utilizadas tienen las especificaciones que se muestran en la Tab.
 \ref{tab:caractDPcell}.
@@ -1093,11 +1134,11 @@ Presión máxima & $160\,bar$\\
 Rango de calibración & $0$ a $10000\,mmCa$\\
 \hline
 \end{tabular}
-\caption{Especificaciones de las celdas de presión diferencial.}
+\caption{Especificaciones de las celdas de presión diferencial}
 \label{tab:caractDPcell}
 \end{table}
 
-Dos celdas serán utilizadas:
+Dos celdas son utilizadas:
 \begin{itemize}
  \item \textbf{Medición del nivel del tanque:} la entrada de alta presión de la
 celda
@@ -1112,7 +1153,7 @@ agua en el tanque.
 
 \item \textbf{Medición del caudal en la tubería de llenado del tanque
 controlado:}
-Se utilizará una placa orificio para generar una caída de presión debida al
+se utilizó una placa orificio para generar una caída de presión debida al
 caudal.
 Las entradas de la celda se conectan aguas arriba y aguas abajo
 de la placa orificio.
@@ -1122,8 +1163,8 @@ controlador (ver Sec. \ref{subsec:PlacaOrificio}).
 \end{itemize}
 
 Ambas celdas fueron fijadas a la base de madera mediante tornillos.
-Las conexiones de las entradas se realizaron con mangueras de alta presión
-malladas, de $6\,mm$. Se muestran en la Fig. \ref{fig:dpcelfig}.
+Las conexiones de las entradas se realizaron con tuberías flexibles de alta
+presión malladas, de $6\,mm$. Se muestran en la Fig. \ref{fig:dpcelfig}.
 
 \begin{figure}[t]
         \centering
@@ -1131,31 +1172,31 @@ malladas, de $6\,mm$. Se muestran en la Fig. \ref{fig:dpcelfig}.
         \centering
 \includegraphics[height=6.3cm]
 	{Cap2-DisenoEnsamblado/images/dpcell1.JPG}
-	\caption{Vista general.}
+	\caption{Vista general}
         \end{subfigure}%
         \hfil
         \begin{subfigure}[b]{0.69\textwidth}
         \centering
 \includegraphics[height=6.3cm]
 	{Cap2-DisenoEnsamblado/images/dpcell2.JPG}
-	\caption{Detalle tomas de baja y alta presión.}
+	\caption{Detalle tomas de baja y alta presión}
         \end{subfigure}
-        \caption{DP Cell.}
+        \caption{DP cells en la planta}
         \label{fig:dpcelfig}
 \end{figure}
 
-Debemos destacar que, para el caso de la celda de caudal, ambas
+Se debe destacar que, para el caso de la celda de caudal, ambas
 entradas se conectaron entre si mediante una válvula manual.
 Esta válvula se utiliza solamente durante el primer arranque de la planta:
-cuando la cañería está vacía y la bomba \verb|B1| se activa, tenemos por una
-pequeña
+cuando la tubería está vacía y la electrobomba \verb|B1| se activa, se tiene por
+una pequeña
 fracción de tiempo una presión diferencial de $12\,mCa$ que puede dañar la
 celda.
 Para evitar este fenómeno, la válvula manual que conecta ambas entradas
 permanece abierta durante el primer arranque.
 Luego, debe cerrarse para poder realizar la lectura diferencial de presión.
 
-\subsection{Placa Orificio}
+\subsection{Placa orificio}
 \label{subsec:PlacaOrificio}
 
 
@@ -1163,7 +1204,7 @@ Luego, debe cerrarse para poder realizar la lectura diferencial de presión.
  \centering
 \includegraphics[width=\textwidth]{Cap2-DisenoEnsamblado/images/placaOrif.png}
 \caption{Corte longitudinal de una placa orificio montada en una tubería
-\cite{bib:Mataix}.}
+\cite{bib:Mataix}}
  \label{fig:placaOrificio}
 \end{figure}
 
@@ -1172,7 +1213,12 @@ utilizar una placa orificio.
 En la Fig. \ref{fig:placaOrificio} se muestra un
 corte longitudinal de la misma.
 Se observa que la placa orificio provoca una disminución del diámetro
-de la cañería, con la consiguiente aceleración del fluido.
+de la tubería, con la consiguiente aceleración del fluido y disminución de la
+presión.
+Puede medirse una diferencia de presión entre un punto aguas arriba y un punto
+próximo a la placa orificio, aguas abajo.
+Se describe a continuación la expresión para obtener el caudal que circula en
+la tubería, a partir de la medición de la presión diferencial.
 
 Escribiendo la ecuación de Bernoulli en 0 y 2, considerando que la velocidad en
 2 es aproximadamente igual a la velocidad en 1,
@@ -1198,10 +1244,11 @@ altura de la columna fluida
 La ecuación de continuidad, para fluidos incompresibles se escribe
 \begin{align}
  A_2\,v_2 &= A_0\,v_0 \\
+% D_2^2\,v_2 &= D_0^2\,v_0\\
  v_2 &= \dfrac{D_0^2}{D_2^2} v_0
  \label{eq:velRef}
 \end{align}
-y reemplazando \eqref{eq:velRef} en \eqref{eq:Bernoulli2} obtenemos
+y reemplazando \eqref{eq:velRef} en \eqref{eq:Bernoulli2} se obtiene
 \begin{align}
  2 \, g \, h_p &= v_2^2 \left( 1 - \dfrac{D_0^4}{D_2^4} \right)\\
  \beta &= \dfrac{D_0}{D_2}\\
@@ -1221,8 +1268,8 @@ El coeficiente $C_v$ depende del número de Reynolds $Re$
 Re &= \dfrac{D\,v}{\nu}
 \end{align}
 donde $v$ es la velocidad en la placa orificio, $D$ es el diámetro y ${\nu}$
-es la viscosidad cinemática del fluido\footnote{Para el agua, nuestro fluido de
-trabajo $\nu = 1,003\,10^{-6} \frac{m^2}{s}$.}.
+es la viscosidad cinemática del fluido\footnote{Para el agua, el fluido de
+trabajo utilizado $\nu = 1,003\,10^{-6} \frac{m^2}{s}$.}.
 
 La ecuación \eqref{eq:placaOrif1} puede ser reescrita de una forma más sencilla
 mediante una nueva variable adimensional $C_q$
@@ -1250,9 +1297,9 @@ la diferencia de alturas $\sqrt{h_p}$, que puede
 ser encontrada utilizando un DP cell (ver Sec. \ref{subsec:DPCell}).
 
 \subsubsection{Montaje}
-La placa orificio se colocó en serie con la cañería de llenado del
+La placa orificio se colocó en serie con la tubería de llenado del
 tanque controlado.
-Debieron instalarse además, las mangueras correspondientes de conexión
+Debieron instalarse además, las tuberías flexibles correspondientes de conexión
 con la celda de presión diferencial.
 
 \subsubsection{Metodología experimental}
@@ -1262,7 +1309,7 @@ Considerando $C_q$ constante,
 \end{align}
 es constante también, y puede ser determinado experimentalmente.
 Para ello, se midió sobre el tanque controlado una distancia $l$.
-Luego, se encendió la bomba \verb|B1| con la válvula electroneumática en
+Luego, se encendió la electrobomba \verb|B1| con la válvula de control en
 posición
 abierta (caudal máximo), y se midió el tiempo $t$ necesario para que el nivel
 alcanzara la altura $l$.
@@ -1287,7 +1334,7 @@ Se marcó en el tanque controlado una altura $l=0.5\,m$, teniendo $D=0.2\,m$.
 Luego, se procedió a medir el tiempo de llenado, consignando los resultados en
 la Tab. \ref{tab:tiempoK}.
 
-\begin{table}[h]
+\begin{table}[ht]
 \renewcommand{\arraystretch}{1.3}
   \centering
   \bgroup
@@ -1311,11 +1358,11 @@ la Tab. \ref{tab:tiempoK}.
   \hline
   \end{tabular}
   \egroup
-  \caption{Medición del tiempo de llenado, cálculo de $K$.}
+  \caption{Medición del tiempo de llenado, cálculo de $K$}
   \label{tab:tiempoK}
 \end{table}
 
-Finalmente, obtenemos
+Finalmente, se obtiene
 \begin{align}
  Q_{max} &= 33.81\,\dfrac{lts}{min}
  \\
@@ -1326,13 +1373,13 @@ Finalmente, obtenemos
 Se presenta la planta ensamblada en la Fig. \ref{fig:PlantaEnsamblada}, vista
 desde el lado de la válvula.
 Pueden observarse claramente la estructura, la distribución de los elementos,
-las cañerías de llenado y vaciado, las mangueras de conexión, el tiempo muerto y
-los tanques.
+las tuberías de llenado y vaciado, las tuberías flexibles de conexión a las DP
+Cell, el tiempo muerto y los tanques.
 
-\begin{figure}[h!]
+\begin{figure}[ht]
 	\centering
-\includegraphics[width=.85\textwidth]{Cap2-DisenoEnsamblado/images/IMG_5123.JPG}
-	\caption{Planta ensamblada.}
+\includegraphics[width=.94\textwidth]{Cap2-DisenoEnsamblado/images/IMG_5123.JPG}
+	\caption{Planta ensamblada}
 	\label{fig:PlantaEnsamblada}
 \end{figure}
 

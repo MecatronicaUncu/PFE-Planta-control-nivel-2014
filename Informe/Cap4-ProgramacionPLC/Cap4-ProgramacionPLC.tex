@@ -1,8 +1,8 @@
 \chapter{Programación del PLC}
 \label{ch:progPLC}
 
-Una vez montado el sistema, realizado el cableado eléctrico y verificado su
-correcto funcionamiento de
+Habiendo montado los diferentes elementos de la planta de control de nivel,
+realizado el cableado eléctrico y verificado su correcto funcionamiento de
 manera manual, se procedió a la programación del \gls{plc}.
 
 En el presente capítulo se describe tanto el algoritmo del programa de control,
@@ -63,7 +63,7 @@ El algoritmo \ref{img:algoritmo} muestra la solución propuesta.
     }
   }
 }
- \caption{Tareas a cumplir por el controlador de manera secuencial.}
+ \caption{Tareas a cumplir por el controlador de manera secuencial}
  \label{img:algoritmo}
 \end{algorithm}
 
@@ -99,7 +99,7 @@ acciones de salida.
 
 Las acciones de salida se representan como bobinas.
 Las bobinas pueden estar aplicadas tanto a salidas físicas de la planta, como a
-valores en memoria. Encontramos los siguientes tipos:
+valores en memoria. Se distinguen los siguientes tipos:
 
   \begin{itemize}
    \item \textbf{Bobina directa:} toma el valor lógico de la entrada.
@@ -116,17 +116,17 @@ numéricas, realizar bucles \gls{pid}, contadores, registros, etc.
 Cada una de las partes del programa se denomina \emph{RUNG} (escalón o
 peldaño).
 La ejecución de los peldaños es secuencial, comenzando por el  \verb|RUNG 0|.
-En cada peldaño se describen paso a paso las acciones que deseamos que
+En cada peldaño se describen paso a paso las acciones que se desea que
 el controlador realice, de acuerdo al estado del sistema o las ordenes
 recibidas desde el \gls{scada}.
 
-\subsection{Gestión de la Memoria - Entradas/Salidas}
+\subsection{Gestión de la memoria - Entradas/Salidas}
 
 El \gls{plc} puede guardar información de diversa índole en memoria.
 Estos valores pueden ser utilizados para modificar las salidas, a
 modo de banderas.
 También pueden guardarse valores numéricos, útiles para consignas,
-ganancias o lecturas de sensores analógicos.
+ganancias o lecturas de transmisores de señal analógicos.
 Se diferencian dos tipos de celdas de memoria:
 
 \begin{itemize}
@@ -136,7 +136,7 @@ Son capaces de guardar un único bit.
 Por esa razón, se utilizan como banderas internas del programa, que representan
 distintos estados de la planta.
 En la Tab. \ref{table:Banderasinternas} se pueden ver el nombre
-de las banderas utilizadas en nuestro programa y sus funciones.
+de las banderas utilizadas en el programa y sus funciones.
 \begin{table}[ht]
 \renewcommand{\arraystretch}{1.3}
 \centering
@@ -152,7 +152,7 @@ de las banderas utilizadas en nuestro programa y sus funciones.
 \verb|M5|  & Parada de emergencia\\
 \hline
 \end{tabular}
-\caption{Banderas internas.}
+\caption{Banderas internas}
 \label{table:Banderasinternas}
 \end{table}
 
@@ -162,7 +162,7 @@ Representan valores de $16$ bits de resolución. En ellos puede guardarse
 información numérica en el rango $0$ a $65535$
 (constantes, valores de lectura o escritura), o pueden utilizarse para guardar
 hasta 16 banderas (bits).
-Cabe destacar que las \gls{memoryWord} pueden ser leídas mediante el bus MODBUS
+Cabe destacar que las \gls{memoryWord} pueden ser leídas mediante el bus Modbus
 (ver Sec. \ref{sec:Comunicacion}).
 En la Tab. \ref{table:mwBanderas} se muestran las \gls{memoryWord}
 utilizadas como banderas, en tanto que en la Tab.
@@ -203,7 +203,7 @@ Esc & & \verb|X8|& Parada de emergencia\\
 Esc & & \verb|X9|& Limpiar señal de parada de emergencia\\
 \hline
 \end{tabular}
-\caption{Memory Words utilizadas como banderas.}
+\caption{Memory Words utilizadas como banderas}
 \label{table:mwBanderas}
 \end{table}
 
@@ -231,14 +231,14 @@ Esc & \verb|MW12|  & Valor de escritura Ti \\
 Esc & \verb|MW13| & Valor de escritura Td \\
 \hline
 \end{tabular}
-\caption{Memory Words utilizadas para almacenar valores numéricos.}
+\caption{Memory Words utilizadas para almacenar valores numéricos}
 \label{table:mwNumericos}
 \end{table}
 
 Finalmente, en la Tab. \ref{table:entradassalidas} se muestran las entradas y
 salidas del \gls{plc}.
 Descriptas en la Sec. \ref{subsec:plc}, permiten al
-controlador relevar variables de la planta y aplicar acciones de control.
+controlador captar variables de la planta y aplicar acciones de control.
 Cabe destacar que la salida \verb|Q0.7| se utilizó para obtener un indicador
 visual del estado en el \gls{plc}.
 Por consiguiente, esta salida no está conectada.
@@ -250,15 +250,19 @@ Por consiguiente, esta salida no está conectada.
 \hline
 \bfseries Tipo & \bfseries Memoria & \bfseries Descripción\\
 \hline \hline
-Salida & \verb|Q0.0|  & Encendido motor 1\\
-Salida & \verb|Q0.1|  & Encendido motor 2\\
-Salida & \verb|Q0.7|  & Señal de encendido de la planta en modo automático\\
-Salida & \verb|I0.0|  & Retroalimentación desde el relevo térmico motor 1\\
+E. disc. & \verb|I0.0|  & Retroalimentación desde el relevo térmico motor
+1\\
+E. disc.& \verb|I0.1|  & Retroalimentación desde el relevo térmico motor
+2\\
+S. disc.& \verb|Q0.0|  & Encendido motor 1\\
+S. disc.& \verb|Q0.1|  & Encendido motor 2\\
+S. disc.& \verb|Q0.7|  & Señal de encendido de la planta en modo
+automático\\
 \hline
-Entrada & \verb|I0.1|  & Retroalimentación desde el relevo térmico motor 2\\
-Entrada & \verb|IW0.1.0|  & Señal analógica de nivel\\
-Entrada & \verb|IW0.1.1|  & Señal analógica de caudal \\
-Entrada & \verb|QW0.1.0|  & Señal analógica de salida de apertura de la válvula
+E. analog.& \verb|IW0.1.0|  & Señal analógica de nivel\\
+E. analog.& \verb|IW0.1.1|  & Señal analógica de caudal \\
+S. analog. & \verb|QW0.1.0|  & Señal analógica de salida de apertura de la
+válvula
 \\
 \hline
 \end{tabular}
@@ -268,11 +272,11 @@ Entrada & \verb|QW0.1.0|  & Señal analógica de salida de apertura de la válvu
 
 \subsection{Descripción del programa grabado en el PLC}
 
-La Fig. \ref{fig:ladder} muestra un diagrama de los diferentes peldaños de
-nuestro programa de aplicación.
+La Fig. \ref{fig:ladder} muestra un diagrama de los diferentes peldaños del
+programa de aplicación.
 Se observa que la estructura secuencial del Alg. \ref{img:algoritmo} ha
 sido respetada en los peldaños.
-Distinguimos los siguientes escalones:
+Se distinguen los siguientes escalones:
 
 \begin{figure}[!ht]
 \centering
@@ -298,21 +302,21 @@ size=1pt]
     child { node {Seteo de parámetros del controlador: Set Point}    }
     child { node {Gestión de bandera de encendido y parada del sistema}    }
     child { node {Gestión de bandera de modo manual y automático}    }
-    child { node {Gestión de motores si el sistema esta en modo automático}    }
-    child { node {Encendido del Motor 1: Control manual y automático}    }
-    child { node {Encendido del Motor 2: Control manual y automático}    }
+    child { node {Gestión de motores si el sistema está en modo automático}    }
+    child { node {Encendido del Motor 1: control manual y automático}    }
+    child { node {Encendido del Motor 2: control manual y automático}    }
     child { node {Controlador: PID}    }
     child { node {Valor de salida de la válvula}    }
     child { node {Gestión de señal de estado: manual o automático}    }
     child { node {Indicador del estado del Motor 1}    }
     child { node {Indicador del estado del Motor 2}    }
-    child { node {Indicador de error en bombas}    }
+    child { node {Indicador de error en electrobombas}    }
     child { node {Gestión de bandera del sistema trabajando en modo normal}    }
     child { node {Limpieza de señal de parada de emergencia}    }
     child { node {Limpieza de alarmas}    };
 \end{tikzpicture}
 %}
-\caption{Esquema de Rungs del programa Ladder de la planta de control de nivel}
+\caption{Rungs del programa Ladder en la planta de control de nivel}
 \label{fig:ladder}
 \end{figure}
 
@@ -325,12 +329,12 @@ ganancias del controlador y se fija el Set Point al $50\%$.
  \gls{scada} que el programa se encuentra en ejecución.
 
  \item \textbf{Verificación de parada de emergencia:}
-  como se explicará en el capitulo \ref{ch:scada}, está previsto un
+  como se explicará en el Cap. \ref{ch:scada}, está previsto un
  botón exclusivo de parada de emergencia en el \gls{scada}.
  En este peldaño, se modifica \verb|M5| según el valor de \verb|MW1:X8|.
  Luego de solucionar el inconveniente,
  se debe ``Rehabilitar al sistema'' para su funcionamiento normal, poniendo a
- $0$ \verb|MW1:X8|.
+ $1$ \verb|MW1:X9|.
 
  \item \textbf{Adquisición de nivel y caudal:} se leen las entradas analógicas
  a las \gls{memoryWord} correspondientes de caudal y nivel.
@@ -346,10 +350,10 @@ a los valores de \verb|MW1|.
 Pueden cambiarse las ganancias del controlador y el Set Point.
 
   \item \textbf{Gestión de banderas de encendido y modo manual:} en estos
-  escalones podrá ponerse a $1$ la
+  escalones puede ponerse a $1$ la
   bandera de encendido de la planta en modo automático \verb|M1|, modificando
 el valor de \verb|MW1:X0|.
-  De la misma manera, podrá cambiarse el
+  De la misma manera, puede cambiarse
   el control de automático a manual modificando \verb|M2| a través de
   \verb|MW1:X1|.
 
@@ -372,7 +376,7 @@ detenerse
   \item \textbf{Controlador \gls{pid}}: en este peldaño se encuentra el bloque
 del controlador \gls{pid}, cuya salida es el valor de apertura de la
 válvula (en modo automático).
-  La configuración de este bloque nos permite además manejar la válvula
+  La configuración de este bloque permite además manejar la válvula
 manualmente, en caso que \verb|M1| se encuentre activa.
 
   \item \textbf{Valor de apertura de la válvula:} se lee el valor de apertura de
@@ -383,21 +387,22 @@ la apertura de la válvula en el \gls{scada}.
 al software \gls{scada}, por medio de las banderas \verb|MW0:X6-X9|,
   el estado de los motores y el modo de trabajo (manual o automático).
 
-  \item \textbf{Error en bombas:} una de las entradas discretas del \gls{plc}
+  \item \textbf{Error en electrobombas:} una de las entradas discretas del
+\gls{plc}
 son los enclavamientos recibidos del relé de los motores. La lectura de esta
 señal nos indica si el motor está realmente encendido.
-  Dado que el sistema relé/contactor tiene una latencia de arranque, debemos
+  Dado que el sistema relé/contactor tiene una latencia de arranque, se debe
 agregar un bloque timer.
-Se pondrá a 1 la bandera de falla en motores \verb|M4| si hay
+Se activa la bandera de falla en motores \verb|M4| si hay
 una disparidad entre las
 salidas y las entradas discretas del \gls{plc}, por más de un segundo.
 
   \item \textbf{Sistema funcionando en modo normal:}
-  Evalúa si no hay ninguna alarma HL o LL activa, escribiendo un bit en
-\verb|MW0:X10|.
+  Evalúa si no hay ninguna bandera de error o alarma HL o LL activa,
+escribiendo un bit en \verb|MW0:X10|.
 
   \item \textbf{Limpieza de alarmas:} en este escalón se limpian las banderas
-de alarmas si el operador lo requiere.
+de error si el operador lo requiere.
 \end{itemize}
 
 En el anexo \ref{anexo:programaLadder} se puede
@@ -421,21 +426,22 @@ saber:
 La constante de proporcionalidad para cada caso se conocen como ganancias del
 controlador ($K_p$, $T_i$ y $T_d$).
 
-El \gls{plc} utilizado ofrece hasta 14 bloques \gls{pid}, del cual utilizamos
-sólo uno.
+El \gls{plc} utilizado ofrece hasta 14 bloques \gls{pid}, de los cuales se
+utilizó sólo uno.
 Se muestran en la Tab. \ref{table:controladorpid} los valores utilizados para
 la configuración del controlador PID.
 Cada bloque \gls{pid} tiene dos modos de trabajo.
 \begin{itemize}
  \item \textbf{Modo automático:} conociendo los valores de las ganancias, el
-Set Point y la variable controlada, realiza el algoritmo de \gls{pid} y entrega
+Set Point y la variable controlada, el bloque realiza el algoritmo de \gls{pid}
+y entrega
 un valor de la variable manipulada en salida.
-En nuestro caso, la variable manipulada es la apertura de la válvula.
+En este caso, la variable manipulada es la apertura de la válvula.
 La variable controlada y el Set Point corresponden a los valores de nivel
 presente en el tanque y deseado, respectivamente.
  \item \textbf{Modo manual:} permite anular el controlador, enviando un valor
 manual a la variable controlada.
-Podemos así controlar la apertura a la válvula cuando se
+Se puede así controlar la apertura a la válvula cuando se
 trabaja en modo manual desde el \gls{scada}.
 
 \end{itemize}
@@ -457,7 +463,7 @@ Bandera & \verb|M2|  & 1: Modo manual, 0: Modo automático \\
 Valor manual & \verb|MW15|  & Apertura de la válvula (manual)\\
 \hline
 \end{tabular}
-\caption{Configuración del PID.}
+\caption{Configuración del PID}
 \label{table:controladorpid}
 \end{table}
 
@@ -467,7 +473,9 @@ Para poder determinar las ganancias del controlador se decidió seguir el métod
 de Ziegler–Nichols.
 Se trata de una serie de reglas basadas en la respuesta experimental
 del sistema.
-Estas reglas son aplicables a sistemas de primer orden, donde no se conoce con
+Estas reglas son aplicables a sistemas de primer orden o segundo orden
+aproximado
+a uno de primero, donde no se conoce con
 precisión el modelo matemático del sistema \cite{bib:Ogata}.
 
 Se presentan dos métodos:
@@ -483,7 +491,8 @@ Luego, se calculan las ganancias utilizando la Tab. \ref{tab:valorganancias}.
 \begin{figure}[ht]
  \centering
  \includegraphics[scale=0.5]{Cap4-ProgramacionPLC/images/primermetodo.png}
- \caption{Respuesta del sistema a un escalón \cite{bib:Ogata}.}
+ \caption{Sintonización mediante la respuesta del sistema a un escalón
+\cite{bib:Ogata}}
  \label{fig:primermetodo}
 \end{figure}
 
@@ -499,7 +508,8 @@ Nuevamente, las ganancias pueden ser calculadas utilizando la Tab.
 \begin{figure}[ht]
  \centering
  \includegraphics[scale=0.5]{Cap4-ProgramacionPLC/images/segundometodo.png}
- \caption{Oscilación permanente del sistema \cite{bib:Ogata}.}
+ \caption{Sintonización mediante oscilación permanente del sistema
+\cite{bib:Ogata}}
  \label{fig:segundometodo}
 \end{figure}
 \end{itemize}
@@ -516,13 +526,13 @@ Primero &  $ 1.2 \, {T}/{L}$ & $2 \, L $ & $ 0.5 \, L $\\
 Segundo &  $0.6 \,Kp_{cr}  $ & $ 0.5 \, P_{cr}$ & $0.125 \, P_{cr} $\\
 \hline
 \end{tabular}
-\caption{Valor de las ganacias según el método Ziegler–Nichols.}
+\caption{Valores de las ganancias según el método Ziegler–Nichols}
 \label{tab:valorganancias}
 \end{table}
 
-\subsubsection{Cálculo de ganancias en nuestra planta}
+\subsubsection{Cálculo de ganancias para esta planta}
 
-Para nuestro trabajo se optó por el segundo método de los presentados
+Para este trabajo se optó por el segundo método de los presentados
 anteriormente, es decir, poniendo al sistema en oscilación permanente en bucle
 cerrado.
 
@@ -555,17 +565,17 @@ consigna de nivel en la planta, funcionando con estos valores de ganancias.
   \begin{subfigure}[b]{0.49\textwidth}
     \includegraphics[width=\textwidth]
     {Cap4-ProgramacionPLC/images/oscperm.jpeg}
-     \caption{Nivel de la planta en oscilación.}
+     \caption{Nivel de la planta en oscilación}
      \label{fig:oscilacionperm}
   \end{subfigure}%
   \hfill
   \begin{subfigure}[b]{0.49\textwidth}    
       \includegraphics[width=\textwidth]
       {Cap4-ProgramacionPLC/images/controlado.jpeg}
-      \caption{Nivel de la planta controlada.}
+      \caption{Nivel de la planta controlada}
       \label{fig:controlado}
   \end{subfigure}
-  \caption{Gráficas de consigna y nivel, sin tiempo muerto.}
+  \caption{Gráficas de consigna y nivel, sin tiempo muerto}
 \end{figure}
 
 
@@ -578,7 +588,7 @@ Se obtuvieron los siguientes valores de los parámetros.
 % \begin{figure}[ht]
 %  \centering
 %  \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/oscpermtd.png}
-%  \caption{Nivel de la planta en oscilación, con tiempo muerto.}
+%  \caption{Nivel de la planta en oscilación, con tiempo muerto}
 %  \label{fig:oscilacionpermtd}
 % \end{figure}
 
@@ -604,7 +614,7 @@ de nivel, utilizando el circuito de tiempo muerto.
 % \begin{figure}[ht]
 %  \centering
 %  \includegraphics[scale=0.4]{Cap4-ProgramacionPLC/images/controladotd.png}
-%  \caption{Nivel de la planta controlada, con tiempo muerto.}
+%  \caption{Nivel de la planta controlada, con tiempo muerto}
 %  \label{fig:controladotd}
 % \end{figure}
 
@@ -613,17 +623,17 @@ de nivel, utilizando el circuito de tiempo muerto.
   \begin{subfigure}[b]{0.49\textwidth}    
 \includegraphics[width=\textwidth, height=5.8cm]
 {Cap4-ProgramacionPLC/images/oscpermtd.jpeg}
-    \caption{Nivel de la planta en oscilación.}
+    \caption{Nivel de la planta en oscilación}
     \label{fig:oscilacionpermtd}
   \end{subfigure}%
   \hfill
   \begin{subfigure}[b]{0.49\textwidth}
 \includegraphics[width=\textwidth,height=5.8cm]
   {Cap4-ProgramacionPLC/images/controladotd.jpeg}
-     \caption{Nivel de la planta controlada.}
+     \caption{Nivel de la planta controlada}
      \label{fig:controladotd}
   \end{subfigure}
-  \caption{Gráficas de consigna y nivel, con tiempo muerto.}
+  \caption{Gráficas de consigna y nivel, con tiempo muerto}
   %\label{fig:controlshmi}
 \end{figure}
 
@@ -633,7 +643,7 @@ Queda así validada la sintonía del bucle \gls{pid} en el controlador.
 \section{Comunicación}
 \label{sec:Comunicacion}
 
-Tal como se mencionó anteriormente, mediante MODBUS sólo se puede tener acceso 
+Tal como se mencionó anteriormente, mediante Modbus sólo se puede tener acceso
 a las \gls{memoryWord} (palabras) del \gls{plc}.
 Para interactuar con la planta debieron definirse ciertas palabras, que
 permiten realizar acciones en el sistema y conocer el estado del mismo.
@@ -641,17 +651,17 @@ Por simplicidad, se optó por utilizar dos grupos de palabras bien
 diferenciadas:
 \begin{itemize}
  \item \textbf{Palabras de lectura:} pueden ser leídas por la computadora de
-control mediante MODBUS. En las palabras de lectura agruparemos aquellas
+control mediante Modbus. En las palabras de lectura se agruparon aquellas
 banderas de estado (motores encendidos, alarmas) y las palabras con valores
 numéricos de lectura (mediciones de nivel, caudal, valor presente de Set Point
 y de ganancias del controlador).
  \item \textbf{Palabras de escritura:} pueden ser escritas por la computadora
-de control. Aquí se agrupan valores numéricos que pueden ser cambiados (set
-point, ganancias) y banderas para modificar el estado de la planta (encenderla,
-seteo en modo manual, encendido de las bombas).
+de control. Aquí se agrupan valores numéricos que pueden ser cambiados (Set
+Point, ganancias) y banderas para modificar el estado de la planta (encenderla,
+seteo en modo manual, encendido de las electrobombas).
 \end{itemize}
 
-Destacamos que en algunos casos (por ejemplo, Set Point) tenemos tanto palabras
+Se destaca que en algunos casos (por ejemplo, Set Point) existen tanto palabras
 de lectura o escritura.
 Esto se debe a que estas variables, importantes para el funcionamiento de la
 planta, deben ser modificadas solamente bajo solicitud expresa del usuario, es
@@ -671,7 +681,7 @@ presentan las variables del sistema), mientras que en la
 segunda parte muestra las palabras de escritura (reservadas al cambio
 de los parámetros del sistema).
 
-\section{Depuración (Debug)}
+\section{Depuración (debug)}
 \label{sec:Debug}
 
 Una vez finalizada la programación y antes de vincular el \gls{plc}
@@ -683,22 +693,23 @@ en tiempo de ejecución, observando el estado de las diferentes variables
 de la planta.
 La animación colorea las bobinas y contactores que están activos, permitiendo
 identificar problemas lógicos en el programa.
-Además, podemos observar el valor de las entradas y salidas, detectando así
+Además, se observa el valor de las entradas y salidas, detectando así
 errores en la instrumentación y/o en los actuadores.
 
 En la Fig. \ref{img:twidosoftdebug} se observa el módulo \emph{Tablas
 de Animación} de Twido Soft.
 Mediante este módulo, se puede forzar el estado de algunas bobinas y cambiar el
 valor de las palabras en memoria.
-Podemos así generar situaciones características que encontraremos durante la
+De esta manera, pueden generarse situaciones características que
+encontraremos durante la
 operación de la planta.
-Podemos citar:
+Por ejemplo:
 
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=.8\textwidth]
 	{Cap4-ProgramacionPLC/images/twidosoftdebug.png}
-	\caption{Esquema de la división del tiempo}
+	\caption{Tabla de animación}
 	\label{img:twidosoftdebug}
 \end{figure}
 
@@ -739,7 +750,7 @@ correspondiente palabra de acuerdo al valor que se desee modificar.
 por separado.
  
  \item \textbf{Parada de emergencia por error en el funcionamiento de los
-motores:} por ultimo se forzó nuevamente al sistema a una situación extrema, en
+motores:} por último se forzó nuevamente al sistema a una situación extrema, en
 la que uno de los motores se detiene por sobrecorriente (debido al rotor
 atascado o sobrecalentamiento).
  El sistema se detiene (bandera \verb|M4|) y la palabra \verb|MW0| acusa que el

@@ -1,7 +1,7 @@
-\chapter{Manual del Usuario}
+\chapter{Manual del usuario}
 \label{anexo:manualUsuario}
 
-\section{Verificaciones Iniciales}
+\section{Verificaciones iniciales}
 \label{anexo:verificaciones}
 Antes de poner en funcionamiento la planta verifique cada uno de los siguientes
 items:
@@ -21,11 +21,11 @@ debajo del 20 \% o aumenta por encima del 80\% se detiene la planta
 automáticamente. Puede transvasar el fluido de un tanque a otro utilizando el
 modo manual del \gls{scada} (ver Sec. \ref{anexo:operacionSCADA} del Manual
 del Usuario) o encendiendo
-manualmente las bombas (ver Sec. \ref{anexo:motoresManual} del Manual del
+manualmente las electrobombas (ver Sec. \ref{anexo:motoresManual} del Manual del
 Usuario).
 
 La planta no podrá volver a encenderse en modo automático hasta que se confirme
-por parte del usuario que la planta no está en estado de emergencia (mediante el
+por parte del usuario que la planta no está en estado de falla (mediante el
 \gls{scada} o poniendo a 1 la bandera \verb|MW1:X7|).
 \end{lattention}
 
@@ -57,33 +57,36 @@ escenarios en la planta. Al modificar las características del sistema se deben
 ajustar los valores del controlador.
 \end {tcolorbox}
 
-\begin{tcolorbox}[title=Presión de aire]
-  Asegúrese que la presión de aire este regulada a $4\,bar$. Se debe controlar
+\begin{tcolorbox}[title=Presión de aire en la válvula]
+  Asegúrese que la presión de aire esté regulada a $4\,bar$. Se debe controlar
   el correcto funcionamiento del filtro y regulador, realizando purgas en caso
 de ser necesario.
  \tcblower
-  \textbf{Nota:} un filtro regulador, se utiliza de la siguiente manera:
+  \textbf{Nota:} un filtro regulador se utiliza de la siguiente manera:
  \begin{enumerate}
-    \item Desconectar la manguera de aire a la válvula.
+    \item Desconectar la tubería flexible de aire al electroposicionador.
     \item Se conecta la línea de aire comprimido al regulador.
     \item Se visualiza el valor de presión en el manómetro
     \item Se desplaza hacia arriba la maneta de regulación y se gira hasta
       alcanzar el valor de presión deseado.
     \item Se vuelve la maneta de regulación a su posición original.
+    \item Conectar nuevamente la tubería flexible de aire al
+electroposicionador.
  \end{enumerate}
 \end {tcolorbox}
 %\todo{agregar filtro de aire}
 
 \begin{lattention}
-Nunca conectar la linea de aire comprimido de manera directa a la válvula,
+Nunca conectar la linea de aire comprimido de manera directa al
+electroposicionador,
 sin el filtro regulador.
-Puede dañar el electroposicionador de manera irreversible si la presión de aire
+Puede dañarlo de manera irreversible si la presión de aire
 supera los $7\,bar$.
 \end{lattention}
 
 \begin{tcolorbox}[title=Motores]
-Para poder encender los motores debemos asegurarnos que no están trabados.
-Para verificarlo, se recomienda retirar la jaula que recubre los ventiladores
+Para poder encender los motores se debe verificar que no están trabados.
+Para ello, se recomienda retirar la jaula que recubre los ventiladores
 de los motores y hacerlos girar manualmente.
 \end {tcolorbox}
 
@@ -92,7 +95,7 @@ Solo conecte la planta a la red eléctrica ($220\,V$, corriente alterna) luego
 de haber realizado todas las verificaciones antes mencionadas. 
 \end{lattention}
 
-\section{Activación Manual de los Motores}
+\section{Activación manual de los motores}
 \label{anexo:motoresManual}
 Se explican a continuación los pasos a seguir para activar, de modo manual, los
 motores de la planta.
@@ -114,9 +117,9 @@ Por favor, en caso de dudas consulte con el encargado del laboratorio.
 \renewcommand*{\arraystretch}{0.01}
 \begin{tabular}{*{2}{m{0.435\textwidth}}}
 \hline
-% Fernando: Para mi es más importante esto que conectar la presión de aire.
-% No podemos abrir la válvula así que no sirve de nada conectarla.
-  Controlar que las bombas no estén bloqueadas.
+% Fernando: para mi es más importante esto que conectar la presión de aire.
+% No se puede abrir la válvula así que no sirve de nada conectarla.
+  Controlar que las electrobombas no estén bloqueadas.
   &\begin{center}
     %\rule{0.4\textwidth}{0.3\textwidth}
     \includegraphics[width=0.4\textwidth]
@@ -131,7 +134,8 @@ Por favor, en caso de dudas consulte con el encargado del laboratorio.
 	{Anexos/images/disyuntor.JPG}
     \end{center}\\
 \hline
-    Activar manualmente el relé de la bomba correspondiente. En la imagen se
+    Activar manualmente el relé de la electrobomba correspondiente.
+    En la imagen se
     puede apreciar la llave (color verde claro) que debe accionarse. Para mas 
     información acerca del relé utilizado en esta planta, refiérase a la
     hoja de datos del mismo.

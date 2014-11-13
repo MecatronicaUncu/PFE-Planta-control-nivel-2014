@@ -1,7 +1,7 @@
 \chapter{Conclusiones}
 \label{ch:conclusiones}
 
-\section{Conclusión Técnica}
+\section{Conclusión técnica}
 \label{sec:ConclusionTecnica}
 
 Al finalizar este \gls{pfe}, pudo verificarse el cumplimiento de las
@@ -27,7 +27,7 @@ Todos los elementos de la planta fueron correctamente identificados en un
 \gls{pyid}.
 Por otra parte, el conexionado fue consignado en esquemas eléctricos.
 El proyecto incluyó el diseño de circuitos electrónicos con su correspondiente
-tarjeta (regulador de tensión, conversor \verb|RS485| a \verb|RS232|), que
+tarjeta (regulador de tensión, conversor \verb|RS-485| a \verb|RS-232C|), que
 quedan a disposición para futuros proyectos.
 
 Los Caps. \ref{ch:progPLC} y \ref{ch:scada} fueron escritos con el
@@ -37,22 +37,24 @@ planta.
 
 \section{Perspectivas}
 \label{sec:Perspectivas}
-En este informe nos hemos enfocado principalmente en los aspectos constructivos
+Este informe se ha enfocado principalmente en los aspectos constructivos
 de la planta.
-No obstante, otras experiencias y trabajos pueden ser realizados. Podemos citar:
+No obstante, otras experiencias y trabajos pueden realizarse. Citamos:
 \begin{itemize}
 \item Se instaló una placa orificio (ver Sec. \ref{subsec:PlacaOrificio}), 
 utilizada
-para medir el caudal en la curva efectiva de la válvula.
-No obstante, podría plantearse un esquema de control de nivel en cascada en
-donde el caudal sea controlado también.
+para medir el caudal de ingreso al tanque cuyo nivel se pretende controlar. Por 
+lo que podría plantearse un esquema de control avanzado tipo maestro-esclavo, 
+utilizando otro lazo \gls{pid} del \gls{plc}, siendo este esclavo del maestro
+de nivel.
 \item La determinación de los parámetros del controlador se realizó por 
-el método de Ziegler–Nichols(ver Sec. \ref{subsec:ZiegerNichols}). Debería 
-modelarse la planta con precisión. A partir del modelado, podrían aplicarse 
-esquemas de control más complejos.
+el método de Ziegler–Nichols (ver Sec. \ref{subsec:ZiegerNichols}) a lazo
+cerrado.
+Podría hacerse a lazo abierto y cotejar los parámetros del lazo de
+nivel con ambos métodos.
 \end{itemize}
 
-\section{Conclusión Personal}
+\section{Conclusiones personales}
 \label{sec:ConclusionPersonal}
 
 
@@ -66,7 +68,8 @@ poner algunos ejemplos.
 
 Pero además se nos permitió diseñar, construir y validar un proyecto completo,
 desde su origen hasta su fin.
-Obtenemos de esta manera una visión integral del proceso de concepción de un
+Obtenemos de esta manera una visión integral de la metodología de concepción de
+un
 sistema de control para un proceso determinado.
 Estos conceptos pueden ser aplicados en muchas industrias del medio, donde el
 control de procesos tiene un rol fundamental: petroleo y gas, vitivinícola y
@@ -75,10 +78,9 @@ alimentaria en general, producción de energía, química, entre otras disciplin
 Asimismo, consideramos muy importante haber participado en el desarrollo de un
 proyecto que será utilizado luego por otros estudiantes.
 Creemos que la cooperación entre los alumnos y los profesores es fundamental
-para lograr un desarrollo óptimo de la carrera en nuestra facultad.
+para lograr un desarrollo óptimo de la carrera en la facultad.
 
 Finalmente, este proyecto tiene una gran importancia a nivel personal para cada
 uno de nosotros.
 Con él finaliza un ciclo de arduo trabajo durante nuestra
 carrera de grado.
-

@@ -3,7 +3,7 @@
 
 Hasta este momento se han realizado los siguientes trabajos durante la
 construcción de la planta: en el Cap.
-\ref{ch:DisenoEnsamblado} detallamos los elementos de la misma, lo que nos
+\ref{ch:DisenoEnsamblado} se detallaron los elementos de la misma, lo que nos
 condujo a describir en el Cap. \ref{ch:tablero} el sistema eléctrico y
 electrónico que la anima, continuando en el Cap. \ref{ch:progPLC} con la
 lógica que regula al sistema completo por medio del \gls{plc} y que pone a la 
@@ -20,13 +20,13 @@ proyecto.
 Con esta información el lector podrá entender, y por lo
 tanto modificar en caso de ser necesario, todo el entorno \gls{scada}. Sin
 embargo, este capitulo no está orientado a la operación misma de la planta
-mediante el \gls{scada}, que será detallada en el Anexo
+mediante el \gls{scada}, que será detallada en la Sec.
 \ref{anexo:operacionSCADA} del Manual del Usuario. 
 
 \section{Introducción a SCADA}
 \label{sec:IntroScada}
 Aunque un \gls{plc} realiza automáticamente un control pre-programado sobre un 
-proceso, no tienen una manera estándar de presentar la información al operador.
+proceso, no tienen una manera amigable de presentar la información al operador.
 Además, suelen estar distribuidos a lo largo de toda la planta, haciendo
 difícil recoger los datos de manera manual.
 Los sistemas \gls{scada} obtienen los datos de manera
@@ -38,22 +38,23 @@ organización esquemática de un sistema Planta-PLC-SCADA.
 	\centering
 	\includegraphics[width=0.445\textwidth]
 	{Cap5-SCADA/images/perspectiva.jpeg}
-	\caption{Diagrama de un sistema SCADA.}
+	\caption{Diagrama de un sistema SCADA}
 	\label{fig:perspectivaSCADA}
 \end{figure}
 
 Un sistema \gls{scada} recopila constantemente información de la planta en 
 tiempo real. Luego mediante una base de datos se almacenan y evalúan los datos, 
 generándose alarmas en los casos correspondientes. Finalmente, mediante
-la \gls{hmi} se brinda la información al operario y este a su vez puede enviar 
+la \gls{hmi} se brinda la información al operario y este a su vez puede enviar
 instrucciones a los \gls{plc} en la planta. También se pueden incluir datos de 
 diagnóstico y manejo de la información así como un cronograma de procedimientos 
-de mantenimiento, información logística, esquemas detallados para un sensor o 
+de mantenimiento, información logística, esquemas detallados para un transmisor de señal o 
 máquina en particular o incluso sistemas expertos con guía de resolución de 
 problemas, como se detalla en \cite{bib:ManualScada}.
 
-Es entonces claro como la utilización de un sistema \gls{scada} reduce 
-fuertemente las tareas asociadas al control y monitoreo de plantas industriales.
+Es entonces claro como la utilización de un sistema \gls{scada} facilita 
+significativamente las tareas asociadas al control y supervisión de plantas
+industriales.
 
 \section{Scada P-CIM}
 \label{sec:ScadaPCIM} 
@@ -71,10 +72,10 @@ Dentro de sus características se encuentran:
  \item Compatible con todas las plataformas MS-Windows actuales.
  \item Soporta un gran número de diferentes \gls{plc} y otros dispositivos 
   periféricos.
- \item Posee drivers para diversos buses de comunicación, por ejemplo MODBUS.
+ \item Posee drivers para diversos buses de comunicación, por ejemplo Modbus.
  \item Provee herramientas para el desarrollo de \gls{hmi} inteligentes.
  \item Permite el seguimiento de los procesos de la planta y de las actividades
-  de los operadores. Ademas permite monitorear alarmas y eventos en toda la 
+  de los operadores. Ademas permite supervisar alarmas y eventos en toda la
   extensión de la planta.
 \end{itemize}
 
@@ -131,18 +132,20 @@ El primer paso para el desarrollo de un sistema \gls{scada} es la
 implementación de la capa de comunicación, es decir, lograr la 
 comunicación con el \gls{plc} que controla la planta. Esta tarea se realiza
 utilizando alguno de los múltiples buses de comunicación que existen en el
-mercado. En nuestro caso, se utilizó el protocolo de comunicaciones Modbus.
+mercado. En este caso, se utilizó el protocolo de comunicaciones Modbus.
 
 \subsubsection{Modbus}
 Modbus es un protocolo de comunicaciones diseñado en 1979 por Modicon para su 
 gama de \gls{plc}. En abril del 2004, Schneider Electric transfirió los 
-derechos a la la Modbus Organization (\url{http://www.modbus.org/}), la cual se 
+derechos a la Modbus Organization (\url{http://www.modbus.org/}), la cual se 
 encarga desde entonces del desarrollo y actualización del protocolo Modbus.
 
 Para la conexión entre una computadora corriendo un software \gls{scada} y uno
 o varios \gls{plc}, el protocolo Modbus es un estándar de facto en la industria.
 Por esta razón, también goza de una gran disponibilidad para la conexión de
-dispositivos electrónicos industriales. A nivel diseño, se encuentra situado en 
+dispositivos electrónicos industriales.
+
+A nivel diseño, se encuentra situado en
 la capa de aplicación según el modelo \gls{osi} y presenta una arquitectura 
 maestro/esclavo o cliente/servidor.
 
@@ -155,30 +158,40 @@ maestro/esclavo o cliente/servidor.
 %  \item Maneja bloques de datos sin suponer restricciones a los vendedores.
 %  \item Permite la comunicación entre múltiples dispositivos en la misma red. 
 %   Aprox. 240
-%  \item De código abierto y libre de regalías.%openly published and royalty-free
+%  \item De código abierto y libre de regalías.%openly published and 
+%royalty-free
 % \end{itemize}
 
 
 \subsubsection{Instalación Driver Modbus}
-Procedemos ahora a detallar el  proceso de configuración y puesta en marcha 
+Se procede a detallar el proceso de configuración y puesta en marcha
 del bus de comunicaciones\footnote{Para descargar el driver Modbus para P-CIM:
 \url{http://www.afcon-inc.com/afcon/Templates/showpage.asp?TMID=402&FID=832}}.
 Para realizar la instalación de este driver de comunicaciones en P-CIM deben
 seguirse los pasos que se muestran en la Tab. \ref{tab:installModbus}.
 % \begin{enumerate}
-%  \item Elija $Setup~de~P-CIM$ del grupo de aplicaciones que se encuentran la carpeta $AFCON~P-CIM[7.70SP4]$.
-%  \item Aparecerá en la pantalla la ventana de $Setup~de~P-CIM$. Elija $Install~P-CIM~Driver$.
-%  \item La ventana de diálogo de instalación del Driver de P-CIM, le pedirá que indique el directorio del driver.
+%  \item Elija $Setup~de~P-CIM$ del grupo de aplicaciones que se encuentran la 
+%carpeta $AFCON~P-CIM[7.70SP4]$.
+%  \item Aparecerá en la pantalla la ventana de $Setup~de~P-CIM$. Elija 
+%$Install~P-CIM~Driver$.
+%  \item La ventana de diálogo de instalación del Driver de P-CIM, le pedirá que 
+%indique el directorio del driver.
 %        Oprima Browse.
-%  \item Seleccione el directorio de origen del driver para Modbus. En nuestro caso $C:/P-CIM32.BAK/DRIVERS/MODBUS.689$.
+%  \item Seleccione el directorio de origen del driver para Modbus. En este
+%  caso $C:/P-CIM32.BAK/DRIVERS/Modbus.689$.
 %  Oprima OK y luego Next.
-%  \item El Setup de P-CIM despliega la ventana de diálogo de Bienvenida. Para continuar, oprima Next. 
-%  \item El Setup de P-CIM despliega la ventana de diálogo de Propiedades del Driver de P-CIM 
+%  \item El Setup de P-CIM despliega la ventana de diálogo de Bienvenida. Para 
+%continuar, oprima Next. 
+%  \item El Setup de P-CIM despliega la ventana de diálogo de Propiedades del 
+%Driver de P-CIM 
 %   para Windows 32, indicando los detalles del driver a ser instalado.
-%  \item Elija el/los proyecto(s) en los que Ud. desea instalar el driver o bien seleccione
+%  \item Elija el/los proyecto(s) en los que Ud. desea instalar el driver o bien 
+%seleccione
 %   All (todos) y oprima Next.
-%   \item El Setup de P-CIM procede a efectuar la instalación y finalmente muestra este mensaje: 
-%   “La instalación del driver se ha completado”. Oprima OK para que desaparezca el cuadro de diálogo.
+%   \item El Setup de P-CIM procede a efectuar la instalación y finalmente 
+%muestra este mensaje: 
+%   “La instalación del driver se ha completado”. Oprima OK para que desaparezca 
+%el cuadro de diálogo.
 % \end{enumerate}
 \begin{table}[H]
 \small
@@ -232,9 +245,9 @@ seguirse los pasos que se muestran en la Tab. \ref{tab:installModbus}.
 \end{table}
 
 \subsubsection{Configuración del Driver Modbus}
-Una vez que el driver de Modbus para PCIM se ha instalado correctamente
-procedemos a realizar su configuración para lograr la comunicación entre el PLC 
-y la computadora de control. Esta tarea se divide en dos partes: asociar el
+Una vez que el driver de Modbus para PCIM se ha instalado correctamente,
+se procede a realizar su configuración para lograr la comunicación entre el PLC
+y la computadora supervisora. Esta tarea se divide en dos partes: asociar el
 driver con un puerto P-CIM y establecer los parámetros operativos de dicho 
 puerto:
 \begin{itemize}
@@ -246,7 +259,8 @@ Tab. \ref{tab:ConfigModbus}.
 %   \item  Elija el Setup de Comunicación de P-CIM (ALT+M). El Setup de P-CIM
 %   despliega la ventana de diálogo “Project Communication Setup” de P-CIM.
 %   \item Para agregar una nueva asociación driver-puerto, elija New.
-%   \item Para editar una asociación existente, marque la línea correspondiente y
+%   \item Para editar una asociación existente, marque la línea correspondiente 
+%y
 %   elija Edit.
 %   \item El Setup de P-CIM despliega la ventana de diálogo “Port properties” 
 %   (propiedades de puerto).
@@ -256,7 +270,8 @@ Tab. \ref{tab:ConfigModbus}.
 % contiene nombres de drivers instalados en el proyecto en curso).
 %   \item En el cuadro elija la notación numérica del bit – octal, decimal o 
 %    hexadecimal – de la lista de Bit numbering system.
-%   \item Elija la notación usada para referenciar el bit menos significativo – 0 
+%   \item Elija la notación usada para referenciar el bit menos significativo – 
+%0 
 %    ó 1 – de la lista de Lowest bit number (Numeración del Menor Bit).
 %   \item Para utilizar el driver en modo emulador, selecciones la casilla de 
 %   Emulación.
@@ -285,11 +300,11 @@ Tab. \ref{tab:ConfigModbus}.
     \end{center}\\
   \hline
     Ingrese el número de puerto entre 1 y 255 en la lista de Port Name.
-    Elija Modbus de la lista de Driver Name.
+    Elija MODBUS de la lista de Driver Name.
     y decimal en el cuadro Bit numbering system.
     La notación usada para referenciar el bit menos significativo es 1 en 
     la lista de Lowest bit number.
-%     No utilizaremos el driver en modo emulador, deseleccione la casilla 
+%     No se utiliza el driver en modo emulador, deseleccione la casilla
 %     de Emulation Mode.
     &\begin{center}
       %\rule{0.4\textwidth}{0.3\textwidth}
@@ -310,17 +325,21 @@ Tab. \ref{tab:ConfigModbus}.
 %   \item Elegir el Setup de P-CIM del grupo P-CIM para Windows 32.
 %   \item Elegir el Setup de Comunicación de P-CIM (ALT+M). El Setup de P-CIM
 %   despliega la ventana de diálogo Project Communication Setup.
-%   \item Marque la línea correspondiente en el cuadro de Puertos Asignados y elija
+%   \item Marque la línea correspondiente en el cuadro de Puertos Asignados y 
+%elija
 %   Properties.
 %   \item El Setup de P-CIM despliega la ventana de diálogo driver específico. 
-%   Para el caso de Modbus se despliega la ventana P-CIM Configurator for MODBUS 
+%   Para el caso de Modbus se despliega la ventana P-CIM Configurator for 
+%Modbus 
 %   Driver
 %   \item Elija el numero del puerto de P-CIM de la lista P-CIM Port
 %   \item Defina la tabla de Polling mediante el botón Polling Configuration
 %   \item Establezca el tipo de interfaz mediante la lista de Network Type en 
-%   RS232. 
-%   \item Transport Parameter despliega una ventana en la que se debe configurar 
-% el puerto serial con  el mismo nombre con el que aparece en el Administrador de 
+%   RS-232.
+%   \item Transport Parameter despliega una ventana en la que se debe 
+%configurar 
+% el puerto serial con  el mismo nombre con el que aparece en el Administrador 
+%de 
 % Dispositivos de Windows.
 %  \end{enumerate} 
 \end{itemize}
@@ -340,7 +359,7 @@ Tab. \ref{tab:ConfigModbus}.
       {Cap5-SCADA/images/modbusDriver.jpeg}
   \end{center}\\
 \hline
-  Defina la tabla de Polling mediante el botón Polling Configuration. En esta 
+  Defina la tabla de Polling mediante el botón Polling Configuration. En esta
   se debe definir Start Address en 40001 segun se explica en la 
   Sec. \ref{subsubsec:InforDriver}.
   &\begin{center}
@@ -399,11 +418,11 @@ en el PLC 1 que está conectado al Puerto 1.
 \end{itemize}
 
 \subsubsection{Verificación de la comunicación}
-En este punto podemos verificar que la comunicación entre el PLC y la
-computadora de control se encuentre operativa. Para monitorear el estado 
-de la comunicación podemos utilizar las siguientes herramientas:
+En este punto se puede verificar que la comunicación entre el PLC y la
+computadora supervisora se encuentre operativa. Para supervisar el estado
+de la comunicación se pueden utilizar las siguientes herramientas:
 \begin{itemize}
- \item \textbf{Sumario de Alarmas(Alarm Summary):} despliega mensajes del
+ \item \textbf{Resumen de Alarmas (Alarm Summary):} despliega mensajes del
 Sistema de Arranque, uno de los cuales es: ``MODBUS
   Driver successfully loaded'' indicando que el driver halló la tabla de
   comunicación y fue exitosamente cargado. Ver Fig. \ref{fig:alarmsummary}.
@@ -411,7 +430,7 @@ Sistema de Arranque, uno de los cuales es: ``MODBUS
 	\centering
 	\includegraphics[width=0.8\textwidth]
 	{Cap5-SCADA/images/alarm.jpeg}
-	\caption{Ventana Alarm Summary con conexión Modbus Exitosa}
+	\caption{Ventana Alarm Summary con conexión Modbus exitosa}
 	\label{fig:alarmsummary}
   \end{figure}
  \item \textbf{Monitor de Datos (Datascope):} Esta herramienta se encuentra
@@ -422,7 +441,7 @@ dentro del subdirectorio Tools.
   dirección que insertó,
   indicando que la comunicación está funcionando, o bien recibirá un cero, y
   después de un momento se desplegará un mensaje en la ventana de Resumen
-  de Alarma, indicando que la comunicación falló. Véase la 
+  de Alarmas, indicando que la comunicación falló. Véase la
   Sec. \ref{subsubsec:InforDriver} para mas información acerca de las
   direcciones del PLC y la base de datos. Ver 
   Fig. \ref{fig:dataScope}.
@@ -438,12 +457,12 @@ dentro del subdirectorio Tools.
 
 \subsection{Capa de procesamiento}
 \label{subsec:CapaProcesamiento}
-Una vez que hemos verificado que se ha establecido la comunicación con el
-\gls{plc}, nos ocuparemos de la base de datos de P-CIM. Esta se encarga de 
-recuperar, almacenar y procesar la información de tiempo real e histórica de los 
-controladores, dispositivos periféricos y variables internas en el sistema. Es
-decir, la base
-de datos conforma la capa de procesamiento.
+
+Una vez que se ha verificado el establecimiento de la comunicación
+con el \gls{plc}, se continúa con la base de datos de P-CIM. Esta se encarga
+de recuperar, almacenar y procesar la información de tiempo real e histórica de 
+los controladores, dispositivos periféricos y variables internas en el sistema. 
+Es decir, la base de datos conforma la capa de procesamiento.
 
 La base de datos está formada por elementos, llamados bloques, que son
 utilizados para:
@@ -500,22 +519,23 @@ dispositivo y
     los valores de la salida hacia el dispositivo.
 \end{itemize}
 
-Ahora, teniendo en cuenta las variables establecidas en el \gls{plc} 
+Teniendo en cuenta las variables establecidas en el \gls{plc}
 para la comunicación con el \gls{scada} (ver 
 Tabs. \ref{table:mwBanderas} y
-\ref{table:mwNumericos}) podemos definir los bloques de la base
-de datos que serán necesarios. Estos bloques los dividimos en tres 
+\ref{table:mwNumericos}) se pueden definir los bloques de la base
+de datos que fueron necesarios. Estos bloques se dividen en tres
 grandes grupos con configuraciones similares:
  
 \begin{itemize}
  \item \textbf{Analog Input/Output:} bloque analógico con información 
 desde/hacia el 
-  \gls{plc} a la base de datos. Debemos definir entradas a la base de datos con 
+  \gls{plc} a la base de datos. Se deben definir entradas a la base de datos
+con
   la dirección del espacio de memoria en el \gls{plc}, para poder acceder en
   Lectura/Escritura en estos registros.
  \item \textbf{Calculation:}  conversiones en unidades de ingeniería o
 porcentual
-  según sea necesario. Las variables leídas del \gls{plc} estan definidas en 
+  según sea necesario. Las variables leídas del \gls{plc} están definidas en
   una escala de $0$ a $4095$, por esta razón deben ser convertidas para
 adaptarse tanto al \gls{plc} como al \gls{hmi} del \gls{scada}.
  \item \textbf{Analog Emulation:} bloque analógico con información hacia/desde
@@ -535,7 +555,7 @@ que para:
   \item \textbf{Analog Input/Output:} Address debe tener el valor de MODBUS
   Address correspondiente. El Target está dado por la punta de la flecha que se
   origina en ese bloque.
-  \item \textbf{Calculation:} Parameter es el bloque entretante y Target es el
+  \item \textbf{Calculation:} Parameter es el bloque entrante y Target es el
   bloque saliente en el esquema.
   \item \textbf{Analog Emulation:} Address toma el valor de Emulation Address y
   el Target es el bloque al que apunta la flecha. 
@@ -593,13 +613,11 @@ de la base de datos en la Tab. \ref{tab:confBlockDB}.
     \end{center}\\
 \hline
 \end{tabular}
-\caption{Configuración de los bloques de la base de datos.}
+\caption{Configuración de los bloques de la base de datos}
 \label{tab:confBlockDB}
 \end{table}
 
-
-
-Ahora podemos controlar el funcionamiento del bloque recién configurado de la 
+Se puede controlar el funcionamiento del bloque recién configurado de la
 siguiente manera:
 \begin{enumerate}
   \item Abra el Datascope (Monitor de Datos), con un doble click sobre su icono 
@@ -607,18 +625,18 @@ siguiente manera:
   \item Escriba el nombre de alguno de los bloques antes definidos  y en otro 
   item su dirección.
   \item Se debe poder observar en ambos el mismo valor leído (en caso de
-  registros de lectura) o el mismo valor al escribir en uno u otro de los items.
+  registros de lectura) o el mismo valor al escribir en uno u otro de los ítems.
 \end{enumerate}
-Si esta prueba nos ha dado los resultados esperados podemos estar seguros que 
-nuestros bloques se encuentran bien configurados y podemos proseguir con el 
-desarrollo de nuestro sistema \gls{scada}.
-
+Si esta prueba da los resultados esperados se puede estar seguros que
+los bloques se encuentran bien configurados, y se puede proseguir con el
+desarrollo del sistema \gls{scada}.
 
 \subsection{Capa de aplicación}
 \label{subsec:CapaAplicacion}
-La tercer y última capa del sistema \gls{scada} es la capa de aplicación. Esta 
-será utilizada en nuestro \gls{pfe} unicamente como \gls{hmi}. Para el 
-desarrollo de la interfaz gráfica definimos un documento gráfico creado con el 
+
+La tercer y última capa del sistema \gls{scada} es la capa de aplicación. Esta
+fue utilizada unicamente como \gls{hmi}. Para el
+desarrollo de la interfaz gráfica se define un documento gráfico creado con el
 Editor de Animaciones (Animation Editor). Finalmente, mediante el Servidor de 
 Pantallas (Operator Workstation) se pone en marcha el sistema. A continuación se 
 presentan el desarrollo y descripción de la pantalla realizada mediante las 
@@ -630,8 +648,8 @@ herramientas gráficas provistas por P-CIM.
 
 
 \subsubsection{Requerimientos de pantalla}
-El primer paso en el diseño de un pantalla es la definición de requerimientos 
-con los que debemos cumplir. Estos se resumen en:
+El primer paso en el diseño de un pantalla es la definición de requerimientos
+que deben cumplirse. Estos se resumen en:
 \begin{itemize}
  \item Botones de parada de emergencia y rehabilitación del sistema.
  \item Botones de encendido y parada del controlador de la planta.
@@ -656,7 +674,7 @@ con los que debemos cumplir. Estos se resumen en:
 
 \subsubsection{Diseño de una pantalla}
 Mediante el Editor de Animaciones (ubicado en el sub-directorio
-Development) diseñamos y definimos las características funcionales de 
+Development) se diseñó y se definieron las características funcionales de 
 la pantalla que correrá en el Operator Workstation. Se muestra en la Fig. 
 \ref{fig:hmiscada} el resultado de la \gls{hmi} diseñada.
 Puede observarse que la interfaz se adapta las características antes
@@ -665,7 +683,7 @@ especificadas.
 	\centering
 	\includegraphics[width=0.6\textwidth]
 	{Cap5-SCADA/images/hmiScada.jpeg}
-	\caption{Interfaz Gráfica del SCADA}
+	\caption{Interfaz gráfica del SCADA}
 	\label{fig:hmiscada}
   \end{figure}
 
@@ -709,13 +727,13 @@ Para la realización de dicha interfaz se procedió como muestra la Tab.
 % 	\item  Controls: especifica una entrada de datos la cual puede estar dada por 
 % 	casillas de entrada de datos, botones que inician acciones, o
 % 	potenciómetros que permiten fijar valores analógicos.
-% 	\item Indicators: Usados para crear presentaciones textuales, de color
+% 	\item Indicators: usados para crear presentaciones textuales, de color
 % 	y gráficas de los datos, en estos los contenidos, posición, color y
 % 	tamaño cambian en función del valor de los datos.
 % 	\item Special: esta categoría es usada para especificar Gráficos de Tendencia o
 % 	“Medidores de Desviación”.
 %       \end{itemize}
-%       Un signo de visto en una casilla de propiedades significa que ésta es la propiedad
+%       Un signo de visto en una casilla de propiedades significa que esta es la propiedad
 %       asignada al objeto gráfico. Luego aparece otra ventana de diálogo:
 %       donde se debe completar (Servidor, Tópico e Item) para cada
 %       propiedad que especifique (excepto para el botón). Esto designa
@@ -723,7 +741,8 @@ Para la realización de dicha interfaz se procedió como muestra la Tab.
 %       el destino de los datos escritos por el objeto de control.
 %       
 %  \item Probar los resultados en el Operator Workstation.\\
-%       Para poder probar el funcionamiento de nuestra \gls{hmi} procedemos de la siguiente manera:
+%       Para poder probar el funcionamiento de la \gls{hmi} se procede de la
+%	siguiente manera:
 %       \begin{enumerate}
 %        \item 
 %       \end{enumerate}
@@ -757,7 +776,7 @@ Para la realización de dicha interfaz se procedió como muestra la Tab.
 	  el objeto (click izquierdo del mouse). El Editor de Animaciones le 
 	  coloca marcas al objeto. Elegir Properties List (Lista de 
 	  Propiedades). Un signo de visto en una casilla de propiedades 
-	  significa que ésta es la propiedad asignada al objeto gráfico. 
+	  significa que esta es la propiedad asignada al objeto gráfico. 
 	&\begin{center}
 	  %\rule{0.4\textwidth}{0.3\textwidth}
 	   \includegraphics[width=0.4\textwidth]
@@ -777,7 +796,7 @@ Para la realización de dicha interfaz se procedió como muestra la Tab.
 	\end{center}\\
    \hline
       \end{tabular}
-\caption{Diseño y animación de la interfaz gráfica.}
+\caption{Diseño y animación de la interfaz gráfica}
 \label{tab:diseñoAnimGraf}
 \end{table}
 
@@ -803,7 +822,7 @@ dada por
 % % 	    \caption{}
 % % 	    \label{}
 % %   	\end{subfigure}
-% 	\caption{Propiedades de tipo Controls.}
+% 	\caption{Propiedades de tipo Controls}
 % 	\label{fig:controlshmi}
 %   \end{figure}
 	
@@ -825,7 +844,7 @@ dada por
 % % 	    \caption{}
 % % 	    \label{}
 % %   	\end{subfigure}
-% 	\caption{Propiedades de tipo Indicators.}
+% 	\caption{Propiedades de tipo Indicators}
 % 	\label{fig:indicatorhmi}
 %   \end{figure}
 	
@@ -846,22 +865,22 @@ Tendencia o ``Medidores de Desviación''.
 % 	\begin{subfigure}[b]{0.2\textwidth}
 % 	   \includegraphics[width=\textwidth]{Cap5-SCADA/images/tendencia3.jpeg}
 %   	\end{subfigure}
-% 	\caption{Propiedades de tipo Special.}
+% 	\caption{Propiedades de tipo Special}
 % 	\label{fig:tendhmi}
 %   \end{figure}
 
 
 \section{Ejecución}
 \label{sec:Ejecucion}
-Durante el desarrollo de la interfaz gráfica podemos previsualizar 
-el resultado. Para esto, en la misma pantalla del Animation Editor, 
-seleccionamos File, Preview. Una vez que han sido configuradas cada una de las 
-partes y se ha completado el desarrollo de nuestro sistema establecemos 
+Durante el desarrollo de la interfaz gráfica se puede previsualizar 
+el resultado. Para esto, en la misma pantalla del Animation Editor,
+se selecciona File, Preview. Una vez que han sido configuradas cada una de las 
+partes y se ha completado el desarrollo del sistema se establece
 la auto-ejecución de la interfaz gráfica en el Operator Workstation. De esta 
 manera al realizar el Startup de P-CIM, la pantalla se presenta inmediatamente 
-tras la inicialización. Debemos tildar AutoStart en el panel del Animation 
+tras la inicialización. Debe tildarse AutoStart en el panel del Animation
 Editor la opción Operator Workstation, Options, AutoStart.
 
 Para mas información acerca de la operación del sistema mediante el \gls{hmi} 
-del sistema \gls{scada} refiérase a la Sec.\ref{anexo:operacionSCADA} del 
-Manual del Usuario en los Anexos.
+del sistema \gls{scada} refiérase a la Sec. \ref{anexo:operacionSCADA} del
+Manual del Usuario.

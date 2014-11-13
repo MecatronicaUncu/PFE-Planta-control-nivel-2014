@@ -23,9 +23,10 @@ En caso contrario, o para asegurarse de que el programa que corre en el
 %  \item Activar en interruptor termomagnético ubicado dentro del tablero
 %  eléctrico.
 %  \item Conectar la planta con la computadora mediante el cable cable RS-485 
-%  con adaptación a RS-232. Puede ser necesario utilizar un adaptador RS-232/USB.
+%  con adaptación a RS-232C. Puede ser necesario utilizar un adaptador
+%  RS-232C/USB.
 %  \item Abrir el programa del \gls{plc} denominado {\color{red}(nombre del programa)} 
-%  con el Software Twido Soft. Este programa se encuentra en el DVD adjunto a este 
+%  con el Software Twido Soft. Este programa se encuentra en el DVD adjunto al
 %  informe.
 %  \item Conectarse al \gls{plc} como se indica en la imagen \ref{img:twidosoft}.
 %  \item Cargar el programa en el \gls{plc}, imagen \ref{img:twidosoftcargar}.
@@ -51,9 +52,9 @@ termomagnético ubicado dentro del tablero eléctrico.
 	{Anexos/images/disyuntor.JPG}
     \end{center}\\
 \hline
-    Conectar la planta con la computadora de control, mediante el cable cable
-\verb|RS-485|  con adaptación a \verb|RS-232|. Puede ser necesario utilizar un
-adaptador \verb|RS-232/USB|.
+    Conectar la planta con la computadora supervisora, mediante el cable cable
+\verb|RS-485|  con adaptación a \verb|RS-232C|. Puede ser necesario utilizar un
+adaptador \verb|RS-232C/USB|.
     &\begin{center}
       %\rule{0.4\textwidth}{0.3\textwidth}
       \includegraphics[width=0.4\textwidth]
@@ -64,7 +65,7 @@ adaptador \verb|RS-232/USB|.
 \end{table}
 
 Se aconseja escribir y ejecutar en el \gls{plc} el programa que se encuentra en
-el DVD adjunto, denominado {\color{red}(nombre del programa)}. Así, la planta
+el DVD adjunto, denominado \texttt{ABC\_plc\_1.twd}. Así, la planta
 estará en un estado a partir del cual se puede operar con el sistema
 \gls{scada} propuesto.
 
@@ -115,7 +116,7 @@ Cargar el programa desde la computadora al \gls{plc}.
 \label{anexo:operacionSCADA}
 
 \begin{lattention}
- Recuerde siempre realizar las verificaciones descriptas en la Sección 
+ Recuerde siempre realizar las verificaciones descriptas en la Sec.
 \ref{anexo:verificaciones} del Manual del Usuario antes de continuar con la
 operación de la planta.
 \end{lattention}
@@ -162,7 +163,7 @@ para completar esta tarea:
 \end{table}
 
 \subsubsection{Verificar la Comunicación}
-A continuación debemos verificar que la comunicación con el \gls{plc} 
+A continuación se debe verificar que la comunicación con el \gls{plc}
 se encuentra bien configurada y que el sistema \gls{scada} es capaz de
 intercambiar información con el controlador.
 Proceda como se describe a continuación:
@@ -255,7 +256,7 @@ Pueden diferenciarse los siguientes bloques principales
 	\centering
 	\includegraphics[width=0.8\textwidth]
 	{Cap5-SCADA/images/hmiScada.jpeg}
-	\caption{Interfaz gráfica del sistema SCADA}
+	\caption[]{Interfaz gráfica del sistema SCADA}
 	\label{fig:hmiscada2}
   \end{figure}
   
@@ -264,23 +265,23 @@ Pueden diferenciarse los siguientes bloques principales
 la planta, y solo volverá a responder si se presiona \textbf{Rehabilitar
 Sistema}.
  \item \textbf{Control Automático:} desde estos controles se activa o detiene
-la planta cuando el controlador automático esta activo.
+la planta cuando el controlador automático está activo.
  \item \textbf{Control Manual:} este modo debe ser usado solamente como un
 medio para
 sacar a la planta de un estado de emergencia tras  haberse declarado una alarma
 por HHL o LLL.
-Aquí podrá encender las bombas individualmente y controlar la apertura de la
-válvula.
+Aquí podrá encender las electrobombas individualmente y controlar la apertura
+de la válvula.
  \item \textbf{Ganancias del Controlador:} en esta sección usted puede enviar al
 \gls{plc} de la planta las constantes del controlador $K_p$, $T_i$ y $T_d$. 
 Puede seleccionar los valores por Default o Manual. Pulse Aplicar para que los
 cambios sean efectivos.
  \item \textbf{Consigna de Nivel:} en esta sección usted puede enviar al
-\gls{plc} de la planta la consigna/setpoint de nivel del tanque controlado. 
+\gls{plc} de la planta la consigna/Set Point de nivel del tanque controlado. 
 Puede seleccionar el valor por Default ($50\%$) o Manual. Pulse Aplicar para
 que
 los cambios sean efectivos.
- \item \textbf{Sistema:} en este apartado podemos ver el estado del actual del
+ \item \textbf{Sistema:} en este apartado se puede ver el estado del actual del
 sistema. Es decir, se muestran los valores de consigna de nivel, nivel
 actual, caudal y apertura de la válvula. También se señalan el estado del 
 \gls{plc} y si el sistema se encuentra funcionando en estado normal.
