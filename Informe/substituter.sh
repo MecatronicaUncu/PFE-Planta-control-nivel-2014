@@ -3,7 +3,7 @@
 echo "Script para sustituir palabras en archivos .tex"
 echo -e "Escribir en el array sust las sustituciones correspondientes\n"
 
-sust=("Anexo" "anexo" "Anexos" "anexos")
+sust=("Éste" "Este" "Ésta" "Esta" "éste" "este" "ésta" "esta")
 
 files=(Abstract/abstract.tex Agradecimientos/Agradecimientos.tex Anexos/Anexo1-PuestaEnMarcha.tex 
 Anexos/Anexo2-Operacion.tex Bibliografia/bibliografia.bib Cap1-Introduccion/Cap1-Introduccion.tex 
