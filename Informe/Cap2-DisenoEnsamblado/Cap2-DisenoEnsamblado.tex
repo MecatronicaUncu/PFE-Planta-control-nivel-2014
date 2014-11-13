@@ -8,7 +8,7 @@ instrumentación, con el objetivo de detallar la solución propuesta en
 la Sec. \ref{sec:SolucionPropuesta}.
 Luego se hará énfasis en la construcción de la planta a partir de los elementos
 disponibles.
-Se describirá en detalle cada uno de ellos y se hará mención de
+Se describirá en detalle cada uno de ellos y se explicitarán
 las decisiones constructivas tomadas durante el ensamblado.
 
 \section{Diagrama de tuberías e instrumentación - P\&ID}
@@ -200,7 +200,7 @@ PI: Pressure Indicator
 
 La gestión de alarmas se realiza a través del transmisor LT presente
 en la planta,
-tomando la información del mismo para detener el sistema en caso de pasar
+tomando la información del mismo para detener el sistema en caso de superar
 los límites normales de trabajo.
 Este proceso debería realizarse utilizando sensores
 discretos, tipo level switch, separados.
@@ -288,7 +288,7 @@ Profundidad &  $0.52\,m$\\
  
 La estructura presenta en su sección media barras de refuerzo.
 Sobre ellas se colocaron los tanques.
-Además, sobre las barras se fijó una base de madera, donde se coloca la
+Además, sobre las barras se fijó una base de madera, donde se colocaron la
 válvula de control, las celdas de presión diferencial
 y las electrobombas.
 La tubería flexible que corresponde al tiempo muerto se colocó bajo
@@ -402,7 +402,7 @@ Se colocó en la planta un circuito de tiempo muerto, que consta de 20 metros de
 tubo semi rígido de 1/2 pulgada.
 El tiempo muerto se coloca en paralelo de la tubería de llenado (ver
 \gls{pyid}).
-Mediante la válvula manual \verb|VDT| puede habilitarse el tiempo muerto.
+Mediante la válvula manual \verb|VDT| puede habilitarse.
 
 El objetivo del tiempo muerto es alejar la acción de control del tanque
 controlado.
@@ -455,7 +455,7 @@ Al abrir la válvula, el rendimiento de la bomba decrece.
   tal como se describió en la Sec. \ref{subsec:tiempoMuerto}, esta válvula
 esférica plástica permite activar la tubería de tiempo muerto.
   Notar en el \gls{pyid} que la válvula está sobre la tubería de llenado.
-  Cerrando la válvula se fuerza el uso del tiempo muerto. Pero al
+  Cerrándola se fuerza el uso del tiempo muerto. Pero al
 abrirla, nada impide que el fluido circule por las dos tuberías en paralelo.
   No obstante, la pérdida de carga del tiempo muerto es significativamente
 mayor que el de la tubería de llenado.
@@ -1153,7 +1153,7 @@ agua en el tanque.
 
 \item \textbf{Medición del caudal en la tubería de llenado del tanque
 controlado:}
-Se utilizó una placa orificio para generar una caída de presión debida al
+se utilizó una placa orificio para generar una caída de presión debida al
 caudal.
 Las entradas de la celda se conectan aguas arriba y aguas abajo
 de la placa orificio.
