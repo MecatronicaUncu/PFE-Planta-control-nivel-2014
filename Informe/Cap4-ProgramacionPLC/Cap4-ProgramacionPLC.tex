@@ -1,8 +1,8 @@
 \chapter{Programación del PLC}
 \label{ch:progPLC}
 
-Una vez montado el sistema, realizado el cableado eléctrico y verificado su
-correcto funcionamiento de
+Habiendo montado los diferentes elementos de la planta de control de nivel,
+realizado el cableado eléctrico y verificado su correcto funcionamiento de
 manera manual, se procedió a la programación del \gls{plc}.
 
 En el presente capítulo se describe tanto el algoritmo del programa de control,
@@ -162,7 +162,7 @@ Representan valores de $16$ bits de resolución. En ellos puede guardarse
 información numérica en el rango $0$ a $65535$
 (constantes, valores de lectura o escritura), o pueden utilizarse para guardar
 hasta 16 banderas (bits).
-Cabe destacar que las \gls{memoryWord} pueden ser leídas mediante el bus MODBUS
+Cabe destacar que las \gls{memoryWord} pueden ser leídas mediante el bus Modbus
 (ver Sec. \ref{sec:Comunicacion}).
 En la Tab. \ref{table:mwBanderas} se muestran las \gls{memoryWord}
 utilizadas como banderas, en tanto que en la Tab.
@@ -329,7 +329,7 @@ ganancias del controlador y se fija el Set Point al $50\%$.
  \gls{scada} que el programa se encuentra en ejecución.
 
  \item \textbf{Verificación de parada de emergencia:}
-  como se explicará en el capitulo \ref{ch:scada}, está previsto un
+  como se explicará en el Cap. \ref{ch:scada}, está previsto un
  botón exclusivo de parada de emergencia en el \gls{scada}.
  En este peldaño, se modifica \verb|M5| según el valor de \verb|MW1:X8|.
  Luego de solucionar el inconveniente,
@@ -353,7 +353,7 @@ Pueden cambiarse las ganancias del controlador y el Set Point.
   escalones puede ponerse a $1$ la
   bandera de encendido de la planta en modo automático \verb|M1|, modificando
 el valor de \verb|MW1:X0|.
-  De la misma manera, puede cambiarse el
+  De la misma manera, puede cambiarse
   el control de automático a manual modificando \verb|M2| a través de
   \verb|MW1:X1|.
 
@@ -402,7 +402,7 @@ salidas y las entradas discretas del \gls{plc}, por más de un segundo.
 escribiendo un bit en \verb|MW0:X10|.
 
   \item \textbf{Limpieza de alarmas:} en este escalón se limpian las banderas
-de alarmas si el operador lo requiere.
+de error si el operador lo requiere.
 \end{itemize}
 
 En el anexo \ref{anexo:programaLadder} se puede
@@ -433,7 +433,8 @@ la configuración del controlador PID.
 Cada bloque \gls{pid} tiene dos modos de trabajo.
 \begin{itemize}
  \item \textbf{Modo automático:} conociendo los valores de las ganancias, el
-Set Point y la variable controlada, el bloque realiza el algoritmo de \gls{pid} y entrega
+Set Point y la variable controlada, el bloque realiza el algoritmo de \gls{pid}
+y entrega
 un valor de la variable manipulada en salida.
 En este caso, la variable manipulada es la apertura de la válvula.
 La variable controlada y el Set Point corresponden a los valores de nivel
@@ -472,7 +473,8 @@ Para poder determinar las ganancias del controlador se decidió seguir el métod
 de Ziegler–Nichols.
 Se trata de una serie de reglas basadas en la respuesta experimental
 del sistema.
-Estas reglas son aplicables a sistemas de primer orden o segundo orden aproximado 
+Estas reglas son aplicables a sistemas de primer orden o segundo orden
+aproximado
 a uno de primero, donde no se conoce con
 precisión el modelo matemático del sistema \cite{bib:Ogata}.
 
@@ -641,7 +643,7 @@ Queda así validada la sintonía del bucle \gls{pid} en el controlador.
 \section{Comunicación}
 \label{sec:Comunicacion}
 
-Tal como se mencionó anteriormente, mediante MODBUS sólo se puede tener acceso 
+Tal como se mencionó anteriormente, mediante Modbus sólo se puede tener acceso
 a las \gls{memoryWord} (palabras) del \gls{plc}.
 Para interactuar con la planta debieron definirse ciertas palabras, que
 permiten realizar acciones en el sistema y conocer el estado del mismo.
@@ -649,7 +651,7 @@ Por simplicidad, se optó por utilizar dos grupos de palabras bien
 diferenciadas:
 \begin{itemize}
  \item \textbf{Palabras de lectura:} pueden ser leídas por la computadora de
-control mediante MODBUS. En las palabras de lectura se agruparon aquellas
+control mediante Modbus. En las palabras de lectura se agruparon aquellas
 banderas de estado (motores encendidos, alarmas) y las palabras con valores
 numéricos de lectura (mediciones de nivel, caudal, valor presente de Set Point
 y de ganancias del controlador).
