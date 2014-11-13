@@ -18,28 +18,34 @@ height=4em]
     
     \node [block, below of=init] (var) {Adq. Nivel y Caudal};
     
-    \node [decision, below of=var](hhl){Nivel?};
-    \node [block, below of=hhl](stop){Detener la planta};
+    \node [decision, below of=var](manual){Manual?};
+    \node [block, below of=manual](control){Control manual};
     
-    \node [decision, right of=hhl](hl){Nivel?};
-    \node [block, below of=hl](alarm){Señal de alarma};
+    \node [decision, right of=manual](hhl){HHL LLL};
+    \node [block, below of=hhl](stop){PARO};
+    
+    \node [decision, right of=hhl](hl){HL LL};
+    \node [block, below of=hl](alarm){Alarma};
     \node [,right of=hl](null_hl){};
     
     \node [decision, right of=hl](set){Parám.?};
     \node [block, below of=set](param){Seteo de parámetros};
     \node [,right of=set](null_set){};
     
-    \node [decision, right of=set](manual){Manual?};
-    \node [block, below of=manual](control){Control manual};
-    \node [block, right of=manual](on){Control automático};
+    
+    \node [block, right of=set](on){Control automático};
    
-    \node [, below left of=stop](null){};
+    \node [, below left of=control](null){};
     
     % Draw edges
     
     \path [line,dashed] (init) -- (var);
     
-    \path [line] (var) -- (hhl);
+    \path [line] (var) -- (manual);
+    
+    \path [line] (manual) -- node {si} (control);
+    
+    \path [line] (manual) -- (hhl);
     \path [line] (hhl) -- node {si} (stop) ;
 %     %\path [line] (stop) |- (null);
     \path [line] (null) |- (var);
@@ -51,11 +57,11 @@ height=4em]
     \path [line] (hl) -- (set);
     \path [line] (set) -- node {si} (param);
     \path [line] (param) -| (null_set);
-    \path [line] (set) -- (manual);
-    
-    \path [line] (manual) -- node {si} (control);
-    \path [line] (manual) -- (on);
+    \path [line] (set) -- (on);
     \path [line] (on) |- (null);
+    
+    
+    
     \path [line] (control) |- (null);
 
 \end{tikzpicture}
