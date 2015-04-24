@@ -1,0 +1,616 @@
+<?xml version="1.0"?>
+<TwidoApplication>
+    <FileVersion>1.0</FileVersion>
+    <SymbolTable/>
+    <Resources>
+        <MODEM>
+            <HAYES_INIT_COMMAND>$</HAYES_INIT_COMMAND>
+        </MODEM>
+        <AppTable>
+            <AppTableVersion>3</AppTableVersion>
+            <CompatibilityFlags>5</CompatibilityFlags>
+            <LevelChosen>255</LevelChosen>
+            <Password>$</Password>
+            <AppName>sin título</AppName>
+            <AppVersion>1</AppVersion>
+            <AppSignature>14150</AppSignature>
+            <AppMaxCycleTime>250</AppMaxCycleTime>
+            <AppMinCycleTime>0</AppMinCycleTime>
+            <Protection>0</Protection>
+            <Autoload>0</Autoload>
+            <AppReadyToRun>1</AppReadyToRun>
+            <LenListIdTableModBuffer>4882</LenListIdTableModBuffer>
+            <AppIntModBufferLength>25376</AppIntModBufferLength>
+            <AppMaxModsAllowed>1586</AppMaxModsAllowed>
+            <AppDiffLadderSize>0</AppDiffLadderSize>
+            <AppNumExtLabel>2</AppNumExtLabel>
+            <AppNumModsUsedInt>0</AppNumModsUsedInt>
+            <LangVersion>1</LangVersion>
+            <CompilerVersion>1</CompilerVersion>
+            <CompilerSettings>0</CompilerSettings>
+            <HardwarePartNumber>TWDLMDA40DTK</HardwarePartNumber>
+            <HardwareID>2228</HardwareID>
+            <HWOptionsStatus>0</HWOptionsStatus>
+            <AppTableChksum>61739</AppTableChksum>
+            <AppStructChksum>47223</AppStructChksum>
+        </AppTable>
+        <KWTable/>
+        <CfgTable>
+            <CfgTableVersion>5</CfgTableVersion>
+        </CfgTable>
+        <SwObjList>
+            <Timer>
+                <TMIndex>0</TMIndex>
+                <PresetValue>1</PresetValue>
+                <TimeBase>3</TimeBase>
+                <TimeType>0</TimeType>
+                <ModifyFlag>1</ModifyFlag>
+            </Timer>
+            <BaseDigInput>
+                <BDI12Filter>0</BDI12Filter>
+                <BDI3Filter>255</BDI3Filter>
+                <BDICapture>0</BDICapture>
+                <BDIRunStop>0</BDIRunStop>
+                <BDINumInputs>24</BDINumInputs>
+                <BDIIsDedicated>0</BDIIsDedicated>
+            </BaseDigInput>
+            <BaseDigOutput>
+                <BDONumOutputs>16</BDONumOutputs>
+                <BDOOutputStat>0</BDOOutputStat>
+                <BDOIsDedicated>0</BDOIsDedicated>
+            </BaseDigOutput>
+            <BaseAnalogInput>
+                <BAINumInputs>2</BAINumInputs>
+                <BAIPrecision>0</BAIPrecision>
+            </BaseAnalogInput>
+            <ExpansionModule>
+                <ExpModulePartNumber>TWDAMM6HT</ExpModulePartNumber>
+                <ExpModuleNumInputs>4</ExpModuleNumInputs>
+                <ExpModuleNumOutputs>2</ExpModuleNumOutputs>
+                <ExpModuleKind>1</ExpModuleKind>
+                <ExpModuleType>61448</ExpModuleType>
+                <ExpModuleIndex>1</ExpModuleIndex>
+                <ExpModuleExtra>0</ExpModuleExtra>
+                <analogModuleComboPosTag>0</analogModuleComboPosTag>
+                <analogChannelInputMaskTag>0</analogChannelInputMaskTag>
+                <AnalogChannel>
+                    <AnalogChannelType>0</AnalogChannelType>
+                    <AnalogChannelNumber>0</AnalogChannelNumber>
+                    <AnalogChannelMode>255</AnalogChannelMode>
+                    <AnalogChannelMin>0</AnalogChannelMin>
+                    <AnalogChannelMax>4095</AnalogChannelMax>
+                    <analogChannelExtraTag>0</analogChannelExtraTag>
+                </AnalogChannel>
+                <AnalogChannel>
+                    <AnalogChannelType>0</AnalogChannelType>
+                    <AnalogChannelNumber>1</AnalogChannelNumber>
+                    <AnalogChannelMode>255</AnalogChannelMode>
+                    <AnalogChannelMin>0</AnalogChannelMin>
+                    <AnalogChannelMax>4095</AnalogChannelMax>
+                    <analogChannelExtraTag>0</analogChannelExtraTag>
+                </AnalogChannel>
+                <AnalogChannel>
+                    <AnalogChannelType>1</AnalogChannelType>
+                    <AnalogChannelNumber>0</AnalogChannelNumber>
+                    <AnalogChannelMode>1</AnalogChannelMode>
+                    <AnalogChannelMin>0</AnalogChannelMin>
+                    <AnalogChannelMax>4095</AnalogChannelMax>
+                    <analogChannelExtraTag>0</analogChannelExtraTag>
+                </AnalogChannel>
+                <AnalogChannel>
+                    <AnalogChannelType>1</AnalogChannelType>
+                    <AnalogChannelNumber>1</AnalogChannelNumber>
+                    <AnalogChannelMode>255</AnalogChannelMode>
+                    <AnalogChannelMin>0</AnalogChannelMin>
+                    <AnalogChannelMax>4095</AnalogChannelMax>
+                    <analogChannelExtraTag>0</analogChannelExtraTag>
+                </AnalogChannel>
+            </ExpansionModule>
+            <CommObj>
+                <CmDeviceRemote>0</CmDeviceRemote>
+                <CmDeviceTypeRemote>0</CmDeviceTypeRemote>
+                <CmIndex>0</CmIndex>
+                <CmPort1Address>1</CmPort1Address>
+                <CmPort1LnCfg>0</CmPort1LnCfg>
+                <CmPort1Protocol>1</CmPort1Protocol>
+                <CmPort1MbTimeout>10</CmPort1MbTimeout>
+                <CmPort1RespTimeout>10</CmPort1RespTimeout>
+                <CmPort1EndOfFrame>10</CmPort1EndOfFrame>
+                <CmPort2Address>1</CmPort2Address>
+                <CmPort2LnCfg>180</CmPort2LnCfg>
+                <CmPort2Protocol>0</CmPort2Protocol>
+                <CmPort2MbTimeout>10</CmPort2MbTimeout>
+                <CmPort2RespTimeout>10</CmPort2RespTimeout>
+                <CmPort2EndOfFrame>10</CmPort2EndOfFrame>
+                <CmPort1StartOfFrame>0</CmPort1StartOfFrame>
+                <CmPort1SecondEndOfFrame>0</CmPort1SecondEndOfFrame>
+                <CmPort1SizeASCIIFrame>0</CmPort1SizeASCIIFrame>
+                <CmPort2StartOfFrame>0</CmPort2StartOfFrame>
+                <CmPort2SecondEndOfFrame>0</CmPort2SecondEndOfFrame>
+                <CmPort2SizeASCIIFrame>0</CmPort2SizeASCIIFrame>
+                <CmFlagSilenceUsed>0</CmFlagSilenceUsed>
+                <CmAsciiEofTxEnabler>0</CmAsciiEofTxEnabler>
+                <CmPunitLnCfg>132</CmPunitLnCfg>
+                <CmPunitMbTimeout>20</CmPunitMbTimeout>
+            </CommObj>
+            <PID>
+                <PIDIndex>0</PIDIndex>
+                <OperationMode>PID</OperationMode>
+                <ConversionEnable>FALSE</ConversionEnable>
+                <AlarmsEnable>FALSE</AlarmsEnable>
+                <ProcessVariable>%IW0.1.0</ProcessVariable>
+                <SetPoint>%MW7</SetPoint>
+                <Kp>%MW4</Kp>
+                <Ti>%MW5</Ti>
+                <Td>%MW6</Td>
+                <SamplingPeriod>100</SamplingPeriod>
+                <ATenable>FALSE</ATenable>
+                <Action>
+                    <Val>$</Val>
+                    <Flag>0</Flag>
+                </Action>
+                <LimitsEnable>
+                    <Val>$</Val>
+                    <Flag>0</Flag>
+                </LimitsEnable>
+                <ManualModeEnable>
+                    <Val>%M2</Val>
+                    <Flag>2</Flag>
+                </ManualModeEnable>
+                <ManualModeOutput>%MW9</ManualModeOutput>
+                <PWMOutputEnable>FALSE</PWMOutputEnable>
+                <NumericalOutput>%QW0.1.0</NumericalOutput>
+                <PidStateWord>NOT_CONFIG</PidStateWord>
+            </PID>
+            <analog4I2OCfgTag>
+                <AnalogChannel>
+                    <AnalogChannelNumber>0</AnalogChannelNumber>
+                    <AnalogChannelMode>1</AnalogChannelMode>
+                    <AnalogChannelMin>0</AnalogChannelMin>
+                    <AnalogChannelMax>4095</AnalogChannelMax>
+                </AnalogChannel>
+                <AnalogChannel>
+                    <AnalogChannelNumber>1</AnalogChannelNumber>
+                    <AnalogChannelMode>1</AnalogChannelMode>
+                    <AnalogChannelMin>0</AnalogChannelMin>
+                    <AnalogChannelMax>4095</AnalogChannelMax>
+                </AnalogChannel>
+                <AnalogChannel>
+                    <AnalogChannelNumber>2</AnalogChannelNumber>
+                    <AnalogChannelMode>255</AnalogChannelMode>
+                    <AnalogChannelMin>0</AnalogChannelMin>
+                    <AnalogChannelMax>4095</AnalogChannelMax>
+                </AnalogChannel>
+                <AnalogChannel>
+                    <AnalogChannelNumber>3</AnalogChannelNumber>
+                    <AnalogChannelMode>255</AnalogChannelMode>
+                    <AnalogChannelMin>0</AnalogChannelMin>
+                    <AnalogChannelMax>4095</AnalogChannelMax>
+                </AnalogChannel>
+            </analog4I2OCfgTag>
+        </SwObjList>
+        <MacCfgList/>
+    </Resources>
+    <Program>
+        <ListInstruction>(* INICIALIZACIÓN DE PARÁMETROS         *)</ListInstruction>
+        <ListInstruction>(* KP - TI - TD  SET POINT      *)</ListInstruction>
+        <ListInstruction>LDN   %M0</ListInstruction>
+        <ListInstruction>[ %MW4 := 3600 ]</ListInstruction>
+        <ListInstruction>[ %MW5 := 40 ]</ListInstruction>
+        <ListInstruction>[ %MW6 := 10 ]</ListInstruction>
+        <ListInstruction>[ %MW7 := 2048 ]</ListInstruction>
+        <ListInstruction>[ %MW0 := 0 ]</ListInstruction>
+        <ListInstruction>S     %M0</ListInstruction>
+        <ListInstruction>(* SEÑAL DE PLC RUN *)</ListInstruction>
+        <ListInstruction>LD    1</ListInstruction>
+        <ListInstruction>ST    %MW0:X0</ListInstruction>
+        <ListInstruction>(* PARADA DE EMERGENCIA GENERAL  *)</ListInstruction>
+        <ListInstruction>(* ESTA SEÑAL DETIENE LOS MOTORES *)</ListInstruction>
+        <ListInstruction>LD    %MW1:X8</ListInstruction>
+        <ListInstruction>S     %M5</ListInstruction>
+        <ListInstruction>(* ADQUISICIÓN DE NIVEL  Y CAUDAL  *)</ListInstruction>
+        <ListInstruction>LD    1</ListInstruction>
+        <ListInstruction>[ %MW2 := %IW0.1.0 ]</ListInstruction>
+        <ListInstruction>[ %MW3 := %IW0.1.1 ]</ListInstruction>
+        <ListInstruction>(* GESTIÓN DE ALARMAS HHL  *)</ListInstruction>
+        <ListInstruction>LD    1</ListInstruction>
+        <ListInstruction>MPS</ListInstruction>
+        <ListInstruction>AND   [ %MW2 >= 3071 ]</ListInstruction>
+        <ListInstruction>S     %MW0:X1</ListInstruction>
+        <ListInstruction>MPP</ListInstruction>
+        <ListInstruction>AND   [ %MW2 &lt;= 1023 ]</ListInstruction>
+        <ListInstruction>S     %MW0:X2</ListInstruction>
+        <ListInstruction>(* GESTIÓN DE BANDERA ALARMAS LLL Y HHL    *)</ListInstruction>
+        <ListInstruction>LD    [ %MW2 >= 3071 ]</ListInstruction>
+        <ListInstruction>OR    [ %MW2 &lt;= 1023 ]</ListInstruction>
+        <ListInstruction>S     %M3</ListInstruction>
+        <ListInstruction>(* GESTIÓN DE ALARMA HL Y LL   *)</ListInstruction>
+        <ListInstruction>LD    1</ListInstruction>
+        <ListInstruction>MPS</ListInstruction>
+        <ListInstruction>AND   [ %MW2 >= 2866 ]</ListInstruction>
+        <ListInstruction>ST    %MW0:X3</ListInstruction>
+        <ListInstruction>MPP</ListInstruction>
+        <ListInstruction>AND   [ %MW2 &lt;= 1228 ]</ListInstruction>
+        <ListInstruction>ST    %MW0:X4</ListInstruction>
+        <ListInstruction>(* SETEO DE PARÁMETROS: KP   *)</ListInstruction>
+        <ListInstruction>LD    %MW1:X2</ListInstruction>
+        <ListInstruction>MPS</ListInstruction>
+        <ListInstruction>AND   %MW1:X4</ListInstruction>
+        <ListInstruction>[ %MW4 := 3600 ]</ListInstruction>
+        <ListInstruction>MPP</ListInstruction>
+        <ListInstruction>ANDN  %MW1:X4</ListInstruction>
+        <ListInstruction>[ %MW4 := %MW11 ]</ListInstruction>
+        <ListInstruction>(* SETEO DE PARÁMETROS: TI   *)</ListInstruction>
+        <ListInstruction>LD    %MW1:X2</ListInstruction>
+        <ListInstruction>MPS</ListInstruction>
+        <ListInstruction>AND   %MW1:X4</ListInstruction>
+        <ListInstruction>[ %MW5 := 40 ]</ListInstruction>
+        <ListInstruction>MPP</ListInstruction>
+        <ListInstruction>ANDN  %MW1:X4</ListInstruction>
+        <ListInstruction>[ %MW5 := %MW12 ]</ListInstruction>
+        <ListInstruction>(* SETEO DE PARÁMETROS: TD  *)</ListInstruction>
+        <ListInstruction>LD    %MW1:X2</ListInstruction>
+        <ListInstruction>MPS</ListInstruction>
+        <ListInstruction>AND   %MW1:X4</ListInstruction>
+        <ListInstruction>[ %MW6 := 10 ]</ListInstruction>
+        <ListInstruction>MPP</ListInstruction>
+        <ListInstruction>ANDN  %MW1:X4</ListInstruction>
+        <ListInstruction>[ %MW6 := %MW13 ]</ListInstruction>
+        <ListInstruction>(* ASIGNACION SET POINT *)</ListInstruction>
+        <ListInstruction>LD    %MW1:X3</ListInstruction>
+        <ListInstruction>MPS</ListInstruction>
+        <ListInstruction>AND   %MW1:X4</ListInstruction>
+        <ListInstruction>[ %MW7 := 2048 ]</ListInstruction>
+        <ListInstruction>MPP</ListInstruction>
+        <ListInstruction>ANDN  %MW1:X4</ListInstruction>
+        <ListInstruction>[ %MW7 := %MW10 ]</ListInstruction>
+        <ListInstruction>(* BANDERA ENCENDIDO Y PARADA DEL SISTEMA       *)</ListInstruction>
+        <ListInstruction>(* MODO AUTOMÁTICO  *)</ListInstruction>
+        <ListInstruction>LD    1</ListInstruction>
+        <ListInstruction>MPS</ListInstruction>
+        <ListInstruction>AND   %MW1:X0</ListInstruction>
+        <ListInstruction>S     %M1</ListInstruction>
+        <ListInstruction>MPP</ListInstruction>
+        <ListInstruction>ANDN  %MW1:X0</ListInstruction>
+        <ListInstruction>R     %M1</ListInstruction>
+        <ListInstruction>(* BANDERA CONTROL: MANUAL / AUTOMÁTICO       *)</ListInstruction>
+        <ListInstruction>LD    1</ListInstruction>
+        <ListInstruction>MPS</ListInstruction>
+        <ListInstruction>AND   %MW1:X1</ListInstruction>
+        <ListInstruction>S     %M2</ListInstruction>
+        <ListInstruction>MPP</ListInstruction>
+        <ListInstruction>ANDN  %MW1:X1</ListInstruction>
+        <ListInstruction>R     %M2</ListInstruction>
+        <ListInstruction>(* PARADA / ECENDIDO DE LOS MOTORES    *)</ListInstruction>
+        <ListInstruction>(* MODO AUTOMÁTICO    *)</ListInstruction>
+        <ListInstruction>LD    %M1</ListInstruction>
+        <ListInstruction>ANDN  %M3</ListInstruction>
+        <ListInstruction>ANDN  %M4</ListInstruction>
+        <ListInstruction>ANDN  %M2</ListInstruction>
+        <ListInstruction>ST    %Q0.0.7</ListInstruction>
+        <ListInstruction>(* ENCENDIDO MOTOR 1    *)</ListInstruction>
+        <ListInstruction>LD    %M2</ListInstruction>
+        <ListInstruction>AND   %MW1:X5</ListInstruction>
+        <ListInstruction>OR    %Q0.0.7</ListInstruction>
+        <ListInstruction>ANDN  %M5</ListInstruction>
+        <ListInstruction>ST    %Q0.0.0</ListInstruction>
+        <ListInstruction>(* CONTROL MANUAL MOTOR 2    *)</ListInstruction>
+        <ListInstruction>LD    %M2</ListInstruction>
+        <ListInstruction>AND   %MW1:X6</ListInstruction>
+        <ListInstruction>OR    %Q0.0.7</ListInstruction>
+        <ListInstruction>ANDN  %M5</ListInstruction>
+        <ListInstruction>ST    %Q0.0.1</ListInstruction>
+        <ListInstruction>(* PID  *)</ListInstruction>
+        <ListInstruction>LD    %Q0.0.7</ListInstruction>
+        <ListInstruction>OR    %M2</ListInstruction>
+        <ListInstruction>[ PID 0 ]</ListInstruction>
+        <ListInstruction>(* VALOR DE LA SALIDA DE LA VÁLVULA  *)</ListInstruction>
+        <ListInstruction>LD    1</ListInstruction>
+        <ListInstruction>[ %MW8 := %QW0.1.0 ]</ListInstruction>
+        <ListInstruction>(* INDICADOR DE CONTROL MANUAL / AUTOMÁTICO   *)</ListInstruction>
+        <ListInstruction>LD    %M2</ListInstruction>
+        <ListInstruction>ST    %MW0:X8</ListInstruction>
+        <ListInstruction>(* INDICADOR DE MODO AUTOMÁTICO *)</ListInstruction>
+        <ListInstruction>LDN   %M2</ListInstruction>
+        <ListInstruction>S     %MW0:X9</ListInstruction>
+        <ListInstruction>(* INDICADOR MOTOR 1 ENCENDIDO / APAGADO *)</ListInstruction>
+        <ListInstruction>LD    %I0.0.0</ListInstruction>
+        <ListInstruction>ST    %MW0:X6</ListInstruction>
+        <ListInstruction>(* INDICADOR MOTOR 2 ENCENDIDO / APAGADO *)</ListInstruction>
+        <ListInstruction>LD    %I0.0.1</ListInstruction>
+        <ListInstruction>ST    %MW0:X7</ListInstruction>
+        <ListInstruction>(* ERROR DE BOMBA      *)</ListInstruction>
+        <ListInstruction>BLK   %TM0</ListInstruction>
+        <ListInstruction>LD    %Q0.0.0</ListInstruction>
+        <ListInstruction>ANDN  %I0.0.0</ListInstruction>
+        <ListInstruction>OR(   %Q0.0.1</ListInstruction>
+        <ListInstruction>ANDN  %I0.0.1</ListInstruction>
+        <ListInstruction>)</ListInstruction>
+        <ListInstruction>IN</ListInstruction>
+        <ListInstruction>OUT_BLK</ListInstruction>
+        <ListInstruction>LD    Q</ListInstruction>
+        <ListInstruction>S     %MW0:X5</ListInstruction>
+        <ListInstruction>S     %M4</ListInstruction>
+        <ListInstruction>END_BLK</ListInstruction>
+        <ListInstruction>(* VERIFICACIÓN CORRECTO NIVEL      *)</ListInstruction>
+        <ListInstruction>(* SISTEMA TRABAJANDO SIN ALARMAS         *)</ListInstruction>
+        <ListInstruction>LD    %Q0.0.7</ListInstruction>
+        <ListInstruction>ANDN  %MW0:X3</ListInstruction>
+        <ListInstruction>ANDN  %MW0:X4</ListInstruction>
+        <ListInstruction>ST    %MW0:X10</ListInstruction>
+        <ListInstruction>(* LIMPIEZA DE SEÑAL DE PARADA DE EMERGENCIA *)</ListInstruction>
+        <ListInstruction>LD    %MW1:X9</ListInstruction>
+        <ListInstruction>R     %M5</ListInstruction>
+        <ListInstruction>(* LIMPIEZA DE ALARMAS    *)</ListInstruction>
+        <ListInstruction>LD    %MW1:X7</ListInstruction>
+        <ListInstruction>MPS</ListInstruction>
+        <ListInstruction>AND   %M3</ListInstruction>
+        <ListInstruction>R     %M3</ListInstruction>
+        <ListInstruction>R     %MW0:X1</ListInstruction>
+        <ListInstruction>R     %MW0:X2</ListInstruction>
+        <ListInstruction>MPP</ListInstruction>
+        <ListInstruction>AND   %M4</ListInstruction>
+        <ListInstruction>R     %M4</ListInstruction>
+        <ListInstruction>R     %MW0:X13</ListInstruction>
+        <ListInstruction>R     %MW0:X5</ListInstruction>
+        <ProgramValidated>TRUE</ProgramValidated>
+        <ProgramForceValidation>FALSE</ProgramForceValidation>
+    </Program>
+    <Context>
+        <LgthObjTableUsed>1</LgthObjTableUsed>
+        <ConstantConfiguredTag>0</ConstantConfiguredTag>
+        <CounterConfiguredTag>0</CounterConfiguredTag>
+        <DrumConfiguredTag>0</DrumConfiguredTag>
+        <FCounterConfiguredTag>0</FCounterConfiguredTag>
+        <LifoFifoConfiguredTag>0</LifoFifoConfiguredTag>
+        <WordConfiguredTag>0</WordConfiguredTag>
+        <PlsConfiguredTag>0</PlsConfiguredTag>
+        <ShiftBitRegConfiguredTag>0</ShiftBitRegConfiguredTag>
+        <ScheduleBlockConfiguredTag>0</ScheduleBlockConfiguredTag>
+        <StepCounterConfiguredTag>0</StepCounterConfiguredTag>
+        <TimerConfiguredTag>0</TimerConfiguredTag>
+        <VFastCounterConfiguredTag>0</VFastCounterConfiguredTag>
+        <MainWindow>
+            <MinimizedWindowPos>
+                <X>-1</X>
+                <Y>-1</Y>
+            </MinimizedWindowPos>
+            <NormalWindowPos>
+                <X>44</X>
+                <Y>58</Y>
+                <L>960</L>
+                <H>671</H>
+            </NormalWindowPos>
+            <MaximizedWindowPos>
+                <X>-1</X>
+                <Y>-1</Y>
+            </MaximizedWindowPos>
+            <DisplayType>MAXIMIZED</DisplayType>
+        </MainWindow>
+        <NavigatorWindow>
+            <NormalWindowPos>
+                <X>0</X>
+                <Y>22257044</Y>
+                <L>0</L>
+                <H>-22257044</H>
+            </NormalWindowPos>
+            <MaximizedWindowPos>
+                <X>0</X>
+                <L>263</L>
+            </MaximizedWindowPos>
+            <DisplayType>MAXIMIZED</DisplayType>
+        </NavigatorWindow>
+        <LadderViewerWindow>
+            <MinimizedWindowPos>
+                <X>-1</X>
+                <Y>-1</Y>
+            </MinimizedWindowPos>
+            <NormalWindowPos>
+                <X>88</X>
+                <Y>116</Y>
+                <L>791</L>
+                <H>611</H>
+            </NormalWindowPos>
+            <MaximizedWindowPos>
+                <X>-4</X>
+                <Y>-30</Y>
+            </MaximizedWindowPos>
+            <DisplayType>MAXIMIZED</DisplayType>
+            <Order>3</Order>
+        </LadderViewerWindow>
+        <AnimationTableWindow>
+            <NomFichierTAT>D:\PFE ABC\tabla.TAT</NomFichierTAT>
+            <MinimizedWindowPos>
+                <X>160</X>
+                <Y>802</Y>
+            </MinimizedWindowPos>
+            <NormalWindowPos>
+                <X>-15</X>
+                <Y>406</Y>
+                <L>1035</L>
+                <H>407</H>
+            </NormalWindowPos>
+            <MaximizedWindowPos>
+                <X>-4</X>
+                <Y>-30</Y>
+            </MaximizedWindowPos>
+            <DisplayType>MAXIMIZED</DisplayType>
+            <Order>4</Order>
+        </AnimationTableWindow>
+        <ConfigurationWindow>
+            <MinimizedWindowPos>
+                <X>-1</X>
+                <Y>-1</Y>
+            </MinimizedWindowPos>
+            <NormalWindowPos>
+                <X>0</X>
+                <Y>0</Y>
+                <L>1007</L>
+                <H>890</H>
+            </NormalWindowPos>
+            <MaximizedWindowPos>
+                <X>-4</X>
+                <Y>-30</Y>
+            </MaximizedWindowPos>
+            <DisplayType>MAXIMIZED</DisplayType>
+            <Order>2</Order>
+        </ConfigurationWindow>
+        <ProgramErrorWindow>
+            <MinimizedWindowPos>
+                <X>-1</X>
+                <Y>-1</Y>
+            </MinimizedWindowPos>
+            <NormalWindowPos>
+                <X>0</X>
+                <Y>0</Y>
+                <L>1007</L>
+                <H>826</H>
+            </NormalWindowPos>
+            <MaximizedWindowPos>
+                <X>-4</X>
+                <Y>-30</Y>
+            </MaximizedWindowPos>
+            <DisplayType>MAXIMIZED</DisplayType>
+            <Order>1</Order>
+        </ProgramErrorWindow>
+        <ZoomViewer>ADJUSTED</ZoomViewer>
+        <ZoomEditor>ADJUSTED</ZoomEditor>
+    </Context>
+    <PrintSettings>
+        <PrintConfig>TRUE</PrintConfig>
+        <PrintContent>TRUE</PrintContent>
+        <FolderName>$</FolderName>
+        <Header>
+            <Left>
+                <InfoType>0</InfoType>
+            </Left>
+            <Center>
+                <InfoType>1</InfoType>
+            </Center>
+            <Right>
+                <InfoType>9</InfoType>
+            </Right>
+        </Header>
+        <Footer>
+            <Left>
+                <InfoType>5</InfoType>
+            </Left>
+            <Center>
+                <InfoType>5</InfoType>
+            </Center>
+            <Right>
+                <InfoType>6</InfoType>
+            </Right>
+        </Footer>
+        <FirstPage>
+            <Print>TRUE</Print>
+            <Author>$</Author>
+            <Index>$</Index>
+            <PrintDate>TRUE</PrintDate>
+            <Service>$</Service>
+            <Owner>$</Owner>
+            <Comments>$</Comments>
+        </FirstPage>
+        <History>
+            <Print>TRUE</Print>
+            <Date>$</Date>
+            <Author>$</Author>
+            <Version>$</Version>
+            <Comments>$</Comments>
+            <CreateDate>10/09/2014</CreateDate>
+            <ModifyDate>13/11/2014</ModifyDate>
+        </History>
+        <HardwareSettings>
+            <Print>TRUE</Print>
+            <Base>
+                <Reference>TRUE</Reference>
+                <Description>FALSE</Description>
+                <Inputs>FALSE</Inputs>
+                <Outputs>FALSE</Outputs>
+                <OnlyUsed>FALSE</OnlyUsed>
+            </Base>
+            <Modules>
+                <Reference>TRUE</Reference>
+                <Description>FALSE</Description>
+                <ModuleConfig>FALSE</ModuleConfig>
+                <Inputs>FALSE</Inputs>
+                <Outputs>FALSE</Outputs>
+                <OnlyUsed>FALSE</OnlyUsed>
+            </Modules>
+            <PrintSerialPort>FALSE</PrintSerialPort>
+            <PrintModem>FALSE</PrintModem>
+            <PrintEthernet>FALSE</PrintEthernet>
+            <PrintEtherPort>FALSE</PrintEtherPort>
+            <PrintRTC>FALSE</PrintRTC>
+            <PrintCartridge>FALSE</PrintCartridge>
+        </HardwareSettings>
+        <ObjectsSettings>
+            <Print>TRUE</Print>
+            <AllSimple>TRUE</AllSimple>
+            <PrintConstantDouble>FALSE</PrintConstantDouble>
+            <PrintConstantWord>FALSE</PrintConstantWord>
+            <PrintConstantFloat>FALSE</PrintConstantFloat>
+            <PrintMemoryDouble>FALSE</PrintMemoryDouble>
+            <PrintMemoryWord>FALSE</PrintMemoryWord>
+            <PrintMemoryFloat>FALSE</PrintMemoryFloat>
+            <PrintMemoryBit>FALSE</PrintMemoryBit>
+            <AllBlocks>TRUE</AllBlocks>
+            <PrintTimers>FALSE</PrintTimers>
+            <PrintCounters>FALSE</PrintCounters>
+            <PrintFastCounter>FALSE</PrintFastCounter>
+            <PrintVeryFastCounter>FALSE</PrintVeryFastCounter>
+            <PrintSchedulerBlock>FALSE</PrintSchedulerBlock>
+            <PrintDrums>FALSE</PrintDrums>
+            <PrintPID>FALSE</PrintPID>
+            <PrintPLSPWM>FALSE</PrintPLSPWM>
+            <PrintLIFOFIFO>FALSE</PrintLIFOFIFO>
+            <PrintObjectsOnlyUsed>TRUE</PrintObjectsOnlyUsed>
+            <PrintObjectsIndicateMax>FALSE</PrintObjectsIndicateMax>
+        </ObjectsSettings>
+        <MemoryReportSettings>
+            <Print>TRUE</Print>
+            <PrintMemStat>TRUE</PrintMemStat>
+            <PrintMemAlloc>TRUE</PrintMemAlloc>
+        </MemoryReportSettings>
+        <ApplicationSettings>
+            <Print>TRUE</Print>
+        </ApplicationSettings>
+        <ProgramSettings>
+            <Print>TRUE</Print>
+            <PrintProgramLadder>
+                <ProgramRange>0</ProgramRange>
+                <ProgramStart>0</ProgramStart>
+                <ProgramEnd>9999</ProgramEnd>
+                <ProgramAddresses>FALSE</ProgramAddresses>
+                <ProgramSymbols>FALSE</ProgramSymbols>
+                <ProgramAddrSymb>TRUE</ProgramAddrSymb>
+                <ProgramEntireAddress>TRUE</ProgramEntireAddress>
+                <ProgramInfo>FALSE</ProgramInfo>
+            </PrintProgramLadder>
+            <PrintProgramList>
+                <ProgramRange>0</ProgramRange>
+                <ProgramStart>0</ProgramStart>
+                <ProgramEnd>9999</ProgramEnd>
+                <ProgramAddresses>TRUE</ProgramAddresses>
+                <ProgramSymbols>FALSE</ProgramSymbols>
+                <ProgramInfo>FALSE</ProgramInfo>
+                <ProgramRealMacroCode>FALSE</ProgramRealMacroCode>
+            </PrintProgramList>
+        </ProgramSettings>
+        <SymbolsSettings>
+            <Print>TRUE</Print>
+            <PrintSortOrder>1</PrintSortOrder>
+        </SymbolsSettings>
+        <CrossRef>
+            <Print>TRUE</Print>
+            <AllCrossRef>TRUE</AllCrossRef>
+            <CrossRefElements>0</CrossRefElements>
+            <CrossRefByRung>FALSE</CrossRefByRung>
+            <CrossRefAllRange>TRUE</CrossRefAllRange>
+            <CrossRefStart>0</CrossRefStart>
+            <CrossRefEnd>9999</CrossRefEnd>
+        </CrossRef>
+    </PrintSettings>
+</TwidoApplication>
+
+
