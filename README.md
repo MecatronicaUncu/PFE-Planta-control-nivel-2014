@@ -12,11 +12,11 @@ communicates with a supervisory computer running a SCADA program . The
 state of the plant can be observed remotely.Furthermore, the level
 set-point can be modified throw this SCADA program.
 
+---
+
 Folder & Files
 ---------------
-Note: Sorry folks but most of this work has been done in spanish anyway if required we could translate it for you :)
-
----
+> Note: Sorry folks but most of this work has been done in spanish anyway if required we could translate it for you :)
 
 + _Esquemas/_: Here you will find both the electrical connection and printed circuits we used in this project.
 + _Informe/_: The report LaTex files of the project.
